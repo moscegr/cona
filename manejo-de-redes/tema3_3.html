@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA 3.3: Enrutamiento Inter-VLAN (Router-on-a-Stick) | MRDE-03 CONALEP</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: '#0d9488', // Teal 600
+                        dark: '#0f172a',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #ffffff; color: #1e293b; }
+        .lll-info { background-color: #eff6ff; border-left: 4px solid #3b82f6; }
+        .lll-warning { background-color: #fffbeb; border-left: 4px solid #f59e0b; }
+        .lll-tip { background-color: #f0fdf4; border-left: 4px solid #10b981; }
+        .lll-danger { background-color: #fef2f2; border-left: 4px solid #ef4444; }
+        .diff-easy { background-color: #dcfce7; color: #15803d; }
+        .diff-med { background-color: #fef3c7; color: #b45309; }
+        .diff-hard { background-color: #fee2e2; color: #b91c1c; }
+        .step-badge { width: 28px; height: 28px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; }
+    </style>
+</head>
+<body class="bg-white text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900">
+
+    <!-- Top Bar Institucional -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="font-semibold text-white"><i class="fas fa-route text-teal-400 mr-1.5"></i> CONALEP — Manejo de Redes (Cisco Packet Tracer)</span>
+                <span class="text-slate-600 hidden sm:inline">|</span>
+                <span class="text-slate-400 hidden sm:inline">Módulo: <strong>MRDE-03</strong></span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="text-xs text-teal-400 hover:text-teal-300 transition flex items-center gap-1 font-semibold">
+                    <i class="fas fa-arrow-left"></i> Índice del Módulo
+                </a>
+                <span class="text-slate-600">|</span>
+                <a href="../index.html" class="text-xs text-emerald-400 hover:text-emerald-300 transition font-semibold">
+                    Portal CONALEP
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Layout en 3 Columnas (White UI Luis Llamas) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- COLUMNA 1: Menú Lateral Izquierdo -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                                <i class="fas fa-route"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 text-sm leading-tight">Unidad 3</h3>
+                                <p class="text-[11px] text-slate-500">Enrutamiento Inter-VLAN</p>
+                            </div>
+                        </div>
+                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-slate-200 pt-2.5">
+                            <div class="flex justify-between"><span>Duración Total:</span> <strong class="text-slate-800">15 Horas</strong></div>
+                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-teal-600 font-bold">15% SAE</strong></div>
+                        </div>
+                    </div>
+
+                    <!-- Navegación de RAs -->
+                    <div class="border border-slate-200 rounded-2xl p-4 bg-white">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Resultados de Aprendizaje</h4>
+                        <nav class="space-y-1.5 text-xs">
+                            <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-wifi mr-1.5 text-slate-400"></i> RA 1.1: Configuración WLAN</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">15h</span>
+                            </a>
+                            <a href="tema1_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-shield-alt mr-1.5 text-slate-400"></i> RA 1.2: Seguridad Inalámbrica</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">15h</span>
+                            </a>
+                            <a href="tema2_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-terminal mr-1.5 text-slate-400"></i> RA 2.1: CLI Cisco IOS</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">24h</span>
+                            </a>
+                            <a href="tema2_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-network-wired mr-1.5 text-slate-400"></i> RA 2.2: Serial, DHCP & NAT</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">30h</span>
+                            </a>
+                            <a href="tema3_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-layer-group mr-1.5 text-slate-400"></i> RA 3.1: VLANs y Troncales</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">25h</span>
+                            </a>
+                            <a href="tema3_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-sitemap mr-1.5 text-slate-400"></i> RA 3.2: Protocolo VTP & STP</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">20h</span>
+                            </a>
+                            <a href="tema3_3.html" class="flex items-center justify-between p-2 rounded-xl bg-teal-50 text-teal-700 font-bold border border-teal-200">
+                                <span><i class="fas fa-chevron-right mr-1.5 text-[10px]"></i> RA 3.3: Inter-VLAN (ROAS)</span>
+                                <span class="diff-hard px-2 py-0.5 rounded-full text-[10px] font-mono">15h</span>
+                            </a>
+                        </nav>
+                    </div>
+
+                    <!-- Fases Pedagógicas -->
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-2">
+                        <h4 class="font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-2">5 Fases de la Cátedra</h4>
+                        <a href="#fase1" class="block text-slate-600 hover:text-teal-600"><span class="font-bold text-teal-600">1.</span> Apertura & Necesidad</a>
+                        <a href="#fase2" class="block text-slate-600 hover:text-teal-600"><span class="font-bold text-sky-600">2.</span> Router-on-a-Stick</a>
+                        <a href="#fase3" class="block text-slate-600 hover:text-teal-600"><span class="font-bold text-indigo-600">3.</span> Modelado en Packet Tracer</a>
+                        <a href="#fase4" class="block text-slate-600 hover:text-teal-600"><span class="font-bold text-amber-600">4.</span> Simulador Inter-VLAN</a>
+                        <a href="#fase5" class="block text-slate-600 hover:text-teal-600"><span class="font-bold text-emerald-600">5.</span> Heteroevaluación AE 3.3.1</a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- COLUMNA 2: Contenido Didáctico Central -->
+            <main class="lg:col-span-6 space-y-12">
+
+                <!-- Header de Unidad -->
+                <header class="border-b border-slate-200 pb-6">
+                    <div class="flex items-center gap-2 text-xs text-teal-600 font-bold uppercase tracking-wider mb-2">
+                        <span>Unidad 3</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Resultado de Aprendizaje 3.3</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+                        Enrutamiento Inter-VLAN Mediante Router-on-a-Stick y Subinterfaces
+                    </h1>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Interconexión de redes virtuales separadas mediante un enlace troncal 802.1Q conectado a un router Cisco, creación y encapsulación de subinterfaces lógicas (`encapsulation dot1Q`), configuración de gateways y diagnóstico de problemas de conectividad de capa 3.
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-2 text-xs">
+                        <span class="px-2.5 py-1 rounded-lg bg-teal-100 text-teal-800 font-bold font-mono">15 Horas (Semanas 17 y 18)</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold">Heteroevaluación: 15% SAE</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">Evidencia: AE 3.3.1 (Cierre 100%)</span>
+                    </div>
+                </header>
+
+                <!-- FASE 1: APERTURA -->
+                <section id="fase1" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-teal-600 text-white">1</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Contextualización)</h2>
+                    </div>
+
+                    <div class="lll-info p-5 rounded-2xl mb-6">
+                        <h3 class="font-bold text-blue-900 text-sm mb-2 flex items-center gap-2">
+                            <i class="fas fa-route text-blue-600"></i> La Necesidad de Comunicación Controlada entre Departamentos
+                        </h3>
+                        <p class="text-xs text-slate-700 leading-relaxed mb-3">
+                            Las VLANs segmentan el tráfico para evitar tormentas de broadcast y aumentar la seguridad. Sin embargo, en una red real los usuarios de la <strong>VLAN 10 (Alumnos)</strong> y de la <strong>VLAN 20 (Docentes)</strong> necesitan acceder a un servidor web o de base de datos ubicado en la <strong>VLAN 30 (Servidores)</strong>.
+                        </p>
+                        <p class="text-xs text-slate-700 leading-relaxed font-semibold">
+                            El <strong>enrutamiento Inter-VLAN</strong> proporciona el puente de capa 3 necesario para que las diferentes redes se comuniquen aplicando políticas de seguridad y filtrado.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
+                        <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700 mb-3"><i class="fas fa-question-circle text-teal-600 mr-1.5"></i> Preguntas Detonadoras</h4>
+                        <ol class="list-decimal ml-5 text-xs text-slate-700 space-y-2">
+                            <li>¿Por qué el método tradicional de enrutamiento Inter-VLAN (un cable físico por cada VLAN) es inviable en redes con más de 10 VLANs?</li>
+                            <li>¿En qué consiste el modelo <strong>Router-on-a-Stick</strong> y cómo una sola interfaz física se subdivide en múltiples subinterfaces virtuales?</li>
+                            <li>¿Qué sucede si olvidas configurar el comando <code>no shutdown</code> en la interfaz física principal del router?</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- FASE 2: DESARROLLO CONCEPTUAL -->
+                <section id="fase2" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-sky-600 text-white">2</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (Subinterfaces y Encapsulación dot1Q)</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs mb-6">
+                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <strong class="text-teal-700 block text-sm"><i class="fas fa-arrows-split-up-and-left mr-1"></i> Subinterfaces Lógicas en Cisco IOS</strong>
+                            <ul class="list-disc ml-4 space-y-1 text-slate-600">
+                                <li>Son interfaces virtuales basadas en software asociadas a una interfaz física (ej. <code>Fa0/0.10</code>, <code>Fa0/0.20</code>).</li>
+                                <li>Cada subinterfaz actúa como el <strong>Default Gateway</strong> para los hosts pertenecientes a esa VLAN específica.</li>
+                                <li>Requiere definir el protocolo de etiquetado con <code>encapsulation dot1Q &lt;vlan-id&gt;</code> antes de asignar la dirección IP.</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <strong class="text-blue-700 block text-sm"><i class="fas fa-bug mr-1"></i> Errores Comunes de Configuración</strong>
+                            <ul class="list-disc ml-4 space-y-1 text-slate-600">
+                                <li><strong>Puerto del Switch en Modo Acceso:</strong> El puerto del switch conectado al router DEBE estar en modo <code>trunk</code>.</li>
+                                <li><strong>Desajuste de VLAN ID:</strong> El número de VLAN en <code>encapsulation dot1Q</code> no coincide con el ID de la VLAN del switch.</li>
+                                <li><strong>Gateway Incorrecto en Clientes:</strong> La IP del host no apunta a la IP de su respectiva subinterfaz.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 3: DEMOSTRACIÓN Y MODELADO PASO A PASO -->
+                <section id="fase3" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-indigo-600 text-white">3</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Demostración y Modelado en Packet Tracer</h2>
+                    </div>
+
+                    <div class="bg-slate-900 text-slate-200 rounded-xl p-5 text-xs font-mono mb-4 overflow-x-auto space-y-3">
+                        <div>
+                            <span class="text-teal-400 font-bold block mb-1">! 1. CONFIGURACIÓN DEL ROUTER (ROUTER-ON-A-STICK)</span>
+                            Router(config)# interface FastEthernet 0/0<br>
+                            Router(config-if)# no shutdown<br>
+                            Router(config-if)# exit<br>
+                            Router(config)# interface FastEthernet 0/0.10<br>
+                            Router(config-subif)# encapsulation dot1Q 10<br>
+                            Router(config-subif)# ip address 172.17.10.1 255.255.255.0<br>
+                            Router(config-subif)# interface FastEthernet 0/0.20<br>
+                            Router(config-subif)# encapsulation dot1Q 20<br>
+                            Router(config-subif)# ip address 172.17.20.1 255.255.255.0<br>
+                            Router(config-subif)# interface FastEthernet 0/0.99<br>
+                            Router(config-subif)# encapsulation dot1Q 99 native<br>
+                            Router(config-subif)# ip address 172.17.99.1 255.255.255.0<br>
+                            Router(config-subif)# end
+                        </div>
+
+                        <div>
+                            <span class="text-amber-400 font-bold block mb-1">! 2. CONFIGURACIÓN DEL SWITCH CATALYST</span>
+                            Switch(config)# interface FastEthernet 0/5<br>
+                            Switch(config-if)# switchport mode trunk<br>
+                            Switch(config-if)# switchport trunk native vlan 99<br>
+                            Switch(config-if)# end
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 4: APLICACIÓN PRÁCTICA (SIMULADOR Y PROBLEMARIO) -->
+                <section id="fase4" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-amber-600 text-white">4</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Simulador y Problemario)</h2>
+                    </div>
+
+                    <!-- SIMULADOR INTERACTIVO JS: ENRUTAMIENTO INTER-VLAN -->
+                    <div class="border-2 border-teal-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
+                        <div class="flex items-center justify-between mb-4 border-b border-teal-100 pb-3">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-route text-teal-600 text-xl"></i>
+                                <div>
+                                    <h3 class="font-bold text-slate-900 text-sm">Simulador de Enrutamiento Inter-VLAN (ROAS)</h3>
+                                    <span class="text-[11px] text-slate-500 font-mono">Prueba de conectividad y enrutamiento entre hosts de diferentes VLANs</span>
+                                </div>
+                            </div>
+                            <span class="px-2 py-1 rounded bg-teal-100 text-teal-800 text-[10px] font-bold">JavaScript Nativo</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs mb-4">
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Host Origen:</label>
+                                <select id="simHostOrigen" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="probarPingInterVlan()">
+                                    <option value="PC1">PC1 - Alumno (VLAN 10 • 172.17.10.21)</option>
+                                    <option value="PC2">PC2 - Docente (VLAN 20 • 172.17.20.22)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Host Destino:</label>
+                                <select id="simHostDestino" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="probarPingInterVlan()">
+                                    <option value="Server">Servidor Central (VLAN 30 • 172.17.30.254)</option>
+                                    <option value="PC2">PC2 - Docente (VLAN 20 • 172.17.20.22)</option>
+                                    <option value="PC1">PC1 - Alumno (VLAN 10 • 172.17.10.21)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-200 text-xs font-mono">
+                            <div class="text-slate-400 text-[11px] mb-2">[TRAZA DE ENRUTAMIENTO Y RESPUESTA ICMP]</div>
+                            <div id="simRoasOutput" class="space-y-1 text-emerald-400">
+                                <!-- Generado por JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROBLEMARIO DE 10 EJERCICIOS PARA FIRMAS -->
+                    <div class="border border-slate-200 rounded-2xl p-6 bg-white">
+                        <div class="flex items-center justify-between mb-4 border-b pb-3">
+                            <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                                <i class="fas fa-pencil text-teal-600"></i> Problemario de Enrutamiento Inter-VLAN (40% Firmas)
+                            </h3>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">10 Ejercicios</span>
+                        </div>
+
+                        <div class="space-y-3 text-xs text-slate-700">
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>1. Esquema de Router-on-a-Stick:</strong> Dibuja en tu libreta la topología física y lógica de un router conectado por un solo cable troncal a un switch con 3 subinterfaces.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>2. Configuración de 3 Subinterfaces dot1Q:</strong> Escribe los comandos IOS para configurar <code>Fa0/0.10</code>, <code>Fa0/0.20</code> y <code>Fa0/0.30</code> con sus respectivas IPs.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>3. Asignación de VLAN Nativa en Router:</strong> Modela la subinterfaz <code>Fa0/0.99</code> con la sentencia <code>encapsulation dot1Q 99 native</code>.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>4. Análisis de la Tabla de Enrutamiento:</strong> Interpreta la salida de <code>show ip route</code> en el router confirmando que las 3 redes aparecen como directamente conectadas (<code>C</code>).
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>5. Diagnóstico con Traceroute entre VLANs:</strong> Ejecuta <code>tracert 172.17.30.254</code> desde PC1 y describe el salto intermedio por el Gateway del router.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>6. Corrección de Error de Encapsulación:</strong> ¿Qué error muestra el router si intentas asignar <code>ip address</code> en una subinterfaz antes de escribir <code>encapsulation dot1Q</code>?
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>7. Enrutamiento en Switch de Capa 3 (Multilayer Switch):</strong> Compara el enfoque Router-on-a-Stick con el enrutamiento SVI mediante el comando <code>ip routing</code> en un switch Catalyst 3560.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>8. Verificación de Subinterfaces con Show IP Interface Brief:</strong> Explica cómo confirmar que las subinterfaces lógicas están en estado <code>up/up</code>.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>9. Mitigación de Cuellos de Botella:</strong> Propón una solución para evitar la saturación del enlace troncal hacia el router utilizando agregación de enlaces <strong>EtherChannel (LACP)</strong>.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>10. Práctica Integradora Final de Enrutamiento (Evidencia AE 3.3.1):</strong> Presenta el proyecto completo de conmutación y enrutamiento en Packet Tracer para el 15% SAE.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 5: CIERRE, EVALUACIÓN Y METACOGNICIÓN -->
+                <section id="fase5" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-emerald-600 text-white">5</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 5: Cierre, Evaluación y Metacognición</h2>
+                    </div>
+
+                    <!-- RÚBRICA OFICIAL CONALEP: AE 3.3.1 (15% SAE - HETEROEVALUACIÓN) -->
+                    <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-sm mb-6">
+                        <div class="flex items-center justify-between mb-4 border-b pb-3">
+                            <div>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-teal-100 text-teal-800 uppercase font-mono">Actividad de Evaluación 3.3.1 (Heteroevaluación)</span>
+                                <h3 class="font-bold text-slate-900 text-sm mt-1">Rúbrica de Valoración Oficial (15% SAE)</h3>
+                            </div>
+                            <span class="text-xs font-extrabold text-teal-600">Siglema: MRDE-03</span>
+                        </div>
+
+                        <div class="overflow-x-auto text-[11px]">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-900 text-white">
+                                        <th class="p-2.5">Indicador</th>
+                                        <th class="p-2.5 text-center">%</th>
+                                        <th class="p-2.5">Excelente</th>
+                                        <th class="p-2.5">Suficiente</th>
+                                        <th class="p-2.5">Insuficiente</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 text-slate-700">
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Preparación de la Red</td>
+                                        <td class="p-2.5 text-center font-bold text-teal-600">15%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Cablea topología, borra configuraciones, inicializa puertos y <strong>documenta comandos utilizados</strong>.</td>
+                                        <td class="p-2.5">Cablea topología y borra configuraciones previas.</td>
+                                        <td class="p-2.5 bg-red-50/30">Carece de cableado o no borra configuraciones.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Configuración del Switch</td>
+                                        <td class="p-2.5 text-center font-bold text-teal-600">20%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Establece hostname, contraseñas, default gateway y <strong>documenta configuraciones para referencia</strong>.</td>
+                                        <td class="p-2.5">Establece hostname, contraseñas y default gateway en switches.</td>
+                                        <td class="p-2.5 bg-red-50/30">Falta alguna contraseña o default gateway.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Configuración de VTP en Switches</td>
+                                        <td class="p-2.5 text-center font-bold text-teal-600">20%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Modo, dominio, contraseña, troncales, VLANs y <strong>ejecuta comandos del SO para verificar conectividad</strong>.</td>
+                                        <td class="p-2.5">Configura modo VTP, dominio, troncales y asigna puertos a VLANs.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite configurar VTP o enlaces troncales.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Configuración del Router y LAN con Servidor</td>
+                                        <td class="p-2.5 text-center font-bold text-teal-600">20%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Crea subinterfaces troncales dot1Q, interfaz servidor, verifica enrutamiento y <strong>restaura configuraciones al finalizar</strong>.</td>
+                                        <td class="p-2.5">Crea subinterfaces dot1Q y verifica enrutamiento entre VLANs.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite subinterfaces o enrutamiento inter-VLAN.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Resolución de Problemas del Enrutamiento</td>
+                                        <td class="p-2.5 text-center font-bold text-teal-600">15%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Diagnostica y corrige errores de VTP y configuración, guarda bitácora y <strong>restaura estado original</strong>.</td>
+                                        <td class="p-2.5">Diagnostica y corrige errores guardando resultados en texto.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite corregir problemas de enrutamiento.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Desempeño y Actitudes</td>
+                                        <td class="p-2.5 text-center font-bold text-teal-600">10%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Asistencia total, perseverancia ante errores, entrega anticipada, <strong>limpieza y trabajo colaborativo</strong>.</td>
+                                        <td class="p-2.5">Asistencia al 90%, entrega puntual y orden.</td>
+                                        <td class="p-2.5 bg-red-50/30">Incumple con asistencia o entrega extemporánea.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Metacognición -->
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700">
+                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-graduation-cap text-teal-600 mr-1.5"></i> Conclusión del Módulo MRDE-03:</h4>
+                        <p>
+                            "Al completar el módulo de Manejo de Redes, has adquirido el dominio práctico de configuración, diagnóstico y enrutamiento en switches y routers Cisco bajo los estándares internacionales de la certificación CCNA."
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Navegación Inferior -->
+                <div class="flex justify-between items-center border-t border-slate-200 pt-6">
+                    <a href="tema3_2.html" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
+                        <i class="fas fa-arrow-left mr-1"></i> Anterior: RA 3.2 (VTP & STP)
+                    </a>
+                    <a href="index.html" class="px-4 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs transition shadow-sm">
+                        <i class="fas fa-home mr-1"></i> Portada del Módulo
+                    </a>
+                </div>
+
+            </main>
+
+            <!-- COLUMNA 3: Barra Lateral Derecha -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+
+                    <!-- TOC Interactivo -->
+                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm">
+                        <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">En esta Página</h4>
+                        <ul class="space-y-2 text-xs text-slate-600">
+                            <li><a href="#fase1" class="hover:text-teal-600 transition block">1. Comunicación Inter-VLAN</a></li>
+                            <li><a href="#fase2" class="hover:text-teal-600 transition block">2. Router-on-a-Stick</a></li>
+                            <li><a href="#fase3" class="hover:text-teal-600 transition block">3. Script de Subinterfaces</a></li>
+                            <li><a href="#fase4" class="hover:text-teal-600 transition block">4. Simulador Inter-VLAN</a></li>
+                            <li><a href="#fase5" class="hover:text-teal-600 transition block">5. Rúbrica Oficial AE 3.3.1</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Cuadro de Evidencia SAE Final -->
+                    <div class="p-4 bg-gradient-to-br from-teal-50 to-emerald-50 border border-teal-200 rounded-2xl text-xs space-y-2">
+                        <div class="flex items-center gap-2 text-teal-900 font-bold text-xs">
+                            <i class="fas fa-award text-teal-600"></i> Evidencia Final SAE (AE 3.3.1)
+                        </div>
+                        <ul class="text-[11px] text-slate-700 list-disc ml-4 space-y-1">
+                            <li>Topología completa Router-on-a-Stick.</li>
+                            <li>Subinterfaces dot1Q activas.</li>
+                            <li>Enrutamiento entre VLANs comprobado.</li>
+                            <li>Reporte de diagnóstico de conectividad.</li>
+                        </ul>
+                        <div class="pt-2 border-t border-teal-200 text-center">
+                            <span class="text-teal-700 font-extrabold text-sm">Valor: 15% SAE • Cierre 100%</span>
+                        </div>
+                    </div>
+
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <!-- Script del Simulador JS -->
+    <script>
+        function probarPingInterVlan() {
+            const origen = document.getElementById('simHostOrigen').value;
+            const destino = document.getElementById('simHostDestino').value;
+            const outElem = document.getElementById('simRoasOutput');
+
+            if (origen === destino) {
+                outElem.innerHTML = `<span class="text-amber-300">Selecciona dos hosts diferentes para probar el enrutamiento.</span>`;
+                return;
+            }
+
+            let origenIP = origen === "PC1" ? "172.17.10.21 (VLAN 10)" : "172.17.20.22 (VLAN 20)";
+            let destinoIP = destino === "Server" ? "172.17.30.254 (VLAN 30)" : (destino === "PC2" ? "172.17.20.22 (VLAN 20)" : "172.17.10.21 (VLAN 10)");
+            let subif = origen === "PC1" ? "Fa0/0.10" : "Fa0/0.20";
+
+            outElem.innerHTML = `
+                Pinging ${destinoIP} from ${origenIP} with 32 bytes of data:<br>
+                1. Trama sale sin etiquetar hacia Switch (Access Port)<br>
+                2. Switch inserta Tag dot1Q y envía por enlace troncal hacia Router<br>
+                3. Router recibe en subinterfaz <strong class="text-white">${subif}</strong>, desencapsula y enruta por tabla L3<br>
+                4. Router re-etiqueta hacia la VLAN de destino y reenvía por el troncal<br>
+                <span class="text-emerald-300 font-bold">Reply from ${destinoIP.split(' ')[0]}: bytes=32 time=2ms TTL=127 (ÉXITO 100%)</span>
+            `;
+        }
+        window.onload = probarPingInterVlan;
+    </script>
+</body>
+</html>
