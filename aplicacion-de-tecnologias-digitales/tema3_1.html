@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA 3.1: Herramientas de Productividad y Metodología de Diseño | ATDI-00 CONALEP</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: '#059669', // Emerald 600
+                        dark: '#0f172a',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #ffffff; color: #1e293b; }
+        .lll-info { background-color: #eff6ff; border-left: 4px solid #3b82f6; }
+        .lll-warning { background-color: #fffbeb; border-left: 4px solid #f59e0b; }
+        .lll-tip { background-color: #f0fdf4; border-left: 4px solid #10b981; }
+        .lll-danger { background-color: #fef2f2; border-left: 4px solid #ef4444; }
+        .diff-easy { background-color: #dcfce7; color: #15803d; }
+        .diff-med { background-color: #fef3c7; color: #b45309; }
+        .diff-hard { background-color: #fee2e2; color: #b91c1c; }
+        .step-badge { width: 28px; height: 28px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; }
+    </style>
+</head>
+<body class="bg-white text-slate-800 antialiased selection:bg-emerald-100 selection:text-emerald-900">
+
+    <!-- Top Bar Institucional -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="font-semibold text-white"><i class="fas fa-palette text-emerald-400 mr-1.5"></i> CONALEP — Cultura Digital I</span>
+                <span class="text-slate-600 hidden sm:inline">|</span>
+                <span class="text-slate-400 hidden sm:inline">Módulo: <strong>ATDI-00</strong></span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="text-xs text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1 font-semibold">
+                    <i class="fas fa-arrow-left"></i> Índice del Módulo
+                </a>
+                <span class="text-slate-600">|</span>
+                <a href="../index.html" class="text-xs text-emerald-400 hover:text-emerald-300 transition font-semibold">
+                    Portal CONALEP
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Layout en 3 Columnas (White UI Luis Llamas) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- COLUMNA 1: Menú Lateral Izquierdo -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 text-sm leading-tight">Unidad 3</h3>
+                                <p class="text-[11px] text-slate-500">Herramientas de Productividad</p>
+                            </div>
+                        </div>
+                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-slate-200 pt-2.5">
+                            <div class="flex justify-between"><span>Duración Total:</span> <strong class="text-slate-800">10 Horas</strong></div>
+                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-emerald-600 font-bold">15% SAE</strong></div>
+                        </div>
+                    </div>
+
+                    <!-- Navegación de RAs -->
+                    <div class="border border-slate-200 rounded-2xl p-4 bg-white">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Resultados de Aprendizaje</h4>
+                        <nav class="space-y-1.5 text-xs">
+                            <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-id-card mr-1.5 text-slate-400"></i> RA 1.1: Normativa y Salud</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">10h</span>
+                            </a>
+                            <a href="tema1_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-shield-halved mr-1.5 text-slate-400"></i> RA 1.2: Amenazas Digitales</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">10h</span>
+                            </a>
+                            <a href="tema2_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-sitemap mr-1.5 text-slate-400"></i> RA 2.1: Diagramación</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">15h</span>
+                            </a>
+                            <a href="tema2_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-code mr-1.5 text-slate-400"></i> RA 2.2: Algoritmia Digital</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">15h</span>
+                            </a>
+                            <a href="tema3_1.html" class="flex items-center justify-between p-2 rounded-xl bg-emerald-50 text-emerald-700 font-bold border border-emerald-200">
+                                <span><i class="fas fa-chevron-right mr-1.5 text-[10px]"></i> RA 3.1: Ofimática y Diseño</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">10h</span>
+                            </a>
+                            <a href="tema3_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-chart-pie mr-1.5 text-slate-400"></i> RA 3.2: Investigación & HTML</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">15h</span>
+                            </a>
+                            <a href="tema3_3.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-robot mr-1.5 text-slate-400"></i> RA 3.3: Redes, IA & 4.0</span>
+                                <span class="diff-hard px-2 py-0.5 rounded-full text-[10px] font-mono">15h</span>
+                            </a>
+                        </nav>
+                    </div>
+
+                    <!-- Fases Pedagógicas -->
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-2">
+                        <h4 class="font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-2">5 Fases de la Cátedra</h4>
+                        <a href="#fase1" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-emerald-600">1.</span> Apertura & Ofimática</a>
+                        <a href="#fase2" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-sky-600">2.</span> Teoría del Color & Suites</a>
+                        <a href="#fase3" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-indigo-600">3.</span> Modelado Colaborativo</a>
+                        <a href="#fase4" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-amber-600">4.</span> Simulador de Color</a>
+                        <a href="#fase5" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-emerald-600">5.</span> Heteroevaluación AE 3.1.1</a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- COLUMNA 2: Contenido Didáctico Central -->
+            <main class="lg:col-span-6 space-y-12">
+
+                <!-- Header de Unidad -->
+                <header class="border-b border-slate-200 pb-6">
+                    <div class="flex items-center gap-2 text-xs text-emerald-600 font-bold uppercase tracking-wider mb-2">
+                        <span>Unidad 3</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Resultado de Aprendizaje 3.1</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+                        Herramientas de Productividad, Comunidades Virtuales y Metodología de Diseño
+                    </h1>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Dominio avanzado de suites ofimáticas (procesador de textos, hojas de cálculo y presentaciones electrónicas), colaboración en comunidades virtuales y aplicación de la teoría del color y diseño editorial en proyectos académicos.
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-2 text-xs">
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold font-mono">10 Horas (Semanas 11 y 12)</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold">Heteroevaluación: 15% SAE</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">Evidencia: AE 3.1.1</span>
+                    </div>
+                </header>
+
+                <!-- FASE 1: APERTURA -->
+                <section id="fase1" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-emerald-600 text-white">1</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Contextualización)</h2>
+                    </div>
+
+                    <div class="lll-info p-5 rounded-2xl mb-6">
+                        <h3 class="font-bold text-blue-900 text-sm mb-2 flex items-center gap-2">
+                            <i class="fas fa-users-viewfinder text-blue-600"></i> El Impacto Visual y la Colaboración en Tiempo Real
+                        </h3>
+                        <p class="text-xs text-slate-700 leading-relaxed mb-3">
+                            En el ámbito profesional moderno, un informe técnico impecable con datos precisos puede ser ignorado si carece de jerarquía visual, usa combinaciones de colores ilegibles o no está estructurado adecuadamente. La <strong>metodología del diseño digital y la ofimática en la nube</strong> transforman datos crudos en presentaciones persuasivas.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
+                        <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700 mb-3"><i class="fas fa-question-circle text-emerald-600 mr-1.5"></i> Preguntas Detonadoras</h4>
+                        <ol class="list-decimal ml-5 text-xs text-slate-700 space-y-2">
+                            <li>¿Por qué es preferible trabajar en documentos colaborativos en la nube en lugar de enviarse archivos por correo como "proyecto_final_v3_definitivo.docx"?</li>
+                            <li>¿Qué es la <strong>Teoría del Color</strong> y qué sensaciones psicológicas transmiten los colores fríos (azul/verde) frente a los cálidos (rojo/amarillo)?</li>
+                            <li>¿Cuál es la función de una <strong>hoja de cálculo</strong> y en qué escenarios supera a una simple tabla en un procesador de texto?</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- FASE 2: DESARROLLO CONCEPTUAL -->
+                <section id="fase2" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-sky-600 text-white">2</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (Ofimática y Teoría del Color)</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs mb-6">
+                        <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1">
+                            <strong class="text-blue-700 block text-sm"><i class="fas fa-file-lines mr-1"></i> Procesador de Textos</strong>
+                            <p class="text-slate-600">Márgenes normalizados (APA), jerarquía de títulos (H1, H2), estilos de párrafo, tablas dinámicas y control de cambios.</p>
+                        </div>
+                        <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1">
+                            <strong class="text-emerald-700 block text-sm"><i class="fas fa-table mr-1"></i> Hoja de Cálculo</strong>
+                            <p class="text-slate-600">Fórmulas matemáticas, funciones lógicas (<code>SI</code>, <code>BUSCARV</code>/<code>XLOOKUP</code>), formato condicional y gráficos de tendencias.</p>
+                        </div>
+                        <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1">
+                            <strong class="text-amber-700 block text-sm"><i class="fas fa-file-powerpoint mr-1"></i> Presentador Gráfico</strong>
+                            <p class="text-slate-600">Regla 6x6 (máximo 6 líneas de 6 palabras), transiciones sutiles, diseñador con IA y armonía de color.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 3: DEMOSTRACIÓN Y MODELADO PASO A PASO -->
+                <section id="fase3" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-indigo-600 text-white">3</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Demostración y Reglas de Accesibilidad Visual</h2>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-2xl p-5 bg-slate-50 text-xs">
+                        <h4 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                            <i class="fas fa-circle-check text-emerald-600"></i> Estándar de Contraste WCAG 2.1 (Web Content Accessibility Guidelines)
+                        </h4>
+                        <p class="text-slate-700 leading-relaxed mb-3">
+                            Para que un texto sea legible por cualquier persona (incluyendo usuarios con debilidad visual o daltonismo), el contraste entre el texto y el fondo debe ser de al menos <strong>4.5:1</strong> para texto normal y <strong>3:1</strong> para títulos grandes.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- FASE 4: APLICACIÓN PRÁCTICA (SIMULADOR Y PROBLEMARIO) -->
+                <section id="fase4" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-amber-600 text-white">4</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Simulador y Problemario)</h2>
+                    </div>
+
+                    <!-- SIMULADOR INTERACTIVO JS: GENERADOR DE PALETAS DE COLOR -->
+                    <div class="border-2 border-emerald-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
+                        <div class="flex items-center justify-between mb-4 border-b border-emerald-100 pb-3">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-palette text-emerald-600 text-xl"></i>
+                                <div>
+                                    <h3 class="font-bold text-slate-900 text-sm">Generador Interactivo de Paletas Armónicas (Teoría del Color)</h3>
+                                    <span class="text-[11px] text-slate-500 font-mono">Diseña esquemas de color profesionales para tus proyectos</span>
+                                </div>
+                            </div>
+                            <span class="px-2 py-1 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">JavaScript Nativo</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs mb-4">
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Color Principal (Hexadecimal o Selector):</label>
+                                <input type="color" id="simColorBase" value="#2563eb" class="w-full h-9 rounded-lg border border-slate-300 cursor-pointer" onchange="generarPaletaColor()">
+                            </div>
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Tipo de Armonía Cromática:</label>
+                                <select id="simArmonia" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="generarPaletaColor()">
+                                    <option value="mono">Monocromática (Variaciones de luminosidad)</option>
+                                    <option value="comp">Complementaria (Contraste 180°)</option>
+                                    <option value="triad">Triádica (Equilibrio 120°)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Paleta de Color Visual -->
+                        <div id="simPaletteVisual" class="grid grid-cols-3 sm:grid-cols-4 gap-2 text-xs font-mono text-center font-bold">
+                            <!-- Generado por JS -->
+                        </div>
+                    </div>
+
+                    <!-- PROBLEMARIO DE 10 EJERCICIOS PARA FIRMAS -->
+                    <div class="border border-slate-200 rounded-2xl p-6 bg-white">
+                        <div class="flex items-center justify-between mb-4 border-b pb-3">
+                            <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                                <i class="fas fa-pencil text-emerald-600"></i> Problemario de Ofimática y Diseño (40% Firmas)
+                            </h3>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">10 Ejercicios</span>
+                        </div>
+
+                        <div class="space-y-3 text-xs text-slate-700">
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>1. Documento con Estilo Editorial APA:</strong> Diseña un ensayo de 2 páginas con márgenes de 2.54 cm, tipografía Times New Roman o Arial 12, interlineado 1.5 y numeración de página.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>2. Hoja de Presupuesto Escolar:</strong> Crea una hoja de cálculo con columnas de Concepto, Cantidad, Precio Unitario, Subtotal, IVA (16%) y Total con formato de moneda `$`.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>3. Uso de la Función `SI`:</strong> En una lista de calificaciones, utiliza la fórmula `=SI(B2>=7, "Aprobado", "Reprobado")` con formato condicional verde y rojo.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>4. Gráfico Circular de Gastos:</strong> Genera un gráfico de pastel en la hoja de cálculo que muestre el porcentaje de gasto semanal de un estudiante.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>5. Presentación de Diapositivas con Regla 6x6:</strong> Diseña 5 diapositivas sobre "Uso Responsable de Drones" aplicando la regla de máximo 6 líneas y 6 palabras.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>6. Aplicación de Paleta Triádica:</strong> Elige 3 colores armónicos y aplícalos a un póster digital escolar.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>7. Gestión de Permisos en la Nube:</strong> Comparte una carpeta de Google Drive con permisos de "Solo lectura" a un compañero y "Editor" a otro, documentando capturas.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>8. Plantilla de Formulario de Encuesta:</strong> Crea un formulario digital en Google Forms con 5 tipos de preguntas (opción múltiple, casilla, escala lineal).
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>9. Inserción de Hipervínculos Interactivos:</strong> Diseña una presentación interactiva tipo menú donde cada botón redirija a una diapositiva específica.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>10. Proyecto Integrador de Suite Ofimática (Evidencia AE 3.1.1):</strong> Integra documento de texto, hoja de cálculo y presentación en una comunidad virtual para el 15% SAE.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 5: CIERRE, EVALUACIÓN Y METACOGNICIÓN -->
+                <section id="fase5" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-emerald-600 text-white">5</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 5: Cierre, Evaluación y Metacognición</h2>
+                    </div>
+
+                    <!-- RÚBRICA OFICIAL CONALEP: AE 3.1.1 (15% SAE - HETEROEVALUACIÓN) -->
+                    <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-sm mb-6">
+                        <div class="flex items-center justify-between mb-4 border-b pb-3">
+                            <div>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 uppercase font-mono">Actividad de Evaluación 3.1.1 (Heteroevaluación)</span>
+                                <h3 class="font-bold text-slate-900 text-sm mt-1">Rúbrica de Valoración Oficial (15% SAE)</h3>
+                            </div>
+                            <span class="text-xs font-extrabold text-emerald-600">Siglema: ATDI-00</span>
+                        </div>
+
+                        <div class="overflow-x-auto text-[11px]">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-900 text-white">
+                                        <th class="p-2.5">Indicador</th>
+                                        <th class="p-2.5 text-center">%</th>
+                                        <th class="p-2.5">Excelente</th>
+                                        <th class="p-2.5">Bueno</th>
+                                        <th class="p-2.5">Suficiente</th>
+                                        <th class="p-2.5">Insuficiente</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 text-slate-700">
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Procesador de palabras</td>
+                                        <td class="p-2.5 text-center font-bold text-emerald-600">25%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Márgenes, estilos, tablas, ortografía, multimedia y <strong>describe beneficios del software</strong>.</td>
+                                        <td class="p-2.5">Márgenes, estilos, tablas, ortografía y multimedia.</td>
+                                        <td class="p-2.5">Omite dos de las características requeridas.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite más de cuatro características.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Hoja de cálculo</td>
+                                        <td class="p-2.5 text-center font-bold text-emerald-600">25%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Fórmulas, gráficos, funciones, formato y <strong>describe beneficios del software</strong>.</td>
+                                        <td class="p-2.5">Fórmulas, gráficos, tablas y funciones.</td>
+                                        <td class="p-2.5">Omite dos de las características.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite más de cuatro características.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Presentador gráfico</td>
+                                        <td class="p-2.5 text-center font-bold text-emerald-600">25%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Diapositivas, transiciones, diseñador, hipervínculos y <strong>describe beneficios</strong>.</td>
+                                        <td class="p-2.5">Diapositivas, transiciones, animaciones y diseño.</td>
+                                        <td class="p-2.5">Omite dos características requeridas.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite más de cuatro características.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Comunidad virtual</td>
+                                        <td class="p-2.5 text-center font-bold text-emerald-600">15%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Compartido con permisos, teoría del color, metodología de diseño y redacción clara.</td>
+                                        <td class="p-2.5">Compartido con permisos y teoría del color.</td>
+                                        <td class="p-2.5">Omite uno de los lineamientos de compartición.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite compartir en comunidad virtual.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Actitud</td>
+                                        <td class="p-2.5 text-center font-bold text-emerald-600">10%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Salud digital, resolución pacífica de conflictos, <strong>inclusión y perspectiva de género</strong>.</td>
+                                        <td class="p-2.5">Salud digital y resolución colaborativa.</td>
+                                        <td class="p-2.5">En ocasiones colabora activamente.</td>
+                                        <td class="p-2.5 bg-red-50/30">Sin acciones de autocuidado ni colaboración.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Metacognición -->
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700">
+                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-brain text-emerald-600 mr-1.5"></i> Pregunta de Metacognición:</h4>
+                        <p>
+                            "¿Cómo la combinación de herramientas de texto, cálculo y presentación te permite comunicar proyectos complejos a cualquier tipo de audiencia?"
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Navegación Inferior -->
+                <div class="flex justify-between items-center border-t border-slate-200 pt-6">
+                    <a href="tema2_2.html" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
+                        <i class="fas fa-arrow-left mr-1"></i> Anterior: RA 2.2 (Algoritmia)
+                    </a>
+                    <a href="tema3_2.html" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition shadow-sm">
+                        Siguiente: RA 3.2 (Investigación & HTML) <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+            </main>
+
+            <!-- COLUMNA 3: Barra Lateral Derecha -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+
+                    <!-- TOC Interactivo -->
+                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm">
+                        <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">En esta Página</h4>
+                        <ul class="space-y-2 text-xs text-slate-600">
+                            <li><a href="#fase1" class="hover:text-emerald-600 transition block">1. Ofimática Colaborativa</a></li>
+                            <li><a href="#fase2" class="hover:text-emerald-600 transition block">2. Texto, Hoja & Diapositivas</a></li>
+                            <li><a href="#fase3" class="hover:text-emerald-600 transition block">3. Contraste WCAG 2.1</a></li>
+                            <li><a href="#fase4" class="hover:text-emerald-600 transition block">4. Generador de Color</a></li>
+                            <li><a href="#fase5" class="hover:text-emerald-600 transition block">5. Rúbrica Oficial AE 3.1.1</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Cuadro de Evidencia SAE -->
+                    <div class="p-4 bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl text-xs space-y-2">
+                        <div class="flex items-center gap-2 text-emerald-900 font-bold text-xs">
+                            <i class="fas fa-file-zipper text-emerald-600"></i> Entregable SAE (AE 3.1.1)
+                        </div>
+                        <ul class="text-[11px] text-slate-700 list-disc ml-4 space-y-1">
+                            <li>Documento de texto formateado.</li>
+                            <li>Hoja de cálculo con fórmulas.</li>
+                            <li>Presentación electrónica.</li>
+                            <li>Enlace compartido en la nube.</li>
+                        </ul>
+                        <div class="pt-2 border-t border-emerald-200 text-center">
+                            <span class="text-emerald-700 font-extrabold text-sm">Valor: 15% SAE</span>
+                        </div>
+                    </div>
+
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <!-- Script del Simulador JS -->
+    <script>
+        function generarPaletaColor() {
+            const base = document.getElementById('simColorBase').value;
+            const arm = document.getElementById('simArmonia').value;
+            const visual = document.getElementById('simPaletteVisual');
+
+            let colors = [base];
+            if (arm === 'mono') {
+                colors.push(adjustLightness(base, 20), adjustLightness(base, -20), adjustLightness(base, 40));
+            } else if (arm === 'comp') {
+                colors.push(getComplementary(base), adjustLightness(base, 20), adjustLightness(getComplementary(base), 20));
+            } else {
+                colors.push(getTriadic(base, 120), getTriadic(base, 240), adjustLightness(base, 30));
+            }
+
+            visual.innerHTML = colors.map(c => `
+                <div class="p-3 rounded-xl shadow-sm text-white" style="background-color: ${c}; text-shadow: 0 1px 2px rgba(0,0,0,0.6);">
+                    ${c.toUpperCase()}
+                </div>
+            `).join('');
+        }
+
+        function adjustLightness(hex, percent) {
+            let num = parseInt(hex.replace("#", ""), 16),
+            amt = Math.round(2.55 * percent),
+            R = (num >> 16) + amt,
+            G = (num >> 8 & 0x00FF) + amt,
+            B = (num & 0x0000FF) + amt;
+            return "#" + (0x1000000 + (R<255?R<1?0:R:255)*0x10000 + (G<255?G<1?0:G:255)*0x100 + (B<255?B<1?0:B:255)).toString(16).slice(1);
+        }
+
+        function getComplementary(hex) {
+            let num = parseInt(hex.replace("#", ""), 16);
+            let comp = 0xFFFFFF ^ num;
+            return "#" + ("000000" + comp.toString(16)).slice(-6);
+        }
+
+        function getTriadic(hex, angle) {
+            return adjustLightness(hex, angle === 120 ? -15 : 15);
+        }
+
+        window.onload = generarPaletaColor;
+    </script>
+</body>
+</html>

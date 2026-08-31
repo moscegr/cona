@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA 3.3: Redes de Datos, Telecomunicaciones, IA e Industria 4.0 | ATDI-00 CONALEP</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: '#0d9488', // Teal 600
+                        dark: '#0f172a',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #ffffff; color: #1e293b; }
+        .lll-info { background-color: #eff6ff; border-left: 4px solid #3b82f6; }
+        .lll-warning { background-color: #fffbeb; border-left: 4px solid #f59e0b; }
+        .lll-tip { background-color: #f0fdf4; border-left: 4px solid #10b981; }
+        .lll-danger { background-color: #fef2f2; border-left: 4px solid #ef4444; }
+        .diff-easy { background-color: #dcfce7; color: #15803d; }
+        .diff-med { background-color: #fef3c7; color: #b45309; }
+        .diff-hard { background-color: #fee2e2; color: #b91c1c; }
+        .step-badge { width: 28px; height: 28px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; }
+    </style>
+</head>
+<body class="bg-white text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900">
+
+    <!-- Top Bar Institucional -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="font-semibold text-white"><i class="fas fa-network-wired text-teal-400 mr-1.5"></i> CONALEP — Cultura Digital I</span>
+                <span class="text-slate-600 hidden sm:inline">|</span>
+                <span class="text-slate-400 hidden sm:inline">Módulo: <strong>ATDI-00</strong></span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="text-xs text-teal-400 hover:text-teal-300 transition flex items-center gap-1 font-semibold">
+                    <i class="fas fa-arrow-left"></i> Índice del Módulo
+                </a>
+                <span class="text-slate-600">|</span>
+                <a href="../index.html" class="text-xs text-emerald-400 hover:text-emerald-300 transition font-semibold">
+                    Portal CONALEP
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Layout en 3 Columnas (White UI Luis Llamas) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- COLUMNA 1: Menú Lateral Izquierdo -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 text-sm leading-tight">Unidad 3</h3>
+                                <p class="text-[11px] text-slate-500">Herramientas de Productividad</p>
+                            </div>
+                        </div>
+                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-slate-200 pt-2.5">
+                            <div class="flex justify-between"><span>Duración Total:</span> <strong class="text-slate-800">15 Horas</strong></div>
+                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-teal-600 font-bold">20% SAE</strong></div>
+                        </div>
+                    </div>
+
+                    <!-- Navegación de RAs -->
+                    <div class="border border-slate-200 rounded-2xl p-4 bg-white">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Resultados de Aprendizaje</h4>
+                        <nav class="space-y-1.5 text-xs">
+                            <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-id-card mr-1.5 text-slate-400"></i> RA 1.1: Normativa y Salud</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">10h</span>
+                            </a>
+                            <a href="tema1_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-shield-halved mr-1.5 text-slate-400"></i> RA 1.2: Amenazas Digitales</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">10h</span>
+                            </a>
+                            <a href="tema2_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-sitemap mr-1.5 text-slate-400"></i> RA 2.1: Diagramación</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">15h</span>
+                            </a>
+                            <a href="tema2_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-code mr-1.5 text-slate-400"></i> RA 2.2: Algoritmia Digital</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">15h</span>
+                            </a>
+                            <a href="tema3_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-palette mr-1.5 text-slate-400"></i> RA 3.1: Ofimática y Diseño</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">10h</span>
+                            </a>
+                            <a href="tema3_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-chart-pie mr-1.5 text-slate-400"></i> RA 3.2: Investigación & HTML</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">15h</span>
+                            </a>
+                            <a href="tema3_3.html" class="flex items-center justify-between p-2 rounded-xl bg-teal-50 text-teal-700 font-bold border border-teal-200">
+                                <span><i class="fas fa-chevron-right mr-1.5 text-[10px]"></i> RA 3.3: Redes, IA & 4.0</span>
+                                <span class="diff-hard px-2 py-0.5 rounded-full text-[10px] font-mono">15h</span>
+                            </a>
+                        </nav>
+                    </div>
+
+                    <!-- Fases Pedagógicas -->
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-2">
+                        <h4 class="font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-2">5 Fases de la Cátedra</h4>
+                        <a href="#fase1" class="block text-slate-600 hover:text-teal-600"><span class="font-bold text-teal-600">1.</span> Apertura & Telecom</a>
+                        <a href="#fase2" class="block text-slate-600 hover:text-teal-600"><span class="font-bold text-sky-600">2.</span> Redes, IA & IoT</a>
+                        <a href="#fase3" class="block text-slate-600 hover:text-teal-600"><span class="font-bold text-indigo-600">3.</span> Modelado de Topologías</a>
+                        <a href="#fase4" class="block text-slate-600 hover:text-teal-600"><span class="font-bold text-amber-600">4.</span> Simulador de Redes JS</a>
+                        <a href="#fase5" class="block text-slate-600 hover:text-teal-600"><span class="font-bold text-emerald-600">5.</span> Cierre & Rúbrica AE 3.3.1</a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- COLUMNA 2: Contenido Didáctico Central -->
+            <main class="lg:col-span-6 space-y-12">
+
+                <!-- Header de Unidad -->
+                <header class="border-b border-slate-200 pb-6">
+                    <div class="flex items-center gap-2 text-xs text-teal-600 font-bold uppercase tracking-wider mb-2">
+                        <span>Unidad 3</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Resultado de Aprendizaje 3.3</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+                        Redes de Datos, Telecomunicaciones, Inteligencia Artificial e Industria 4.0
+                    </h1>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Clasificación de redes por alcance (PAN, LAN, MAN, WAN) y topologías (Estrella, Bus, Anillo), medios de transmisión físicos e inalámbricos, y exploración de tecnologías emergentes: Inteligencia Artificial, Internet de las Cosas (IoT), Robótica y Ciencia de Datos.
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-2 text-xs">
+                        <span class="px-2.5 py-1 rounded-lg bg-teal-100 text-teal-800 font-bold font-mono">15 Horas (Semanas 16 a 18)</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold">Ponderación: 20% SAE</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">Evidencia: AE 3.3.1 (Cierre 100%)</span>
+                    </div>
+                </header>
+
+                <!-- FASE 1: APERTURA -->
+                <section id="fase1" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-teal-600 text-white">1</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Contextualización)</h2>
+                    </div>
+
+                    <div class="lll-tip p-5 rounded-2xl mb-6">
+                        <h3 class="font-bold text-emerald-900 text-sm mb-2 flex items-center gap-2">
+                            <i class="fas fa-satellite-dish text-emerald-600"></i> El Ecosistema Hiperconectado: Drones, 5G y Ciudades Inteligentes
+                        </h3>
+                        <p class="text-xs text-slate-700 leading-relaxed mb-3">
+                            Hoy en día, una flota de drones agrícolas recopila terabytes de imágenes multiespectrales, las transmite por radioenlaces y fibra óptica a servidores en la nube, donde modelos de <strong>Inteligencia Artificial</strong> detectan plagas en segundos y ordenan el riego automático mediante actuadores IoT.
+                        </p>
+                        <p class="text-xs text-slate-700 leading-relaxed font-semibold">
+                            Comprender cómo viaja un paquete de datos y cómo interactúan las tecnologías de la Industria 4.0 es la clave para liderar la innovación tecnológica.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
+                        <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700 mb-3"><i class="fas fa-question-circle text-teal-600 mr-1.5"></i> Preguntas Detonadoras</h4>
+                        <ol class="list-decimal ml-5 text-xs text-slate-700 space-y-2">
+                            <li>¿Por qué la red Wi-Fi de tu casa es una <strong>LAN</strong> mientras que Internet es una <strong>WAN</strong> global?</li>
+                            <li>¿Qué ventaja ofrece la <strong>Fibra Óptica</strong> (luz) sobre el cable de cobre (electricidad) en velocidad y distancia?</li>
+                            <li>¿Cuál es la diferencia entre el Internet de las Cosas (IoT) y la Inteligencia Artificial (IA)?</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- FASE 2: DESARROLLO CONCEPTUAL -->
+                <section id="fase2" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-sky-600 text-white">2</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (Redes y Tecnologías Emergentes)</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs mb-6">
+                        <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <strong class="text-teal-700 block text-sm"><i class="fas fa-network-wired mr-1"></i> Clasificación de Redes y Topologías</strong>
+                            <ul class="list-disc ml-4 space-y-1 text-slate-600">
+                                <li><strong>PAN:</strong> Red Personal (Bluetooth entre smartwatch y teléfono).</li>
+                                <li><strong>LAN:</strong> Red Local (Laboratorio de cómputo del plantel).</li>
+                                <li><strong>MAN:</strong> Red Metropolitana (Red interurbana de Chilpancingo).</li>
+                                <li><strong>WAN:</strong> Red de Área Amplia (Internet global).</li>
+                                <li><strong>Topología Estrella:</strong> Todos los nodos conectados a un Switch central.</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <strong class="text-indigo-700 block text-sm"><i class="fas fa-microchip mr-1"></i> Pilares de la Industria 4.0</strong>
+                            <ul class="list-disc ml-4 space-y-1 text-slate-600">
+                                <li><strong>Inteligencia Artificial (IA):</strong> Redes neuronales y visión artificial.</li>
+                                <li><strong>Internet de las Cosas (IoT):</strong> Sensores inteligentes conectados.</li>
+                                <li><strong>Robótica y Drones:</strong> Automatización física y vuelos autónomos.</li>
+                                <li><strong>Ciencia de Datos:</strong> Extracción de patrones en Big Data.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 3: DEMOSTRACIÓN Y MODELADO PASO A PASO -->
+                <section id="fase3" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-indigo-600 text-white">3</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Demostración y Modelado de Topología en Estrella</h2>
+                    </div>
+
+                    <div class="p-4 bg-slate-900 rounded-2xl text-center text-white my-4">
+                        <span class="text-[11px] font-mono text-slate-400 block mb-2">Esquema de Red LAN en Topología Estrella con Switch Central</span>
+                        <svg class="w-full max-w-sm mx-auto" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Switch Central -->
+                            <rect x="130" y="70" width="60" height="40" rx="8" fill="#0d9488" stroke="#2dd4bf" stroke-width="2"/>
+                            <text x="160" y="94" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle">SWITCH</text>
+
+                            <!-- Nodos -->
+                            <circle cx="50" cy="40" r="18" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+                            <text x="50" y="43" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle">PC 1</text>
+                            <path d="M68 45 L 130 75" stroke="#64748b" stroke-width="2"/>
+
+                            <circle cx="270" cy="40" r="18" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+                            <text x="270" y="43" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle">PC 2</text>
+                            <path d="M252 45 L 190 75" stroke="#64748b" stroke-width="2"/>
+
+                            <circle cx="50" cy="140" r="18" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+                            <text x="50" y="143" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle">Servidor</text>
+                            <path d="M68 135 L 130 105" stroke="#64748b" stroke-width="2"/>
+
+                            <circle cx="270" cy="140" r="18" fill="#1e293b" stroke="#a855f7" stroke-width="1.5"/>
+                            <text x="270" y="143" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle">Dron AP</text>
+                            <path d="M252 135 L 190 105" stroke="#64748b" stroke-width="2"/>
+                        </svg>
+                    </div>
+                </section>
+
+                <!-- FASE 4: APLICACIÓN PRÁCTICA (SIMULADOR Y PROBLEMARIO) -->
+                <section id="fase4" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-amber-600 text-white">4</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Simulador y Problemario)</h2>
+                    </div>
+
+                    <!-- SIMULADOR INTERACTIVO JS: TOPOLOGÍAS DE RED -->
+                    <div class="border-2 border-teal-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
+                        <div class="flex items-center justify-between mb-4 border-b border-teal-100 pb-3">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-diagram-project text-teal-600 text-xl"></i>
+                                <div>
+                                    <h3 class="font-bold text-slate-900 text-sm">Simulador de Topologías de Red y Envío de Paquetes</h3>
+                                    <span class="text-[11px] text-slate-500 font-mono">Compara el comportamiento de fallas en Estrella, Anillo y Bus</span>
+                                </div>
+                            </div>
+                            <span class="px-2 py-1 rounded bg-teal-100 text-teal-800 text-[10px] font-bold">JavaScript Nativo</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs mb-4">
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Selecciona Topología:</label>
+                                <select id="simTopologia" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="evaluarTopologia()">
+                                    <option value="estrella">Topología Estrella (Switch Central)</option>
+                                    <option value="anillo">Topología Anillo (Paso de Token)</option>
+                                    <option value="bus">Topología Bus (Cable Troncal Común)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Estado de Conexión:</label>
+                                <select id="simFalla" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="evaluarTopologia()">
+                                    <option value="normal">Todos los Nodos Operativos</option>
+                                    <option value="falla_nodo">1 Nodo Secundario Desconectado</option>
+                                    <option value="falla_central">Falla del Enlace Central / Switch</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-200 text-xs font-mono">
+                            <div class="text-slate-400 text-[11px] mb-2">[DIAGNÓSTICO DE RED Y TOLERANCIA A FALLOS]</div>
+                            <div id="simNetOutput" class="space-y-1">
+                                <!-- Generado por JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROBLEMARIO DE 10 EJERCICIOS PARA FIRMAS -->
+                    <div class="border border-slate-200 rounded-2xl p-6 bg-white">
+                        <div class="flex items-center justify-between mb-4 border-b pb-3">
+                            <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                                <i class="fas fa-pencil text-teal-600"></i> Problemario de Redes, Telecomunicaciones e IA (40% Firmas)
+                            </h3>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">10 Ejercicios</span>
+                        </div>
+
+                        <div class="space-y-3 text-xs text-slate-700">
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>1. Organizador Gráfico de Redes:</strong> Diseña un mapa mental con colores contrastantes que clasifique las redes por alcance (PAN, LAN, MAN, WAN) y medios de transmisión.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>2. Cuadro Comparativo UTP vs Fibra Óptica:</strong> Compara velocidad máxima, distancia sin repetidor e inmunidad al ruido electromagnético.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>3. Aplicación de IA en la Vida Diaria:</strong> Identifica y describe 5 algoritmos de Inteligencia Artificial que utilizas a diario (reconocimiento facial, mapas, streaming).
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>4. Proyecto de Internet de las Cosas (IoT):</strong> Diseña un esquema de una casa inteligente con 4 sensores conectados a un hub central vía Wi-Fi.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>5. Simulación de Falla en Topología Bus:</strong> Explica qué ocurre con la comunicación de toda la red si se corta el cable troncal en una topología tipo bus.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>6. Cálculo de Direccionamiento IP Local:</strong> Si la red del plantel usa `192.168.1.0/24`, calcula cuántas computadoras pueden conectarse simultáneamente.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>7. Análisis de la Industria 4.0:</strong> Redacta un ensayo sobre cómo la automatización y la robótica transformarán el trabajo técnico en Guerrero.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>8. Grabación de Podcast o Video de Difusión:</strong> Produce un audio o video de 3 minutos explicando qué es la Ciberseguridad para público general.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>9. Medidas de Salud Digital en Entornos 4.0:</strong> Propón 3 acciones para evitar el tecnoestrés y la sobrecarga informativa.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>10. Recurso Interactivo Final (Evidencia AE 3.3.1):</strong> Presenta el contenido digital publicado con organizador gráfico y recurso interactivo para el 20% SAE.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 5: CIERRE, EVALUACIÓN Y METACOGNICIÓN -->
+                <section id="fase5" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-emerald-600 text-white">5</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 5: Cierre, Evaluación y Metacognición</h2>
+                    </div>
+
+                    <!-- RÚBRICA OFICIAL CONALEP: AE 3.3.1 (20% SAE - CIERRE) -->
+                    <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-sm mb-6">
+                        <div class="flex items-center justify-between mb-4 border-b pb-3">
+                            <div>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-teal-100 text-teal-800 uppercase font-mono">Actividad de Evaluación 3.3.1</span>
+                                <h3 class="font-bold text-slate-900 text-sm mt-1">Rúbrica de Valoración Oficial (20% SAE)</h3>
+                            </div>
+                            <span class="text-xs font-extrabold text-teal-600">Siglema: ATDI-00</span>
+                        </div>
+
+                        <div class="overflow-x-auto text-[11px]">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-900 text-white">
+                                        <th class="p-2.5">Indicador</th>
+                                        <th class="p-2.5 text-center">%</th>
+                                        <th class="p-2.5">Excelente</th>
+                                        <th class="p-2.5">Bueno</th>
+                                        <th class="p-2.5">Suficiente</th>
+                                        <th class="p-2.5">Insuficiente</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 text-slate-700">
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Contenido digital</td>
+                                        <td class="p-2.5 text-center font-bold text-teal-600">35%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Diseño, teoría del color, ortografía, multimedia y <strong>justifica el uso de cada elemento</strong>.</td>
+                                        <td class="p-2.5">Diseño, teoría del color, ortografía y multimedia.</td>
+                                        <td class="p-2.5">Cumple al menos cuatro de los aspectos solicitados.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite más de uno de los aspectos.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Organizador gráfico</td>
+                                        <td class="p-2.5 text-center font-bold text-teal-600">15%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Tipos de redes, topologías, medios, dispositivos y <strong>adiciona colores que distinguen</strong>.</td>
+                                        <td class="p-2.5">Tipos de redes, topologías, medios y dispositivos.</td>
+                                        <td class="p-2.5">Cumple parcialmente con la información.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite los elementos requeridos.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Recurso interactivo</td>
+                                        <td class="p-2.5 text-center font-bold text-teal-600">30%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">IA, IoT, Industria 4.0, Ciberseguridad, Ciencia de datos, Robótica y <strong>agrega justificación de uso</strong>.</td>
+                                        <td class="p-2.5">IA, IoT, Industria 4.0, Ciberseguridad, Ciencia de datos y Robótica.</td>
+                                        <td class="p-2.5">Cumple parcialmente con la información.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite información de tecnologías 4.0.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Difusión y Actitud</td>
+                                        <td class="p-2.5 text-center font-bold text-teal-600">20%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Promueve visitas mediante ligas, salud digital, <strong>explica lo aprendido y trabajo colaborativo</strong>.</td>
+                                        <td class="p-2.5">Promueve visitas, ligas y salud digital.</td>
+                                        <td class="p-2.5">Redacción con faltas ortográficas.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite compartir el material creado.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Metacognición -->
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700">
+                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-graduation-cap text-emerald-600 mr-1.5"></i> Conclusión del Módulo ATDI-00:</h4>
+                        <p>
+                            "Al completar el módulo de Aplicación de Tecnologías Digitales, has desarrollado el pensamiento crítico, la ciudadanía digital y las competencias tecnológicas necesarias para integrarte con éxito a los módulos técnicos avanzados de tu carrera."
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Navegación Inferior -->
+                <div class="flex justify-between items-center border-t border-slate-200 pt-6">
+                    <a href="tema3_2.html" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
+                        <i class="fas fa-arrow-left mr-1"></i> Anterior: RA 3.2 (Investigación)
+                    </a>
+                    <a href="index.html" class="px-4 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs transition shadow-sm">
+                        <i class="fas fa-home mr-1"></i> Portada del Módulo
+                    </a>
+                </div>
+
+            </main>
+
+            <!-- COLUMNA 3: Barra Lateral Derecha -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+
+                    <!-- TOC Interactivo -->
+                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm">
+                        <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">En esta Página</h4>
+                        <ul class="space-y-2 text-xs text-slate-600">
+                            <li><a href="#fase1" class="hover:text-teal-600 transition block">1. Ecosistema Hiperconectado</a></li>
+                            <li><a href="#fase2" class="hover:text-teal-600 transition block">2. Redes & Industria 4.0</a></li>
+                            <li><a href="#fase3" class="hover:text-teal-600 transition block">3. Modelado Topología</a></li>
+                            <li><a href="#fase4" class="hover:text-teal-600 transition block">4. Simulador de Redes</a></li>
+                            <li><a href="#fase5" class="hover:text-teal-600 transition block">5. Rúbrica Oficial AE 3.3.1</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Cuadro de Evidencia SAE Final -->
+                    <div class="p-4 bg-gradient-to-br from-teal-50 to-emerald-50 border border-teal-200 rounded-2xl text-xs space-y-2">
+                        <div class="flex items-center gap-2 text-teal-900 font-bold text-xs">
+                            <i class="fas fa-award text-teal-600"></i> Evidencia Final SAE (AE 3.3.1)
+                        </div>
+                        <ul class="text-[11px] text-slate-700 list-disc ml-4 space-y-1">
+                            <li>Contenido digital con diseño y color.</li>
+                            <li>Organizador gráfico de redes.</li>
+                            <li>Recurso interactivo sobre IA e IoT.</li>
+                            <li>Difusión con ligas públicas.</li>
+                        </ul>
+                        <div class="pt-2 border-t border-teal-200 text-center">
+                            <span class="text-teal-700 font-extrabold text-sm">Valor: 20% SAE • Cierre 100%</span>
+                        </div>
+                    </div>
+
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <!-- Script del Simulador JS -->
+    <script>
+        function evaluarTopologia() {
+            const top = document.getElementById('simTopologia').value;
+            const falla = document.getElementById('simFalla').value;
+            const outElem = document.getElementById('simNetOutput');
+
+            let diagnostico = "";
+            if (top === 'estrella') {
+                if (falla === 'normal') diagnostico = "<span class='text-emerald-400 font-bold'>Red 100% Operativa: Paquetes conmutados por el Switch central sin colisiones.</span>";
+                else if (falla === 'falla_nodo') diagnostico = "<span class='text-amber-300 font-bold'>Aislamiento Parcial: Solo el nodo desconectado pierde servicio; el resto de la red sigue operando normalmente.</span>";
+                else diagnostico = "<span class='text-red-400 font-bold'>Falla Total (SPOF): La caída del Switch central desconecta a todos los nodos de la red.</span>";
+            } else if (top === 'anillo') {
+                if (falla === 'normal') diagnostico = "<span class='text-emerald-400 font-bold'>Paso de Token normal en sentido horario.</span>";
+                else diagnostico = "<span class='text-red-400 font-bold'>Ruptura de Anillo: La desconexión de cualquier nodo rompe el paso del token y paraliza toda la red.</span>";
+            } else {
+                if (falla === 'normal') diagnostico = "<span class='text-emerald-400 font-bold'>Transmisión por difusión en cable troncal con terminadores de 50 ohms.</span>";
+                else if (falla === 'falla_nodo') diagnostico = "<span class='text-emerald-400 font-bold'>La desconexión de una estación no interrumpe el cable troncal.</span>";
+                else diagnostico = "<span class='text-red-400 font-bold'>Corte de Troncal: El rebote de señal en los extremos abiertos colapsa toda la red.</span>";
+            }
+
+            outElem.innerHTML = `
+                &bull; Topología seleccionada: <strong>${top.toUpperCase()}</strong><br>
+                &bull; Escenario: <strong>${falla.replace('_', ' ').toUpperCase()}</strong><br>
+                &bull; Diagnóstico de Tráfico: ${diagnostico}
+            `;
+        }
+        window.onload = evaluarTopologia;
+    </script>
+</body>
+</html>
