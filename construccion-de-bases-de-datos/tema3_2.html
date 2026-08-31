@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA 3.2: Control de Accesos, Privilegios y Respaldos | COBD-04 CONALEP</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: '#059669', // Emerald 600
+                        dark: '#0f172a',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #ffffff; color: #1e293b; }
+        .lll-info { background-color: #eff6ff; border-left: 4px solid #3b82f6; }
+        .lll-warning { background-color: #fffbeb; border-left: 4px solid #f59e0b; }
+        .lll-tip { background-color: #f0fdf4; border-left: 4px solid #10b981; }
+        .lll-danger { background-color: #fef2f2; border-left: 4px solid #ef4444; }
+        .diff-easy { background-color: #dcfce7; color: #15803d; }
+        .diff-med { background-color: #fef3c7; color: #b45309; }
+        .diff-hard { background-color: #fee2e2; color: #b91c1c; }
+        .step-badge { width: 28px; height: 28px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; }
+    </style>
+</head>
+<body class="bg-white text-slate-800 antialiased selection:bg-emerald-100 selection:text-emerald-900">
+
+    <!-- Top Bar Institucional -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="font-semibold text-white"><i class="fas fa-user-lock text-emerald-400 mr-1.5"></i> CONALEP — Construcción de Bases de Datos</span>
+                <span class="text-slate-600 hidden sm:inline">|</span>
+                <span class="text-slate-400 hidden sm:inline">Módulo: <strong>COBD-04</strong></span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="text-xs text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1 font-semibold">
+                    <i class="fas fa-arrow-left"></i> Índice del Módulo
+                </a>
+                <span class="text-slate-600">|</span>
+                <a href="../index.html" class="text-xs text-emerald-400 hover:text-emerald-300 transition font-semibold">
+                    Portal CONALEP
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Layout en 3 Columnas (White UI Luis Llamas) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- COLUMNA 1: Menú Lateral Izquierdo -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                                <i class="fas fa-user-lock"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 text-sm leading-tight">Unidad 3</h3>
+                                <p class="text-[11px] text-slate-500">Seguridad & Respaldos</p>
+                            </div>
+                        </div>
+                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-slate-200 pt-2.5">
+                            <div class="flex justify-between"><span>Duración Total:</span> <strong class="text-slate-800">10 Horas</strong></div>
+                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-emerald-600 font-bold">10% SAE</strong></div>
+                        </div>
+                    </div>
+
+                    <!-- Navegación de RAs -->
+                    <div class="border border-slate-200 rounded-2xl p-4 bg-white">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Resultados de Aprendizaje</h4>
+                        <nav class="space-y-1.5 text-xs">
+                            <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-sitemap mr-1.5 text-slate-400"></i> RA 1.1: Modelo E-R (MER)</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">15h</span>
+                            </a>
+                            <a href="tema1_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-filter mr-1.5 text-slate-400"></i> RA 1.2: Normalización</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">25h</span>
+                            </a>
+                            <a href="tema1_3.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-table mr-1.5 text-slate-400"></i> RA 1.3: Sentencias DDL</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">20h</span>
+                            </a>
+                            <a href="tema2_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-code mr-1.5 text-slate-400"></i> RA 2.1: DML & Triggers</span>
+                                <span class="diff-hard px-2 py-0.5 rounded-full text-[10px] font-mono">25h</span>
+                            </a>
+                            <a href="tema2_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-eye mr-1.5 text-slate-400"></i> RA 2.2: Vistas & Reportes</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">15h</span>
+                            </a>
+                            <a href="tema3_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-shield-halved mr-1.5 text-slate-400"></i> RA 3.1: Transacciones ACID</span>
+                                <span class="diff-hard px-2 py-0.5 rounded-full text-[10px] font-mono">16h</span>
+                            </a>
+                            <a href="tema3_2.html" class="flex items-center justify-between p-2 rounded-xl bg-emerald-50 text-emerald-800 font-bold border border-emerald-200">
+                                <span><i class="fas fa-chevron-right mr-1.5 text-[10px]"></i> RA 3.2: Seguridad & Backup</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">10h</span>
+                            </a>
+                        </nav>
+                    </div>
+
+                    <!-- Fases Pedagógicas -->
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-2">
+                        <h4 class="font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-2">5 Fases de la Cátedra</h4>
+                        <a href="#fase1" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-emerald-600">1.</span> Apertura & Privilegios</a>
+                        <a href="#fase2" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-sky-600">2.</span> GRANT/REVOKE & Backups</a>
+                        <a href="#fase3" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-indigo-600">3.</span> Scripts de Seguridad</a>
+                        <a href="#fase4" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-amber-600">4.</span> Gestor de Privilegios</a>
+                        <a href="#fase5" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-emerald-600">5.</span> Coevaluación AE 3.2.1</a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- COLUMNA 2: Contenido Didáctico Central -->
+            <main class="lg:col-span-6 space-y-12">
+
+                <!-- Header de Unidad -->
+                <header class="border-b border-slate-200 pb-6">
+                    <div class="flex items-center gap-2 text-xs text-emerald-600 font-bold uppercase tracking-wider mb-2">
+                        <span>Unidad 3</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Resultado de Aprendizaje 3.2</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+                        Control de Accesos, Privilegios (DCL), Roles y Estrategias de Respaldo
+                    </h1>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Administración de la seguridad del servidor de base de datos bajo el principio de mínimo privilegio: creación y gestión de usuarios, roles agrupados, asignación granular con `GRANT` y `REVOKE`, y políticas de respaldo completo e incremental con `mysqldump`.
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-2 text-xs">
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold font-mono">10 Horas (Semana 18)</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold">Coevaluación: 10% SAE</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">Evidencia: AE 3.2.1 (Cierre 100%)</span>
+                    </div>
+                </header>
+
+                <!-- FASE 1: APERTURA -->
+                <section id="fase1" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-emerald-600 text-white">1</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Contextualización)</h2>
+                    </div>
+
+                    <div class="lll-info p-5 rounded-2xl mb-6">
+                        <h3 class="font-bold text-blue-900 text-sm mb-2 flex items-center gap-2">
+                            <i class="fas fa-user-shield text-blue-600"></i> El Principio de Mínimo Privilegio (PoLP)
+                        </h3>
+                        <p class="text-xs text-slate-700 leading-relaxed mb-3">
+                            Uno de los errores más graves en la industria es conectar las aplicaciones web utilizando el superusuario <code>root</code>. Si la aplicación sufre una vulnerabilidad de inyección SQL, el atacante obtiene control total para borrar todas las bases de datos o crear usuarios administradores clandestinos.
+                        </p>
+                        <p class="text-xs text-slate-700 leading-relaxed font-semibold">
+                            Cada rol y usuario debe contar estrictamente con los permisos necesarios para su función operativa (ej. solo <code>SELECT</code> e <code>INSERT</code> para cajeros).
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
+                        <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700 mb-3"><i class="fas fa-question-circle text-emerald-600 mr-1.5"></i> Preguntas Diagnósticas</h4>
+                        <ol class="list-decimal ml-5 text-xs text-slate-700 space-y-2">
+                            <li>¿Por qué en MySQL el usuario se identifica mediante <code>'usuario'@'host'</code> (ej. <code>'app_user'@'localhost'</code> vs <code>'app_user'@'%'</code>)?</li>
+                            <li>¿Cuál es la diferencia operativa entre un <strong>Respaldo Completo (Full Dump)</strong> y un <strong>Respaldo Incremental basado en Binary Logs (Binlog)</strong>?</li>
+                            <li>¿Por qué es indispensable ejecutar el comando <code>FLUSH PRIVILEGES;</code> tras modificar tablas del sistema en motores relacionales?</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- FASE 2: DESARROLLO CONCEPTUAL -->
+                <section id="fase2" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-sky-600 text-white">2</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (Usuarios, Roles y Backups)</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs mb-6">
+                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <strong class="text-emerald-700 block text-sm"><i class="fas fa-key mr-1"></i> Control de Accesos (DCL)</strong>
+                            <ul class="list-disc ml-4 space-y-1 text-slate-600">
+                                <li><code>GRANT:</code> Concede permisos específicos sobre tablas, vistas o procedimientos.</li>
+                                <li><code>REVOKE:</code> Retira privilegios asignados previamente a un usuario o rol.</li>
+                                <li><code>ROLES:</code> Agrupaciones de privilegios (ej. <code>rol_auditor</code>) asignables a múltiples usuarios.</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <strong class="text-blue-700 block text-sm"><i class="fas fa-box-archive mr-1"></i> Estrategias de Respaldo</strong>
+                            <ul class="list-disc ml-4 space-y-1 text-slate-600">
+                                <li><strong>Full Backup:</strong> Copia completa de todas las tablas y esquemas (`mysqldump`).</li>
+                                <li><strong>Incremental Backup:</strong> Guarda solo los cambios ocurridos desde el último respaldo.</li>
+                                <li><strong>Restauración:</strong> Procedimiento de contingencia para reconstruir el servidor ante desastres.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 3: DEMOSTRACIÓN Y MODELADO PASO A PASO -->
+                <section id="fase3" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-indigo-600 text-white">3</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Scripts de Seguridad y Respaldo CLI</h2>
+                    </div>
+
+                    <div class="bg-slate-900 text-slate-200 rounded-xl p-5 text-xs font-mono mb-4 overflow-x-auto space-y-3">
+                        <div>
+                            <span class="text-emerald-400 font-bold block mb-1">-- 1. CREACIÓN DE USUARIO Y ASIGNACIÓN DE PRIVILEGIOS GRANULARES</span>
+                            CREATE USER 'docente_user'@'localhost' IDENTIFIED BY 'PassSegura$2026';<br>
+                            GRANT SELECT, INSERT, UPDATE ON conalep_escolar.alumnos TO 'docente_user'@'localhost';<br>
+                            GRANT SELECT ON conalep_escolar.v_directorio_docente TO 'docente_user'@'localhost';<br>
+                            FLUSH PRIVILEGES;
+                        </div>
+
+                        <div>
+                            <span class="text-sky-400 font-bold block mb-1">-- 2. GESTIÓN DE ROLES DE SEGURIDAD</span>
+                            CREATE ROLE 'rol_caja';<br>
+                            GRANT SELECT, INSERT ON conalep_escolar.pagos TO 'rol_caja';<br>
+                            GRANT 'rol_caja' TO 'docente_user'@'localhost';<br>
+                            SET DEFAULT ROLE ALL TO 'docente_user'@'localhost';
+                        </div>
+
+                        <div>
+                            <span class="text-amber-400 font-bold block mb-1"># 3. COMANDO DE RESPALDO COMPLETO EN TERMINAL (MYSQLDUMP)</span>
+                            mysqldump -u root -p --routines --triggers --databases conalep_escolar &gt; respaldo_conalep_2026.sql<br>
+                            <br>
+                            <span class="text-slate-400"># 4. RESTAURACIÓN EN CASO DE CONTINGENCIA</span><br>
+                            mysql -u root -p conalep_escolar &lt; respaldo_conalep_2026.sql
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 4: APLICACIÓN PRÁCTICA (SIMULADOR Y PROBLEMARIO) -->
+                <section id="fase4" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-amber-600 text-white">4</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Simulador y Problemario)</h2>
+                    </div>
+
+                    <!-- SIMULADOR INTERACTIVO JS: GESTOR DE PRIVILEGIOS GRANT -->
+                    <div class="border-2 border-emerald-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
+                        <div class="flex items-center justify-between mb-4 border-b border-emerald-100 pb-3">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-user-lock text-emerald-600 text-xl"></i>
+                                <div>
+                                    <h3 class="font-bold text-slate-900 text-sm">Gestor Dinámico de Privilegios GRANT / REVOKE</h3>
+                                    <span class="text-[11px] text-slate-500 font-mono">Modela sentencias DCL de seguridad y genera comandos de respaldo</span>
+                                </div>
+                            </div>
+                            <span class="px-2 py-1 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">JavaScript Nativo</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs mb-4">
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Nombre de Usuario:</label>
+                                <input type="text" id="simDclUser" class="w-full p-2 border border-slate-300 rounded-lg text-xs font-mono" value="operador_caja" oninput="generarDCL()">
+                            </div>
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Host Autorizado:</label>
+                                <select id="simDclHost" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="generarDCL()">
+                                    <option value="localhost">localhost (Solo servidor local)</option>
+                                    <option value="192.168.1.%">192.168.1.% (Red LAN del Plantel)</option>
+                                    <option value="%">% (Cualquier IP remota)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Nivel de Permisos:</label>
+                                <select id="simDclPrivs" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="generarDCL()">
+                                    <option value="lectura">Solo Lectura (SELECT)</option>
+                                    <option value="operador" selected>Operador (SELECT, INSERT, UPDATE)</option>
+                                    <option value="admin">Administrador (ALL PRIVILEGES)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-200 text-xs font-mono">
+                            <div class="text-slate-400 text-[11px] mb-2">[SCRIPT DCL Y COMANDO BACKUP GENERADOS]</div>
+                            <div id="simDclOutput" class="space-y-1">
+                                <!-- Generado por JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROBLEMARIO DE 10 EJERCICIOS PARA FIRMAS -->
+                    <div class="border border-slate-200 rounded-2xl p-6 bg-white">
+                        <div class="flex items-center justify-between mb-4 border-b pb-3">
+                            <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                                <i class="fas fa-pencil text-emerald-600"></i> Problemario de Seguridad, Roles y Respaldos (40% Firmas)
+                            </h3>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">10 Ejercicios</span>
+                        </div>
+
+                        <div class="space-y-3 text-xs text-slate-700">
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>1. Creación de 3 Cuentas con Diferentes Hosts:</strong> Crea <code>'admin'@'localhost'</code>, <code>'app'@'10.0.0.5'</code> y <code>'reportes'@'%'</code>.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>2. Asignación Granular a Nivel de Columna:</strong> Escribe el comando para permitir a un usuario actualizar únicamente la columna <code>telefono</code> en la tabla <code>alumnos</code>.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>3. Revocación de Privilegios con Revoke:</strong> Retira el permiso de <code>DELETE</code> sobre todas las tablas de la base de datos al usuario <code>practicante</code>.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>4. Implementación de Roles Corporativos:</strong> Crea el rol <code>rol_recursos_humanos</code>, asigna permisos a las tablas de nómina y asígnalo a 2 usuarios.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>5. Inspección de Privilegios con Show Grants:</strong> Interpreta la salida del comando <code>SHOW GRANTS FOR 'docente_user'@'localhost';</code>.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>6. Respaldo de Tablas Específicas con Mysqldump:</strong> Escribe el comando para respaldar únicamente las tablas <code>carreras</code> y <code>alumnos</code> en un archivo <code>.sql</code>.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>7. Respaldo sin Datos (Solo Estructura DDL):</strong> Utiliza el parámetro <code>--no-data</code> de <code>mysqldump</code> para exportar solo el esquema.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>8. Simulación de Recuperación ante Desastres (Disaster Recovery):</strong> Borra deliberadamente una base de datos de prueba y restáurala íntegramente desde el archivo de backup.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>9. Cifrado de Contraseñas y Conexiones SSL/TLS:</strong> Explica cómo configurar el flag <code>REQUIRE SSL</code> en un usuario para forzar tráfico cifrado.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>10. Práctica Integradora Final de Seguridad (Evidencia AE 3.2.1):</strong> Presenta la auditoría de seguridad y script de backup para el 10% SAE.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 5: CIERRE, EVALUACIÓN Y METACOGNICIÓN -->
+                <section id="fase5" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-emerald-600 text-white">5</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 5: Cierre, Evaluación y Metacognición</h2>
+                    </div>
+
+                    <!-- RÚBRICA OFICIAL CONALEP: AE 3.2.1 (10% SAE - COEVALUACIÓN) -->
+                    <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-sm mb-6">
+                        <div class="flex items-center justify-between mb-4 border-b pb-3">
+                            <div>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 uppercase font-mono">Actividad de Evaluación 3.2.1 (Coevaluación)</span>
+                                <h3 class="font-bold text-slate-900 text-sm mt-1">Rúbrica de Valoración Oficial (10% SAE)</h3>
+                            </div>
+                            <span class="text-xs font-extrabold text-emerald-600">Siglema: COBD-04</span>
+                        </div>
+
+                        <div class="overflow-x-auto text-[11px]">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-900 text-white">
+                                        <th class="p-2.5">Indicador</th>
+                                        <th class="p-2.5 text-center">%</th>
+                                        <th class="p-2.5">Excelente</th>
+                                        <th class="p-2.5">Suficiente</th>
+                                        <th class="p-2.5">Insuficiente</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 text-slate-700">
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Gestión de Acceso de Usuarios</td>
+                                        <td class="p-2.5 text-center font-bold text-emerald-600">30%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Crea, modifica y elimina usuarios en SQL, sintaxis correcta y <strong>gestiona acceso utilizando asistentes gráficos</strong>.</td>
+                                        <td class="p-2.5">Crea, modifica y elimina usuarios de la BD mediante SQL.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite sentencias de creación o gestión de usuarios.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Aplicación de Seguridad y Privilegios (Coevaluación)</td>
+                                        <td class="p-2.5 text-center font-bold text-emerald-600">30%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Asigna y retira privilegios de objetos y sistema, código en orden y <strong>asigna privilegios con asistentes</strong>.</td>
+                                        <td class="p-2.5">Asigna y retira privilegios de objetos y sistema en el SGBD.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite asignar o retirar privilegios granulares.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Gestión de Seguridad por Roles</td>
+                                        <td class="p-2.5 text-center font-bold text-emerald-600">30%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Crea conjuntos de privilegios y roles, ejecuta sin errores y <strong>define roles utilizando asistentes</strong>.</td>
+                                        <td class="p-2.5">Crea roles y conjuntos de privilegios en el SGBD.</td>
+                                        <td class="p-2.5 bg-red-50/30">Presenta errores en sentencias SQL para crear roles.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Presentación y Desempeño</td>
+                                        <td class="p-2.5 text-center font-bold text-emerald-600">10%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Asistencia total, perseverancia ante errores, entrega anticipada, <strong>limpieza y coevaluación ejemplar</strong>.</td>
+                                        <td class="p-2.5">Asistencia al 90%, entrega puntual y orden.</td>
+                                        <td class="p-2.5 bg-red-50/30">Incumple con asistencia o entrega extemporánea.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Metacognición -->
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700">
+                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-graduation-cap text-emerald-600 mr-1.5"></i> Conclusión del Módulo COBD-04:</h4>
+                        <p>
+                            "Al dominar el ciclo completo de construcción de bases de datos —desde el diseño conceptual hasta la seguridad de roles y respaldos transaccionales— cuentas con las competencias profesionales clave para desempeñarte como Administrador de Bases de Datos (DBA) y Desarrollador Backend."
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Navegación Inferior -->
+                <div class="flex justify-between items-center border-t border-slate-200 pt-6">
+                    <a href="tema3_1.html" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
+                        <i class="fas fa-arrow-left mr-1"></i> Anterior: RA 3.1 (Transacciones ACID)
+                    </a>
+                    <a href="index.html" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition shadow-sm">
+                        <i class="fas fa-home mr-1"></i> Portada del Módulo
+                    </a>
+                </div>
+
+            </main>
+
+            <!-- COLUMNA 3: Barra Lateral Derecha -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+
+                    <!-- TOC Interactivo -->
+                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm">
+                        <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">En esta Página</h4>
+                        <ul class="space-y-2 text-xs text-slate-600">
+                            <li><a href="#fase1" class="hover:text-emerald-600 transition block">1. Mínimo Privilegio</a></li>
+                            <li><a href="#fase2" class="hover:text-emerald-600 transition block">2. GRANT/REVOKE & Roles</a></li>
+                            <li><a href="#fase3" class="hover:text-emerald-600 transition block">3. Scripts de Seguridad</a></li>
+                            <li><a href="#fase4" class="hover:text-emerald-600 transition block">4. Gestor DCL</a></li>
+                            <li><a href="#fase5" class="hover:text-emerald-600 transition block">5. Rúbrica Oficial AE 3.2.1</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Cuadro de Evidencia SAE Final -->
+                    <div class="p-4 bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl text-xs space-y-2">
+                        <div class="flex items-center gap-2 text-emerald-900 font-bold text-xs">
+                            <i class="fas fa-award text-emerald-600"></i> Evidencia Final SAE (AE 3.2.1)
+                        </div>
+                        <ul class="text-[11px] text-slate-700 list-disc ml-4 space-y-1">
+                            <li>Usuarios y roles configurados.</li>
+                            <li>Privilegios GRANT y REVOKE aplicados.</li>
+                            <li>Archivo de respaldo <code>.sql</code>.</li>
+                            <li>Reporte de coevaluación final.</li>
+                        </ul>
+                        <div class="pt-2 border-t border-emerald-200 text-center">
+                            <span class="text-emerald-700 font-extrabold text-sm">Valor: 10% SAE • Cierre 100%</span>
+                        </div>
+                    </div>
+
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <!-- Script del Simulador JS -->
+    <script>
+        function generarDCL() {
+            const user = document.getElementById('simDclUser').value.trim() || "usuario";
+            const host = document.getElementById('simDclHost').value;
+            const privs = document.getElementById('simDclPrivs').value;
+            const outElem = document.getElementById('simDclOutput');
+
+            let grantSql = "";
+            if (privs === "lectura") {
+                grantSql = `<span class="text-amber-300">GRANT SELECT ON</span> conalep_escolar.* <span class="text-amber-300">TO</span> '${user}'@'${host}';`;
+            } else if (privs === "operador") {
+                grantSql = `<span class="text-amber-300">GRANT SELECT, INSERT, UPDATE ON</span> conalep_escolar.* <span class="text-amber-300">TO</span> '${user}'@'${host}';`;
+            } else {
+                grantSql = `<span class="text-amber-300">GRANT ALL PRIVILEGES ON</span> conalep_escolar.* <span class="text-amber-300">TO</span> '${user}'@'${host}' <span class="text-amber-300">WITH GRANT OPTION</span>;`;
+            }
+
+            outElem.innerHTML = `
+                <span class="text-emerald-400 font-bold">-- 1. CREACIÓN DE USUARIO Y PERMISOS:</span><br>
+                <span class="text-amber-300">CREATE USER IF NOT EXISTS</span> '${user}'@'${host}' <span class="text-amber-300">IDENTIFIED BY</span> 'PassSegura$2026';<br>
+                ${grantSql}<br>
+                <span class="text-amber-300">FLUSH PRIVILEGES;</span><br>
+                <br>
+                <span class="text-sky-300 font-bold">-- 2. COMANDO DE RESPALDO ASOCIADO (TERMINAL):</span><br>
+                <span class="text-slate-300 font-mono">mysqldump -u ${user} -p --databases conalep_escolar &gt; backup_${user}.sql</span>
+            `;
+        }
+        window.onload = generarDCL;
+    </script>
+</body>
+</html>

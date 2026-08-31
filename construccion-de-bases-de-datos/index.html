@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COBD-04: Construcción de Bases de Datos | CONALEP</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        db: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #ffffff;
+            color: #1e293b;
+            scroll-behavior: smooth;
+        }
+
+        .unit-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        .unit-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        .sticky-top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-800 antialiased selection:bg-amber-100 selection:text-amber-900">
+
+    <!-- Top Bar Institucional -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-3">
+                <span class="font-semibold text-white"><i class="fas fa-database text-amber-400 mr-1.5"></i> CONALEP — PT-B en Informática (4° Semestre)</span>
+                <span class="text-slate-600 hidden sm:inline">|</span>
+                <span class="text-slate-400 hidden sm:inline">Clave Oficial: <strong>COBD-04</strong> (126 Horas • 13 Créditos)</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="../index.html" class="text-xs text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1 font-semibold">
+                    <i class="fas fa-arrow-left"></i> Catálogo CONALEP
+                </a>
+                <span class="text-slate-600">|</span>
+                <span class="text-slate-400"><i class="fas fa-chalkboard-teacher text-amber-400 mr-1"></i> Catedrático: <strong>Cruz Enrique García</strong></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navegación Principal -->
+    <nav class="sticky-top-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 to-orange-600 flex items-center justify-center text-white font-bold text-lg shadow-sm">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div>
+                        <span class="text-base font-bold text-slate-900 leading-tight block">Construcción de Bases de Datos</span>
+                        <span class="text-[11px] text-slate-500 font-mono">COBD-04 • SQL / MySQL / PostgreSQL • 18 Semanas (7 hrs/semana • 126 Horas)</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-6 text-sm font-semibold text-slate-600">
+                    <a href="#unidades" class="hover:text-amber-600 transition">Resultados de Aprendizaje</a>
+                    <a href="#ponderacion" class="hover:text-amber-600 transition">Ponderación SAE</a>
+                    <a href="#cronograma" class="hover:text-amber-600 transition">Cronograma 18 Semanas</a>
+                    <a href="#metodologia" class="hover:text-amber-600 transition">Modelo 5 Fases</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Hero -->
+    <header class="border-b border-slate-200 bg-gradient-to-b from-amber-50/40 via-white to-white py-12 px-4">
+        <div class="max-w-5xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-semibold uppercase tracking-wider mb-4 border border-amber-200">
+                <i class="fas fa-table-cells"></i> Núcleo de Formación Profesional • Modelo Relacional & SQL
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+                Construcción de <span class="text-amber-600">Bases de Datos</span>
+            </h1>
+            <p class="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto font-normal leading-relaxed mb-6">
+                Planeación didáctica orientada al ciclo de vida completo de bases de datos relacionales: Modelado Entidad-Relación (MER), normalización estricta (1FN, 2FN, 3FN, BCNF), definición física DDL, consultas avanzadas DML con JOINs, disparadores (Triggers), vistas, transacciones ACID (bloqueo 2PL) y seguridad con roles y privilegios en <strong>MySQL / MariaDB / PostgreSQL</strong>.
+            </p>
+            <div class="flex flex-wrap justify-center gap-3 text-xs font-semibold">
+                <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200"><i class="fas fa-clock text-amber-600 mr-1"></i> 126 Horas Semestrales</span>
+                <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200"><i class="fas fa-calendar-alt text-amber-600 mr-1"></i> 7 Horas / Semana (18 Semanas)</span>
+                <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200"><i class="fas fa-tasks text-emerald-600 mr-1"></i> 7 Evidencias Oficiales SAE (100%)</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- MENSAJE DOCENTE -->
+        <div class="mb-14 bg-gradient-to-r from-slate-900 via-slate-800 to-amber-950 text-white rounded-2xl p-6 sm:p-8 shadow-md border border-slate-700">
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-5">
+                <div class="w-14 h-14 rounded-2xl bg-amber-600/20 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl flex-shrink-0">
+                    <i class="fas fa-server"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-1 flex items-center gap-2">
+                        Encuadre Profesional de Gestión de Datos (Catedrático Cruz Enrique García)
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        "En este módulo formativo, los estudiantes transitan desde el análisis de requerimientos del usuario hasta la implementación física y segura de bases de datos relacionales. No se trata únicamente de escribir sentencias SQL, sino de garantizar la <strong>integridad referencial, la normalización sin redundancias, el rendimiento de consultas mediante índices y la consistencia transaccional (ACID)</strong>. Cada unidad incorpora simuladores interactivos en JavaScript nativo para modelar, normalizar y consultar bases de datos en tiempo real."
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 1: Resultados de Aprendizaje y Unidades -->
+        <section id="unidades" class="mb-16 scroll-mt-24">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-end mb-8 gap-4">
+                <div>
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Estructura Curricular</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Unidades y Resultados de Aprendizaje (RA)</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Accede directamente al material de cátedra interactivo de cada Resultado de Aprendizaje</p>
+                </div>
+            </div>
+
+            <!-- UNIDAD 1 -->
+            <div class="mb-10 bg-slate-50/70 border border-slate-200 rounded-3xl p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-2 border-b border-slate-200 pb-4">
+                    <div>
+                        <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 border border-amber-200 uppercase">Unidad 1 • 60 Horas (55% Ponderación)</span>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mt-2">Diseño de Bases de Datos Relacionales (Conceptual, Lógico y Físico)</h3>
+                    </div>
+                    <span class="text-xs text-slate-500 font-medium">Semanas 1 a 9 • 3 Resultados de Aprendizaje</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- RA 1.1 -->
+                    <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 1.1</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">15h • 15% SAE</span>
+                            </div>
+                            <h4 class="text-base font-bold text-slate-900 mb-2 hover:text-amber-600 transition">
+                                <a href="tema1_1.html">Diseño Conceptual y Modelo Entidad-Relación</a>
+                            </h4>
+                            <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                                Entidades fuertes y débiles, atributos (simples, compuestos, multivaluados), relaciones y cardinalidades (1:1, 1:N, N:M).
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
+                                <div class="flex justify-between"><span>Semanas:</span> <strong class="text-slate-800">1 y 2 (15 hrs)</strong></div>
+                                <div class="flex justify-between"><span>Evidencia:</span> <strong class="text-amber-700 font-semibold">AE 1.1.1 (Diagrama MER)</strong></div>
+                            </div>
+                        </div>
+                        <a href="tema1_1.html" class="w-full py-2 px-3 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Ver RA 1.1 y Simulador <i class="fas fa-arrow-right ml-1.5 text-amber-200"></i>
+                        </a>
+                    </div>
+
+                    <!-- RA 1.2 -->
+                    <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 1.2</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">25h • 20% SAE</span>
+                            </div>
+                            <h4 class="text-base font-bold text-slate-900 mb-2 hover:text-amber-600 transition">
+                                <a href="tema1_2.html">Estructura Lógica y Normalización Relacional</a>
+                            </h4>
+                            <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                                Transformación de MER a tablas relacionales, claves primarias/foráneas, y formas normales (1FN, 2FN, 3FN y BCNF).
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
+                                <div class="flex justify-between"><span>Semanas:</span> <strong class="text-slate-800">3 a 6 (25 hrs)</strong></div>
+                                <div class="flex justify-between"><span>Evidencia:</span> <strong class="text-amber-700 font-semibold">AE 1.2.1 (Normalización)</strong></div>
+                            </div>
+                        </div>
+                        <a href="tema1_2.html" class="w-full py-2 px-3 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Ver RA 1.2 y Simulador <i class="fas fa-arrow-right ml-1.5 text-amber-200"></i>
+                        </a>
+                    </div>
+
+                    <!-- RA 1.3 -->
+                    <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 1.3</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">20h • 20% SAE</span>
+                            </div>
+                            <h4 class="text-base font-bold text-slate-900 mb-2 hover:text-amber-600 transition">
+                                <a href="tema1_3.html">Diseño Físico y Sentencias DDL en SGBD</a>
+                            </h4>
+                            <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                                Implementación en MySQL/MariaDB: <code>CREATE DATABASE</code>, <code>CREATE TABLE</code>, <code>ALTER TABLE</code>, <code>PRIMARY KEY</code>, <code>FOREIGN KEY</code> y <code>CONSTRAINT</code>.
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
+                                <div class="flex justify-between"><span>Semanas:</span> <strong class="text-slate-800">7 a 9 (20 hrs)</strong></div>
+                                <div class="flex justify-between"><span>Evidencia:</span> <strong class="text-amber-700 font-semibold">AE 1.3.1 (Heteroevaluación)</strong></div>
+                            </div>
+                        </div>
+                        <a href="tema1_3.html" class="w-full py-2 px-3 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Ver RA 1.3 y Generador <i class="fas fa-arrow-right ml-1.5 text-amber-200"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIDAD 2 -->
+            <div class="mb-10 bg-slate-50/70 border border-slate-200 rounded-3xl p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-2 border-b border-slate-200 pb-4">
+                    <div>
+                        <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-orange-100 text-orange-800 border border-orange-200 uppercase">Unidad 2 • 40 Horas (25% Ponderación)</span>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mt-2">Gestión y Aprovechamiento de la Información (DML & Triggers)</h3>
+                    </div>
+                    <span class="text-xs text-slate-500 font-medium">Semanas 10 a 15 • 2 Resultados de Aprendizaje</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- RA 2.1 -->
+                    <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 2.1</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-orange-50 text-orange-700 border border-orange-200">25 Horas • 15% SAE</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 mb-2 hover:text-orange-600 transition">
+                                <a href="tema2_1.html">Manipulación de Datos (DML) y Disparadores (Triggers)</a>
+                            </h4>
+                            <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                                Consultas <code>SELECT</code> avanzadas con <code>INNER/LEFT/RIGHT JOIN</code>, <code>GROUP BY</code>, <code>HAVING</code>, operaciones <code>INSERT/UPDATE/DELETE</code> y creación de <code>TRIGGERS</code> de auditoría.
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
+                                <div class="flex justify-between"><span>Calendario:</span> <strong class="text-slate-800">Semanas 10 a 13 (25 hrs)</strong></div>
+                                <div class="flex justify-between"><span>Evidencia SAE:</span> <strong class="text-orange-700 font-semibold">AE 2.1.1 (Consultas & Triggers)</strong></div>
+                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-slate-800">Motor de Consultas SQL & Triggers</strong></div>
+                            </div>
+                        </div>
+                        <a href="tema2_1.html" class="w-full py-2.5 px-4 bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Ver RA 2.1 y Motor SQL <i class="fas fa-arrow-right ml-2 text-orange-200"></i>
+                        </a>
+                    </div>
+
+                    <!-- RA 2.2 -->
+                    <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 2.2</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-orange-50 text-orange-700 border border-orange-200">15 Horas • 10% SAE</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 mb-2 hover:text-orange-600 transition">
+                                <a href="tema2_2.html">Creación de Vistas, Formularios y Generación de Reportes</a>
+                            </h4>
+                            <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                                Definición de vistas de seguridad <code>CREATE VIEW</code>, consultas agregadas para toma de decisiones y diseño de formularios/reportes automatizados para usuarios finales.
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
+                                <div class="flex justify-between"><span>Calendario:</span> <strong class="text-slate-800">Semanas 14 y 15 (15 hrs)</strong></div>
+                                <div class="flex justify-between"><span>Evidencia SAE:</span> <strong class="text-orange-700 font-semibold">AE 2.2.1 (Vistas & Reportes)</strong></div>
+                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-slate-800">Constructor de Vistas SQL</strong></div>
+                            </div>
+                        </div>
+                        <a href="tema2_2.html" class="w-full py-2.5 px-4 bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Ver RA 2.2 y Vistas <i class="fas fa-arrow-right ml-2 text-orange-200"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIDAD 3 -->
+            <div class="bg-slate-50/70 border border-slate-200 rounded-3xl p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-2 border-b border-slate-200 pb-4">
+                    <div>
+                        <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 uppercase">Unidad 3 • 26 Horas (20% Ponderación)</span>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mt-2">Aseguramiento de la Información: Transacciones y Seguridad</h3>
+                    </div>
+                    <span class="text-xs text-slate-500 font-medium">Semanas 16 a 18 • 2 Resultados de Aprendizaje</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- RA 3.1 -->
+                    <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 3.1</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">16 Horas • 10% SAE</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 mb-2 hover:text-emerald-600 transition">
+                                <a href="tema3_1.html">Transacciones ACID y Control de Concurrencia (Bloqueo 2PL)</a>
+                            </h4>
+                            <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                                Propiedades ACID (Atomicidad, Consistencia, Aislamiento, Durabilidad), comandos <code>START TRANSACTION</code>, <code>COMMIT</code>, <code>ROLLBACK</code> y protocolo de bloqueo en dos fases (2PL).
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
+                                <div class="flex justify-between"><span>Calendario:</span> <strong class="text-slate-800">Semanas 16 y 17 (16 hrs)</strong></div>
+                                <div class="flex justify-between"><span>Evidencia SAE:</span> <strong class="text-emerald-700 font-semibold">AE 3.1.1 (Transacciones)</strong></div>
+                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-slate-800">Simulador ACID & Bloqueos 2PL</strong></div>
+                            </div>
+                        </div>
+                        <a href="tema3_1.html" class="w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Ver RA 3.1 y Simulador ACID <i class="fas fa-arrow-right ml-2 text-emerald-200"></i>
+                        </a>
+                    </div>
+
+                    <!-- RA 3.2 -->
+                    <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 3.2</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">10 Horas • 10% SAE</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 mb-2 hover:text-emerald-600 transition">
+                                <a href="tema3_2.html">Control de Accesos, Privilegios y Respaldos (DCL)</a>
+                            </h4>
+                            <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                                Creación de usuarios y roles, asignación de privilegios granulares con <code>GRANT</code> y <code>REVOKE</code>, y estrategias de respaldos completos e incrementales con <code>mysqldump</code>.
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
+                                <div class="flex justify-between"><span>Calendario:</span> <strong class="text-slate-800">Semana 18 (10 hrs)</strong></div>
+                                <div class="flex justify-between"><span>Evidencia SAE:</span> <strong class="text-emerald-700 font-semibold">AE 3.2.1 (Seguridad & Backup)</strong></div>
+                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-slate-800">Gestor de Privilegios GRANT</strong></div>
+                            </div>
+                        </div>
+                        <a href="tema3_2.html" class="w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Ver RA 3.2 y Gestor DCL <i class="fas fa-arrow-right ml-2 text-emerald-200"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: Tabla Oficial de Ponderación SAE CONALEP -->
+        <section id="ponderacion" class="mb-16 scroll-mt-24">
+            <div class="border border-slate-200 rounded-2xl bg-white p-6 sm:p-8 shadow-sm">
+                <div class="mb-6 pb-4 border-b border-slate-100">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Guía de Evaluación Oficial</span>
+                    <h2 class="text-2xl font-bold text-slate-900 mt-1">Tabla Oficial de Ponderación (Sistema SAE)</h2>
+                    <p class="text-xs text-slate-500 mt-0.5">Desglose porcentual y criterios de acreditación del Módulo COBD-04</p>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-900 text-white font-bold">
+                                <th class="p-3.5 rounded-tl-xl">Unidad</th>
+                                <th class="p-3.5">Resultado de Aprendizaje (RA)</th>
+                                <th class="p-3.5 text-center">Horas</th>
+                                <th class="p-3.5 text-center">Actividad Evaluación</th>
+                                <th class="p-3.5 text-center">% Específico</th>
+                                <th class="p-3.5 text-center rounded-tr-xl">% Acumulado</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-slate-700">
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5 font-bold text-slate-900 align-top" rowspan="3">1. Diseño de bases de datos relacionales (60 hrs • 55%)</td>
+                                <td class="p-3.5"><strong>1.1</strong> Elabora el diseño conceptual (MER) a partir de requerimientos funcionales.</td>
+                                <td class="p-3.5 text-center font-mono font-bold">15 h</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-amber-700">1.1.1</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">15%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">15%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5"><strong>1.2</strong> Diseña la estructura lógica mediante normalización (1FN, 2FN, 3FN, BCNF).</td>
+                                <td class="p-3.5 text-center font-mono font-bold">25 h</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-amber-700">1.2.1</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">20%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">35%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5"><strong>1.3</strong> Desarrolla el diseño físico en el SGBD mediante lenguaje DDL.</td>
+                                <td class="p-3.5 text-center font-mono font-bold">20 h</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-amber-700">1.3.1 (Hetero)</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">20%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">55%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5 font-bold text-slate-900 align-top" rowspan="2">2. Gestión y aprovechamiento de datos (40 hrs • 25%)</td>
+                                <td class="p-3.5"><strong>2.1</strong> Estructura consultas DML y disparadores (Triggers) en el SGBD.</td>
+                                <td class="p-3.5 text-center font-mono font-bold">25 h</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-orange-700">2.1.1</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">15%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">70%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5"><strong>2.2</strong> Diseña vistas SQL, formularios y programas para reportes.</td>
+                                <td class="p-3.5 text-center font-mono font-bold">15 h</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-orange-700">2.2.1</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">10%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">80%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5 font-bold text-slate-900 align-top" rowspan="2">3. Aseguramiento de la información (26 hrs • 20%)</td>
+                                <td class="p-3.5"><strong>3.1</strong> Programa transacciones ACID y control de concurrencia con bloqueo en dos fases.</td>
+                                <td class="p-3.5 text-center font-mono font-bold">16 h</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-emerald-700">3.1.1</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">10%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">90%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5"><strong>3.2</strong> Configura controles de acceso (GRANT/REVOKE), cifrado y respaldos.</td>
+                                <td class="p-3.5 text-center font-mono font-bold">10 h</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-emerald-700">3.2.1 (Coeval)</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">10%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">100%</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="bg-amber-50 border-t-2 border-amber-600 text-amber-950 font-bold text-xs">
+                                <td colspan="2" class="p-3.5 text-right uppercase">Total del Módulo Formativo:</td>
+                                <td class="p-3.5 text-center font-mono text-sm">126 Horas</td>
+                                <td class="p-3.5 text-center">7 Evidencias</td>
+                                <td class="p-3.5 text-center font-extrabold text-sm">100%</td>
+                                <td class="p-3.5 text-center font-extrabold text-sm">100% Acreditado</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: Cronograma Semestral de 18 Semanas (7 hrs/sem = 126 hrs) -->
+        <section id="cronograma" class="mb-16 scroll-mt-24">
+            <div class="border border-slate-200 rounded-2xl bg-white p-6 sm:p-8 shadow-sm">
+                <div class="mb-6 pb-4 border-b border-slate-100">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Dosificación Semestral</span>
+                    <h2 class="text-2xl font-bold text-slate-900 mt-1">Cronograma de 18 Semanas (7 Horas/Semana)</h2>
+                    <p class="text-xs text-slate-500 mt-0.5">Distribución semanal de contenidos y prácticas de laboratorio SQL en SGBD</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+                    <!-- Sem 1-4 -->
+                    <div class="p-4 rounded-xl border border-amber-200 bg-amber-50/30">
+                        <div class="flex justify-between items-center mb-2">
+                            <strong class="text-amber-900">Semanas 1 a 4 (28 hrs)</strong>
+                            <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-bold text-[10px]">Unidad 1.1-1.2</span>
+                        </div>
+                        <p class="text-slate-600 mb-2">Modelo Entidad-Relación, entidades, atributos, cardinalidades y normalización a 1FN, 2FN y 3FN.</p>
+                        <span class="text-[11px] font-bold text-amber-700 block">📌 AE 1.1.1 (Sem 2) & AE 1.2.1 (Sem 6)</span>
+                    </div>
+
+                    <!-- Sem 5-9 -->
+                    <div class="p-4 rounded-xl border border-amber-200 bg-amber-50/30">
+                        <div class="flex justify-between items-center mb-2">
+                            <strong class="text-amber-900">Semanas 5 a 9 (35 hrs)</strong>
+                            <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-bold text-[10px]">Unidad 1.2-1.3</span>
+                        </div>
+                        <p class="text-slate-600 mb-2">Forma Normal de Boyce-Codd, herramientas CASE y sentencias DDL (CREATE, ALTER, FK, CONSTRAINT).</p>
+                        <span class="text-[11px] font-bold text-amber-700 block">📌 AE 1.3.1 (Heteroevaluación - Sem 9)</span>
+                    </div>
+
+                    <!-- Sem 10-15 -->
+                    <div class="p-4 rounded-xl border border-orange-200 bg-orange-50/30">
+                        <div class="flex justify-between items-center mb-2">
+                            <strong class="text-orange-900">Semanas 10 a 15 (42 hrs)</strong>
+                            <span class="px-2 py-0.5 rounded bg-orange-100 text-orange-800 font-bold text-[10px]">Unidad 2</span>
+                        </div>
+                        <p class="text-slate-600 mb-2">Consultas SQL complejas (JOINs, GROUP BY), disparadores (Triggers), vistas de datos y reportes.</p>
+                        <span class="text-[11px] font-bold text-orange-700 block">📌 AE 2.1.1 (Sem 13) & AE 2.2.1 (Sem 15)</span>
+                    </div>
+
+                    <!-- Sem 16-18 -->
+                    <div class="p-4 rounded-xl border border-emerald-200 bg-emerald-50/30">
+                        <div class="flex justify-between items-center mb-2">
+                            <strong class="text-emerald-900">Semanas 16 a 18 (21 hrs)</strong>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">Unidad 3</span>
+                        </div>
+                        <p class="text-slate-600 mb-2">Transacciones ACID, bloqueos 2PL, gestión de usuarios, roles GRANT/REVOKE, backups y cierre.</p>
+                        <span class="text-[11px] font-bold text-emerald-700 block">🏆 AE 3.1.1 & AE 3.2.1 (Cierre 100%)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-10 text-slate-600 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+            <div>
+                <div class="font-bold text-slate-900 text-sm">CONALEP — Módulo COBD-04: Construcción de Bases de Datos</div>
+                <div class="text-slate-500">PT-B en Informática • Catedrático: Cruz Enrique García</div>
+            </div>
+            <div class="text-slate-500">
+                Planeación Semestral Oficial de 18 Semanas (126 Horas / 7 hrs/semana)<br>
+                <span>Alineado a Estándares SQL ANSI/ISO y Rúbricas Oficiales SAE CONALEP</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

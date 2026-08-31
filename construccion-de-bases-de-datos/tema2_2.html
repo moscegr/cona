@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA 2.2: Vistas, Formularios y Reportes | COBD-04 CONALEP</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: '#ea580c',
+                        dark: '#0f172a',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #ffffff; color: #1e293b; }
+        .lll-info { background-color: #eff6ff; border-left: 4px solid #3b82f6; }
+        .lll-warning { background-color: #fffbeb; border-left: 4px solid #f59e0b; }
+        .lll-tip { background-color: #f0fdf4; border-left: 4px solid #10b981; }
+        .lll-danger { background-color: #fef2f2; border-left: 4px solid #ef4444; }
+        .diff-easy { background-color: #dcfce7; color: #15803d; }
+        .diff-med { background-color: #fef3c7; color: #b45309; }
+        .diff-hard { background-color: #fee2e2; color: #b91c1c; }
+        .step-badge { width: 28px; height: 28px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; }
+    </style>
+</head>
+<body class="bg-white text-slate-800 antialiased selection:bg-amber-100 selection:text-amber-900">
+
+    <!-- Top Bar Institucional -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="font-semibold text-white"><i class="fas fa-eye text-amber-400 mr-1.5"></i> CONALEP — Construcción de Bases de Datos</span>
+                <span class="text-slate-600 hidden sm:inline">|</span>
+                <span class="text-slate-400 hidden sm:inline">Módulo: <strong>COBD-04</strong></span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="text-xs text-amber-400 hover:text-amber-300 transition flex items-center gap-1 font-semibold">
+                    <i class="fas fa-arrow-left"></i> Índice del Módulo
+                </a>
+                <span class="text-slate-600">|</span>
+                <a href="../index.html" class="text-xs text-emerald-400 hover:text-emerald-300 transition font-semibold">
+                    Portal CONALEP
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Layout en 3 Columnas (White UI Luis Llamas) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- COLUMNA 1: Menú Lateral Izquierdo -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-orange-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 text-sm leading-tight">Unidad 2</h3>
+                                <p class="text-[11px] text-slate-500">Vistas & Reportes</p>
+                            </div>
+                        </div>
+                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-slate-200 pt-2.5">
+                            <div class="flex justify-between"><span>Duración Total:</span> <strong class="text-slate-800">15 Horas</strong></div>
+                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-orange-600 font-bold">10% SAE</strong></div>
+                        </div>
+                    </div>
+
+                    <!-- Navegación de RAs -->
+                    <div class="border border-slate-200 rounded-2xl p-4 bg-white">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Resultados de Aprendizaje</h4>
+                        <nav class="space-y-1.5 text-xs">
+                            <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-sitemap mr-1.5 text-slate-400"></i> RA 1.1: Modelo E-R (MER)</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">15h</span>
+                            </a>
+                            <a href="tema1_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-filter mr-1.5 text-slate-400"></i> RA 1.2: Normalización</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">25h</span>
+                            </a>
+                            <a href="tema1_3.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-table mr-1.5 text-slate-400"></i> RA 1.3: Sentencias DDL</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">20h</span>
+                            </a>
+                            <a href="tema2_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-code mr-1.5 text-slate-400"></i> RA 2.1: DML & Triggers</span>
+                                <span class="diff-hard px-2 py-0.5 rounded-full text-[10px] font-mono">25h</span>
+                            </a>
+                            <a href="tema2_2.html" class="flex items-center justify-between p-2 rounded-xl bg-orange-50 text-orange-800 font-bold border border-orange-200">
+                                <span><i class="fas fa-chevron-right mr-1.5 text-[10px]"></i> RA 2.2: Vistas & Reportes</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">15h</span>
+                            </a>
+                            <a href="tema3_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-shield-halved mr-1.5 text-slate-400"></i> RA 3.1: Transacciones ACID</span>
+                                <span class="diff-hard px-2 py-0.5 rounded-full text-[10px] font-mono">16h</span>
+                            </a>
+                            <a href="tema3_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-user-lock mr-1.5 text-slate-400"></i> RA 3.2: Seguridad & Backup</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">10h</span>
+                            </a>
+                        </nav>
+                    </div>
+
+                    <!-- Fases Pedagógicas -->
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-2">
+                        <h4 class="font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-2">5 Fases de la Cátedra</h4>
+                        <a href="#fase1" class="block text-slate-600 hover:text-orange-600"><span class="font-bold text-orange-600">1.</span> Apertura & Vistas</a>
+                        <a href="#fase2" class="block text-slate-600 hover:text-orange-600"><span class="font-bold text-sky-600">2.</span> Seguridad & Abstracción</a>
+                        <a href="#fase3" class="block text-slate-600 hover:text-orange-600"><span class="font-bold text-indigo-600">3.</span> Script CREATE VIEW</a>
+                        <a href="#fase4" class="block text-slate-600 hover:text-orange-600"><span class="font-bold text-amber-600">4.</span> Diseñador de Vistas</a>
+                        <a href="#fase5" class="block text-slate-600 hover:text-orange-600"><span class="font-bold text-emerald-600">5.</span> Cierre & Rúbrica AE 2.2.1</a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- COLUMNA 2: Contenido Didáctico Central -->
+            <main class="lg:col-span-6 space-y-12">
+
+                <!-- Header de Unidad -->
+                <header class="border-b border-slate-200 pb-6">
+                    <div class="flex items-center gap-2 text-xs text-orange-600 font-bold uppercase tracking-wider mb-2">
+                        <span>Unidad 2</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Resultado de Aprendizaje 2.2</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+                        Diseño de Vistas de Seguridad, Formularios y Generación de Reportes
+                    </h1>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Creación de vistas virtuales con `CREATE VIEW` para simplificación de consultas complejas y enmascaramiento de datos confidenciales, estructuración de formularios de captura de datos y generación de reportes ejecutivos para la toma de decisiones directivas.
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-2 text-xs">
+                        <span class="px-2.5 py-1 rounded-lg bg-orange-100 text-orange-800 font-bold font-mono">15 Horas (Semanas 14 y 15)</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold">Ponderación: 10% SAE</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">Evidencia: AE 2.2.1 (Cierre Unidad 2)</span>
+                    </div>
+                </header>
+
+                <!-- FASE 1: APERTURA -->
+                <section id="fase1" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-orange-600 text-white">1</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Contextualización)</h2>
+                    </div>
+
+                    <div class="lll-info p-5 rounded-2xl mb-6">
+                        <h3 class="font-bold text-blue-900 text-sm mb-2 flex items-center gap-2">
+                            <i class="fas fa-eye-slash text-blue-600"></i> Protección de Datos Personales y Salarios Mediante Vistas
+                        </h3>
+                        <p class="text-xs text-slate-700 leading-relaxed mb-3">
+                            El departamento de Recursos Humanos de una empresa necesita que el personal de recepción consulte el directorio de empleados (Nombre, Extensión, Departamento, Correo) sin tener acceso a la tabla física completa donde se encuentran almacenados los <strong>Salarios, Número de Seguro Social y Cuentas Bancarias</strong>.
+                        </p>
+                        <p class="text-xs text-slate-700 leading-relaxed font-semibold">
+                            Una <strong>Vista (VIEW)</strong> actúa como una tabla virtual que expone únicamente las columnas autorizadas, garantizando el cumplimiento de la ley de protección de datos.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
+                        <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700 mb-3"><i class="fas fa-question-circle text-orange-600 mr-1.5"></i> Preguntas Diagnósticas</h4>
+                        <ol class="list-decimal ml-5 text-xs text-slate-700 space-y-2">
+                            <li>¿Por qué una vista no almacena datos físicamente en el disco y cómo se actualiza automáticamente cuando cambian las tablas base?</li>
+                            <li>¿Qué requisitos debe cumplir una vista para ser <strong>actualizable</strong> (es decir, permitir <code>INSERT</code> o <code>UPDATE</code> directos)?</li>
+                            <li>¿Cómo se integra una vista SQL con un reporte interactivo en una aplicación web o de escritorio?</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- FASE 2: DESARROLLO CONCEPTUAL -->
+                <section id="fase2" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-sky-600 text-white">2</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (Vistas y Reportes)</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs mb-6">
+                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <strong class="text-orange-700 block text-sm"><i class="fas fa-shield-alt mr-1"></i> Beneficios de las Vistas SQL</strong>
+                            <ul class="list-disc ml-4 space-y-1 text-slate-600">
+                                <li><strong>Seguridad de Datos:</strong> Oculta columnas sensibles otorgando permisos solo sobre la vista (<code>GRANT SELECT ON v_directorio</code>).</li>
+                                <li><strong>Simplificación:</strong> Encapsula JOINs de 5 tablas en un simple <code>SELECT * FROM v_resumen_ventas</code>.</li>
+                                <li><strong>Consistencia:</strong> Estandariza cálculos complejos de impuestos y fórmulas de negocio.</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <strong class="text-blue-700 block text-sm"><i class="fas fa-file-invoice mr-1"></i> Componentes de un Reporte Ejecutivo</strong>
+                            <ul class="list-disc ml-4 space-y-1 text-slate-600">
+                                <li><strong>Encabezado:</strong> Logotipo institucional, título del reporte, fecha de emisión y filtros aplicados.</li>
+                                <li><strong>Cuerpo / Detalle:</strong> Tablas formateadas con alineación numérica a la derecha y tipos de moneda.</li>
+                                <li><strong>Pie / Resumen:</strong> Subtotales por grupo, totales generales, promedios y firmas de autorización.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 3: DEMOSTRACIÓN Y MODELADO PASO A PASO -->
+                <section id="fase3" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-indigo-600 text-white">3</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Script de Creación y Consulta de Vistas</h2>
+                    </div>
+
+                    <div class="bg-slate-900 text-slate-200 rounded-xl p-5 text-xs font-mono mb-4 overflow-x-auto space-y-3">
+                        <div>
+                            <span class="text-emerald-400 font-bold block mb-1">-- 1. CREACIÓN DE VISTA SEGURA DE ALUMNOS (OCULTANDO DATOS SENSIBLES)</span>
+                            CREATE OR REPLACE VIEW v_alumnos_activos AS<br>
+                            SELECT a.matricula, CONCAT(a.nombre, ' ', a.apellidos) AS nombre_completo, a.correo, c.nombre_carrera<br>
+                            FROM alumnos a<br>
+                            INNER JOIN carreras c ON a.id_carrera = c.id_carrera<br>
+                            WHERE c.activo = TRUE;
+                        </div>
+
+                        <div>
+                            <span class="text-amber-400 font-bold block mb-1">-- 2. CONSULTA Y REPORTE DIRECTO SOBRE LA VISTA</span>
+                            SELECT nombre_carrera, COUNT(matricula) AS inscritos<br>
+                            FROM v_alumnos_activos<br>
+                            GROUP BY nombre_carrera;<br>
+                            <br>
+                            <span class="text-slate-400">-- 3. ELIMINACIÓN DE VISTA</span><br>
+                            DROP VIEW IF EXISTS v_alumnos_activos;
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 4: APLICACIÓN PRÁCTICA (SIMULADOR Y PROBLEMARIO) -->
+                <section id="fase4" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-amber-600 text-white">4</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Simulador y Problemario)</h2>
+                    </div>
+
+                    <!-- SIMULADOR INTERACTIVO JS: CONSTRUCTOR DE VISTAS -->
+                    <div class="border-2 border-orange-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
+                        <div class="flex items-center justify-between mb-4 border-b border-orange-100 pb-3">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-eye text-orange-600 text-xl"></i>
+                                <div>
+                                    <h3 class="font-bold text-slate-900 text-sm">Constructor Dinámico de Vistas Seguras</h3>
+                                    <span class="text-[11px] text-slate-500 font-mono">Selecciona qué campos exponer al usuario y genera la sentencia CREATE VIEW</span>
+                                </div>
+                            </div>
+                            <span class="px-2 py-1 rounded bg-orange-100 text-orange-800 text-[10px] font-bold">JavaScript Nativo</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs mb-4">
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Nombre de la Vista:</label>
+                                <input type="text" id="simViewName" class="w-full p-2 border border-slate-300 rounded-lg text-xs font-mono" value="v_directorio_docente" oninput="generarVistaSQL()">
+                            </div>
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Perfil de Usuario Destino:</label>
+                                <select id="simViewRole" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="generarVistaSQL()">
+                                    <option value="publico">Público / Alumnos (Solo nombre y correo)</option>
+                                    <option value="coordinador">Coordinación (Nombre, correo y materias)</option>
+                                    <option value="admin">Administrador (Acceso total)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Filtro WHERE:</label>
+                                <input type="text" id="simViewFilter" class="w-full p-2 border border-slate-300 rounded-lg text-xs font-mono" value="activo = 1" oninput="generarVistaSQL()">
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-200 text-xs font-mono">
+                            <div class="text-slate-400 text-[11px] mb-2">[SENTENCIA SQL DE CREACIÓN DE VISTA GENERADA]</div>
+                            <div id="simViewOutput" class="text-emerald-400">
+                                <!-- Generado por JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROBLEMARIO DE 10 EJERCICIOS PARA FIRMAS -->
+                    <div class="border border-slate-200 rounded-2xl p-6 bg-white">
+                        <div class="flex items-center justify-between mb-4 border-b pb-3">
+                            <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                                <i class="fas fa-pencil text-orange-600"></i> Problemario de Vistas, Formularios y Reportes (40% Firmas)
+                            </h3>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">10 Ejercicios</span>
+                        </div>
+
+                        <div class="space-y-3 text-xs text-slate-700">
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>1. Vista de Ocultamiento de Salarios:</strong> Crea la vista <code>v_empleados_publico</code> omitiendo el campo <code>salario</code> y <code>cuenta_bancaria</code>.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>2. Vista de Resumen de Ventas Mensuales:</strong> Modela una vista con <code>SUM(total)</code> y <code>COUNT(id_venta)</code> agrupada por mes y año.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>3. Vistas con Cláusula WITH CHECK OPTION:</strong> Explica qué previene <code>WITH CHECK OPTION</code> al insertar registros en una vista filtrada por <code>edad &gt;= 18</code>.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>4. Actualización a Través de Vistas:</strong> Demuestra mediante un ejemplo qué tipo de vistas permiten operaciones <code>UPDATE</code> directas.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>5. Diseño de Formulario de Registro:</strong> Diseña en modo boceto los controles de validación (campos requeridos, máscaras de teléfono y correo) para un formulario de alumnos.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>6. Reporte de Inventario Bajo Mínimos:</strong> Escribe la consulta para un reporte que alerte qué productos tienen stock menor al punto de reorden.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>7. Reporte de Calificaciones por Grupo:</strong> Estructura la consulta que liste alumnos con su promedio final y leyenda de 'Aprobado' o 'Reprobado' usando <code>CASE WHEN</code>.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>8. Vistas Anidadas:</strong> Crea una vista que consuma los datos de otra vista previamente creada y analiza el rendimiento.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>9. Exportación de Reportes a PDF/Excel:</strong> Describe el procedimiento en el SGBD o lenguaje de backend para exportar los resultados de una vista a formato CSV y PDF.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>10. Práctica de Vistas y Reportes (Evidencia AE 2.2.1):</strong> Presenta 3 vistas y 2 reportes formateados para el 10% SAE.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 5: CIERRE, EVALUACIÓN Y METACOGNICIÓN -->
+                <section id="fase5" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-emerald-600 text-white">5</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 5: Cierre, Evaluación y Metacognición</h2>
+                    </div>
+
+                    <!-- RÚBRICA OFICIAL CONALEP: AE 2.2.1 (10% SAE) -->
+                    <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-sm mb-6">
+                        <div class="flex items-center justify-between mb-4 border-b pb-3">
+                            <div>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-orange-100 text-orange-800 uppercase font-mono">Actividad de Evaluación 2.2.1</span>
+                                <h3 class="font-bold text-slate-900 text-sm mt-1">Rúbrica de Valoración Oficial (10% SAE)</h3>
+                            </div>
+                            <span class="text-xs font-extrabold text-orange-600">Siglema: COBD-04</span>
+                        </div>
+
+                        <div class="overflow-x-auto text-[11px]">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-900 text-white">
+                                        <th class="p-2.5">Indicador</th>
+                                        <th class="p-2.5 text-center">%</th>
+                                        <th class="p-2.5">Excelente</th>
+                                        <th class="p-2.5">Suficiente</th>
+                                        <th class="p-2.5">Insuficiente</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 text-slate-700">
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Vistas de Bases de Datos</td>
+                                        <td class="p-2.5 text-center font-bold text-orange-600">30%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Crea vistas mediante SQL, ejecuta en SGBD, presenta código en orden y <strong>elabora presentación de ventajas de uso</strong>.</td>
+                                        <td class="p-2.5">Crea y ejecuta vistas en el SGBD con sintaxis correcta.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite crear o ejecutar vistas de bases de datos.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Diseño de Formularios</td>
+                                        <td class="p-2.5 text-center font-bold text-orange-600">25%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Diseña formularios para captura/edición, guarda y ejecuta sin errores y <strong>elabora formularios con asistentes</strong>.</td>
+                                        <td class="p-2.5">Diseña formularios en modo diseño y los ejecuta en el gestor.</td>
+                                        <td class="p-2.5 bg-red-50/30">Formularios con errores de ejecución o incompletos.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Diseño de Reportes</td>
+                                        <td class="p-2.5 text-center font-bold text-orange-600">25%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Diseña reportes manuales, guarda y ejecuta sin errores y <strong>elabora reportes avanzados con asistentes</strong>.</td>
+                                        <td class="p-2.5">Diseña reportes manuales utilizando recursos del SGBD.</td>
+                                        <td class="p-2.5 bg-red-50/30">Reportes con errores de cálculo o formato deficiente.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Presentación y Desempeño</td>
+                                        <td class="p-2.5 text-center font-bold text-orange-600">20%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Documento digital con carátula, orden, ortografía, asistencia total y <strong>autoevaluación reflexiva</strong>.</td>
+                                        <td class="p-2.5">Formato digital con carátula, orden y asistencia al 90%.</td>
+                                        <td class="p-2.5 bg-red-50/30">Entrega extemporánea o incompleta.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Metacognición -->
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700">
+                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-brain text-emerald-600 mr-1.5"></i> Pregunta de Metacognición:</h4>
+                        <p>
+                            "¿Cómo la creación de vistas y reportes ejecutivos transforma millones de registros en crudo en información clara para la toma de decisiones estratégicas de una empresa?"
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Navegación Inferior -->
+                <div class="flex justify-between items-center border-t border-slate-200 pt-6">
+                    <a href="tema2_1.html" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
+                        <i class="fas fa-arrow-left mr-1"></i> Anterior: RA 2.1 (DML & Triggers)
+                    </a>
+                    <a href="tema3_1.html" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition shadow-sm">
+                        Siguiente: RA 3.1 (Transacciones ACID) <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+            </main>
+
+            <!-- COLUMNA 3: Barra Lateral Derecha -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+
+                    <!-- TOC Interactivo -->
+                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm">
+                        <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">En esta Página</h4>
+                        <ul class="space-y-2 text-xs text-slate-600">
+                            <li><a href="#fase1" class="hover:text-orange-600 transition block">1. Seguridad con Vistas</a></li>
+                            <li><a href="#fase2" class="hover:text-orange-600 transition block">2. Abstracción & Reportes</a></li>
+                            <li><a href="#fase3" class="hover:text-orange-600 transition block">3. Script CREATE VIEW</a></li>
+                            <li><a href="#fase4" class="hover:text-orange-600 transition block">4. Diseñador de Vistas</a></li>
+                            <li><a href="#fase5" class="hover:text-orange-600 transition block">5. Rúbrica Oficial AE 2.2.1</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Cuadro de Evidencia SAE -->
+                    <div class="p-4 bg-gradient-to-br from-orange-50 to-amber-50 border border-orange-200 rounded-2xl text-xs space-y-2">
+                        <div class="flex items-center gap-2 text-orange-900 font-bold text-xs">
+                            <i class="fas fa-eye text-orange-600"></i> Entregable SAE (AE 2.2.1)
+                        </div>
+                        <ul class="text-[11px] text-slate-700 list-disc ml-4 space-y-1">
+                            <li>3 Vistas SQL en producción.</li>
+                            <li>Formulario de captura implementado.</li>
+                            <li>Reporte ejecutivo formateado.</li>
+                            <li>Autoevaluación del estudiante.</li>
+                        </ul>
+                        <div class="pt-2 border-t border-orange-200 text-center">
+                            <span class="text-orange-700 font-extrabold text-sm">Valor: 10% SAE (Cierre Unidad 2)</span>
+                        </div>
+                    </div>
+
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <!-- Script del Simulador JS -->
+    <script>
+        function generarVistaSQL() {
+            const name = document.getElementById('simViewName').value.trim() || "v_reporte";
+            const role = document.getElementById('simViewRole').value;
+            const filter = document.getElementById('simViewFilter').value.trim() || "1=1";
+            const outElem = document.getElementById('simViewOutput');
+
+            let cols = "";
+            if (role === "publico") {
+                cols = "nombre, apellidos, correo_institucional, nombre_materia";
+            } else if (role === "coordinador") {
+                cols = "id_docente, nombre, apellidos, correo_institucional, nombre_materia, horas_asignadas";
+            } else {
+                cols = "id_docente, nombre, apellidos, curp, salario_neto, numero_cuenta, correo_institucional";
+            }
+
+            outElem.innerHTML = `
+                <span class="text-amber-300">CREATE OR REPLACE VIEW</span> <span class="text-white">${name}</span> <span class="text-amber-300">AS</span><br>
+                <span class="text-amber-300">SELECT</span> <span class="text-sky-300">${cols}</span><br>
+                <span class="text-amber-300">FROM</span> docentes d<br>
+                <span class="text-amber-300">INNER JOIN</span> asignaturas a <span class="text-amber-300">ON</span> d.id_docente = a.id_docente<br>
+                <span class="text-amber-300">WHERE</span> ${filter};
+            `;
+        }
+        window.onload = generarVistaSQL;
+    </script>
+</body>
+</html>
