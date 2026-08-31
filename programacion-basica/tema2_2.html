@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA 2.2: Estructuras de Memoria, Pilas, Colas y Excepciones | PBAS-03 CONALEP</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- MathJax 3 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: '#10b981', // Emerald 500
+                        dark: '#0f172a',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #ffffff; color: #1e293b; }
+        .lll-info { background-color: #eff6ff; border-left: 4px solid #3b82f6; }
+        .lll-warning { background-color: #fffbeb; border-left: 4px solid #f59e0b; }
+        .lll-tip { background-color: #f0fdf4; border-left: 4px solid #10b981; }
+        .lll-danger { background-color: #fef2f2; border-left: 4px solid #ef4444; }
+        .code-block { font-family: 'JetBrains Mono', monospace; }
+        .diff-easy { background-color: #dcfce7; color: #15803d; }
+        .diff-med { background-color: #fef3c7; color: #b45309; }
+        .diff-hard { background-color: #fee2e2; color: #b91c1c; }
+        .step-badge { width: 28px; height: 28px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; }
+    </style>
+</head>
+<body class="bg-white text-slate-800 antialiased selection:bg-emerald-100 selection:text-emerald-900">
+
+    <!-- Top Bar Institucional -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="font-semibold text-white"><i class="fab fa-python text-emerald-400 mr-1.5"></i> CONALEP — PT-B en Informática y Pilotaje de Drones</span>
+                <span class="text-slate-600 hidden sm:inline">|</span>
+                <span class="text-slate-400 hidden sm:inline">Módulo: <strong>PBAS-03</strong></span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="text-xs text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1 font-semibold">
+                    <i class="fas fa-arrow-left"></i> Índice del Módulo
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Layout en 3 Columnas (White UI Luis Llamas) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- COLUMNA 1: Menú Lateral Izquierdo de Navegación -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                                <i class="fas fa-memory"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 text-sm leading-tight">Unidad 2</h3>
+                                <p class="text-[11px] text-slate-500">Funciones y Memoria</p>
+                            </div>
+                        </div>
+                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-slate-200 pt-2.5">
+                            <div class="flex justify-between"><span>Duración Total:</span> <strong class="text-slate-800">40 Horas</strong></div>
+                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-emerald-600 font-bold">35% SAE</strong></div>
+                        </div>
+                    </div>
+
+                    <!-- Navegación de RAs -->
+                    <div class="border border-slate-200 rounded-2xl p-4 bg-white">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Resultados de Aprendizaje</h4>
+                        <nav class="space-y-2 text-xs">
+                            <a href="tema1_1.html" class="flex items-center justify-between p-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-cubes mr-1.5 text-slate-400"></i> RA 1.1: Estructura y Datos</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">40h</span>
+                            </a>
+                            <a href="tema1_2.html" class="flex items-center justify-between p-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-code-branch mr-1.5 text-slate-400"></i> RA 1.2: Decisión y Ciclos</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">20h</span>
+                            </a>
+                            <a href="tema2_1.html" class="flex items-center justify-between p-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-cube mr-1.5 text-slate-400"></i> RA 2.1: Funciones y Módulos</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">26h</span>
+                            </a>
+                            <a href="tema2_2.html" class="flex items-center justify-between p-2.5 rounded-xl bg-emerald-50 text-emerald-700 font-bold border border-emerald-200">
+                                <span><i class="fas fa-chevron-right mr-1.5 text-[10px]"></i> RA 2.2: Memoria y Pilas/Colas</span>
+                                <span class="diff-hard px-2 py-0.5 rounded-full text-[10px] font-mono">40h</span>
+                            </a>
+                        </nav>
+                    </div>
+
+                    <!-- Fases Pedagógicas -->
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-2">
+                        <h4 class="font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-2">5 Fases de la Cátedra</h4>
+                        <a href="#fase1" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-emerald-600">1.</span> Apertura & Memoria</a>
+                        <a href="#fase2" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-sky-600">2.</span> Pilas, Colas & Excepciones</a>
+                        <a href="#fase3" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-indigo-600">3.</span> Modelado en Código</a>
+                        <a href="#fase4" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-amber-600">4.</span> Simulador LIFO/FIFO JS</a>
+                        <a href="#fase5" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-emerald-600">5.</span> Cierre & Rúbrica AE 2.2.1</a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- COLUMNA 2: Contenido Didáctico Central -->
+            <main class="lg:col-span-6 space-y-12">
+
+                <!-- Header de Unidad -->
+                <header class="border-b border-slate-200 pb-6">
+                    <div class="flex items-center gap-2 text-xs text-emerald-600 font-bold uppercase tracking-wider mb-2">
+                        <span>Unidad 2</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Resultado de Aprendizaje 2.2</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+                        Estructuras de Memoria, Pilas, Colas y Manejo de Excepciones
+                    </h1>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Manejo eficiente de memoria en Python mediante arreglos multidimensionales (matrices), listas dinámicas, tuplas inmutables, diccionarios asociativos, estructuras de datos abstractas (Pilas LIFO, Colas FIFO con `deque`), detección de errores y manejo de excepciones (`try/except/finally`).
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-2 text-xs">
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold font-mono">40 Horas (Semanas 14 a 18)</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold">Ponderación: 35% SAE</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">Evidencia: AE 2.2.1 (Cierre)</span>
+                    </div>
+                </header>
+
+                <!-- FASE 1: APERTURA (ACTIVACIÓN Y CONTEXTUALIZACIÓN) -->
+                <section id="fase1" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-emerald-600 text-white">1</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Contextualización)</h2>
+                    </div>
+
+                    <div class="lll-danger p-5 rounded-2xl mb-6">
+                        <h3 class="font-bold text-red-900 text-sm mb-2 flex items-center gap-2">
+                            <i class="fas fa-bug text-red-600"></i> El Desastre del Vuelo 501 de Ariane 5: Un Error de Memoria
+                        </h3>
+                        <p class="text-xs text-slate-700 leading-relaxed mb-3">
+                            En 1996, el cohete Ariane 5 de la Agencia Espacial Europea se autodestruyó a 37 segundos del lanzamiento debido a una excepción de software no capturada: un número flotante de 64 bits se intentó convertir a un entero de 16 bits, provocando un desbordamiento (Overflow) que congeló las computadoras de guía.
+                        </p>
+                        <p class="text-xs text-slate-700 leading-relaxed font-semibold">
+                            En la ingeniería de software moderna, <strong>validar los datos de entrada y envolver operaciones críticas en bloques `try / except`</strong> es obligatorio para garantizar la resiliencia del sistema.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
+                        <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700 mb-3"><i class="fas fa-memory text-emerald-600 mr-1.5"></i> Preguntas Detonadoras</h4>
+                        <ol class="list-decimal ml-5 text-xs text-slate-700 space-y-2">
+                            <li>¿Por qué la función "Deshacer" (Ctrl+Z) de cualquier editor de texto se implementa como una <strong>Pila (LIFO)</strong> mientras que una cola de impresión de documentos se implementa como una <strong>Cola (FIFO)</strong>?</li>
+                            <li>Si intentas acceder a `lista[10]` en una lista de 5 elementos, ¿qué excepción genera Python y cómo evitas que tu programa colapse?</li>
+                            <li>¿Cuál es la diferencia de rendimiento en memoria entre una búsqueda en una <strong>Lista</strong> (\(\mathcal{O}(n)\)) y una búsqueda en un <strong>Diccionario Hash</strong> (\(\mathcal{O}(1)\))?</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- FASE 2: DESARROLLO CONCEPTUAL (ESTRUCTURAS Y EXCEPCIONES) -->
+                <section id="fase2" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-sky-600 text-white">2</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (Estructuras de Datos y Manejo de Errores)</h2>
+                    </div>
+
+                    <!-- Estructuras de Datos Lineales y Dinámicas -->
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold text-slate-900 mb-3">1. Estructuras Lineales: Listas, Pilas (LIFO) y Colas (FIFO)</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs mb-4">
+                            <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                                <strong class="text-emerald-700 block text-sm"><i class="fas fa-layer-group mr-1"></i> Pila (Stack - LIFO)</strong>
+                                <em>Last-In, First-Out:</em> El último elemento en entrar es el primero en salir. Operaciones:
+                                <ul class="list-disc ml-4 text-slate-600">
+                                    <li><code>append(elem)</code>: Empuja (Push) a la cima.</li>
+                                    <li><code>pop()</code>: Extrae (Pop) de la cima.</li>
+                                </ul>
+                            </div>
+
+                            <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                                <strong class="text-blue-700 block text-sm"><i class="fas fa-people-line mr-1"></i> Cola (Queue - FIFO)</strong>
+                                <em>First-In, First-Out:</em> El primer elemento en llegar es el primero en ser atendido. Se implementa con <code>collections.deque</code>:
+                                <ul class="list-disc ml-4 text-slate-600">
+                                    <li><code>append(elem)</code>: Encola al final.</li>
+                                    <li><code>popleft()</code>: Desencola del frente en tiempo \(\mathcal{O}(1)\).</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Diagrama Vectorial SVG de LIFO vs FIFO -->
+                        <div class="p-4 bg-slate-900 rounded-2xl text-center text-white my-6">
+                            <span class="text-[11px] font-mono text-slate-400 block mb-2">Comparativa de Flujo: Pila LIFO vs Cola FIFO</span>
+                            <svg class="w-full max-w-md mx-auto" viewBox="0 0 420 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- PILA LIFO -->
+                                <rect x="30" y="30" width="150" height="95" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+                                <text x="105" y="50" fill="#10b981" font-size="10" font-weight="bold" text-anchor="middle">PILA (LIFO)</text>
+                                <rect x="45" y="60" width="120" height="20" rx="4" fill="#065f46"/>
+                                <text x="105" y="74" fill="#ffffff" font-size="8" text-anchor="middle">Elemento C (Cima - Sale 1°)</text>
+                                <rect x="45" y="85" width="120" height="20" rx="4" fill="#047857"/>
+                                <text x="105" y="99" fill="#ffffff" font-size="8" text-anchor="middle">Elemento B</text>
+
+                                <!-- COLA FIFO -->
+                                <rect x="230" y="30" width="160" height="95" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+                                <text x="310" y="50" fill="#38bdf8" font-size="10" font-weight="bold" text-anchor="middle">COLA (FIFO)</text>
+                                <text x="250" y="75" fill="#f87171" font-size="8" font-weight="bold">Salida &larr;</text>
+                                <rect x="270" y="65" width="40" height="40" rx="4" fill="#1e3a8a"/>
+                                <text x="290" y="88" fill="#ffffff" font-size="8" text-anchor="middle">1° (Sale)</text>
+                                <rect x="320" y="65" width="40" height="40" rx="4" fill="#1d4ed8"/>
+                                <text x="340" y="88" fill="#ffffff" font-size="8" text-anchor="middle">2°</text>
+                                <text x="375" y="75" fill="#4ade80" font-size="8" font-weight="bold">&larr; Entrada</text>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Manejo de Excepciones en Python -->
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">2. Gestión Profesional de Errores con `try / except`</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                            <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl">
+                                <strong class="text-red-700 block mb-1 font-bold">Excepciones Frecuentes en Python:</strong>
+                                <ul class="list-disc ml-4 space-y-1 text-slate-600">
+                                    <li><code>ValueError</code>: Conversión inválida (ej. <code>int("abc")</code>).</li>
+                                    <li><code>ZeroDivisionError</code>: División matemática entre cero.</li>
+                                    <li><code>IndexError</code>: Índice fuera de los límites de la lista.</li>
+                                    <li><code>KeyError</code>: Búsqueda de una clave inexistente en diccionario.</li>
+                                </ul>
+                            </div>
+                            <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl">
+                                <strong class="text-emerald-700 block mb-1 font-bold">Cláusulas de Manejo:</strong>
+                                <ul class="list-disc ml-4 space-y-1 text-slate-600">
+                                    <li><code>try:</code> Bloque con código propenso a fallar.</li>
+                                    <li><code>except Exception as e:</code> Captura y recuperación del error.</li>
+                                    <li><code>else:</code> Se ejecuta solo si NO hubo ninguna excepción.</li>
+                                    <li><code>finally:</code> Se ejecuta SIEMPRE (limpieza y cierre).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 3: DEMOSTRACIÓN Y MODELADO PASO A PASO -->
+                <section id="fase3" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-indigo-600 text-white">3</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Demostración y Modelado en Código</h2>
+                    </div>
+
+                    <p class="text-xs text-slate-600 mb-4">
+                        Implementación de una Cola de Tareas de Vuelo con `collections.deque` y validación con `try/except`:
+                    </p>
+
+                    <div class="bg-slate-900 text-slate-200 rounded-xl p-5 text-xs font-mono mb-4">
+                        <div class="flex justify-between items-center text-slate-400 text-[11px] mb-3 pb-2 border-b border-slate-800">
+                            <span><i class="fab fa-python text-emerald-400 mr-1.5"></i> cola_misiones_dron.py</span>
+                            <span>Python 3.11+</span>
+                        </div>
+                        <span class="text-sky-400">from</span> collections <span class="text-sky-400">import</span> deque<br><br>
+
+                        <span class="text-slate-500"># 1. Crear Cola FIFO de Waypoints</span><br>
+                        cola_misiones = deque()<br><br>
+
+                        <span class="text-sky-400">def</span> <span class="text-emerald-400">encolar_mision</span>(nombre_mision: <span class="text-sky-400">str</span>, altitud_m: <span class="text-sky-400">float</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400">try</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alt = <span class="text-sky-400">float</span>(altitud_m)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400">if</span> alt &lt;= <span class="text-purple-400">0</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400">raise</span> <span class="text-amber-300">ValueError</span>(<span class="text-amber-300">"La altitud debe ser estrictamente positiva."</span>)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cola_misiones.append({<span class="text-amber-300">"mision"</span>: nombre_mision, <span class="text-amber-300">"altitud"</span>: alt})<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-emerald-400">print</span>(<span class="text-amber-300">f"[ENCOLADO] {nombre_mision} a {alt}m"</span>)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400">except</span> <span class="text-amber-300">ValueError</span> <span class="text-sky-400">as</span> err:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-emerald-400">print</span>(<span class="text-amber-300">f"[ERROR DE VALIDACIÓN]: {err}"</span>)<br><br>
+
+                        <span class="text-sky-400">def</span> <span class="text-emerald-400">procesar_siguiente_mision</span>():<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400">if</span> <span class="text-sky-400">not</span> cola_misiones:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-emerald-400">print</span>(<span class="text-amber-300">"No hay misiones pendientes en la cola."</span>)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400">return</span> <span class="text-emerald-400">None</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;mision_actual = cola_misiones.popleft()  <span class="text-slate-500"># FIFO O(1)</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-emerald-400">print</span>(<span class="text-amber-300">f"[EJECUTANDO]: {mision_actual['mision']} -> Volando a {mision_actual['altitud']}m"</span>)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400">return</span> mision_actual
+                    </div>
+                </section>
+
+                <!-- FASE 4: APLICACIÓN PRÁCTICA (SIMULADOR Y PROBLEMARIO) -->
+                <section id="fase4" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-amber-600 text-white">4</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Simulador y Problemario)</h2>
+                    </div>
+
+                    <!-- SIMULADOR INTERACTIVO JS: PILA LIFO Y COLA FIFO -->
+                    <div class="border-2 border-emerald-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
+                        <div class="flex items-center justify-between mb-4 border-b border-emerald-100 pb-3">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-layer-group text-emerald-600 text-xl"></i>
+                                <div>
+                                    <h3 class="font-bold text-slate-900 text-sm">Simulador Gráfico de Pila LIFO y Cola FIFO</h3>
+                                    <span class="text-[11px] text-slate-500 font-mono">Experimenta con las operaciones Push/Pop y Enqueue/Dequeue en vivo</span>
+                                </div>
+                            </div>
+                            <span class="px-2 py-1 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">JavaScript Nativo</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs mb-4">
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Estructura a Simular:</label>
+                                <select id="simDsType" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="reiniciarEstructura()">
+                                    <option value="pila">Pila (Stack LIFO - append / pop)</option>
+                                    <option value="cola">Cola (Queue FIFO - append / popleft)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Elemento / Valor:</label>
+                                <input type="text" id="simDsVal" class="w-full p-2 border border-slate-300 rounded-lg text-xs" value="Dron_Alpha">
+                            </div>
+                            <div class="flex items-end gap-2">
+                                <button onclick="insertarElemento()" class="w-1/2 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg text-xs transition">
+                                    <i class="fas fa-plus mr-1"></i> Push / Add
+                                </button>
+                                <button onclick="extraerElemento()" class="w-1/2 py-2 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg text-xs transition">
+                                    <i class="fas fa-minus mr-1"></i> Pop
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Visualización Gráfica Dinámica -->
+                        <div class="p-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-200 text-xs font-mono min-h-[100px]">
+                            <div class="text-slate-400 text-[11px] mb-2" id="simDsLabel">[CONTENIDO EN MEMORIA: PILA LIFO (CIMA ARRIBA)]</div>
+                            <div id="simDsVisual" class="flex flex-wrap gap-2 items-center">
+                                <!-- Elementos en memoria -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROBLEMARIO Y TALLER: 10 EJERCICIOS PARA FIRMAS -->
+                    <div class="border border-slate-200 rounded-2xl p-6 bg-white">
+                        <div class="flex items-center justify-between mb-4 border-b pb-3">
+                            <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                                <i class="fas fa-pencil text-emerald-600"></i> Problemario de Taller y Prácticas en Memoria (40% Firmas)
+                            </h3>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">10 Ejercicios</span>
+                        </div>
+
+                        <div class="space-y-3 text-xs text-slate-700">
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>1. Matriz de Coordenadas 2D:</strong> Crea una matriz de 4x4 en Python que represente un mapa de exploración. Llena la matriz con ceros y coloca un dron en la posición `(2, 3)`.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>2. Inversión de Texto con Pila (LIFO):</strong> Escribe un programa que reciba una palabra, apile cada letra en una lista con `append()` y la desapile con `pop()` para imprimirla invertida.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>3. Simulador de Cola de Banco (FIFO):</strong> Implementa con `collections.deque` un sistema de turnos de banco con opciones de llegada de cliente y atención en ventanilla.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>4. Diccionario de Registro de Alumnos:</strong> Construye un diccionario donde la clave sea la matrícula del alumno y el valor sea un subdiccionario con nombre, carrera y calificaciones.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>5. Comprensión de Listas (List Comprehension):</strong> Genera una lista con los cuadrados de los números pares del 1 al 50 en una sola línea de código Python.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>6. Captura de Errores de División:</strong> Diseña una función `division_segura(a, b)` que capture `ZeroDivisionError` y `TypeError` retornando un mensaje amigable.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>7. Validación de Entrada Numérica:</strong> Escribe una función que solicite un entero positivo con `input()` y repita la petición ante cualquier `ValueError`.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>8. Eliminación de Duplicados con Sets:</strong> Dada una lista de 20 números con duplicados, utiliza la estructura `set` para obtener una lista limpia con elementos únicos.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>9. Pila de Historial de Navegador Web:</strong> Modela las funciones `visitar_pagina(url)`, `atras()` y `adelante()` utilizando dos pilas independientes.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>10. Sistema Integral con Manejo de Memoria (Evidencia AE 2.2.1):</strong> Desarrolla una aplicación completa de gestión de inventario con matrices, diccionarios y excepciones `try/except/finally`.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 5: CIERRE, EVALUACIÓN Y METACOGNICIÓN (RÚBRICA OFICIAL CONALEP) -->
+                <section id="fase5" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-emerald-600 text-white">5</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 5: Cierre, Evaluación y Metacognición</h2>
+                    </div>
+
+                    <!-- RÚBRICA OFICIAL CONALEP: AE 2.2.1 (35% PONDERACIÓN) -->
+                    <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-sm mb-6">
+                        <div class="flex items-center justify-between mb-4 border-b pb-3">
+                            <div>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 uppercase font-mono">Actividad de Evaluación 2.2.1</span>
+                                <h3 class="font-bold text-slate-900 text-sm mt-1">Rúbrica de Valoración Oficial (35% SAE)</h3>
+                            </div>
+                            <span class="text-xs font-extrabold text-emerald-600">Siglema: PBAS-03</span>
+                        </div>
+
+                        <p class="text-xs text-slate-600 mb-4">
+                            <strong>Actividad 2.2.1:</strong> Desarrolla programas en Python que utilicen arreglos de diferentes dimensiones (matrices) y que manejen estructuras dinámicas de memoria mediante pilas, colas y listas, con depuración de errores.
+                        </p>
+
+                        <div class="overflow-x-auto text-[11px]">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-900 text-white">
+                                        <th class="p-2.5">Indicador</th>
+                                        <th class="p-2.5 text-center">%</th>
+                                        <th class="p-2.5">Excelente</th>
+                                        <th class="p-2.5">Suficiente</th>
+                                        <th class="p-2.5">Insuficiente</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 text-slate-700">
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Desarrollo de instrucciones (Coevaluación)</td>
+                                        <td class="p-2.5 text-center font-bold text-emerald-600">10%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Presenta código fuente de manera impresa y <strong>digital ejecutable en el editor/IDE</strong>.</td>
+                                        <td class="p-2.5">Presenta código fuente de manera impresa.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite presentar el código fuente.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Presentación de código ejecutable</td>
+                                        <td class="p-2.5 text-center font-bold text-emerald-600">30%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Presenta código en orden y sintaxis correcta, y <strong>verifica que se ejecute sin errores</strong>.</td>
+                                        <td class="p-2.5">Presenta código ejecutable en orden y sintaxis correctas.</td>
+                                        <td class="p-2.5 bg-red-50/30">Carece de código ejecutable funcional.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Utilización de arreglos y estructuras</td>
+                                        <td class="p-2.5 text-center font-bold text-emerald-600">35%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Utiliza matrices, listas, pilas y colas dinámicas, y <strong>establece la diferencia entre referencias mutables e inmutables</strong>.</td>
+                                        <td class="p-2.5">Utiliza sin errores arreglos multidimensionales, pilas y colas.</td>
+                                        <td class="p-2.5 bg-red-50/30">Comete errores en la utilización de arreglos o estructuras.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Corrección de errores (Top 25)</td>
+                                        <td class="p-2.5 text-center font-bold text-emerald-600">25%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Describe y corrige inicialización, validación, excepciones de cadenas/enteros, y <strong>efectúa una demostración práctica</strong>.</td>
+                                        <td class="p-2.5">Describe los elementos para efectuar la corrección de errores.</td>
+                                        <td class="p-2.5 bg-red-50/30">No contempla los elementos mínimos de corrección.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Metacognición -->
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700">
+                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-graduation-cap text-emerald-600 mr-1.5"></i> Conclusión y Cierre del Módulo PBAS-03:</h4>
+                        <p>
+                            "Al dominar la algoritmia, el control de flujo, la modularización con funciones y las estructuras de datos en Python 3, has adquirido las competencias profesionales fundamentales para avanzar hacia la Programación Orientada a Objetos, el Desarrollo Web y el Control Autónomo de Drones."
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Navegación Inferior -->
+                <div class="flex justify-between items-center border-t border-slate-200 pt-6">
+                    <a href="tema2_1.html" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
+                        <i class="fas fa-arrow-left mr-1"></i> Anterior: RA 2.1 (Funciones)
+                    </a>
+                    <a href="index.html" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition shadow-sm">
+                        <i class="fas fa-home mr-1"></i> Volver a la Portada del Módulo
+                    </a>
+                </div>
+
+            </main>
+
+            <!-- COLUMNA 3: Barra Lateral Derecha -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+
+                    <!-- TOC Interactivo -->
+                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm">
+                        <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">En esta Página</h4>
+                        <ul class="space-y-2 text-xs text-slate-600">
+                            <li><a href="#fase1" class="hover:text-emerald-600 transition block">1. Caso Real: Ariane 5</a></li>
+                            <li><a href="#fase2" class="hover:text-emerald-600 transition block">2. Pilas, Colas & Try/Except</a></li>
+                            <li><a href="#fase3" class="hover:text-emerald-600 transition block">3. Modelado en Código</a></li>
+                            <li><a href="#fase4" class="hover:text-emerald-600 transition block">4. Simulador LIFO/FIFO</a></li>
+                            <li><a href="#fase5" class="hover:text-emerald-600 transition block">5. Rúbrica Oficial AE 2.2.1</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Cuadro de Evidencia SAE Final -->
+                    <div class="p-4 bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl text-xs space-y-2">
+                        <div class="flex items-center gap-2 text-emerald-900 font-bold text-xs">
+                            <i class="fas fa-award text-emerald-600"></i> Evidencia Final SAE (AE 2.2.1)
+                        </div>
+                        <ul class="text-[11px] text-slate-700 list-disc ml-4 space-y-1">
+                            <li>Arreglos 2D (Matrices) en Python.</li>
+                            <li>Implementación de Pila LIFO y Cola FIFO.</li>
+                            <li>Manejo de excepciones con `try/except`.</li>
+                            <li>Demostración de corrección de errores.</li>
+                        </ul>
+                        <div class="pt-2 border-t border-emerald-200 text-center">
+                            <span class="text-emerald-700 font-extrabold text-sm">Valor: 35% SAE • Cierre 100%</span>
+                        </div>
+                    </div>
+
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <!-- Script del Simulador JS -->
+    <script>
+        let dsItems = ["Dron_01", "Dron_02", "Dron_03"];
+
+        function renderDS() {
+            const container = document.getElementById('simDsVisual');
+            const type = document.getElementById('simDsType').value;
+            const label = document.getElementById('simDsLabel');
+
+            if (type === 'pila') {
+                label.innerText = "[CONTENIDO EN MEMORIA: PILA LIFO (CIMA A LA DERECHA)]";
+            } else {
+                label.innerText = "[CONTENIDO EN MEMORIA: COLA FIFO (FRENTE A LA IZQUIERDA -> SALE PRIMERO)]";
+            }
+
+            if (dsItems.length === 0) {
+                container.innerHTML = "<span class='text-slate-500 italic'>Estructura vacía. Utiliza Push / Add para agregar elementos.</span>";
+                return;
+            }
+
+            container.innerHTML = dsItems.map((item, idx) => {
+                let badge = type === 'pila' && idx === dsItems.length - 1 ? "bg-amber-500 text-black font-bold" : "bg-emerald-700 text-white";
+                if (type === 'cola' && idx === 0) badge = "bg-sky-400 text-slate-900 font-bold";
+                return `<div class="px-3 py-1.5 rounded-lg border border-slate-600 ${badge} text-xs font-mono">[${idx}]: ${item}</div>`;
+            }).join('');
+        }
+
+        function insertarElemento() {
+            const val = document.getElementById('simDsVal').value.trim() || `Elem_${dsItems.length + 1}`;
+            dsItems.push(val);
+            renderDS();
+        }
+
+        function extraerElemento() {
+            const type = document.getElementById('simDsType').value;
+            if (dsItems.length === 0) return;
+            
+            if (type === 'pila') {
+                dsItems.pop(); // LIFO
+            } else {
+                dsItems.shift(); // FIFO
+            }
+            renderDS();
+        }
+
+        function reiniciarEstructura() {
+            dsItems = ["Mision_A", "Mision_B", "Mision_C"];
+            renderDS();
+        }
+
+        window.onload = renderDS;
+    </script>
+</body>
+</html>

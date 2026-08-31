@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA 2.1: Funciones, Modularización y Recursividad | PBAS-03 CONALEP</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- MathJax 3 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: '#d97706', // Amber 600
+                        dark: '#0f172a',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #ffffff; color: #1e293b; }
+        .lll-info { background-color: #eff6ff; border-left: 4px solid #3b82f6; }
+        .lll-warning { background-color: #fffbeb; border-left: 4px solid #f59e0b; }
+        .lll-tip { background-color: #f0fdf4; border-left: 4px solid #10b981; }
+        .lll-danger { background-color: #fef2f2; border-left: 4px solid #ef4444; }
+        .code-block { font-family: 'JetBrains Mono', monospace; }
+        .diff-easy { background-color: #dcfce7; color: #15803d; }
+        .diff-med { background-color: #fef3c7; color: #b45309; }
+        .diff-hard { background-color: #fee2e2; color: #b91c1c; }
+        .step-badge { width: 28px; height: 28px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; }
+    </style>
+</head>
+<body class="bg-white text-slate-800 antialiased selection:bg-amber-100 selection:text-amber-900">
+
+    <!-- Top Bar Institucional -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="font-semibold text-white"><i class="fab fa-python text-amber-400 mr-1.5"></i> CONALEP — PT-B en Informática y Pilotaje de Drones</span>
+                <span class="text-slate-600 hidden sm:inline">|</span>
+                <span class="text-slate-400 hidden sm:inline">Módulo: <strong>PBAS-03</strong></span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="text-xs text-amber-400 hover:text-amber-300 transition flex items-center gap-1 font-semibold">
+                    <i class="fas fa-arrow-left"></i> Índice del Módulo
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Layout en 3 Columnas (White UI Luis Llamas) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- COLUMNA 1: Menú Lateral Izquierdo de Navegación -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-amber-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 text-sm leading-tight">Unidad 2</h3>
+                                <p class="text-[11px] text-slate-500">Funciones y Memoria</p>
+                            </div>
+                        </div>
+                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-slate-200 pt-2.5">
+                            <div class="flex justify-between"><span>Duración Total:</span> <strong class="text-slate-800">26 Horas</strong></div>
+                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-amber-600 font-bold">20% SAE</strong></div>
+                        </div>
+                    </div>
+
+                    <!-- Navegación de RAs -->
+                    <div class="border border-slate-200 rounded-2xl p-4 bg-white">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Resultados de Aprendizaje</h4>
+                        <nav class="space-y-2 text-xs">
+                            <a href="tema1_1.html" class="flex items-center justify-between p-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-cubes mr-1.5 text-slate-400"></i> RA 1.1: Estructura y Datos</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">40h</span>
+                            </a>
+                            <a href="tema1_2.html" class="flex items-center justify-between p-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-code-branch mr-1.5 text-slate-400"></i> RA 1.2: Decisión y Ciclos</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">20h</span>
+                            </a>
+                            <a href="tema2_1.html" class="flex items-center justify-between p-2.5 rounded-xl bg-amber-50 text-amber-700 font-bold border border-amber-200">
+                                <span><i class="fas fa-chevron-right mr-1.5 text-[10px]"></i> RA 2.1: Funciones y Módulos</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">26h</span>
+                            </a>
+                            <a href="tema2_2.html" class="flex items-center justify-between p-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-memory mr-1.5 text-slate-400"></i> RA 2.2: Memoria y Pilas/Colas</span>
+                                <span class="diff-hard px-2 py-0.5 rounded-full text-[10px] font-mono">40h</span>
+                            </a>
+                        </nav>
+                    </div>
+
+                    <!-- Fases Pedagógicas -->
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-2">
+                        <h4 class="font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-2">5 Fases de la Cátedra</h4>
+                        <a href="#fase1" class="block text-slate-600 hover:text-amber-600"><span class="font-bold text-amber-600">1.</span> Apertura & Principio DRY</a>
+                        <a href="#fase2" class="block text-slate-600 hover:text-amber-600"><span class="font-bold text-sky-600">2.</span> Scope & Parámetros</a>
+                        <a href="#fase3" class="block text-slate-600 hover:text-amber-600"><span class="font-bold text-indigo-600">3.</span> Modelado de Módulos</a>
+                        <a href="#fase4" class="block text-slate-600 hover:text-amber-600"><span class="font-bold text-amber-600">4.</span> Simulador de Call Stack</a>
+                        <a href="#fase5" class="block text-slate-600 hover:text-amber-600"><span class="font-bold text-emerald-600">5.</span> Heteroevaluación AE 2.1.1</a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- COLUMNA 2: Contenido Didáctico Central -->
+            <main class="lg:col-span-6 space-y-12">
+
+                <!-- Header de Unidad -->
+                <header class="border-b border-slate-200 pb-6">
+                    <div class="flex items-center gap-2 text-xs text-amber-600 font-bold uppercase tracking-wider mb-2">
+                        <span>Unidad 2</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Resultado de Aprendizaje 2.1</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+                        Funciones, Modularización, Recursividad y Librerías en Python
+                    </h1>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Automatización de operaciones y reutilización de código mediante funciones (`def`), paso de parámetros posicionales y nombrados (`*args`, `**kwargs`), retorno múltiple, alcance de variables (Scope), funciones recursivas y empaquetado de módulos en Python 3.
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-2 text-xs">
+                        <span class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800 font-bold font-mono">26 Horas (Semanas 10 a 13)</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold">Heteroevaluación: 20% SAE</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">Evidencia: AE 2.1.1</span>
+                    </div>
+                </header>
+
+                <!-- FASE 1: APERTURA (ACTIVACIÓN Y CONTEXTUALIZACIÓN) -->
+                <section id="fase1" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-amber-600 text-white">1</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Contextualización)</h2>
+                    </div>
+
+                    <div class="lll-info p-5 rounded-2xl mb-6">
+                        <h3 class="font-bold text-blue-900 text-sm mb-2 flex items-center gap-2">
+                            <i class="fas fa-boxes-stacked text-blue-600"></i> El Principio DRY: Don't Repeat Yourself
+                        </h3>
+                        <p class="text-xs text-slate-700 leading-relaxed mb-3">
+                            Imagina un software de control de vuelo donde la fórmula para calcular la distancia euclidiana entre el dron y la base se repite en 40 lugares distintos del código. Si mañana el sensor cambia de unidades de metros a pies, tendrías que modificar 40 archivos manualmente, corriendo el riesgo de olvidar uno y provocar un desastre.
+                        </p>
+                        <p class="text-xs text-slate-700 leading-relaxed font-semibold">
+                            Las <strong>funciones</strong> encapsulan la lógica en un solo lugar reutilizable, testeable y mantenible.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
+                        <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700 mb-3"><i class="fas fa-question-circle text-amber-600 mr-1.5"></i> Preguntas Detonadoras</h4>
+                        <ol class="list-decimal ml-5 text-xs text-slate-700 space-y-2">
+                            <li>¿Qué ocurre en la memoria RAM de la computadora cuando una función termina su ejecución con <code>return</code>?</li>
+                            <li>En Python, cuando pasas un número a una función no se modifica afuera, pero cuando pasas una lista sí puede modificarse. ¿Qué diferencia a los <strong>objetos mutables</strong> de los <strong>inmutables</strong>?</li>
+                            <li>¿Qué es una función recursiva y cuál es el peligro de olvidar definir el <strong>caso base</strong> (Base Case)?</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- FASE 2: DESARROLLO CONCEPTUAL (FUNCIONES Y CALL STACK) -->
+                <section id="fase2" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-sky-600 text-white">2</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (Anatomía de Funciones y Scope)</h2>
+                    </div>
+
+                    <!-- Componentes de una Función -->
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold text-slate-900 mb-3">1. Anatomía y Parámetros en Python</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs mb-4">
+                            <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                                <strong class="text-amber-700 block text-sm">Parámetros y Argumentos Flexibles</strong>
+                                <ul class="list-disc ml-4 space-y-1 text-slate-600">
+                                    <li><strong>Por Valor por Defecto:</strong> <code>def conectar(ip, puerto=8080):</code>.</li>
+                                    <li><strong>Tupla de Argumentos (`*args`):</strong> Recibe número variable de parámetros posicionales.</li>
+                                    <li><strong>Diccionario de Argumentos (`**kwargs`):</strong> Recibe parámetros nombrados clave-valor.</li>
+                                </ul>
+                            </div>
+
+                            <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                                <strong class="text-blue-700 block text-sm">Alcance de Variables (Scope LEGB)</strong>
+                                <ul class="list-disc ml-4 space-y-1 text-slate-600">
+                                    <li><strong>Local:</strong> Variables creadas dentro del cuerpo de la función.</li>
+                                    <li><strong>Enclosing:</strong> Variables en funciones anidadas (Closures).</li>
+                                    <li><strong>Global:</strong> Variables accesibles en todo el archivo del módulo.</li>
+                                    <li><strong>Built-in:</strong> Funciones nativas de Python (<code>len()</code>, <code>range()</code>).</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Diagrama Vectorial SVG de la Pila de Llamadas Call Stack -->
+                        <div class="p-4 bg-slate-900 rounded-2xl text-center text-white my-6">
+                            <span class="text-[11px] font-mono text-slate-400 block mb-2">Estructura de la Pila de Ejecución (Call Stack) y Frames de Memoria</span>
+                            <svg class="w-full max-w-md mx-auto" viewBox="0 0 420 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Pila de Frames -->
+                                <rect x="50" y="20" width="320" height="35" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+                                <text x="210" y="42" fill="#fbbf24" font-size="9" font-mono font-weight="bold" text-anchor="middle">Frame 3: factorial(n=1) -> Retorna 1 [Caso Base]</text>
+
+                                <rect x="50" y="65" width="320" height="35" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+                                <text x="210" y="87" fill="#38bdf8" font-size="9" font-mono font-weight="bold" text-anchor="middle">Frame 2: factorial(n=2) -> Espera factorial(1)</text>
+
+                                <rect x="50" y="110" width="320" height="35" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+                                <text x="210" y="132" fill="#10b981" font-size="9" font-mono font-weight="bold" text-anchor="middle">Frame 1: __main__ -> Invocación inicial</text>
+                            </svg>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 3: DEMOSTRACIÓN Y MODELADO PASO A PASO -->
+                <section id="fase3" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-indigo-600 text-white">3</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Demostración y Creación de Módulos</h2>
+                    </div>
+
+                    <p class="text-xs text-slate-600 mb-4">
+                        A continuación se modela la creación de un módulo reutilizable `telemetria.py` y su consumo en el script principal:
+                    </p>
+
+                    <div class="bg-slate-900 text-slate-200 rounded-xl p-5 text-xs font-mono mb-4">
+                        <div class="flex justify-between items-center text-slate-400 text-[11px] mb-3 pb-2 border-b border-slate-800">
+                            <span><i class="fab fa-python text-amber-400 mr-1.5"></i> telemetria.py (Librería / Módulo)</span>
+                            <span>Módulo Reutilizable</span>
+                        </div>
+                        <span class="text-slate-500">"""Módulo para el cálculo de cinemática y navegación de drones."""</span><br><br>
+                        
+                        <span class="text-sky-400">def</span> <span class="text-emerald-400">calcular_distancia</span>(x1: <span class="text-sky-400">float</span>, y1: <span class="text-sky-400">float</span>, x2: <span class="text-sky-400">float</span>, y2: <span class="text-sky-400">float</span>) -> <span class="text-sky-400">float</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-500">"""Calcula la distancia euclidiana 2D en metros."""</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400">return</span> ((x2 - x1)**<span class="text-purple-400">2</span> + (y2 - y1)**<span class="text-purple-400">2</span>) ** <span class="text-purple-400">0.5</span><br><br>
+
+                        <span class="text-sky-400">def</span> <span class="text-emerald-400">consumo_estimado</span>(distancia_m: <span class="text-sky-400">float</span>, velocidad_ms: <span class="text-sky-400">float</span> = <span class="text-purple-400">10.0</span>) -> <span class="text-sky-400">tuple</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-500">"""Retorna tiempo de viaje (s) y batería estimada consumida (%)."""</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;tiempo_seg = distancia_m / velocidad_ms<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;bateria_consumida = (tiempo_seg / <span class="text-purple-400">60.0</span>) * <span class="text-purple-400">3.5</span>  <span class="text-slate-500"># 3.5% por minuto</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400">return</span> tiempo_seg, bateria_consumida
+                    </div>
+
+                    <!-- Consumo en Main -->
+                    <div class="bg-slate-900 text-slate-200 rounded-xl p-5 text-xs font-mono mb-4">
+                        <div class="flex justify-between items-center text-slate-400 text-[11px] mb-3 pb-2 border-b border-slate-800">
+                            <span><i class="fab fa-python text-emerald-400 mr-1.5"></i> main.py (Script de Integración)</span>
+                            <span>Ejecución Principal</span>
+                        </div>
+                        <span class="text-sky-400">from</span> telemetria <span class="text-sky-400">import</span> calcular_distancia, consumo_estimado<br><br>
+
+                        d = calcular_distancia(<span class="text-purple-400">0.0</span>, <span class="text-purple-400">0.0</span>, <span class="text-purple-400">300.0</span>, <span class="text-purple-400">400.0</span>)<br>
+                        t, bat = consumo_estimado(d, velocidad_ms=<span class="text-purple-400">12.5</span>)<br><br>
+                        <span class="text-emerald-400">print</span>(<span class="text-amber-300">f"Distancia a objetivo: {d:.2f} m"</span>)<br>
+                        <span class="text-emerald-400">print</span>(<span class="text-amber-300">f"Tiempo de vuelo: {t:.1f} seg | Batería requerida: {bat:.1f}%"</span>)
+                    </div>
+                </section>
+
+                <!-- FASE 4: APLICACIÓN PRÁCTICA (SIMULADOR Y PROBLEMARIO) -->
+                <section id="fase4" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-amber-600 text-white">4</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Simulador y Problemario)</h2>
+                    </div>
+
+                    <!-- SIMULADOR INTERACTIVO JS: VISUALIZADOR DE PILA RECURSIVA -->
+                    <div class="border-2 border-amber-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
+                        <div class="flex items-center justify-between mb-4 border-b border-amber-100 pb-3">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-layer-group text-amber-600 text-xl"></i>
+                                <div>
+                                    <h3 class="font-bold text-slate-900 text-sm">Visualizador de Pila de Llamadas (Call Stack & Recursion)</h3>
+                                    <span class="text-[11px] text-slate-500 font-mono">Simula la creación y destrucción de Frames en memoria</span>
+                                </div>
+                            </div>
+                            <span class="px-2 py-1 rounded bg-amber-100 text-amber-800 text-[10px] font-bold">JavaScript Nativo</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs mb-4">
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Función Recursiva a Simular:</label>
+                                <select id="simRecFunc" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="simularRecursion()">
+                                    <option value="fact">Factorial: def factorial(n)</option>
+                                    <option value="fib">Fibonacci: def fib(n)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Argumento N (1 a 6):</label>
+                                <input type="number" id="simRecN" class="w-full p-2 border border-slate-300 rounded-lg text-xs" value="4" min="1" max="6" onchange="simularRecursion()">
+                            </div>
+                        </div>
+
+                        <!-- Pila Visual de Memoria -->
+                        <div class="bg-slate-900 text-slate-200 rounded-xl p-4 text-xs font-mono">
+                            <div class="text-slate-400 text-[11px] mb-2">[MEMORIA STACK DE LA CPU]</div>
+                            <div id="simStackOutput" class="space-y-2">
+                                <!-- Generado por JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROBLEMARIO Y TALLER: 10 EJERCICIOS PARA FIRMAS -->
+                    <div class="border border-slate-200 rounded-2xl p-6 bg-white">
+                        <div class="flex items-center justify-between mb-4 border-b pb-3">
+                            <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                                <i class="fas fa-pencil text-amber-600"></i> Problemario de Taller y Evidencias Semanales (40% Firmas)
+                            </h3>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">10 Ejercicios</span>
+                        </div>
+
+                        <div class="space-y-3 text-xs text-slate-700">
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>1. Función de Cálculo de IMC:</strong> Diseña una función `calcular_imc(peso_kg, altura_m)` que retorne el índice de masa corporal y el diagnóstico clínico como tupla.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>2. Función con Argumentos Arbitrarios (`*args`):</strong> Escribe una función `promediar_calificaciones(*notas)` que acepte cualquier cantidad de notas numéricas y retorne el promedio.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>3. Función con Parámetros Nombrados (`**kwargs`):</strong> Elabora una función `crear_perfil_dron(**specs)` que construya un diccionario formateado con las especificaciones del dron.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>4. Demostración de Mutabilidad:</strong> Escribe una función que modifique una lista recibida por parámetro y explica por qué el cambio se refleja en la variable original.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>5. Factorial Recursivo:</strong> Implementa la función recursiva `factorial(n)` documentando el caso base y el caso recursivo.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>6. Búsqueda Binaria Recursiva:</strong> Diseña una función recursiva `busqueda_binaria(lista, objetivo, inicio, fin)` sobre una lista ordenada.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>7. Creación de Librería de Geometría:</strong> Crea el módulo `geometria.py` con funciones para área de círculo, rectángulo y triángulo; luego impórtalo desde otro archivo.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>8. Función Pura vs Función con Efectos Secundarios:</strong> Explica la diferencia entre una función que solo calcula y retorna un valor frente a una que modifica variables globales con `global`.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>9. Función Recursiva de Fibonacci:</strong> Escribe `fibonacci_recursivo(n)` y traza a mano el árbol de llamadas para \(n = 4\).
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>10. Pruebas de Integración (Evidencia AE 2.1.1):</strong> Diseña un script de pruebas unitarias que invoque 5 funciones de tu módulo y verifique que los retornos coincidan con los esperados.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 5: CIERRE, EVALUACIÓN Y METACOGNICIÓN (RÚBRICA OFICIAL CONALEP) -->
+                <section id="fase5" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-emerald-600 text-white">5</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 5: Cierre, Evaluación y Metacognición</h2>
+                    </div>
+
+                    <!-- RÚBRICA OFICIAL CONALEP: AE 2.1.1 (20% PONDERACIÓN - HETEROEVALUACIÓN) -->
+                    <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-sm mb-6">
+                        <div class="flex items-center justify-between mb-4 border-b pb-3">
+                            <div>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800 uppercase font-mono">Actividad de Evaluación 2.1.1 (Heteroevaluación)</span>
+                                <h3 class="font-bold text-slate-900 text-sm mt-1">Rúbrica de Valoración Oficial (20% SAE)</h3>
+                            </div>
+                            <span class="text-xs font-extrabold text-amber-600">Siglema: PBAS-03</span>
+                        </div>
+
+                        <p class="text-xs text-slate-600 mb-4">
+                            <strong>Actividad 2.1.1:</strong> Desarrolla programas en Python que utilicen funciones modulares, parámetros, retorno de valores y recursividad.
+                        </p>
+
+                        <div class="overflow-x-auto text-[11px]">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-900 text-white">
+                                        <th class="p-2.5">Indicador</th>
+                                        <th class="p-2.5 text-center">%</th>
+                                        <th class="p-2.5">Excelente</th>
+                                        <th class="p-2.5">Suficiente</th>
+                                        <th class="p-2.5">Insuficiente</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 text-slate-700">
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Desarrollo de instrucciones de ejecución</td>
+                                        <td class="p-2.5 text-center font-bold text-amber-600">30%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Presenta código fuente de funciones, de manera impresa y <strong>digital ejecutable en el editor/IDE</strong>.</td>
+                                        <td class="p-2.5">Presenta código fuente de funciones de manera impresa.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite presentar el código fuente.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Presentación de código ejecutable</td>
+                                        <td class="p-2.5 text-center font-bold text-amber-600">30%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Presenta código ejecutable en orden y sintaxis, y <strong>verifica mediante pruebas de integración</strong>.</td>
+                                        <td class="p-2.5">Presenta código ejecutable en orden y sintaxis correctas.</td>
+                                        <td class="p-2.5 bg-red-50/30">Carece de código ejecutable.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Utilización de funciones</td>
+                                        <td class="p-2.5 text-center font-bold text-amber-600">40%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Utiliza parámetros, retornos, recursividad y <strong>explicita la diferencia entre objetos mutables e inmutables</strong>.</td>
+                                        <td class="p-2.5">Utiliza sin error funciones con parámetros, retornos y recursividad.</td>
+                                        <td class="p-2.5 bg-red-50/30">Comete errores en el diseño o retorno de las funciones.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Metacognición -->
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700">
+                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-brain text-emerald-600 mr-1.5"></i> Pregunta de Metacognición Final:</h4>
+                        <p>
+                            "¿Cómo la modularización de un proyecto en múltiples archivos `.py` permite que varios programadores colaboren simultáneamente en un equipo de desarrollo?"
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Navegación Inferior -->
+                <div class="flex justify-between items-center border-t border-slate-200 pt-6">
+                    <a href="tema1_2.html" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
+                        <i class="fas fa-arrow-left mr-1"></i> Anterior: RA 1.2 (Control de Flujo)
+                    </a>
+                    <a href="tema2_2.html" class="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs transition shadow-sm">
+                        Siguiente: RA 2.2 (Memoria y Pilas/Colas) <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+            </main>
+
+            <!-- COLUMNA 3: Barra Lateral Derecha -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+
+                    <!-- TOC Interactivo -->
+                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm">
+                        <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">En esta Página</h4>
+                        <ul class="space-y-2 text-xs text-slate-600">
+                            <li><a href="#fase1" class="hover:text-amber-600 transition block">1. Principio DRY</a></li>
+                            <li><a href="#fase2" class="hover:text-amber-600 transition block">2. Scope & Call Stack</a></li>
+                            <li><a href="#fase3" class="hover:text-amber-600 transition block">3. Creación de Módulos</a></li>
+                            <li><a href="#fase4" class="hover:text-amber-600 transition block">4. Simulador Call Stack</a></li>
+                            <li><a href="#fase5" class="hover:text-amber-600 transition block">5. Rúbrica Oficial AE 2.1.1</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Cuadro de Evidencia SAE -->
+                    <div class="p-4 bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-2xl text-xs space-y-2">
+                        <div class="flex items-center gap-2 text-amber-900 font-bold text-xs">
+                            <i class="fas fa-cube text-amber-600"></i> Entregable SAE (AE 2.1.1)
+                        </div>
+                        <ul class="text-[11px] text-slate-700 list-disc ml-4 space-y-1">
+                            <li>Librería de funciones `.py`.</li>
+                            <li>Módulo principal de consumo.</li>
+                            <li>Función recursiva verificada.</li>
+                            <li>Pruebas de integración.</li>
+                        </ul>
+                        <div class="pt-2 border-t border-amber-200 text-center">
+                            <span class="text-amber-700 font-extrabold text-sm">Valor: 20% SAE</span>
+                        </div>
+                    </div>
+
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <!-- Script del Simulador JS -->
+    <script>
+        function simularRecursion() {
+            const func = document.getElementById('simRecFunc').value;
+            const n = parseInt(document.getElementById('simRecN').value) || 3;
+            const stackElem = document.getElementById('simStackOutput');
+            
+            let frames = [];
+            if (func === 'fact') {
+                for (let i = n; i >= 1; i--) {
+                    if (i === 1) {
+                        frames.push(`<div class="p-2 rounded bg-emerald-950/80 border border-emerald-500 text-emerald-300 font-bold">↳ Frame #${i}: factorial(1) -> Caso Base: Retorna 1</div>`);
+                    } else {
+                        frames.push(`<div class="p-2 rounded bg-slate-800 border border-amber-500 text-amber-300">↳ Frame #${i}: factorial(${i}) -> Espera ${i} * factorial(${i-1})</div>`);
+                    }
+                }
+            } else {
+                frames.push(`<div class="p-2 rounded bg-slate-800 border border-amber-500 text-amber-300">↳ fib(${n}) -> fib(${n-1}) + fib(${n-2})</div>`);
+                frames.push(`<div class="p-2 rounded bg-emerald-950/80 border border-emerald-500 text-emerald-300">↳ Casos Base: fib(1)=1, fib(0)=0</div>`);
+            }
+
+            stackElem.innerHTML = frames.join('');
+        }
+        window.onload = simularRecursion;
+    </script>
+</body>
+</html>

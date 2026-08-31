@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA 1.2: Estructuras de Decisión y Ciclos en Python | PBAS-03 CONALEP</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- MathJax 3 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: '#2563eb',
+                        dark: '#0f172a',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #ffffff; color: #1e293b; }
+        .lll-info { background-color: #eff6ff; border-left: 4px solid #3b82f6; }
+        .lll-warning { background-color: #fffbeb; border-left: 4px solid #f59e0b; }
+        .lll-tip { background-color: #f0fdf4; border-left: 4px solid #10b981; }
+        .lll-danger { background-color: #fef2f2; border-left: 4px solid #ef4444; }
+        .code-block { font-family: 'JetBrains Mono', monospace; }
+        .diff-easy { background-color: #dcfce7; color: #15803d; }
+        .diff-med { background-color: #fef3c7; color: #b45309; }
+        .diff-hard { background-color: #fee2e2; color: #b91c1c; }
+        .step-badge { width: 28px; height: 28px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; }
+    </style>
+</head>
+<body class="bg-white text-slate-800 antialiased selection:bg-blue-100 selection:text-blue-900">
+
+    <!-- Top Bar Institucional -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="font-semibold text-white"><i class="fab fa-python text-blue-400 mr-1.5"></i> CONALEP — PT-B en Informática y Pilotaje de Drones</span>
+                <span class="text-slate-600 hidden sm:inline">|</span>
+                <span class="text-slate-400 hidden sm:inline">Módulo: <strong>PBAS-03</strong></span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="text-xs text-blue-400 hover:text-blue-300 transition flex items-center gap-1 font-semibold">
+                    <i class="fas fa-arrow-left"></i> Índice del Módulo
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Layout en 3 Columnas (White UI Luis Llamas) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- COLUMNA 1: Menú Lateral Izquierdo de Navegación -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                                <i class="fas fa-code-branch"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 text-sm leading-tight">Unidad 1</h3>
+                                <p class="text-[11px] text-slate-500">Componentes y Flujo</p>
+                            </div>
+                        </div>
+                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-slate-200 pt-2.5">
+                            <div class="flex justify-between"><span>Duración Total:</span> <strong class="text-slate-800">20 Horas</strong></div>
+                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-blue-600 font-bold">15% SAE</strong></div>
+                        </div>
+                    </div>
+
+                    <!-- Navegación de RAs -->
+                    <div class="border border-slate-200 rounded-2xl p-4 bg-white">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Resultados de Aprendizaje</h4>
+                        <nav class="space-y-2 text-xs">
+                            <a href="tema1_1.html" class="flex items-center justify-between p-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-chevron-left mr-1.5 text-[10px]"></i> RA 1.1: Estructura y Datos</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">40h</span>
+                            </a>
+                            <a href="tema1_2.html" class="flex items-center justify-between p-2.5 rounded-xl bg-blue-50 text-blue-700 font-bold border border-blue-200">
+                                <span><i class="fas fa-chevron-right mr-1.5 text-[10px]"></i> RA 1.2: Decisión y Ciclos</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">20h</span>
+                            </a>
+                            <a href="tema2_1.html" class="flex items-center justify-between p-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-cube mr-1.5 text-slate-400"></i> RA 2.1: Funciones y Módulos</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">26h</span>
+                            </a>
+                            <a href="tema2_2.html" class="flex items-center justify-between p-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-memory mr-1.5 text-slate-400"></i> RA 2.2: Memoria y Pilas/Colas</span>
+                                <span class="diff-hard px-2 py-0.5 rounded-full text-[10px] font-mono">40h</span>
+                            </a>
+                        </nav>
+                    </div>
+
+                    <!-- Fases Pedagógicas -->
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-2">
+                        <h4 class="font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-2">5 Fases de la Cátedra</h4>
+                        <a href="#fase1" class="block text-slate-600 hover:text-blue-600"><span class="font-bold text-blue-600">1.</span> Apertura & Control</a>
+                        <a href="#fase2" class="block text-slate-600 hover:text-blue-600"><span class="font-bold text-sky-600">2.</span> Bifurcaciones y Bucles</a>
+                        <a href="#fase3" class="block text-slate-600 hover:text-blue-600"><span class="font-bold text-indigo-600">3.</span> Modelado en Código</a>
+                        <a href="#fase4" class="block text-slate-600 hover:text-blue-600"><span class="font-bold text-amber-600">4.</span> Simulador de Ciclos JS</a>
+                        <a href="#fase5" class="block text-slate-600 hover:text-blue-600"><span class="font-bold text-emerald-600">5.</span> Cierre & Rúbrica AE 1.2.1</a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- COLUMNA 2: Contenido Didáctico Central -->
+            <main class="lg:col-span-6 space-y-12">
+
+                <!-- Header de Unidad -->
+                <header class="border-b border-slate-200 pb-6">
+                    <div class="flex items-center gap-2 text-xs text-blue-600 font-bold uppercase tracking-wider mb-2">
+                        <span>Unidad 1</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Resultado de Aprendizaje 1.2</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+                        Estructuras de Control de Flujo: Decisión y Ciclos en Python
+                    </h1>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Organización y ordenamiento de bloques de código mediante indentación formal (PEP 8), estructuras condicionales simples y anidadas (`if`, `elif`, `else`, `match-case`), y ciclos de repetición (`for in range`, `while`, `break`, `continue`).
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-2 text-xs">
+                        <span class="px-2.5 py-1 rounded-lg bg-blue-100 text-blue-800 font-bold font-mono">20 Horas (Semanas 7 a 9)</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold">Ponderación: 15% SAE</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">Evidencia: AE 1.2.1</span>
+                    </div>
+                </header>
+
+                <!-- FASE 1: APERTURA (ACTIVACIÓN Y CONTEXTUALIZACIÓN) -->
+                <section id="fase1" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-blue-600 text-white">1</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Contextualización)</h2>
+                    </div>
+
+                    <div class="lll-warning p-5 rounded-2xl mb-6">
+                        <h3 class="font-bold text-amber-900 text-sm mb-2 flex items-center gap-2">
+                            <i class="fas fa-microchip text-amber-600"></i> El Algoritmo de Evasión de Obstáculos y Bucle de Vuelo
+                        </h3>
+                        <p class="text-xs text-slate-700 leading-relaxed mb-3">
+                            Un dron autónomo no puede detenerse a esperar que un humano le diga qué hacer. Su computadora de a bordo ejecuta un ciclo <strong>`while True:`</strong> constante a 100 Hz. En cada iteración evalúa:
+                        </p>
+                        <p class="text-xs text-slate-700 leading-relaxed font-semibold">
+                            <em>"SI la distancia del sensor ultrasónico es menor a 50 cm ENTONCES activar frenado y virar 45° a la derecha; SI la batería es menor a 15% ENTONCES retornar a la base (RTH); EN OTRO CASO continuar ruta GPS."</em>
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
+                        <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700 mb-3"><i class="fas fa-code-fork text-blue-600 mr-1.5"></i> Preguntas Detonadoras</h4>
+                        <ol class="list-decimal ml-5 text-xs text-slate-700 space-y-2">
+                            <li>¿Por qué en Python la <strong>indentación (sangría de 4 espacios)</strong> no es opcional ni estética, sino obligatoria para definir el alcance de un bloque?</li>
+                            <li>¿Cuál es la diferencia fundamental entre un ciclo <code>for</code> (que itera sobre una cantidad conocida de elementos) y un ciclo <code>while</code> (que depende de una condición dinámica)?</li>
+                            <li>¿Qué ocurre si la variable de control dentro de un ciclo <code>while</code> nunca cambia su valor hacia falso? ¿Cómo se detiene de forma segura con <code>break</code>?</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- FASE 2: DESARROLLO CONCEPTUAL (CONDICIONALES Y BUCLES) -->
+                <section id="fase2" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-sky-600 text-white">2</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (Decisión y Ciclos en Python)</h2>
+                    </div>
+
+                    <!-- Estructuras de Decisión -->
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold text-slate-900 mb-3">1. Bifurcaciones Lógicas: `if`, `elif`, `else` y `match-case`</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs mb-4">
+                            <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                                <strong class="text-blue-700 block text-sm">Estructura `if - elif - else`</strong>
+                                Evalúa condiciones booleanas secuencialmente. En el momento en que una condición resulta <code>True</code>, se ejecuta su bloque y se omiten todas las demás ramas.
+                            </div>
+                            <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                                <strong class="text-amber-700 block text-sm">Patrón `match - case` (Python 3.10+)</strong>
+                                Equivalente moderno a <code>switch-case</code> en C. Permite comparar un valor o patrón contra múltiples casos de forma limpia y legible con caso por defecto <code>case _:</code>.
+                            </div>
+                        </div>
+
+                        <!-- Diagrama Vectorial SVG de Flujo Condicional y Ciclo -->
+                        <div class="p-4 bg-slate-900 rounded-2xl text-center text-white my-6">
+                            <span class="text-[11px] font-mono text-slate-400 block mb-2">Diagrama de Bifurcación Condicional y Bucle de Repetición</span>
+                            <svg class="w-full max-w-md mx-auto" viewBox="0 0 420 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="30" y="60" width="80" height="40" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+                                <text x="70" y="84" fill="#38bdf8" font-size="9" font-weight="bold" text-anchor="middle">Inicio</text>
+
+                                <path d="M110 80 H 150" stroke="#64748b" stroke-width="2"/>
+
+                                <!-- Rombo Decisión -->
+                                <polygon points="200,45 240,80 200,115 160,80" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5"/>
+                                <text x="200" y="83" fill="#fbbf24" font-size="8" font-weight="bold" text-anchor="middle">¿Batería &gt; 20%?</text>
+
+                                <path d="M240 80 H 290" stroke="#4ade80" stroke-width="2"/>
+                                <text x="265" y="73" fill="#4ade80" font-size="8" font-weight="bold">SI</text>
+
+                                <rect x="290" y="60" width="100" height="40" rx="6" fill="#065f46" stroke="#4ade80" stroke-width="1.5"/>
+                                <text x="340" y="84" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle">Vuelo Normal</text>
+
+                                <path d="M200 115 V 140 H 340 V 100" stroke="#f87171" stroke-width="2" stroke-dasharray="3 3"/>
+                                <text x="205" y="132" fill="#f87171" font-size="8" font-weight="bold">NO (RTH)</text>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Estructuras de Repetición -->
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">2. Ciclos de Repetición: `for` y `while`</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                            <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5">
+                                <strong class="text-slate-900 block font-bold">Ciclo Determinado: `for in range()`</strong>
+                                <p class="text-slate-600">Itera una cantidad exacta de veces. La función <code>range(inicio, fin, paso)</code> genera secuencias numéricas sin sobrecargar memoria.</p>
+                            </div>
+                            <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5">
+                                <strong class="text-slate-900 block font-bold">Ciclo Indeterminado: `while condición:`</strong>
+                                <p class="text-slate-600">Se ejecuta mientras la condición sea verdadera. Se controla con <code>break</code> para terminar prematuramente o <code>continue</code> para saltar la iteración.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 3: DEMOSTRACIÓN Y MODELADO PASO A PASO -->
+                <section id="fase3" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-indigo-600 text-white">3</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Demostración y Modelado en Código</h2>
+                    </div>
+
+                    <p class="text-xs text-slate-600 mb-4">
+                        A continuación se modela un programa completo que integra menú con `match-case`, validación con `while` y conteo de iteraciones con `for`:
+                    </p>
+
+                    <!-- Ejemplo Estructurado en Python -->
+                    <div class="bg-slate-900 text-slate-200 rounded-xl p-5 text-xs font-mono mb-4">
+                        <div class="flex justify-between items-center text-slate-400 text-[11px] mb-3 pb-2 border-b border-slate-800">
+                            <span><i class="fab fa-python text-amber-400 mr-1.5"></i> control_mision_dron.py</span>
+                            <span>Python 3.11+</span>
+                        </div>
+                        <span class="text-slate-500"># Bucle principal de control con bandera de salida</span><br>
+                        ejecutando = <span class="text-emerald-400">True</span><br>
+                        waypoints = []<br><br>
+
+                        <span class="text-sky-400">while</span> ejecutando:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-emerald-400">print</span>(<span class="text-amber-300">"\n--- MENÚ DE CONTROL DE VUELO ---"</span>)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-emerald-400">print</span>(<span class="text-amber-300">"1. Registrar Waypoint (Altitud)\n2. Ejecutar Patrullaje\n3. Salir"</span>)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;opcion = <span class="text-emerald-400">input</span>(<span class="text-amber-300">"Seleccione una opción: "</span>)<br><br>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400">match</span> opcion:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400">case</span> <span class="text-amber-300">"1"</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alt = <span class="text-sky-400">float</span>(<span class="text-emerald-400">input</span>(<span class="text-amber-300">"Altitud del punto (metros): "</span>))<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400">if</span> <span class="text-purple-400">10.0</span> &lt;= alt &lt;= <span class="text-purple-400">120.0</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;waypoints.append(alt)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-emerald-400">print</span>(<span class="text-amber-300">f"[OK] Waypoint agregado a {alt}m"</span>)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400">else</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-emerald-400">print</span>(<span class="text-amber-300">"[ERROR] Altitud fuera de rango legal (10-120m)"</span>)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400">case</span> <span class="text-amber-300">"2"</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400">for</span> i, p <span class="text-sky-400">in</span> <span class="text-sky-400">enumerate</span>(waypoints, start=<span class="text-purple-400">1</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-emerald-400">print</span>(<span class="text-amber-300">f"Navegando al Punto #{i} -> Altitud: {p}m"</span>)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400">case</span> <span class="text-amber-300">"3"</span>:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-emerald-400">print</span>(<span class="text-amber-300">"Aterrizaje seguro completado. Apagando sistemas."</span>)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ejecutando = <span class="text-emerald-400">False</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-400">case</span> _:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-emerald-400">print</span>(<span class="text-amber-300">"Opción no válida."</span>)
+                    </div>
+                </section>
+
+                <!-- FASE 4: APLICACIÓN PRÁCTICA (SIMULADOR Y PROBLEMARIO) -->
+                <section id="fase4" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-amber-600 text-white">4</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Simulador y Problemario)</h2>
+                    </div>
+
+                    <!-- SIMULADOR INTERACTIVO JS: TRAZADOR DE CICLOS Y DECISIONES -->
+                    <div class="border-2 border-blue-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
+                        <div class="flex items-center justify-between mb-4 border-b border-blue-100 pb-3">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-arrows-spin text-blue-600 text-xl"></i>
+                                <div>
+                                    <h3 class="font-bold text-slate-900 text-sm">Simulador de Ejecución de Ciclos y Variables</h3>
+                                    <span class="text-[11px] text-slate-500 font-mono">Observa la evolución de variables paso a paso en bucles `for` y `while`</span>
+                                </div>
+                            </div>
+                            <span class="px-2 py-1 rounded bg-blue-100 text-blue-800 text-[10px] font-bold">JavaScript Nativo</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs mb-4">
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Tipo de Estructura:</label>
+                                <select id="simLoopType" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="ejecutarSimulacionCiclo()">
+                                    <option value="for_range">for i in range(1, N+1):</option>
+                                    <option value="while_fib">while a &lt; N: (Fibonacci)</option>
+                                    <option value="while_collatz">while n != 1: (Collatz)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Límite N (Valor Entero):</label>
+                                <input type="number" id="simN" class="w-full p-2 border border-slate-300 rounded-lg text-xs" value="6" min="1" max="25" onchange="ejecutarSimulacionCiclo()">
+                            </div>
+                            <div class="flex items-end">
+                                <button onclick="ejecutarSimulacionCiclo()" class="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xs transition">
+                                    <i class="fas fa-play mr-1"></i> Trazar Ciclo
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Consola de Iteraciones -->
+                        <div class="bg-slate-900 text-slate-200 rounded-xl p-4 text-xs font-mono overflow-x-auto">
+                            <div class="text-slate-400 text-[11px] mb-2">[TRAZA DE EJECUCIÓN DEL BUCLE]</div>
+                            <div id="simCicloOutput" class="text-emerald-400 space-y-1">
+                                Iteración 1: i = 1, acumulador = 1<br>
+                                Iteración 2: i = 2, acumulador = 3<br>
+                                Iteración 3: i = 3, acumulador = 6
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROBLEMARIO Y TALLER: 10 EJERCICIOS PARA FIRMAS -->
+                    <div class="border border-slate-200 rounded-2xl p-6 bg-white">
+                        <div class="flex items-center justify-between mb-4 border-b pb-3">
+                            <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                                <i class="fas fa-pencil text-blue-600"></i> Problemario de Taller y Evidencias Semanales (40% Firmas)
+                            </h3>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">10 Ejercicios</span>
+                        </div>
+
+                        <div class="space-y-3 text-xs text-slate-700">
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>1. Clasificación de Calificaciones:</strong> Escribe un script con `if-elif-else` que reciba una nota de 0 a 100 y devuelva: A (90-100), B (80-89), C (70-79), o No Acreditado (&lt;70).
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>2. Menú de Calculadora con `match-case`:</strong> Implementa una calculadora de operaciones básicas (+, -, *, /) usando la instrucción `match-case` de Python 3.10+.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>3. Sumatoria y Factorial con `for`:</strong> Elabora un programa que solicite un entero \(N\) y calcule tanto la suma de los primeros \(N\) números como su factorial \(N!\).
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>4. Adivina el Número Secreto:</strong> Diseña un juego con `while` que genere un número aleatorio entre 1 y 50 y le dé al usuario 5 intentos proporcionando pistas ("Más alto" o "Más bajo").
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>5. Validación de Entrada (Bucle Centinela):</strong> Escribe un bucle `while` que obligue al usuario a ingresar una contraseña de al menos 8 caracteres y no termine hasta lograrlo.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>6. Tabla de Multiplicar Formateada:</strong> Genera la tabla de multiplicar de un número del 1 al 10 con una sola instrucción `for i in range(1, 11)`.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>7. Filtro de Números Pares con `continue`:</strong> Recorre los números del 1 al 30 e imprime únicamente los números impares utilizando la sentencia `continue`.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>8. Conteo de Primos:</strong> Escribe un programa que determine si un número ingresado es primo evaluando sus divisores con un ciclo `for`.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>9. Patrón de Asteriscos (Bucles Anidados):</strong> Utiliza dos bucles `for` anidados para imprimir un triángulo rectángulo de altura \(N\) en la terminal.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>10. Bucle de Simulación de Vuelo (Evidencia AE 1.2.1):</strong> Modela un script con `while True` que simule la pérdida de batería en cada segundo de vuelo hasta aterrizar con `break`.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 5: CIERRE, EVALUACIÓN Y METACOGNICIÓN (RÚBRICA OFICIAL CONALEP) -->
+                <section id="fase5" class="scroll-mt-20">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="step-badge bg-emerald-600 text-white">5</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 5: Cierre, Evaluación y Metacognición</h2>
+                    </div>
+
+                    <!-- RÚBRICA OFICIAL CONALEP: AE 1.2.1 (15% PONDERACIÓN) -->
+                    <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-sm mb-6">
+                        <div class="flex items-center justify-between mb-4 border-b pb-3">
+                            <div>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800 uppercase font-mono">Actividad de Evaluación 1.2.1</span>
+                                <h3 class="font-bold text-slate-900 text-sm mt-1">Rúbrica de Valoración Oficial (15% SAE)</h3>
+                            </div>
+                            <span class="text-xs font-extrabold text-blue-600">Siglema: PBAS-03</span>
+                        </div>
+
+                        <p class="text-xs text-slate-600 mb-4">
+                            <strong>Actividad 1.2.1:</strong> Desarrolla programas en Python que utilicen estructuras de decisión y estructuras de repetición/ciclos.
+                        </p>
+
+                        <div class="overflow-x-auto text-[11px]">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-900 text-white">
+                                        <th class="p-2.5">Indicador</th>
+                                        <th class="p-2.5 text-center">%</th>
+                                        <th class="p-2.5">Excelente</th>
+                                        <th class="p-2.5">Suficiente</th>
+                                        <th class="p-2.5">Insuficiente</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 text-slate-700">
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Uso de métodos de programación</td>
+                                        <td class="p-2.5 text-center font-bold text-blue-600">20%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Elabora diagrama de flujo de la secuencia y <strong>adiciona codificación en pseudocódigo</strong> estructurado.</td>
+                                        <td class="p-2.5">Elabora diagrama de flujo de la secuencia de instrucciones.</td>
+                                        <td class="p-2.5 bg-red-50/30">Carece de diagrama de flujo.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Desarrollo de instrucciones de ejecución</td>
+                                        <td class="p-2.5 text-center font-bold text-blue-600">20%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Presenta código fuente en Python, impreso o digital, <strong>incluye comentarios y documenta secuencias</strong>.</td>
+                                        <td class="p-2.5">Presenta código fuente codificado en Python de forma impresa/digital.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite presentar el código fuente.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Presentación de código ejecutable</td>
+                                        <td class="p-2.5 text-center font-bold text-blue-600">20%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Presenta código ejecutable con sintaxis correcta y <strong>verifica que se ejecute sin errores</strong>.</td>
+                                        <td class="p-2.5">Presenta código ejecutable en orden y sintaxis correctas.</td>
+                                        <td class="p-2.5 bg-red-50/30">Carece de código ejecutable.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Utilización de decisión y control de flujo</td>
+                                        <td class="p-2.5 text-center font-bold text-blue-600">40%</td>
+                                        <td class="p-2.5 bg-emerald-50/50">Aplica sin error `if-else`, `elif`, `match-case`, `for`, `while`, `break/continue` y <strong>maneja ciclos infinitos controlados</strong>.</td>
+                                        <td class="p-2.5">Aplica sin error `if-else`, `elif`, `for` y `while`.</td>
+                                        <td class="p-2.5 bg-red-50/30">Comete errores en la aplicación de las estructuras de control.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Metacognición -->
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700">
+                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-brain text-emerald-600 mr-1.5"></i> Pregunta de Metacognición Final:</h4>
+                        <p>
+                            "¿Cómo el uso adecuado de `break` y `continue` permite escribir código más conciso sin necesidad de anidar excesivas capas de condicionales?"
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Navegación Inferior -->
+                <div class="flex justify-between items-center border-t border-slate-200 pt-6">
+                    <a href="tema1_1.html" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
+                        <i class="fas fa-arrow-left mr-1"></i> Anterior: RA 1.1 (Datos)
+                    </a>
+                    <a href="tema2_1.html" class="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs transition shadow-sm">
+                        Siguiente: RA 2.1 (Funciones y Módulos) <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+            </main>
+
+            <!-- COLUMNA 3: Barra Lateral Derecha -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+
+                    <!-- TOC Interactivo -->
+                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm">
+                        <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">En esta Página</h4>
+                        <ul class="space-y-2 text-xs text-slate-600">
+                            <li><a href="#fase1" class="hover:text-blue-600 transition block">1. Caso Real: Bucle de Vuelo</a></li>
+                            <li><a href="#fase2" class="hover:text-blue-600 transition block">2. Decisión `if` & `match`</a></li>
+                            <li><a href="#fase3" class="hover:text-blue-600 transition block">3. Modelado en Python</a></li>
+                            <li><a href="#fase4" class="hover:text-blue-600 transition block">4. Simulador de Ciclos</a></li>
+                            <li><a href="#fase5" class="hover:text-blue-600 transition block">5. Rúbrica Oficial AE 1.2.1</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Cuadro de Evidencia SAE -->
+                    <div class="p-4 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl text-xs space-y-2">
+                        <div class="flex items-center gap-2 text-blue-900 font-bold text-xs">
+                            <i class="fas fa-code-branch text-blue-600"></i> Entregable SAE (AE 1.2.1)
+                        </div>
+                        <ul class="text-[11px] text-slate-700 list-disc ml-4 space-y-1">
+                            <li>Diagramas de flujo con bifurcaciones.</li>
+                            <li>Programas con `if/elif/else`.</li>
+                            <li>Ciclos `for in range` y `while`.</li>
+                            <li>Código fuente `.py` ejecutable.</li>
+                        </ul>
+                        <div class="pt-2 border-t border-blue-200 text-center">
+                            <span class="text-blue-700 font-extrabold text-sm">Valor: 15% SAE</span>
+                        </div>
+                    </div>
+
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <!-- Script del Simulador JS -->
+    <script>
+        function ejecutarSimulacionCiclo() {
+            const tipo = document.getElementById('simLoopType').value;
+            const n = parseInt(document.getElementById('simN').value) || 5;
+            const outElem = document.getElementById('simCicloOutput');
+            
+            let lines = [];
+
+            if (tipo === 'for_range') {
+                let acum = 0;
+                for (let i = 1; i <= n; i++) {
+                    acum += i;
+                    lines.push(`Iteración ${i}: variable i = ${i} | Suma acumulada = ${acum}`);
+                }
+            } else if (tipo === 'while_fib') {
+                let a = 0, b = 1, paso = 1;
+                while (a <= n && paso <= 15) {
+                    lines.push(`Iteración ${paso}: Fibonacci actual = ${a} | Siguiente = ${b}`);
+                    let temp = a + b;
+                    a = b;
+                    b = temp;
+                    paso++;
+                }
+            } else if (tipo === 'while_collatz') {
+                let val = n;
+                let paso = 1;
+                lines.push(`Inicio: n = ${val}`);
+                while (val !== 1 && paso <= 15) {
+                    if (val % 2 === 0) {
+                        val = Math.floor(val / 2);
+                        lines.push(`Iteración ${paso}: Es par -> n // 2 = ${val}`);
+                    } else {
+                        val = 3 * val + 1;
+                        lines.push(`Iteración ${paso}: Es impar -> 3*n + 1 = ${val}`);
+                    }
+                    paso++;
+                }
+            }
+
+            outElem.innerHTML = lines.join('<br>');
+        }
+        window.onload = ejecutarSimulacionCiclo;
+    </script>
+</body>
+</html>

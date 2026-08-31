@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASIN-03: Aplicación de la Seguridad Informática | CONALEP</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        sec: {
+                            50: '#fef2f2',
+                            100: '#fee2e2',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                            800: '#991b1b',
+                            900: '#7f1d1d',
+                        },
+                        conalep: {
+                            500: '#16a34a',
+                            600: '#15803d',
+                            700: '#166534',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #ffffff;
+            color: #1e293b;
+            scroll-behavior: smooth;
+        }
+
+        .unit-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        .unit-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        .sticky-top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-800 antialiased selection:bg-red-100 selection:text-red-900">
+
+    <!-- Top Bar Institucional -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-3">
+                <span class="font-semibold text-white"><i class="fas fa-shield-halved text-red-500 mr-1.5"></i> CONALEP — PT-B en Informática (3° Semestre)</span>
+                <span class="text-slate-600 hidden sm:inline">|</span>
+                <span class="text-slate-400 hidden sm:inline">Clave Oficial: <strong>ASIN-03</strong> (72 Horas • 7 Créditos)</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="text-xs text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1 font-semibold">
+                    <i class="fas fa-arrow-left"></i> Catálogo CONALEP
+                </a>
+                <span class="text-slate-600">|</span>
+                <span class="text-slate-400"><i class="fas fa-chalkboard-teacher text-red-400 mr-1"></i> Catedrático: <strong>Cruz Enrique García</strong></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navegación Principal -->
+    <nav class="sticky-top-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-red-600 to-rose-700 flex items-center justify-center text-white font-bold text-lg shadow-sm">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div>
+                        <span class="text-base font-bold text-slate-900 leading-tight block">Aplicación de la Seguridad Informática</span>
+                        <span class="text-[11px] text-slate-500 font-mono">ASIN-03 • 18 Semanas (4 hrs/semana • 72 Horas)</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-6 text-sm font-semibold text-slate-600">
+                    <a href="#unidades" class="hover:text-red-600 transition">Resultados de Aprendizaje</a>
+                    <a href="#ponderacion" class="hover:text-red-600 transition">Ponderación SAE</a>
+                    <a href="#cronograma" class="hover:text-red-600 transition">Cronograma 18 Semanas</a>
+                    <a href="#metodologia" class="hover:text-red-600 transition">Modelo 5 Fases</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Hero -->
+    <header class="border-b border-slate-200 bg-gradient-to-b from-red-50/40 via-white to-white py-12 px-4">
+        <div class="max-w-5xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 text-red-800 text-xs font-semibold uppercase tracking-wider mb-4 border border-red-200">
+                <i class="fas fa-lock"></i> Especialidad Profesional Técnica • Blue Team & Hardening
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+                Aplicación de la Seguridad Informática
+            </h1>
+            <p class="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto font-normal leading-relaxed mb-6">
+                Programa formativo técnico orientado a la protección de activos de información, diagnóstico y mitigación de vulnerabilidades (físicas y lógicas), implementación de estándares internacionales (ISO/IEC 27000, ITIL, COBIT), configuración de firewalls, sistemas de detección de intrusos (IDS/IPS), criptografía y auditorías de seguridad.
+            </p>
+            <div class="flex flex-wrap justify-center gap-3 text-xs font-semibold">
+                <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200"><i class="fas fa-clock text-red-600 mr-1"></i> 72 Horas Semestrales</span>
+                <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200"><i class="fas fa-calendar-alt text-red-600 mr-1"></i> 4 Horas / Semana (18 Semanas)</span>
+                <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200"><i class="fas fa-tasks text-emerald-600 mr-1"></i> 5 Evidencias Oficiales SAE (100%)</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- MENSAJE DOCENTE: ROL BLUE TEAM -->
+        <div class="mb-14 bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-2xl p-6 sm:p-8 shadow-md border border-slate-700">
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-5">
+                <div class="w-14 h-14 rounded-2xl bg-red-600/20 border border-red-500/30 flex items-center justify-center text-red-400 text-2xl flex-shrink-0">
+                    <i class="fas fa-terminal"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-1 flex items-center gap-2">
+                        Encuadre Pedagógico del Módulo (Catedrático Cruz Enrique García)
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        "En ciberseguridad no existen sistemas 100% invulnerables, existen sistemas con defensas activas y monitoreo continuo. Durante estas 72 horas formativas, transitaremos desde el análisis de riesgos cuantitativo bajo normas ISO/IEC hasta el endurecimiento real de servidores y redes corporativas. Cada semana aplicaremos la <strong>metodología de 5 fases</strong> con simuladores interactivos, comandos en consola real y levantamiento de evidencias técnicas para su portafolio profesional."
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 1: Resultados de Aprendizaje y Unidades -->
+        <section id="unidades" class="mb-16 scroll-mt-24">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-end mb-8 gap-4">
+                <div>
+                    <span class="text-xs font-bold text-red-600 uppercase tracking-widest">Estructura Curricular</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Unidades y Resultados de Aprendizaje (RA)</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Accede directamente al material de cátedra interactivo de cada Resultado de Aprendizaje</p>
+                </div>
+            </div>
+
+            <!-- BLOQUE: UNIDAD 1 -->
+            <div class="mb-10 bg-slate-50/70 border border-slate-200 rounded-3xl p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-2 border-b border-slate-200 pb-4">
+                    <div>
+                        <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-red-100 text-red-800 border border-red-200 uppercase">Unidad 1 • 27 Horas (35% Ponderación)</span>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mt-2">Aplicación de Estándares de Protección de la Información</h3>
+                    </div>
+                    <span class="text-xs text-slate-500 font-medium">Semanas 1 a 7 • 2 Resultados de Aprendizaje</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- RA 1.1 -->
+                    <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 1.1</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-red-50 text-red-700 border border-red-200">15 Horas • 15% SAE</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 mb-2 hover:text-red-600 transition">
+                                <a href="tema1_1.html">Determinación de Riesgos y Vulnerabilidades</a>
+                            </h4>
+                            <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                                Triada CIA (Confidencialidad, Integridad, Disponibilidad), taxonomía de malware, ingeniería social, riesgos físicos e inventario técnico de hardware/redes.
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
+                                <div class="flex justify-between"><span>Calendario:</span> <strong class="text-slate-800">Semanas 1 a 4 (15 hrs)</strong></div>
+                                <div class="flex justify-between"><span>Evidencia SAE:</span> <strong class="text-red-700 font-semibold">AE 1.1.1 (Informe & Matriz)</strong></div>
+                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-slate-800">Matriz de Riesgo CIA Dinámica</strong></div>
+                            </div>
+                        </div>
+                        <a href="tema1_1.html" class="w-full py-2.5 px-4 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Ver RA 1.1 y Simulador <i class="fas fa-arrow-right ml-2 text-red-200"></i>
+                        </a>
+                    </div>
+
+                    <!-- RA 1.2 -->
+                    <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 1.2</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-red-50 text-red-700 border border-red-200">12 Horas • 20% SAE</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 mb-2 hover:text-red-600 transition">
+                                <a href="tema1_2.html">Plan de Seguridad y Estándares Internacionales</a>
+                            </h4>
+                            <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                                Marcos ISO/IEC 27001, 27002, 27032 a 27036, ISO 20000, ITIL, COBIT e ISM3. Diseño de políticas de acceso, bitácoras, firewalls y respaldos.
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
+                                <div class="flex justify-between"><span>Calendario:</span> <strong class="text-slate-800">Semanas 5 a 7 (12 hrs)</strong></div>
+                                <div class="flex justify-between"><span>Evidencia SAE:</span> <strong class="text-red-700 font-semibold">AE 1.2.1 (Plan de Seguridad)</strong></div>
+                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-slate-800">Generador de Políticas ISO</strong></div>
+                            </div>
+                        </div>
+                        <a href="tema1_2.html" class="w-full py-2.5 px-4 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Ver RA 1.2 y Simulador <i class="fas fa-arrow-right ml-2 text-red-200"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLOQUE: UNIDAD 2 -->
+            <div class="bg-slate-50/70 border border-slate-200 rounded-3xl p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-2 border-b border-slate-200 pb-4">
+                    <div>
+                        <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-800 border border-indigo-200 uppercase">Unidad 2 • 45 Horas (65% Ponderación)</span>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mt-2">Administración de Herramientas de Seguridad Informática</h3>
+                    </div>
+                    <span class="text-xs text-slate-500 font-medium">Semanas 8 a 18 • 3 Resultados de Aprendizaje</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- RA 2.1 -->
+                    <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 2.1</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">23 Horas • 30% SAE</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 mb-2 hover:text-indigo-600 transition">
+                                <a href="tema2_1.html">Instalación y Configuración de Herramientas</a>
+                            </h4>
+                            <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                                Hardening de SO, Firewall local/perimetral, Detección de Intrusos (IDS), IPsec, SSL/TLS, cifrado BitLocker/EFS y permisos ACL.
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
+                                <div class="flex justify-between"><span>Calendario:</span> <strong class="text-slate-800">Semanas 8 a 13 (23 hrs)</strong></div>
+                                <div class="flex justify-between"><span>Evidencia SAE:</span> <strong class="text-indigo-700 font-semibold">AE 2.1.1 (Manual & Config)</strong></div>
+                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-slate-800">Terminal Firewall & Puertos</strong></div>
+                            </div>
+                        </div>
+                        <a href="tema2_1.html" class="w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Ver RA 2.1 y Simulador <i class="fas fa-arrow-right ml-2 text-indigo-200"></i>
+                        </a>
+                    </div>
+
+                    <!-- RA 2.2 -->
+                    <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 2.2</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">10 Horas • 20% SAE</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 mb-2 hover:text-indigo-600 transition">
+                                <a href="tema2_2.html">Seguimiento y Monitoreo de Operación</a>
+                            </h4>
+                            <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                                Análisis de bitácoras (Event Viewer / Syslog), reportes de estatus, modificación de políticas y respaldo automatizado de configuraciones.
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
+                                <div class="flex justify-between"><span>Calendario:</span> <strong class="text-slate-800">Semanas 14 a 15 (10 hrs)</strong></div>
+                                <div class="flex justify-between"><span>Evidencia SAE:</span> <strong class="text-indigo-700 font-semibold">AE 2.2.1 (Monitoreo & Logs)</strong></div>
+                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-slate-800">Monitor de Logs en Tiempo Real</strong></div>
+                            </div>
+                        </div>
+                        <a href="tema2_2.html" class="w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Ver RA 2.2 y Simulador <i class="fas fa-arrow-right ml-2 text-indigo-200"></i>
+                        </a>
+                    </div>
+
+                    <!-- RA 2.3 -->
+                    <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 2.3</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">12 Horas • 15% SAE</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 mb-2 hover:text-indigo-600 transition">
+                                <a href="tema2_3.html">Control de Parámetros, Auditoría y Contingencias</a>
+                            </h4>
+                            <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                                Auditoría técnica, balance comparativo de seguridad, planes de contingencia (DRP/BCP), escalamiento de incidentes y actualización continua.
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
+                                <div class="flex justify-between"><span>Calendario:</span> <strong class="text-slate-800">Semanas 16 a 18 (12 hrs)</strong></div>
+                                <div class="flex justify-between"><span>Evidencia SAE:</span> <strong class="text-indigo-700 font-semibold">AE 2.3.1 (Heteroevaluación)</strong></div>
+                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-slate-800">Matriz de Auditoría y Balance</strong></div>
+                            </div>
+                        </div>
+                        <a href="tema2_3.html" class="w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Ver RA 2.3 y Simulador <i class="fas fa-arrow-right ml-2 text-indigo-200"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: Tabla Oficial de Ponderación SAE CONALEP -->
+        <section id="ponderacion" class="mb-16 scroll-mt-24">
+            <div class="border border-slate-200 rounded-2xl bg-white p-6 sm:p-8 shadow-sm">
+                <div class="mb-6 pb-4 border-b border-slate-100">
+                    <span class="text-xs font-bold text-red-600 uppercase tracking-widest">Guía de Evaluación Oficial</span>
+                    <h2 class="text-2xl font-bold text-slate-900 mt-1">Tabla Oficial de Ponderación (Sistema SAE)</h2>
+                    <p class="text-xs text-slate-500 mt-0.5">Desglose porcentual y criterios de acreditación del Módulo ASIN-03</p>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-900 text-white font-bold">
+                                <th class="p-3.5 rounded-tl-xl">Unidad</th>
+                                <th class="p-3.5">Resultado de Aprendizaje (RA)</th>
+                                <th class="p-3.5 text-center">Horas</th>
+                                <th class="p-3.5 text-center">Actividad Evaluación</th>
+                                <th class="p-3.5 text-center">% Específico</th>
+                                <th class="p-3.5 text-center rounded-tr-xl">% Acumulado</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-slate-700">
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5 font-bold text-slate-900 align-top" rowspan="2">1. Aplicación de estándares de protección (27 hrs • 35%)</td>
+                                <td class="p-3.5"><strong>1.1</strong> Determina riesgos de seguridad informática con base en las características del equipo y las necesidades del usuario.</td>
+                                <td class="p-3.5 text-center font-mono font-bold">15 h</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-red-700">1.1.1</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">15%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">15%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5"><strong>1.2</strong> Elabora el plan de seguridad en cómputo, acorde con los riesgos determinados y estándares de protección.</td>
+                                <td class="p-3.5 text-center font-mono font-bold">12 h</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-red-700">1.2.1</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">20%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">35%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5 font-bold text-slate-900 align-top" rowspan="3">2. Administración de herramientas de seguridad (45 hrs • 65%)</td>
+                                <td class="p-3.5"><strong>2.1</strong> Instala y configura herramientas informáticas acorde con los estándares y buenas prácticas de seguridad en cómputo.</td>
+                                <td class="p-3.5 text-center font-mono font-bold">23 h</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-indigo-700">2.1.1</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">30%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">65%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5"><strong>2.2</strong> Da seguimiento a la operación de las herramientas informáticas de acuerdo con el plan de seguridad determinado.</td>
+                                <td class="p-3.5 text-center font-mono font-bold">10 h</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-indigo-700">2.2.1</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">20%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">85%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5"><strong>2.3</strong> Controla parámetros de seguridad mediante verificación y actualización de acorde con nuevos requerimientos obtenidos.</td>
+                                <td class="p-3.5 text-center font-mono font-bold">12 h</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-indigo-700">2.3.1 (Hetero)</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">15%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">100%</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="bg-emerald-50 border-t-2 border-emerald-600 text-emerald-950 font-bold text-xs">
+                                <td colspan="2" class="p-3.5 text-right uppercase">Total del Módulo Formativo:</td>
+                                <td class="p-3.5 text-center font-mono text-sm">72 Horas</td>
+                                <td class="p-3.5 text-center">5 Evidencias</td>
+                                <td class="p-3.5 text-center font-extrabold text-sm">100%</td>
+                                <td class="p-3.5 text-center font-extrabold text-sm">100% Acreditado</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: Cronograma Táctico de 18 Semanas (4 hrs/sem) -->
+        <section id="cronograma" class="mb-16 scroll-mt-24">
+            <div class="border border-slate-200 rounded-2xl bg-white p-6 sm:p-8 shadow-sm">
+                <div class="mb-6 pb-4 border-b border-slate-100">
+                    <span class="text-xs font-bold text-red-600 uppercase tracking-widest">Dosificación Semestral</span>
+                    <h2 class="text-2xl font-bold text-slate-900 mt-1">Cronograma Táctico de 18 Semanas (4 Horas/Semana)</h2>
+                    <p class="text-xs text-slate-500 mt-0.5">Distribución semanal de contenidos teóricos, prácticas de laboratorio y entregas de evidencias</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+                    <!-- Semanas 1 a 4 -->
+                    <div class="p-4 rounded-xl border border-red-200 bg-red-50/30">
+                        <div class="flex justify-between items-center mb-2">
+                            <strong class="text-red-900">Semanas 1 a 4 (16 hrs)</strong>
+                            <span class="px-2 py-0.5 rounded bg-red-100 text-red-800 font-bold text-[10px]">RA 1.1</span>
+                        </div>
+                        <p class="text-slate-600 mb-2">Conceptos de seguridad, Triada CIA, Malware, Ingeniería Social, Riesgos Físicos y Matriz de Riesgos.</p>
+                        <span class="text-[11px] font-bold text-red-700 block">📌 Entrega AE 1.1.1 en Semana 4</span>
+                    </div>
+
+                    <!-- Semanas 5 a 7 -->
+                    <div class="p-4 rounded-xl border border-red-200 bg-red-50/30">
+                        <div class="flex justify-between items-center mb-2">
+                            <strong class="text-red-900">Semanas 5 a 7 (12 hrs)</strong>
+                            <span class="px-2 py-0.5 rounded bg-red-100 text-red-800 font-bold text-[10px]">RA 1.2</span>
+                        </div>
+                        <p class="text-slate-600 mb-2">Estándares ISO/IEC 27000, 27032-27036, ITIL, COBIT, redacción de políticas y métricas de control.</p>
+                        <span class="text-[11px] font-bold text-red-700 block">📌 Entrega AE 1.2.1 en Semana 7</span>
+                    </div>
+
+                    <!-- Semanas 8 a 10 -->
+                    <div class="p-4 rounded-xl border border-indigo-200 bg-indigo-50/30">
+                        <div class="flex justify-between items-center mb-2">
+                            <strong class="text-indigo-900">Semanas 8 a 10 (12 hrs)</strong>
+                            <span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 font-bold text-[10px]">RA 2.1 (Parte A)</span>
+                        </div>
+                        <p class="text-slate-600 mb-2">Hardening local de sistemas operativos, gestión de cuentas, bitácoras, firewall local y cifrado BitLocker/EFS.</p>
+                        <span class="text-[11px] font-bold text-indigo-700 block">⚙️ Prácticas de Hardening en Taller</span>
+                    </div>
+
+                    <!-- Semanas 11 a 13 -->
+                    <div class="p-4 rounded-xl border border-indigo-200 bg-indigo-50/30">
+                        <div class="flex justify-between items-center mb-2">
+                            <strong class="text-indigo-900">Semanas 11 a 13 (11 hrs)</strong>
+                            <span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 font-bold text-[10px]">RA 2.1 (Parte B)</span>
+                        </div>
+                        <p class="text-slate-600 mb-2">Firewall perimetral, Detección de Intrusos (IDS/IPS), protocolos seguros IPsec, HTTPS/TLS y permisos ACL.</p>
+                        <span class="text-[11px] font-bold text-indigo-700 block">📌 Entrega AE 2.1.1 en Semana 13</span>
+                    </div>
+
+                    <!-- Semanas 14 a 15 -->
+                    <div class="p-4 rounded-xl border border-indigo-200 bg-indigo-50/30">
+                        <div class="flex justify-between items-center mb-2">
+                            <strong class="text-indigo-900">Semanas 14 a 15 (8 hrs)</strong>
+                            <span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 font-bold text-[10px]">RA 2.2</span>
+                        </div>
+                        <p class="text-slate-600 mb-2">Monitoreo activo de logs, detección de anomalías, ajuste de configuraciones y respaldo digital de políticas.</p>
+                        <span class="text-[11px] font-bold text-indigo-700 block">📌 Entrega AE 2.2.1 en Semana 15</span>
+                    </div>
+
+                    <!-- Semanas 16 a 18 -->
+                    <div class="p-4 rounded-xl border border-emerald-200 bg-emerald-50/30">
+                        <div class="flex justify-between items-center mb-2">
+                            <strong class="text-emerald-900">Semanas 16 a 18 (13 hrs)</strong>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">RA 2.3</span>
+                        </div>
+                        <p class="text-slate-600 mb-2">Auditoría técnica cruzada, balance de resultados, plan de contingencias DRP y cierre de evidencias SAE.</p>
+                        <span class="text-[11px] font-bold text-emerald-700 block">🏆 Entrega AE 2.3.1 y Cierre Semestral</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-10 text-slate-600 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+            <div>
+                <div class="font-bold text-slate-900 text-sm">CONALEP — Módulo ASIN-03: Aplicación de la Seguridad Informática</div>
+                <div class="text-slate-500">PT-B en Informática • Catedrático: Cruz Enrique García</div>
+            </div>
+            <div class="text-slate-500">
+                Planeación Semestral Oficial de 18 Semanas (72 Horas)<br>
+                <span>Alineado a las Guías Oficiales y Rúbricas SAE CONALEP</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

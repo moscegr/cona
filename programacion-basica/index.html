@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBAS-03: Programación Básica en Python | CONALEP</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        pyblue: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        pygold: {
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #ffffff;
+            color: #1e293b;
+            scroll-behavior: smooth;
+        }
+
+        .unit-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        .unit-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        .sticky-top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-800 antialiased selection:bg-blue-100 selection:text-blue-900">
+
+    <!-- Top Bar Institucional -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-3">
+                <span class="font-semibold text-white"><i class="fab fa-python text-blue-400 mr-1.5"></i> CONALEP — PT-B en Informática y Pilotaje de Drones</span>
+                <span class="text-slate-600 hidden sm:inline">|</span>
+                <span class="text-slate-400 hidden sm:inline">Clave Oficial: <strong>PBAS-03</strong> (126 Horas • 13 Créditos)</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="text-slate-400"><i class="fas fa-chalkboard-teacher text-amber-400 mr-1"></i> Catedrático: <strong>Cruz Enrique García</strong></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navegación Principal -->
+    <nav class="sticky-top-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-amber-500 flex items-center justify-center text-white font-bold text-lg shadow-sm">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <div>
+                        <span class="text-base font-bold text-slate-900 leading-tight block">Programación Básica en Python</span>
+                        <span class="text-[11px] text-slate-500 font-mono">PBAS-03 • 18 Semanas (7 hrs/semana • 126 Horas)</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-6 text-sm font-semibold text-slate-600">
+                    <a href="#unidades" class="hover:text-blue-600 transition">Resultados de Aprendizaje</a>
+                    <a href="#ponderacion" class="hover:text-blue-600 transition">Ponderación SAE</a>
+                    <a href="#cronograma" class="hover:text-blue-600 transition">Cronograma 18 Semanas</a>
+                    <a href="#metodologia" class="hover:text-blue-600 transition">Modelo 5 Fases</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Hero -->
+    <header class="border-b border-slate-200 bg-gradient-to-b from-blue-50/50 via-white to-white py-12 px-4">
+        <div class="max-w-5xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-semibold uppercase tracking-wider mb-4 border border-blue-200">
+                <i class="fas fa-code"></i> Núcleo de Formación Profesional • Python 3 Moderno
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+                Programación Básica en <span class="text-blue-600">Python</span>
+            </h1>
+            <p class="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto font-normal leading-relaxed mb-6">
+                Planeación didáctica orientada al desarrollo de software mediante algoritmia estructurada, diseño de diagramas de flujo, estructuras de control (`if/elif/else`, `for/while`), programación modular con funciones, manejo dinámico de memoria (listas, pilas, colas, diccionarios) y depuración en Python 3.
+            </p>
+            <div class="flex flex-wrap justify-center gap-3 text-xs font-semibold">
+                <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200"><i class="fas fa-clock text-blue-600 mr-1"></i> 126 Horas Semestrales</span>
+                <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200"><i class="fas fa-calendar-alt text-blue-600 mr-1"></i> 7 Horas / Semana (18 Semanas)</span>
+                <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200"><i class="fas fa-tasks text-emerald-600 mr-1"></i> 4 Evidencias Oficiales SAE (100%)</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- MENSAJE DOCENTE: APRENDER HACIENDO -->
+        <div class="mb-14 bg-gradient-to-r from-slate-900 via-slate-800 to-blue-950 text-white rounded-2xl p-6 sm:p-8 shadow-md border border-slate-700">
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-5">
+                <div class="w-14 h-14 rounded-2xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 text-2xl flex-shrink-0">
+                    <i class="fas fa-terminal"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-1 flex items-center gap-2">
+                        Encuadre Pedagógico del Módulo (Catedrático Cruz Enrique García)
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        "La programación no consiste en memorizar sintaxis, sino en aprender a <strong>descomponer problemas complejos en instrucciones lógicas precisas</strong>. Durante estas 126 horas (7 horas semanales), adaptamos el programa de estudio al lenguaje Python 3, la herramienta estándar de la industria para desarrollo de software, ciencia de datos y control de hardware. Cada sesión se estructura en <strong>5 fases pedagógicas</strong> con simuladores interactivos en JavaScript nativo, depuración paso a paso y problemarios para su portafolio de firmas."
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 1: Resultados de Aprendizaje y Unidades -->
+        <section id="unidades" class="mb-16 scroll-mt-24">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-end mb-8 gap-4">
+                <div>
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Estructura Curricular</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Unidades y Resultados de Aprendizaje (RA)</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Accede directamente al material de cátedra interactivo de cada Resultado de Aprendizaje</p>
+                </div>
+            </div>
+
+            <!-- BLOQUE: UNIDAD 1 -->
+            <div class="mb-10 bg-slate-50/70 border border-slate-200 rounded-3xl p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-2 border-b border-slate-200 pb-4">
+                    <div>
+                        <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200 uppercase">Unidad 1 • 60 Horas (45% Ponderación)</span>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mt-2">Manejo de los Componentes y Control de Flujo en Python</h3>
+                    </div>
+                    <span class="text-xs text-slate-500 font-medium">Semanas 1 a 9 • 2 Resultados de Aprendizaje</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- RA 1.1 -->
+                    <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 1.1</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">40 Horas • 30% SAE</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 mb-2 hover:text-blue-600 transition">
+                                <a href="tema1_1.html">Estructura General, Tipos de Datos y Operadores</a>
+                            </h4>
+                            <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                                Análisis de requerimientos, algoritmos, diagramas de flujo, pseudocódigo, variables, tipos primitivos (`int`, `float`, `str`, `bool`), operadores aritméticos/lógicos y depuración.
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
+                                <div class="flex justify-between"><span>Calendario:</span> <strong class="text-slate-800">Semanas 1 a 6 (40 hrs)</strong></div>
+                                <div class="flex justify-between"><span>Evidencia SAE:</span> <strong class="text-blue-700 font-semibold">AE 1.1.1 (Código y Pruebas)</strong></div>
+                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-slate-800">Intérprete REPL de Python en JS</strong></div>
+                            </div>
+                        </div>
+                        <a href="tema1_1.html" class="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Ver RA 1.1 y Simulador <i class="fas fa-arrow-right ml-2 text-blue-200"></i>
+                        </a>
+                    </div>
+
+                    <!-- RA 1.2 -->
+                    <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 1.2</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">20 Horas • 15% SAE</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 mb-2 hover:text-blue-600 transition">
+                                <a href="tema1_2.html">Estructuras de Decisión y Ciclos de Repetición</a>
+                            </h4>
+                            <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                                Indentación obligatoria en Python, proposiciones condicionales (`if`, `elif`, `else`, `match-case`), ciclos (`for`, `while`, `break`, `continue`) y control de bucles infinitos.
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
+                                <div class="flex justify-between"><span>Calendario:</span> <strong class="text-slate-800">Semanas 7 a 9 (20 hrs)</strong></div>
+                                <div class="flex justify-between"><span>Evidencia SAE:</span> <strong class="text-blue-700 font-semibold">AE 1.2.1 (Estructuras de Control)</strong></div>
+                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-slate-800">Visualizador de Flujo y Ciclos</strong></div>
+                            </div>
+                        </div>
+                        <a href="tema1_2.html" class="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Ver RA 1.2 y Simulador <i class="fas fa-arrow-right ml-2 text-blue-200"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLOQUE: UNIDAD 2 -->
+            <div class="bg-slate-50/70 border border-slate-200 rounded-3xl p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-2 border-b border-slate-200 pb-4">
+                    <div>
+                        <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 border border-amber-200 uppercase">Unidad 2 • 66 Horas (55% Ponderación)</span>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mt-2">Funciones, Modularización y Estructuras de Datos en Python</h3>
+                    </div>
+                    <span class="text-xs text-slate-500 font-medium">Semanas 10 a 18 • 2 Resultados de Aprendizaje</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- RA 2.1 -->
+                    <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 2.1</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">26 Horas • 20% SAE</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 mb-2 hover:text-amber-600 transition">
+                                <a href="tema2_1.html">Funciones, Modularización y Recursividad</a>
+                            </h4>
+                            <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                                Declaración de funciones (`def`), parámetros mutables e inmutables, `*args`/`**kwargs`, valores de retorno múltiple, alcance (scope local/global), recursividad y creación de módulos.
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
+                                <div class="flex justify-between"><span>Calendario:</span> <strong class="text-slate-800">Semanas 10 a 13 (26 hrs)</strong></div>
+                                <div class="flex justify-between"><span>Evidencia SAE:</span> <strong class="text-amber-700 font-semibold">AE 2.1.1 (Heteroevaluación)</strong></div>
+                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-slate-800">Visualizador de Pila de Llamadas</strong></div>
+                            </div>
+                        </div>
+                        <a href="tema2_1.html" class="w-full py-2.5 px-4 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Ver RA 2.1 y Simulador <i class="fas fa-arrow-right ml-2 text-amber-200"></i>
+                        </a>
+                    </div>
+
+                    <!-- RA 2.2 -->
+                    <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 2.2</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">40 Horas • 35% SAE</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 mb-2 hover:text-amber-600 transition">
+                                <a href="tema2_2.html">Estructuras de Memoria, Pilas, Colas y Excepciones</a>
+                            </h4>
+                            <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                                Arreglos y matrices multidimensionales, listas dinámicas, tuplas, diccionarios, implementación de Pilas (LIFO) y Colas (FIFO), y manejo de excepciones (`try/except`).
+                            </p>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
+                                <div class="flex justify-between"><span>Calendario:</span> <strong class="text-slate-800">Semanas 14 a 18 (40 hrs)</strong></div>
+                                <div class="flex justify-between"><span>Evidencia SAE:</span> <strong class="text-amber-700 font-semibold">AE 2.2.1 (Estructuras y Memoria)</strong></div>
+                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-slate-800">Simulador de Pilas LIFO y Colas FIFO</strong></div>
+                            </div>
+                        </div>
+                        <a href="tema2_2.html" class="w-full py-2.5 px-4 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Ver RA 2.2 y Simulador <i class="fas fa-arrow-right ml-2 text-amber-200"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: Tabla Oficial de Ponderación SAE CONALEP -->
+        <section id="ponderacion" class="mb-16 scroll-mt-24">
+            <div class="border border-slate-200 rounded-2xl bg-white p-6 sm:p-8 shadow-sm">
+                <div class="mb-6 pb-4 border-b border-slate-100">
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Guía de Evaluación Oficial</span>
+                    <h2 class="text-2xl font-bold text-slate-900 mt-1">Tabla Oficial de Ponderación (Sistema SAE)</h2>
+                    <p class="text-xs text-slate-500 mt-0.5">Desglose porcentual y criterios de acreditación del Módulo PBAS-03 adaptado a Python</p>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-900 text-white font-bold">
+                                <th class="p-3.5 rounded-tl-xl">Unidad</th>
+                                <th class="p-3.5">Resultado de Aprendizaje (RA)</th>
+                                <th class="p-3.5 text-center">Horas</th>
+                                <th class="p-3.5 text-center">Actividad Evaluación</th>
+                                <th class="p-3.5 text-center">% Específico</th>
+                                <th class="p-3.5 text-center rounded-tr-xl">% Acumulado</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-slate-700">
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5 font-bold text-slate-900 align-top" rowspan="2">1. Manejo de componentes y flujo en Python (60 hrs • 45%)</td>
+                                <td class="p-3.5"><strong>1.1</strong> Identifica la estructura general de un programa en Python, describiendo sus elementos y características.</td>
+                                <td class="p-3.5 text-center font-mono font-bold">40 h</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-blue-700">1.1.1</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">30%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">30%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5"><strong>1.2</strong> Organiza y ordena bloques de código para resolver una situación dada mediante estructuras de control de flujo.</td>
+                                <td class="p-3.5 text-center font-mono font-bold">20 h</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-blue-700">1.2.1</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">15%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">45%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5 font-bold text-slate-900 align-top" rowspan="2">2. Funciones y estructuras de memoria (66 hrs • 55%)</td>
+                                <td class="p-3.5"><strong>2.1</strong> Automatiza operaciones mediante la creación de funciones para la agilización de procesos.</td>
+                                <td class="p-3.5 text-center font-mono font-bold">26 h</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-amber-700">2.1.1 (Hetero)</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">20%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">65%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80">
+                                <td class="p-3.5"><strong>2.2</strong> Maneja memoria del equipo mediante la estructuración y optimización de datos dinámicos.</td>
+                                <td class="p-3.5 text-center font-mono font-bold">40 h</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-amber-700">2.2.1</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">35%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">100%</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="bg-emerald-50 border-t-2 border-emerald-600 text-emerald-950 font-bold text-xs">
+                                <td colspan="2" class="p-3.5 text-right uppercase">Total del Módulo Formativo:</td>
+                                <td class="p-3.5 text-center font-mono text-sm">126 Horas</td>
+                                <td class="p-3.5 text-center">4 Evidencias</td>
+                                <td class="p-3.5 text-center font-extrabold text-sm">100%</td>
+                                <td class="p-3.5 text-center font-extrabold text-sm">100% Acreditado</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: Cronograma Táctico de 18 Semanas (7 hrs/sem = 126 hrs) -->
+        <section id="cronograma" class="mb-16 scroll-mt-24">
+            <div class="border border-slate-200 rounded-2xl bg-white p-6 sm:p-8 shadow-sm">
+                <div class="mb-6 pb-4 border-b border-slate-100">
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Dosificación Semestral</span>
+                    <h2 class="text-2xl font-bold text-slate-900 mt-1">Cronograma Táctico de 18 Semanas (7 Horas/Semana)</h2>
+                    <p class="text-xs text-slate-500 mt-0.5">Distribución semanal de contenidos teóricos, prácticas de laboratorio y entregas de evidencias</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+                    <!-- Semanas 1 a 6 -->
+                    <div class="p-4 rounded-xl border border-blue-200 bg-blue-50/30">
+                        <div class="flex justify-between items-center mb-2">
+                            <strong class="text-blue-900">Semanas 1 a 6 (42 hrs)</strong>
+                            <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold text-[10px]">RA 1.1</span>
+                        </div>
+                        <p class="text-slate-600 mb-2">Algoritmos, diagramas de flujo, entorno Python (IDLE/Colab/VS Code), variables, tipos de datos, operadores y depuración.</p>
+                        <span class="text-[11px] font-bold text-blue-700 block">📌 Entrega AE 1.1.1 en Semana 6</span>
+                    </div>
+
+                    <!-- Semanas 7 a 9 -->
+                    <div class="p-4 rounded-xl border border-blue-200 bg-blue-50/30">
+                        <div class="flex justify-between items-center mb-2">
+                            <strong class="text-blue-900">Semanas 7 a 9 (21 hrs)</strong>
+                            <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold text-[10px]">RA 1.2</span>
+                        </div>
+                        <p class="text-slate-600 mb-2">Estructuras de decisión (`if/elif/else`, `match-case`), ciclos (`for in range`, `while`), `break/continue` e iteradores.</p>
+                        <span class="text-[11px] font-bold text-blue-700 block">📌 Entrega AE 1.2.1 en Semana 9</span>
+                    </div>
+
+                    <!-- Semanas 10 a 13 -->
+                    <div class="p-4 rounded-xl border border-amber-200 bg-amber-50/30">
+                        <div class="flex justify-between items-center mb-2">
+                            <strong class="text-amber-900">Semanas 10 a 13 (28 hrs)</strong>
+                            <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-bold text-[10px]">RA 2.1</span>
+                        </div>
+                        <p class="text-slate-600 mb-2">Funciones modulares (`def`), argumentos `*args/**kwargs`, retorno múltiple, recursión y empaquetado de módulos.</p>
+                        <span class="text-[11px] font-bold text-amber-700 block">📌 Entrega AE 2.1.1 en Semana 13</span>
+                    </div>
+
+                    <!-- Semanas 14 a 18 -->
+                    <div class="p-4 rounded-xl border border-emerald-200 bg-emerald-50/30">
+                        <div class="flex justify-between items-center mb-2">
+                            <strong class="text-emerald-900">Semanas 14 a 18 (35 hrs)</strong>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">RA 2.2</span>
+                        </div>
+                        <p class="text-slate-600 mb-2">Listas, matrices, diccionarios, pilas LIFO, colas FIFO (`collections.deque`), manejo de excepciones (`try/except`) y cierre.</p>
+                        <span class="text-[11px] font-bold text-emerald-700 block">🏆 Entrega AE 2.2.1 y Cierre Semestral</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-10 text-slate-600 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+            <div>
+                <div class="font-bold text-slate-900 text-sm">CONALEP — Módulo PBAS-03: Programación Básica en Python</div>
+                <div class="text-slate-500">PT-B en Informática y Pilotaje de Drones • Catedrático: Cruz Enrique García</div>
+            </div>
+            <div class="text-slate-500">
+                Planeación Semestral Oficial de 18 Semanas (126 Horas / 7 hrs/semana)<br>
+                <span>Alineado a las Guías Oficiales y Rúbricas SAE CONALEP</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
