@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 1.3: Monopolios Tecnológicos y Colonialismo de Datos | Cultura Digital I</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; color: #0f172a; }
+        .slide-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1.25rem; }
+        .badge-step { width: 32px; height: 32px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; }
+    </style>
+</head>
+<body class="antialiased selection:bg-teal-100 selection:text-teal-900">
+
+    <!-- Top Bar Guía de Clase -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2.5 px-4 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-users-rays text-teal-400"></i> Clase 1.3: Colonialismo de Datos y Economía de la Atención
+                </span>
+                <span class="text-slate-600 hidden sm:inline">|</span>
+                <span class="text-teal-400 font-mono hidden sm:inline">CIDI-01 • Propósito 1.3 (10 Horas)</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="text-xs text-teal-300 hover:text-white transition flex items-center gap-1 font-semibold">
+                    <i class="fas fa-arrow-left"></i> Índice de Clases
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Layout Presentador en 3 Columnas -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- COLUMNA 1: Navegación Rápida -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+                    <div class="p-4 bg-teal-50/70 border border-teal-200 rounded-2xl">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-teal-800 font-mono">Guía del Estudiante</span>
+                        <h3 class="font-extrabold text-slate-900 text-sm mt-1">Propósito Formativo 1.3</h3>
+                        <p class="text-xs text-slate-600 mt-1">Analiza críticamente el impacto del uso de tecnologías, mercantilización de la atención y colonialismo de datos.</p>
+                        <div class="mt-3 pt-3 border-t border-teal-200 text-[11px] text-slate-600 flex justify-between">
+                            <span>Ponderación: <strong class="text-teal-700">10% SAE</strong></span>
+                            <span>Duración: <strong class="text-slate-800">10 Horas</strong></span>
+                        </div>
+                    </div>
+
+                    <!-- Lista de Clases -->
+                    <div class="border border-slate-200 rounded-2xl p-4 bg-white shadow-sm">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Clases del Módulo</h4>
+                        <nav class="space-y-1 text-xs">
+                            <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.1 Hardware y Software</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">5%</span>
+                            </a>
+                            <a href="tema1_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.2 Licenciamiento y Redes</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">5%</span>
+                            </a>
+                            <a href="tema1_3.html" class="flex items-center justify-between p-2 rounded-xl bg-teal-50 text-teal-900 font-bold border border-teal-200">
+                                <span>1.3 Colonialismo de Datos</span>
+                                <span class="text-[10px] bg-teal-200 text-teal-900 px-1.5 py-0.5 rounded font-mono">10%</span>
+                            </a>
+                            <a href="tema1_4.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.4 Linux y Cultura Hacker</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">20%</span>
+                            </a>
+                            <a href="tema1_5.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.5 Normatividad e IA Ética</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">5%</span>
+                            </a>
+                            <a href="tema1_6.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.6 Identidad y Basura Digital</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">5%</span>
+                            </a>
+                            <a href="tema1_7.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.7 Diagramas de Flujo</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">20%</span>
+                            </a>
+                            <a href="tema1_8.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.8 Algoritmia y Código</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">30%</span>
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- COLUMNA 2: Diapositivas y Presentación -->
+            <main class="lg:col-span-6 space-y-10">
+
+                <!-- Header de la Clase -->
+                <header class="border-b border-slate-200 pb-6">
+                    <div class="flex items-center gap-2 text-xs text-teal-600 font-bold uppercase tracking-wider mb-2">
+                        <span>Cultura Digital I</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Clase 1.3</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-3">
+                        Colonialismo de Datos: ¿Por qué las Apps 'Gratis' Valen Miles de Millones?
+                    </h1>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Descubre cómo las grandes corporaciones tecnológicas (Big Tech) extraen tus datos personales, cómo los algoritmos de recomendación retienen tu atención con dopamina digital y el impacto de la brecha digital en México.
+                    </p>
+
+                    <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm mb-4">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" alt="Redes Sociales y Datos" class="w-full h-48 sm:h-64 object-cover">
+                        <div class="bg-slate-50 px-4 py-2 border-t border-slate-200 text-[11px] text-slate-500 flex justify-between">
+                            <span><i class="fas fa-camera mr-1"></i> Imagen Libre: Minería de Datos, Interacción en Redes y Economía Digital</span>
+                            <span>Unsplash Free License</span>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- FASE 1: APERTURA -->
+                <section class="slide-card p-6 border-l-4 border-l-teal-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-teal-600 text-white">1</span>
+                        <h2 class="text-lg font-bold text-slate-900">Apertura: El Algoritmo del Scroll Infinito</h2>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4">
+                        ¿Te ha pasado que entras a TikTok o Instagram solo por "5 minutos" y cuando te das cuenta ya pasaron 2 horas? Los diseñadores de Silicon Valley crearon el <strong>scroll infinito</strong> inspirándose en las máquinas tragamonedas de los casinos: cada video nuevo es una recompensa aleatoria de dopamina diseñada para que nunca cierres la aplicación.
+                    </p>
+                    <div class="p-3 bg-teal-50 rounded-xl border border-teal-200 text-xs font-semibold text-teal-950 flex items-center gap-2">
+                        <i class="fas fa-eye text-teal-600 text-base"></i>
+                        <span><strong>Concepto Clave:</strong> "Economía de la Atención: Tus ojos y tu tiempo son el recurso más cotizado y comercializado del siglo XXI."</span>
+                    </div>
+                </section>
+
+                <!-- FASE 2: DESARROLLO CONCEPTUAL -->
+                <section class="slide-card p-6 border-l-4 border-l-sky-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-sky-600 text-white">2</span>
+                        <h2 class="text-lg font-bold text-slate-900">Los 4 Pilares del Impacto Tecnológico</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs mb-4">
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-red-700 block text-sm mb-1"><i class="fas fa-database mr-1"></i> 1. Colonialismo de Datos</strong>
+                            <p class="text-slate-600">Así como en el pasado se extraían minerales, hoy las corporaciones extranjeras extraen la conducta, ubicación y mensajes de los usuarios del sur global para alimentar sus modelos de Inteligencia Artificial.</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-amber-700 block text-sm mb-1"><i class="fas fa-mobile-screen mr-1"></i> 2. Dependencia Tecnológica</strong>
+                            <p class="text-slate-600">La incapacidad de realizar tareas cotidianas (navegar, recordar teléfonos, comprar o socializar) sin depender de plataformas de un puñado de corporaciones (Google, Meta, Apple, Microsoft).</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-indigo-700 block text-sm mb-1"><i class="fas fa-brain mr-1"></i> 3. Mercantilización de la Atención</strong>
+                            <p class="text-slate-600">Monetización publicitaria de los sesgos emocionales: los algoritmos amplifican el contenido que provoca indignación o enojo porque genera un 80% más de comentarios e interacción.</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-emerald-700 block text-sm mb-1"><i class="fas fa-scale-unbalanced mr-1"></i> 4. Desigualdad Digital</strong>
+                            <p class="text-slate-600">En México, millones de estudiantes en zonas rurales carecen de internet de banda ancha o computadoras propias, limitando sus oportunidades académicas y laborales.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 3: EJEMPLO GUIADO -->
+                <section class="slide-card p-6 border-l-4 border-l-indigo-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-indigo-600 text-white">3</span>
+                        <h2 class="text-lg font-bold text-slate-900">Ejemplo de Estructura de Infografía Crítica</h2>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-3">Organización visual recomendada para tu infografía en Canva / Draw.io:</p>
+
+                    <div class="p-4 bg-slate-900 text-slate-200 rounded-xl text-xs font-mono space-y-2">
+                        <span class="text-teal-400 font-bold">[ESQUEMA VISUAL: 'EL PRECIO INVISIBLE DE TUS DATOS']</span>
+                        <div>
+                            &bull; <strong>Encabezado Impactante:</strong> ¿Qué sabe TikTok o Instagram de ti en 24 horas?<br>
+                            &bull; <strong>Sección 1 (Datos Recopilados):</strong> Geolocalización GPS, ritmo de tipeo, contactos y tiempo en cada foto.<br>
+                            &bull; <strong>Sección 2 (El Modelo de Negocio):</strong> Subastas de publicidad hiper-personalizada a anunciantes.<br>
+                            &bull; <strong>Sección 3 (Propuesta Ciudadana):</strong> Apagar notificaciones, usar navegadores con bloqueo de rastreadores y fomentar redes descentralizadas.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 4: SIMULADOR INTERACTIVO Y RETOS DE FIRMAS -->
+                <section class="slide-card p-6 border-l-4 border-l-amber-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-amber-600 text-white">4</span>
+                        <h2 class="text-lg font-bold text-slate-900">Laboratorio Interactivo: ¿Cuánto Vale tu Atención?</h2>
+                    </div>
+
+                    <!-- SIMULADOR JS -->
+                    <div class="p-4 bg-slate-900 text-white rounded-2xl mb-6 shadow-sm">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-teal-400 font-mono"><i class="fas fa-coins mr-1"></i> Calculadora de Ingresos Publicitarios por tu Tiempo</span>
+                            <span class="text-[10px] bg-teal-500/20 text-teal-300 px-2 py-0.5 rounded">Simulador Interactivo</span>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                            <div>
+                                <label class="text-xs text-slate-300 block mb-1">Horas diarias en redes sociales:</label>
+                                <input type="number" id="simHoras" class="w-full p-2 bg-slate-800 border border-slate-700 rounded-lg text-xs text-white font-mono" value="4" oninput="calcularAtencion()">
+                            </div>
+                            <div>
+                                <label class="text-xs text-slate-300 block mb-1">Número de apps usadas diariamente:</label>
+                                <input type="number" id="simApps" class="w-full p-2 bg-slate-800 border border-slate-700 rounded-lg text-xs text-white font-mono" value="5" oninput="calcularAtencion()">
+                            </div>
+                        </div>
+                        <div id="simAtencionOutput" class="p-3 bg-slate-800 rounded-xl text-xs font-mono text-teal-200">
+                            <!-- Generado por JS -->
+                        </div>
+                    </div>
+
+                    <!-- RETOS PARA 40% FIRMAS -->
+                    <div class="space-y-3 text-xs">
+                        <h3 class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+                            <i class="fas fa-pen-nib text-teal-600"></i> Retos Prácticos en tu Libreta / Digital (Portafolio de Firmas 40%)
+                        </h3>
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <strong>Reto 1 (Nivel Novato):</strong> Diseña un cartel digital o dibujo que ilustre la dependencia tecnológica en los jóvenes de tu comunidad.
+                        </div>
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <strong>Reto 2 (Nivel Hacker):</strong> Revisa el informe de 'Tiempo en Pantalla' de tu celular y documenta qué aplicación te roba más horas a la semana.
+                        </div>
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <strong>Reto 3 (Nivel Pro - Evidencia AE 1.3.1):</strong> Crea tu infografía digital completa analizando los 5 temas clave para tu <strong>10% SAE</strong>.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 5: RÚBRICA OFICIAL CONALEP (AE 1.3.1) -->
+                <section class="slide-card p-6 border-l-4 border-l-emerald-500">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <span class="badge-step bg-emerald-600 text-white">5</span>
+                            <h2 class="text-lg font-bold text-slate-900">Rúbrica Oficial SAE (Págs. 32-33 CIDI-01)</h2>
+                        </div>
+                        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">Ponderación: 10% SAE</span>
+                    </div>
+
+                    <div class="overflow-x-auto text-[11px]">
+                        <table class="w-full text-left border-collapse bg-white rounded-xl overflow-hidden">
+                            <thead>
+                                <tr class="bg-slate-900 text-white">
+                                    <th class="p-2.5">Indicador</th>
+                                    <th class="p-2.5 text-center">%</th>
+                                    <th class="p-2.5">Excelente (10)</th>
+                                    <th class="p-2.5">Suficiente (7-8)</th>
+                                    <th class="p-2.5">Insuficiente (&lt;6)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 text-slate-700">
+                                <tr>
+                                    <td class="p-2.5 font-bold">Contenidos temáticos</td>
+                                    <td class="p-2.5 text-center font-bold text-teal-700">45%</td>
+                                    <td class="p-2.5 bg-teal-50/40">Explica con claridad corporaciones, colonialismo de datos, mercantilización de atención, dependencia y desigualdad.</td>
+                                    <td class="p-2.5">Explica de manera general algunos de los temas requeridos.</td>
+                                    <td class="p-2.5 bg-red-50/30">Omite explicar los temas solicitados.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2.5 font-bold">Capacidad de síntesis</td>
+                                    <td class="p-2.5 text-center font-bold text-teal-700">35%</td>
+                                    <td class="p-2.5 bg-teal-50/40">Presenta la información de forma resumida y precisa, destacando lo esencial de cada tema sin perder el sentido.</td>
+                                    <td class="p-2.5">Presenta información de forma básica, destacando solo algunos puntos.</td>
+                                    <td class="p-2.5 bg-red-50/30">Información confusa, incorrecta o incompleta.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2.5 font-bold">Presentación y diseño</td>
+                                    <td class="p-2.5 text-center font-bold text-teal-700">20%</td>
+                                    <td class="p-2.5 bg-teal-50/40">Diseño muy atractivo, excelente uso del color, tipografía e imágenes que refuerzan la información sin faltas.</td>
+                                    <td class="p-2.5">Diseño funcional pero básico; pequeños detalles ortográficos.</td>
+                                    <td class="p-2.5 bg-red-50/30">Diseño desordenado, poco claro o con muchos errores ortográficos.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Navegación de Pie de Página -->
+                <div class="flex justify-between items-center border-t border-slate-200 pt-6">
+                    <a href="tema1_2.html" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
+                        <i class="fas fa-arrow-left mr-1"></i> Anterior: Clase 1.2
+                    </a>
+                    <a href="tema1_4.html" class="px-4 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs transition shadow-sm">
+                        Siguiente: Clase 1.4 (Linux y Cultura Hacker) <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+            </main>
+
+            <!-- COLUMNA 3: Resumen SAE -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm text-xs">
+                        <div class="flex items-center gap-2 text-teal-900 font-bold mb-2">
+                            <i class="fas fa-clipboard-check text-teal-600"></i> Entregable Oficial AE 1.3.1
+                        </div>
+                        <ul class="text-[11px] text-slate-600 list-disc ml-4 space-y-1 mb-3">
+                            <li>Infografía digital individual o parejas.</li>
+                            <li>Análisis de colonialismo de datos.</li>
+                            <li>Impacto en personas y comunidad.</li>
+                            <li>Propuesta de soberanía tecnológica.</li>
+                        </ul>
+                        <div class="p-2.5 bg-teal-50 rounded-xl text-center font-bold text-teal-800">
+                            Ponderación: 10% SAE
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <!-- Script del Simulador JS -->
+    <script>
+        function calcularAtencion() {
+            const horas = parseFloat(document.getElementById('simHoras').value);
+            const apps = parseFloat(document.getElementById('simApps').value);
+            const outElem = document.getElementById('simAtencionOutput');
+
+            if (isNaN(horas) || isNaN(apps) || horas <= 0) {
+                outElem.innerHTML = `<span class="text-red-400">Ingresa valores válidos.</span>`;
+                return;
+            }
+
+            const horasAnio = horas * 365;
+            const diasCompletos = (horasAnio / 24).toFixed(1);
+            const ingresosEstimadosUsd = (horas * 0.15 * 365).toFixed(2); // Promedio monetización anual por usuario activo en LATAM
+            const ingresosMxn = (ingresosEstimadosUsd * 18.5).toFixed(2);
+
+            outElem.innerHTML = `
+                &bull; <strong>Tiempo Consumido al Año:</strong> ${horasAnio.toLocaleString()} horas = <span class="text-amber-300 font-bold">${diasCompletos} días completos sin dormir</span> mirando pantallas.<br>
+                &bull; <strong>Ganancia Publicitaria Generada a las Big Tech:</strong> ~$${ingresosEstimadosUsd} USD (<strong class="text-emerald-300">$${ingresosMxn} MXN</strong>) al año gracias a tus clics e interacciones.<br>
+                &bull; <strong>Conclusión Ciudadana:</strong> Recuperar 1 hora diaria equivale a ganar <strong>15 días de vida libre al año</strong> para aprender programación o hacer deporte.
+            `;
+        }
+        window.onload = calcularAtencion;
+    </script>
+</body>
+</html>

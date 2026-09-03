@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 1.4: Linux, Cultura Hacker y Ofimática Libre | Cultura Digital I</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; color: #0f172a; }
+        .slide-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1.25rem; }
+        .badge-step { width: 32px; height: 32px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; }
+    </style>
+</head>
+<body class="antialiased selection:bg-teal-100 selection:text-teal-900">
+
+    <!-- Top Bar Guía de Clase -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2.5 px-4 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="font-bold text-white flex items-center gap-2">
+                    <i class="fab fa-linux text-teal-400"></i> Clase 1.4: GNU/Linux, Cultura Hacker y Ofimática Libre
+                </span>
+                <span class="text-slate-600 hidden sm:inline">|</span>
+                <span class="text-teal-400 font-mono hidden sm:inline">CIDI-01 • Propósito 1.4 (15 Horas)</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="text-xs text-teal-300 hover:text-white transition flex items-center gap-1 font-semibold">
+                    <i class="fas fa-arrow-left"></i> Índice de Clases
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Layout Presentador en 3 Columnas -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- COLUMNA 1: Navegación Rápida -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+                    <div class="p-4 bg-teal-50/70 border border-teal-200 rounded-2xl">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-teal-800 font-mono">Guía del Estudiante</span>
+                        <h3 class="font-extrabold text-slate-900 text-sm mt-1">Propósito Formativo 1.4</h3>
+                        <p class="text-xs text-slate-600 mt-1">Utiliza herramientas de software libre y experimenta con alternativas a programas de patente y SaaS.</p>
+                        <div class="mt-3 pt-3 border-t border-teal-200 text-[11px] text-slate-600 flex justify-between">
+                            <span>Ponderación: <strong class="text-teal-700">20% SAE</strong></span>
+                            <span>Duración: <strong class="text-slate-800">15 Horas</strong></span>
+                        </div>
+                    </div>
+
+                    <!-- Lista de Clases -->
+                    <div class="border border-slate-200 rounded-2xl p-4 bg-white shadow-sm">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Clases del Módulo</h4>
+                        <nav class="space-y-1 text-xs">
+                            <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.1 Hardware y Software</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">5%</span>
+                            </a>
+                            <a href="tema1_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.2 Licenciamiento y Redes</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">5%</span>
+                            </a>
+                            <a href="tema1_3.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.3 Colonialismo de Datos</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">10%</span>
+                            </a>
+                            <a href="tema1_4.html" class="flex items-center justify-between p-2 rounded-xl bg-teal-50 text-teal-900 font-bold border border-teal-200">
+                                <span>1.4 Linux y Cultura Hacker</span>
+                                <span class="text-[10px] bg-teal-200 text-teal-900 px-1.5 py-0.5 rounded font-mono">20%</span>
+                            </a>
+                            <a href="tema1_5.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.5 Normatividad e IA Ética</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">5%</span>
+                            </a>
+                            <a href="tema1_6.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.6 Identidad y Basura Digital</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">5%</span>
+                            </a>
+                            <a href="tema1_7.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.7 Diagramas de Flujo</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">20%</span>
+                            </a>
+                            <a href="tema1_8.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.8 Algoritmia y Código</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">30%</span>
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- COLUMNA 2: Diapositivas y Presentación -->
+            <main class="lg:col-span-6 space-y-10">
+
+                <!-- Header de la Clase -->
+                <header class="border-b border-slate-200 pb-6">
+                    <div class="flex items-center gap-2 text-xs text-teal-600 font-bold uppercase tracking-wider mb-2">
+                        <span>Cultura Digital I</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Clase 1.4</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-3">
+                        GNU/Linux, la Cultura Hacker y el Poder de la Ofimática Libre
+                    </h1>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Conoce las 4 libertades esenciales del software libre, el movimiento 'Hazlo tú mismx' (DIY), la terminal de comandos de Linux y cómo dominar procesadores de texto, hojas de cálculo y presentaciones sin pagar suscripciones.
+                    </p>
+
+                    <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm mb-4">
+                        <img src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=1200&q=80" alt="Linux y Código" class="w-full h-48 sm:h-64 object-cover">
+                        <div class="bg-slate-50 px-4 py-2 border-t border-slate-200 text-[11px] text-slate-500 flex justify-between">
+                            <span><i class="fas fa-camera mr-1"></i> Imagen Libre: Ecosistema GNU/Linux y Desarrollo de Software Libre</span>
+                            <span>Unsplash Free License</span>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- FASE 1: APERTURA -->
+                <section class="slide-card p-6 border-l-4 border-l-teal-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-teal-600 text-white">1</span>
+                        <h2 class="text-lg font-bold text-slate-900">Apertura: ¿Qué es realmente un Hacker?</h2>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4">
+                        En las películas, un 'hacker' es alguien con capucha que roba bancos en un sótano oscuro. En la realidad y en la historia de la informática, <strong>un hacker es un artesano digital apasionado por entender cómo funcionan las cosas por dentro, mejorarlas y compartir su conocimiento para ayudar a su comunidad</strong>.
+                    </p>
+                    <div class="p-3 bg-teal-50 rounded-xl border border-teal-200 text-xs font-semibold text-teal-950 flex items-center gap-2">
+                        <i class="fab fa-linux text-teal-600 text-base"></i>
+                        <span><strong>Dato Curioso:</strong> El 100% de las 500 supercomputadoras más potentes del planeta y los servidores de la NASA, Google y Wikipedia funcionan sobre GNU/Linux.</span>
+                    </div>
+                </section>
+
+                <!-- FASE 2: DESARROLLO CONCEPTUAL -->
+                <section class="slide-card p-6 border-l-4 border-l-sky-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-sky-600 text-white">2</span>
+                        <h2 class="text-lg font-bold text-slate-900">Las 4 Libertades del Software Libre (FSF)</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs mb-4">
+                        <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-teal-700 block mb-1">Libertad 0 (Uso)</strong>
+                            <p class="text-slate-600">Ejecutar el programa con cualquier propósito (educativo, comercial, militar o recreativo).</p>
+                        </div>
+                        <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-sky-700 block mb-1">Libertad 1 (Estudio)</strong>
+                            <p class="text-slate-600">Estudiar cómo funciona el programa y modificarlo para adaptarlo a tus necesidades (acceso al código fuente).</p>
+                        </div>
+                        <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-indigo-700 block mb-1">Libertad 2 (Distribución)</strong>
+                            <p class="text-slate-600">Redistribuir copias exactas a tus compañeros, amigos o escuela para ayudar a tu comunidad.</p>
+                        </div>
+                        <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-emerald-700 block mb-1">Libertad 3 (Mejora)</strong>
+                            <p class="text-slate-600">Distribuir copias de tus versiones modificadas a terceros para que toda la comunidad se beneficie.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 3: EJEMPLO PASO A PASO GUIADO -->
+                <section class="slide-card p-6 border-l-4 border-l-indigo-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-indigo-600 text-white">3</span>
+                        <h2 class="text-lg font-bold text-slate-900">Suite Ofimática Libre: LibreOffice en Acción</h2>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-3">Equivalencias directas de herramientas profesionales de software libre:</p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-700">
+                        <div class="p-3.5 bg-white rounded-xl border border-slate-200">
+                            <div class="font-bold text-sky-800 text-sm mb-1"><i class="fas fa-file-lines mr-1"></i> LibreOffice Writer</div>
+                            <p class="text-[11px] text-slate-500 mb-2">Reemplazo libre de MS Word.</p>
+                            <span class="text-[10px] bg-slate-100 p-1 rounded font-mono block">Formatos: .odt, .docx, .pdf</span>
+                        </div>
+                        <div class="p-3.5 bg-white rounded-xl border border-slate-200">
+                            <div class="font-bold text-emerald-800 text-sm mb-1"><i class="fas fa-table mr-1"></i> LibreOffice Calc</div>
+                            <p class="text-[11px] text-slate-500 mb-2">Reemplazo libre de MS Excel.</p>
+                            <span class="text-[10px] bg-slate-100 p-1 rounded font-mono block">Fórmulas, tablas y macros</span>
+                        </div>
+                        <div class="p-3.5 bg-white rounded-xl border border-slate-200">
+                            <div class="font-bold text-amber-800 text-sm mb-1"><i class="fas fa-person-chalkboard mr-1"></i> LibreOffice Impress</div>
+                            <p class="text-[11px] text-slate-500 mb-2">Reemplazo libre de PowerPoint.</p>
+                            <span class="text-[10px] bg-slate-100 p-1 rounded font-mono block">Diapositivas y transiciones</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 4: SIMULADOR Y RETOS DE FIRMAS -->
+                <section class="slide-card p-6 border-l-4 border-l-amber-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-amber-600 text-white">4</span>
+                        <h2 class="text-lg font-bold text-slate-900">Laboratorio: Terminal Interactiva de Linux</h2>
+                    </div>
+
+                    <!-- SIMULADOR TERMINAL LINUX -->
+                    <div class="p-4 bg-slate-900 text-white rounded-2xl mb-6 shadow-sm">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-teal-400 font-mono"><i class="fas fa-terminal mr-1"></i> Mini Terminal GNU/Linux Bash</span>
+                            <span class="text-[10px] bg-teal-500/20 text-teal-300 px-2 py-0.5 rounded">Comandos Esenciales</span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="text-xs text-slate-300 block mb-1">Escribe un comando Linux (o selecciona uno):</label>
+                            <select id="simCmd" class="w-full p-2 bg-slate-800 border border-slate-700 rounded-lg text-xs text-white font-mono" onchange="ejecutarComando()">
+                                <option value="uname -a">uname -a (Ver Kernel y Sistema Operativo)</option>
+                                <option value="ls -la">ls -la (Listar archivos ocultos y permisos)</option>
+                                <option value="free -h">free -h (Ver uso de memoria RAM)</option>
+                                <option value="whoami">whoami (Ver usuario actual)</option>
+                            </select>
+                        </div>
+                        <div id="simCmdOutput" class="p-3 bg-slate-800 rounded-xl text-xs font-mono text-emerald-400">
+                            <!-- Generado por JS -->
+                        </div>
+                    </div>
+
+                    <!-- RETOS PARA 40% FIRMAS -->
+                    <div class="space-y-3 text-xs">
+                        <h3 class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+                            <i class="fas fa-pen-nib text-teal-600"></i> Retos Prácticos en tu Libreta / Digital (Portafolio de Firmas 40%)
+                        </h3>
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <strong>Reto 1 (Nivel Novato):</strong> Elabora un mapa mental sobre las 4 libertades del software libre con ejemplos de aplicaciones reales.
+                        </div>
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <strong>Reto 2 (Nivel Hacker):</strong> Crea un documento de texto en LibreOffice Writer con portada, encabezados, estilos y exportado a PDF.
+                        </div>
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <strong>Reto 3 (Nivel Pro - Evidencia AE 1.4.1):</strong> Desarrolla tu producto digital integrado (documento, hoja de cálculo con fórmulas y presentación) para tu <strong>20% SAE</strong> (Autoevaluación).
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 5: RÚBRICA OFICIAL CONALEP (AE 1.4.1) -->
+                <section class="slide-card p-6 border-l-4 border-l-emerald-500">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <span class="badge-step bg-emerald-600 text-white">5</span>
+                            <h2 class="text-lg font-bold text-slate-900">Rúbrica Oficial SAE (Págs. 35-37 CIDI-01)</h2>
+                        </div>
+                        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">Ponderación: 20% SAE (Autoevaluación)</span>
+                    </div>
+
+                    <div class="overflow-x-auto text-[11px]">
+                        <table class="w-full text-left border-collapse bg-white rounded-xl overflow-hidden">
+                            <thead>
+                                <tr class="bg-slate-900 text-white">
+                                    <th class="p-2.5">Indicador</th>
+                                    <th class="p-2.5 text-center">%</th>
+                                    <th class="p-2.5">Excelente (10)</th>
+                                    <th class="p-2.5">Suficiente (7-8)</th>
+                                    <th class="p-2.5">Insuficiente (&lt;6)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 text-slate-700">
+                                <tr>
+                                    <td class="p-2.5 font-bold">Procesador de texto</td>
+                                    <td class="p-2.5 text-center font-bold text-teal-700">20%</td>
+                                    <td class="p-2.5 bg-teal-50/40">Presentado de manera detallada: margen, fuentes, encabezado/pie, estilos, párrafos, tablas, multimedia y descripción de beneficios.</td>
+                                    <td class="p-2.5">Presenta el documento omitiendo dos de las características requeridas.</td>
+                                    <td class="p-2.5 bg-red-50/30">Omite más de cuatro características o no añade descripción.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2.5 font-bold">Hoja de cálculo</td>
+                                    <td class="p-2.5 text-center font-bold text-teal-700">20%</td>
+                                    <td class="p-2.5 bg-teal-50/40">Presentado de manera precisa con fórmulas, gráficos, tablas, macros, funciones, formato y descripción de beneficios.</td>
+                                    <td class="p-2.5">Presenta la hoja omitiendo dos de las características requeridas.</td>
+                                    <td class="p-2.5 bg-red-50/30">Omite más de cuatro características o fórmulas.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2.5 font-bold">Presentador gráfico</td>
+                                    <td class="p-2.5 text-center font-bold text-teal-700">20%</td>
+                                    <td class="p-2.5 bg-teal-50/40">Diapositivas detalladas, tablas, multimedia, diseños, transiciones, animaciones, diseñador, hipervínculos y justificación.</td>
+                                    <td class="p-2.5">Presentación omite dos características solicitadas.</td>
+                                    <td class="p-2.5 bg-red-50/30">Omite más de cuatro características o es incompleto.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2.5 font-bold">Uso de software libre</td>
+                                    <td class="p-2.5 text-center font-bold text-teal-700">30%</td>
+                                    <td class="p-2.5 bg-teal-50/40">Elige herramientas de software libre adecuadas, maneja con precisión sus funciones y reflexiona claramente sobre su importancia.</td>
+                                    <td class="p-2.5">Uso básico con errores frecuentes o limitada comprensión de funciones.</td>
+                                    <td class="p-2.5 bg-red-50/30">Omite utilizar software libre o depende de programas de patente.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2.5 font-bold">Desarrollo (AUTOEVALUACIÓN)</td>
+                                    <td class="p-2.5 text-center font-bold text-teal-700">10%</td>
+                                    <td class="p-2.5 bg-teal-50/40">Trabajo bien organizado (introducción, desarrollo, conclusiones), fuentes académicas citadas y excelente redacción.</td>
+                                    <td class="p-2.5">Organización débil, fuentes escasas o errores de ortografía.</td>
+                                    <td class="p-2.5 bg-red-50/30">Carece de estructura, fuentes no confiables y redacción deficiente.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Navegación de Pie de Página -->
+                <div class="flex justify-between items-center border-t border-slate-200 pt-6">
+                    <a href="tema1_3.html" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
+                        <i class="fas fa-arrow-left mr-1"></i> Anterior: Clase 1.3
+                    </a>
+                    <a href="tema1_5.html" class="px-4 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs transition shadow-sm">
+                        Siguiente: Clase 1.5 (Normatividad e IA Ética) <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+            </main>
+
+            <!-- COLUMNA 3: Resumen SAE -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm text-xs">
+                        <div class="flex items-center gap-2 text-teal-900 font-bold mb-2">
+                            <i class="fas fa-clipboard-check text-teal-600"></i> Entregable Oficial AE 1.4.1
+                        </div>
+                        <ul class="text-[11px] text-slate-600 list-disc ml-4 space-y-1 mb-3">
+                            <li>Producto digital en software libre.</li>
+                            <li>Documento en LibreOffice Writer.</li>
+                            <li>Hoja de cálculo en Calc con fórmulas.</li>
+                            <li>Presentación en Impress.</li>
+                            <li>Autoevaluación del alumno.</li>
+                        </ul>
+                        <div class="p-2.5 bg-teal-50 rounded-xl text-center font-bold text-teal-800">
+                            Ponderación: 20% SAE
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <!-- Script del Simulador JS -->
+    <script>
+        function ejecutarComando() {
+            const cmd = document.getElementById('simCmd').value;
+            const outElem = document.getElementById('simCmdOutput');
+
+            if (cmd === "uname -a") {
+                outElem.innerHTML = `Linux conalep-lab 6.8.0-generic #42-Ubuntu SMP PREEMPT_DYNAMIC x86_64 GNU/Linux`;
+            } else if (cmd === "ls -la") {
+                outElem.innerHTML = `
+drwxr-xr-x 4 estudiante conalep 4096 Sep 3 14:00 .<br>
+drwxr-xr-x 3 root       root    4096 Sep 3 13:00 ..<br>
+-rw-r--r-- 1 estudiante conalep 1280 Sep 3 13:50 reporte_cultura_digital.odt<br>
+-rw-r--r-- 1 estudiante conalep 2450 Sep 3 13:55 presupuesto_libreoffice.ods<br>
+-rw-r--r-- 1 estudiante conalep 8920 Sep 3 14:00 presentacion_hacker_diy.odp
+                `;
+            } else if (cmd === "free -h") {
+                outElem.innerHTML = `
+              total        used        free      shared  buff/cache   available<br>
+Mem:          15Gi       2.1Gi        11Gi       120Mi       2.3Gi        13Gi<br>
+Swap:        4.0Gi          0B       4.0Gi
+                `;
+            } else {
+                outElem.innerHTML = `estudiante_conalep (UID: 1000 - Grupo: cultura_digital)`;
+            }
+        }
+        window.onload = ejecutarComando;
+    </script>
+</body>
+</html>

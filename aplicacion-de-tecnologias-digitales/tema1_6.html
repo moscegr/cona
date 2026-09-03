@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 1.6: Identidad Digital Segura y Basura Tecnológica | Cultura Digital I</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; color: #0f172a; }
+        .slide-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1.25rem; }
+        .badge-step { width: 32px; height: 32px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; }
+    </style>
+</head>
+<body class="antialiased selection:bg-teal-100 selection:text-teal-900">
+
+    <!-- Top Bar Guía de Clase -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2.5 px-4 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-fingerprint text-teal-400"></i> Clase 1.6: Identidad Digital y Basura Tecnológica
+                </span>
+                <span class="text-slate-600 hidden sm:inline">|</span>
+                <span class="text-teal-400 font-mono hidden sm:inline">CIDI-01 • Propósito 1.6 (5 Horas)</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="text-xs text-teal-300 hover:text-white transition flex items-center gap-1 font-semibold">
+                    <i class="fas fa-arrow-left"></i> Índice de Clases
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Layout Presentador en 3 Columnas -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- COLUMNA 1: Navegación Rápida -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+                    <div class="p-4 bg-teal-50/70 border border-teal-200 rounded-2xl">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-teal-800 font-mono">Guía del Estudiante</span>
+                        <h3 class="font-extrabold text-slate-900 text-sm mt-1">Propósito Formativo 1.6</h3>
+                        <p class="text-xs text-slate-600 mt-1">Protege la identidad digital, credenciales de acceso y reflexiona sobre el impacto ambiental del e-waste.</p>
+                        <div class="mt-3 pt-3 border-t border-teal-200 text-[11px] text-slate-600 flex justify-between">
+                            <span>Ponderación: <strong class="text-teal-700">5% SAE</strong></span>
+                            <span>Duración: <strong class="text-slate-800">5 Horas</strong></span>
+                        </div>
+                    </div>
+
+                    <!-- Lista de Clases -->
+                    <div class="border border-slate-200 rounded-2xl p-4 bg-white shadow-sm">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Clases del Módulo</h4>
+                        <nav class="space-y-1 text-xs">
+                            <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.1 Hardware y Software</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">5%</span>
+                            </a>
+                            <a href="tema1_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.2 Licenciamiento y Redes</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">5%</span>
+                            </a>
+                            <a href="tema1_3.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.3 Colonialismo de Datos</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">10%</span>
+                            </a>
+                            <a href="tema1_4.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.4 Linux y Cultura Hacker</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">20%</span>
+                            </a>
+                            <a href="tema1_5.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.5 Normatividad e IA Ética</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">5%</span>
+                            </a>
+                            <a href="tema1_6.html" class="flex items-center justify-between p-2 rounded-xl bg-teal-50 text-teal-900 font-bold border border-teal-200">
+                                <span>1.6 Identidad y Basura Digital</span>
+                                <span class="text-[10px] bg-teal-200 text-teal-900 px-1.5 py-0.5 rounded font-mono">5%</span>
+                            </a>
+                            <a href="tema1_7.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.7 Diagramas de Flujo</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">20%</span>
+                            </a>
+                            <a href="tema1_8.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.8 Algoritmia y Código</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">30%</span>
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- COLUMNA 2: Diapositivas y Presentación -->
+            <main class="lg:col-span-6 space-y-10">
+
+                <!-- Header de la Clase -->
+                <header class="border-b border-slate-200 pb-6">
+                    <div class="flex items-center gap-2 text-xs text-teal-600 font-bold uppercase tracking-wider mb-2">
+                        <span>Cultura Digital I</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Clase 1.6</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-3">
+                        Tu Huella Digital, Ciberseguridad Personal y la Basura Tecnológica
+                    </h1>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Todo lo que publicas, buscas o compartes deja un rastro imborrable en la red. Aprende a blindar tus cuentas con contraseñas robustas y 2FA, y descubre qué pasa con los teléfonos y computadoras viejas que contaminan el medio ambiente.
+                    </p>
+
+                    <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm mb-4">
+                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80" alt="Identidad Digital y Seguridad" class="w-full h-48 sm:h-64 object-cover">
+                        <div class="bg-slate-50 px-4 py-2 border-t border-slate-200 text-[11px] text-slate-500 flex justify-between">
+                            <span><i class="fas fa-camera mr-1"></i> Imagen Libre: Ciberseguridad, Identidad Digital y Huella en la Red</span>
+                            <span>Unsplash Free License</span>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- FASE 1: APERTURA -->
+                <section class="slide-card p-6 border-l-4 border-l-teal-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-teal-600 text-white">1</span>
+                        <h2 class="text-lg font-bold text-slate-900">Apertura: ¿Qué encuentra Google si busca tu nombre completo?</h2>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4">
+                        Tu identidad digital no son solo tus fotos de perfil: son los comentarios que dejaste hace 3 años, las ubicaciones donde te registraste y los 'likes' que diste. Las empresas de reclutamiento laboral revisan las redes sociales de los aspirantes antes de contratar.
+                    </p>
+                    <div class="p-3 bg-teal-50 rounded-xl border border-teal-200 text-xs font-semibold text-teal-950 flex items-center gap-2">
+                        <i class="fas fa-fingerprint text-teal-600 text-base"></i>
+                        <span><strong>Regla de Privacidad:</strong> "Lo que subes a Internet, se queda en Internet para siempre. Piénsalo 2 veces antes de publicar."</span>
+                    </div>
+                </section>
+
+                <!-- FASE 2: DESARROLLO CONCEPTUAL -->
+                <section class="slide-card p-6 border-l-4 border-l-sky-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-sky-600 text-white">2</span>
+                        <h2 class="text-lg font-bold text-slate-900">Seguridad Personal y Basura Electrónica (E-Waste)</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs mb-4">
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-teal-700 block text-sm mb-1"><i class="fas fa-key mr-1"></i> Doble Factor de Autenticación (2FA)</strong>
+                            <p class="text-slate-600">Una contraseña ya no es suficiente. Activa el 2FA con apps de autenticación (Google Authenticator) para que nadie pueda entrar aunque adivinen tu clave.</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-emerald-700 block text-sm mb-1"><i class="fas fa-recycle mr-1"></i> Basura Electrónica (E-Waste)</strong>
+                            <p class="text-slate-600">Cada año se tiran más de 50 millones de toneladas de electrónicos. Las baterías de litio y tarjetas contienen plomo, mercurio y cadmio que envenenan los mantos acuíferos si no se reciclan.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 3: EJEMPLO PASO A PASO GUIADO -->
+                <section class="slide-card p-6 border-l-4 border-l-indigo-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-indigo-600 text-white">3</span>
+                        <h2 class="text-lg font-bold text-slate-900">Ejemplo: Decálogo de Buenas Prácticas de Ciberseguridad</h2>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-3">10 reglas de oro para blindar tu vida digital:</p>
+
+                    <div class="p-4 bg-slate-900 text-slate-200 rounded-xl text-xs font-mono space-y-1">
+                        <div>1. <span class="text-emerald-300">Usa frases largas como contraseñas:</span> <code>Café#Chilpancingo.2026!</code> en vez de <code>123456</code>.</div>
+                        <div>2. <span class="text-emerald-300">Nunca repitas la misma clave</span> en el correo y en tus redes sociales.</div>
+                        <div>3. <span class="text-emerald-300">Desconfía de enlaces sospechosos</span> por WhatsApp prometiendo premios o recargas gratis.</div>
+                        <div>4. <span class="text-emerald-300">No uses redes Wi-Fi públicas abiertas</span> para entrar al banco o ingresar contraseñas.</div>
+                        <div>5. <span class="text-emerald-300">Lleva tus celulares viejos</span> a centros de acopio certificados de reciclaje.</div>
+                    </div>
+                </section>
+
+                <!-- FASE 4: SIMULADOR Y RETOS DE FIRMAS -->
+                <section class="slide-card p-6 border-l-4 border-l-amber-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-amber-600 text-white">4</span>
+                        <h2 class="text-lg font-bold text-slate-900">Laboratorio: Medidor de Fuerza de Contraseña</h2>
+                    </div>
+
+                    <!-- SIMULADOR JS -->
+                    <div class="p-4 bg-slate-900 text-white rounded-2xl mb-6 shadow-sm">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-teal-400 font-mono"><i class="fas fa-lock mr-1"></i> Comprobador de Entropía y Tiempo de Hackeo</span>
+                            <span class="text-[10px] bg-teal-500/20 text-teal-300 px-2 py-0.5 rounded">Simulador en Vivo</span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="text-xs text-slate-300 block mb-1">Escribe una contraseña de prueba (no pongas tu clave real):</label>
+                            <input type="text" id="simPassword" class="w-full p-2 bg-slate-800 border border-slate-700 rounded-lg text-xs text-white font-mono" value="Conalep#2026!" oninput="probarPassword()">
+                        </div>
+                        <div id="simPassOutput" class="p-3 bg-slate-800 rounded-xl text-xs font-mono text-teal-200">
+                            <!-- Generado por JS -->
+                        </div>
+                    </div>
+
+                    <!-- RETOS PARA 40% FIRMAS -->
+                    <div class="space-y-3 text-xs">
+                        <h3 class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+                            <i class="fas fa-pen-nib text-teal-600"></i> Retos Prácticos en tu Libreta / Digital (Portafolio de Firmas 40%)
+                        </h3>
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <strong>Reto 1 (Nivel Novato):</strong> Elabora un cartel de concientización sobre el reciclaje de basura electrónica en tu colonia o escuela.
+                        </div>
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <strong>Reto 2 (Nivel Hacker):</strong> Activa la autenticación en dos pasos (2FA) en tu cuenta de correo institucional o personal y toma captura de la confirmación.
+                        </div>
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <strong>Reto 3 (Nivel Pro - Evidencia AE 1.6.1):</strong> Diseña y publica en redes sociales un material multimedia sobre protección de la identidad digital para tu <strong>5% SAE</strong>.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 5: RÚBRICA OFICIAL CONALEP (AE 1.6.1) -->
+                <section class="slide-card p-6 border-l-4 border-l-emerald-500">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <span class="badge-step bg-emerald-600 text-white">5</span>
+                            <h2 class="text-lg font-bold text-slate-900">Rúbrica Oficial SAE (Págs. 42-43 CIDI-01)</h2>
+                        </div>
+                        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">Ponderación: 5% SAE</span>
+                    </div>
+
+                    <div class="overflow-x-auto text-[11px]">
+                        <table class="w-full text-left border-collapse bg-white rounded-xl overflow-hidden">
+                            <thead>
+                                <tr class="bg-slate-900 text-white">
+                                    <th class="p-2.5">Indicador</th>
+                                    <th class="p-2.5 text-center">%</th>
+                                    <th class="p-2.5">Excelente (10)</th>
+                                    <th class="p-2.5">Suficiente (7-8)</th>
+                                    <th class="p-2.5">Insuficiente (&lt;6)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 text-slate-700">
+                                <tr>
+                                    <td class="p-2.5 font-bold">Normatividad del ciberespacio</td>
+                                    <td class="p-2.5 text-center font-bold text-teal-700">30%</td>
+                                    <td class="p-2.5 bg-teal-50/40">Explica con claridad normatividad, privacidad, seguridad digital, protección de datos, IA ética y copyleft.</td>
+                                    <td class="p-2.5">Explica de manera parcial algunos de los temas normativos.</td>
+                                    <td class="p-2.5 bg-red-50/30">Omite explicar la normatividad digital.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2.5 font-bold">Ciudadanía e identidad digital</td>
+                                    <td class="p-2.5 text-center font-bold text-teal-700">30%</td>
+                                    <td class="p-2.5 bg-teal-50/40">Explica con claridad ciudadanía digital, credenciales de acceso, plataformas de uso cotidiano y contaminación tecnológica.</td>
+                                    <td class="p-2.5">Explica parcialmente la identidad digital y contaminación.</td>
+                                    <td class="p-2.5 bg-red-50/30">Omite explicar correctamente los temas solicitados.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2.5 font-bold">Presentación del producto digital</td>
+                                    <td class="p-2.5 text-center font-bold text-teal-700">20%</td>
+                                    <td class="p-2.5 bg-teal-50/40">Diseño atractivo, bien organizado, colores, tipografía e imágenes; usa recursos multimedia que enriquecen el mensaje.</td>
+                                    <td class="p-2.5">Diseño básico o con uso limitado de elementos visuales.</td>
+                                    <td class="p-2.5 bg-red-50/30">Diseño descuidado o desorganizado.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2.5 font-bold">Publicación en redes sociales</td>
+                                    <td class="p-2.5 text-center font-bold text-teal-700">20%</td>
+                                    <td class="p-2.5 bg-teal-50/40">Publicado oportunamente con descripción, etiquetas, genera interacción relevante y promueve ciudadanía responsable.</td>
+                                    <td class="p-2.5">Publicado con retraso o con poca interacción.</td>
+                                    <td class="p-2.5 bg-red-50/30">Publicación inapropiada o que vulnera normas éticas.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Navegación de Pie de Página -->
+                <div class="flex justify-between items-center border-t border-slate-200 pt-6">
+                    <a href="tema1_5.html" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
+                        <i class="fas fa-arrow-left mr-1"></i> Anterior: Clase 1.5
+                    </a>
+                    <a href="tema1_7.html" class="px-4 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs transition shadow-sm">
+                        Siguiente: Clase 1.7 (Diagramas de Flujo) <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+            </main>
+
+            <!-- COLUMNA 3: Resumen SAE -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm text-xs">
+                        <div class="flex items-center gap-2 text-teal-900 font-bold mb-2">
+                            <i class="fas fa-clipboard-check text-teal-600"></i> Entregable Oficial AE 1.6.1
+                        </div>
+                        <ul class="text-[11px] text-slate-600 list-disc ml-4 space-y-1 mb-3">
+                            <li>Material multimedia en redes.</li>
+                            <li>Protección de identidad y 2FA.</li>
+                            <li>Concientización de e-waste.</li>
+                            <li>Evidencia de interacción.</li>
+                        </ul>
+                        <div class="p-2.5 bg-teal-50 rounded-xl text-center font-bold text-teal-800">
+                            Ponderación: 5% SAE
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <!-- Script del Simulador JS -->
+    <script>
+        function probarPassword() {
+            const pass = document.getElementById('simPassword').value;
+            const outElem = document.getElementById('simPassOutput');
+
+            let longitud = pass.length;
+            let tieneMayus = /[A-Z]/.test(pass);
+            let tieneMinus = /[a-z]/.test(pass);
+            let tieneNum = /[0-9]/.test(pass);
+            let tieneSim = /[^A-Za-z0-9]/.test(pass);
+
+            let score = 0;
+            if (longitud >= 8) score++;
+            if (longitud >= 12) score++;
+            if (tieneMayus && tieneMinus) score++;
+            if (tieneNum) score++;
+            if (tieneSim) score++;
+
+            let tiempoHackeo = "";
+            let nivel = "";
+            let color = "text-emerald-300";
+
+            if (score <= 2) {
+                tiempoHackeo = "Menos de 1 segundo (Ataque de diccionario instantáneo)";
+                nivel = "MUY DÉBIL - ¡CAMBIAR URGENTEMENTE!";
+                color = "text-red-400";
+            } else if (score <= 4) {
+                tiempoHackeo = "~3 semanas con una tarjeta gráfica RTX 4090";
+                nivel = "MODERADA - Aceptable para cuentas secundarias";
+                color = "text-amber-300";
+            } else {
+                tiempoHackeo = "Más de 3,000 años por fuerza bruta";
+                nivel = "ROBUSTA Y SEGURA - Nivel Profesional";
+                color = "text-emerald-300";
+            }
+
+            outElem.innerHTML = `
+                &bull; Longitud: <strong class="text-white">${longitud} caracteres</strong> | Complejidad: <span class="text-white">${score}/5</span><br>
+                &bull; Tiempo Estimado para Romperla: <strong class="${color}">${tiempoHackeo}</strong><br>
+                &bull; Diagnóstico de Seguridad: <span class="${color} font-bold">${nivel}</span>
+            `;
+        }
+        window.onload = probarPassword;
+    </script>
+</body>
+</html>

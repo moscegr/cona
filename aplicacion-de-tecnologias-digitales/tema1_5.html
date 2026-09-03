@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 1.5: Normatividad Digital, IA Ética y Copyleft | Cultura Digital I</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; color: #0f172a; }
+        .slide-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1.25rem; }
+        .badge-step { width: 32px; height: 32px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; }
+    </style>
+</head>
+<body class="antialiased selection:bg-teal-100 selection:text-teal-900">
+
+    <!-- Top Bar Guía de Clase -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2.5 px-4 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-scale-balanced text-teal-400"></i> Clase 1.5: Normatividad Digital, IA Ética y Copyleft
+                </span>
+                <span class="text-slate-600 hidden sm:inline">|</span>
+                <span class="text-teal-400 font-mono hidden sm:inline">CIDI-01 • Propósito 1.5 (5 Horas)</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="text-xs text-teal-300 hover:text-white transition flex items-center gap-1 font-semibold">
+                    <i class="fas fa-arrow-left"></i> Índice de Clases
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Layout Presentador en 3 Columnas -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- COLUMNA 1: Navegación Rápida -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+                    <div class="p-4 bg-teal-50/70 border border-teal-200 rounded-2xl">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-teal-800 font-mono">Guía del Estudiante</span>
+                        <h3 class="font-extrabold text-slate-900 text-sm mt-1">Propósito Formativo 1.5</h3>
+                        <p class="text-xs text-slate-600 mt-1">Identifica y aplica la normatividad que regula el uso del ciberespacio, privacidad, IA ética y copyleft.</p>
+                        <div class="mt-3 pt-3 border-t border-teal-200 text-[11px] text-slate-600 flex justify-between">
+                            <span>Ponderación: <strong class="text-teal-700">5% SAE</strong></span>
+                            <span>Duración: <strong class="text-slate-800">5 Horas</strong></span>
+                        </div>
+                    </div>
+
+                    <!-- Lista de Clases -->
+                    <div class="border border-slate-200 rounded-2xl p-4 bg-white shadow-sm">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Clases del Módulo</h4>
+                        <nav class="space-y-1 text-xs">
+                            <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.1 Hardware y Software</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">5%</span>
+                            </a>
+                            <a href="tema1_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.2 Licenciamiento y Redes</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">5%</span>
+                            </a>
+                            <a href="tema1_3.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.3 Colonialismo de Datos</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">10%</span>
+                            </a>
+                            <a href="tema1_4.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.4 Linux y Cultura Hacker</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">20%</span>
+                            </a>
+                            <a href="tema1_5.html" class="flex items-center justify-between p-2 rounded-xl bg-teal-50 text-teal-900 font-bold border border-teal-200">
+                                <span>1.5 Normatividad e IA Ética</span>
+                                <span class="text-[10px] bg-teal-200 text-teal-900 px-1.5 py-0.5 rounded font-mono">5%</span>
+                            </a>
+                            <a href="tema1_6.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.6 Identidad y Basura Digital</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">5%</span>
+                            </a>
+                            <a href="tema1_7.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.7 Diagramas de Flujo</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">20%</span>
+                            </a>
+                            <a href="tema1_8.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.8 Algoritmia y Código</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">30%</span>
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- COLUMNA 2: Diapositivas y Presentación -->
+            <main class="lg:col-span-6 space-y-10">
+
+                <!-- Header de la Clase -->
+                <header class="border-b border-slate-200 pb-6">
+                    <div class="flex items-center gap-2 text-xs text-teal-600 font-bold uppercase tracking-wider mb-2">
+                        <span>Cultura Digital I</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Clase 1.5</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-3">
+                        Leyes en Internet, Inteligencia Artificial Ética y Copyleft
+                    </h1>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        El ciberespacio no es una zona sin leyes: conoce tus derechos de privacidad, cómo la Ley Olimpia sanciona la violencia digital en México, qué significa la filosofía Copyleft y cómo usar ChatGPT o Gemini con responsabilidad académica.
+                    </p>
+
+                    <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm mb-4">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" alt="IA Ética y Normativa" class="w-full h-48 sm:h-64 object-cover">
+                        <div class="bg-slate-50 px-4 py-2 border-t border-slate-200 text-[11px] text-slate-500 flex justify-between">
+                            <span><i class="fas fa-camera mr-1"></i> Imagen Libre: Inteligencia Artificial, Ética y Derechos Digitales</span>
+                            <span>Unsplash Free License</span>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- FASE 1: APERTURA -->
+                <section class="slide-card p-6 border-l-4 border-l-teal-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-teal-600 text-white">1</span>
+                        <h2 class="text-lg font-bold text-slate-900">Apertura: ¿Copiar y pegar de la IA es plagio?</h2>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4">
+                        Pedirle a una Inteligencia Artificial que haga tu tarea y copiar el texto palabra por palabra no solo anula tu aprendizaje, sino que puede contener 'alucinaciones' o información falsa inventada por el modelo. <strong>La IA debe ser tu tutora o asistente de investigación, nunca el autor de tus ideas</strong>.
+                    </p>
+                    <div class="p-3 bg-teal-50 rounded-xl border border-teal-200 text-xs font-semibold text-teal-950 flex items-center gap-2">
+                        <i class="fas fa-brain text-teal-600 text-base"></i>
+                        <span><strong>Regla de Oro:</strong> Siempre verifica las fuentes, cita las herramientas de IA utilizadas y aporta tu propio análisis crítico.</span>
+                    </div>
+                </section>
+
+                <!-- FASE 2: DESARROLLO CONCEPTUAL -->
+                <section class="slide-card p-6 border-l-4 border-l-sky-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-sky-600 text-white">2</span>
+                        <h2 class="text-lg font-bold text-slate-900">Marco Legal y Derechos en Internet</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs mb-4">
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-teal-700 block text-sm mb-1"><i class="fas fa-shield-halved mr-1"></i> Ley Olimpia (México)</strong>
+                            <p class="text-slate-600">Sanciona con hasta 6 años de prisión la difusión, grabación o almacenamiento de contenido íntimo sin consentimiento en redes sociales o mensajería.</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-indigo-700 block text-sm mb-1"><i class="fas fa-copyright mr-1"></i> Copyright vs. Copyleft</strong>
+                            <p class="text-slate-600"><strong>Copyright (&copy;):</strong> Todos los derechos reservados.<br><strong>Copyleft (&copy; invertido):</strong> Todos los derechos liberados para que la obra permanezca siempre libre.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 3: EJEMPLO PASO A PASO GUIADO -->
+                <section class="slide-card p-6 border-l-4 border-l-indigo-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-indigo-600 text-white">3</span>
+                        <h2 class="text-lg font-bold text-slate-900">Ejemplo: Guion de Video Corto para Redes</h2>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-3">Estructura para tu Reel / TikTok de concientización digital:</p>
+
+                    <div class="p-4 bg-slate-900 text-slate-200 rounded-xl text-xs font-mono space-y-2">
+                        <span class="text-teal-400 font-bold">[GUION DE 45 SEGUNDOS: '3 DERECHOS DIGITALES QUE DEBES CONOCER']</span>
+                        <div>
+                            &bull; <strong>0 a 5s (Gancho):</strong> "¿Sabías que compartir memes ofensivos o fotos privadas puede meterte en problemas legales graves?"<br>
+                            &bull; <strong>5 a 25s (Contenido):</strong> Explicar qué es la Ley Olimpia y cómo proteger tu contraseña.<br>
+                            &bull; <strong>25 a 40s (IA Ética):</strong> "Si usas IA para tareas, sé honesto: úsala para aprender a programar, no para plagiar."<br>
+                            &bull; <strong>40 a 45s (Llamado a la Acción):</strong> "¡Sigue la cuenta oficial de Cultura Digital CONALEP para más tips!"
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 4: SIMULADOR Y RETOS DE FIRMAS -->
+                <section class="slide-card p-6 border-l-4 border-l-amber-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-amber-600 text-white">4</span>
+                        <h2 class="text-lg font-bold text-slate-900">Laboratorio: Detector de Plagio y Prompt Ético</h2>
+                    </div>
+
+                    <!-- SIMULADOR JS -->
+                    <div class="p-4 bg-slate-900 text-white rounded-2xl mb-6 shadow-sm">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-teal-400 font-mono"><i class="fas fa-robot mr-1"></i> Asistente de Prompts Éticos para Estudiantes</span>
+                            <span class="text-[10px] bg-teal-500/20 text-teal-300 px-2 py-0.5 rounded">JavaScript Nativo</span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="text-xs text-slate-300 block mb-1">Elige tu objetivo de estudio:</label>
+                            <select id="simIaObjetivo" class="w-full p-2 bg-slate-800 border border-slate-700 rounded-lg text-xs text-white font-mono" onchange="generarPromptEtico()">
+                                <option value="explicar">Explicar un tema difícil con analogías simples</option>
+                                <option value="ejercicios">Generar 3 preguntas de autoevaluación para estudiar</option>
+                                <option value="codigo">Revisar y encontrar errores en mi código</option>
+                            </select>
+                        </div>
+                        <div id="simPromptEticoOutput" class="p-3 bg-slate-800 rounded-xl text-xs font-mono text-teal-200">
+                            <!-- Generado por JS -->
+                        </div>
+                    </div>
+
+                    <!-- RETOS PARA 40% FIRMAS -->
+                    <div class="space-y-3 text-xs">
+                        <h3 class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+                            <i class="fas fa-pen-nib text-teal-600"></i> Retos Prácticos en tu Libreta / Digital (Portafolio de Firmas 40%)
+                        </h3>
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <strong>Reto 1 (Nivel Novato):</strong> Elabora una historieta de 4 viñetas que represente una situación de uso ético de la IA en la escuela.
+                        </div>
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <strong>Reto 2 (Nivel Hacker):</strong> Diseña un protocolo de 5 pasos para actuar si un compañero sufre acoso digital o doxxing.
+                        </div>
+                        <div class="p-3 bg-white rounded-xl border border-slate-200">
+                            <strong>Reto 3 (Nivel Pro - Evidencia AE 1.5.1):</strong> Publica tu material multimedia en redes sociales y entrega el enlace con captura para tu <strong>5% SAE</strong>.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 5: RÚBRICA OFICIAL CONALEP (AE 1.5.1) -->
+                <section class="slide-card p-6 border-l-4 border-l-emerald-500">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <span class="badge-step bg-emerald-600 text-white">5</span>
+                            <h2 class="text-lg font-bold text-slate-900">Rúbrica Oficial SAE (Págs. 39-40 CIDI-01)</h2>
+                        </div>
+                        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">Ponderación: 5% SAE</span>
+                    </div>
+
+                    <div class="overflow-x-auto text-[11px]">
+                        <table class="w-full text-left border-collapse bg-white rounded-xl overflow-hidden">
+                            <thead>
+                                <tr class="bg-slate-900 text-white">
+                                    <th class="p-2.5">Indicador</th>
+                                    <th class="p-2.5 text-center">%</th>
+                                    <th class="p-2.5">Excelente (10)</th>
+                                    <th class="p-2.5">Suficiente (7-8)</th>
+                                    <th class="p-2.5">Insuficiente (&lt;6)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 text-slate-700">
+                                <tr>
+                                    <td class="p-2.5 font-bold">Contenidos temáticos</td>
+                                    <td class="p-2.5 text-center font-bold text-teal-700">40%</td>
+                                    <td class="p-2.5 bg-teal-50/40">Explica con claridad normatividad, privacidad, seguridad digital, protección de datos, IA ética y copyleft.</td>
+                                    <td class="p-2.5">Explica de manera parcial algunos de los temas requeridos.</td>
+                                    <td class="p-2.5 bg-red-50/30">Omite explicar los temas normativos y éticos.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2.5 font-bold">Presentación del producto digital</td>
+                                    <td class="p-2.5 text-center font-bold text-teal-700">30%</td>
+                                    <td class="p-2.5 bg-teal-50/40">Diseño atractivo, bien organizado, excelente uso de colores, tipografía y multimedia que enriquecen el mensaje.</td>
+                                    <td class="p-2.5">Diseño básico o con uso limitado de elementos visuales.</td>
+                                    <td class="p-2.5 bg-red-50/30">Diseño descuidado o no se adapta al formato.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2.5 font-bold">Publicación en redes sociales</td>
+                                    <td class="p-2.5 text-center font-bold text-teal-700">30%</td>
+                                    <td class="p-2.5 bg-teal-50/40">Publicado oportunamente con descripción, hashtags, genera interacción relevante y respeta normas éticas de convivencia.</td>
+                                    <td class="p-2.5">Publicado con retraso o con poca interacción del público.</td>
+                                    <td class="p-2.5 bg-red-50/30">Publicación inapropiada o que vulnera normas éticas.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Navegación de Pie de Página -->
+                <div class="flex justify-between items-center border-t border-slate-200 pt-6">
+                    <a href="tema1_4.html" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
+                        <i class="fas fa-arrow-left mr-1"></i> Anterior: Clase 1.4
+                    </a>
+                    <a href="tema1_6.html" class="px-4 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs transition shadow-sm">
+                        Siguiente: Clase 1.6 (Identidad y Basura Digital) <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+            </main>
+
+            <!-- COLUMNA 3: Resumen SAE -->
+            <aside class="lg:col-span-3">
+                <div class="sticky top-16 space-y-6">
+                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm text-xs">
+                        <div class="flex items-center gap-2 text-teal-900 font-bold mb-2">
+                            <i class="fas fa-clipboard-check text-teal-600"></i> Entregable Oficial AE 1.5.1
+                        </div>
+                        <ul class="text-[11px] text-slate-600 list-disc ml-4 space-y-1 mb-3">
+                            <li>Material multimedia (Video/Infografía).</li>
+                            <li>Difusión en red social (TikTok, IG, FB).</li>
+                            <li>Enlace con evidencia de interacción.</li>
+                            <li>Promoción de ciudadanía digital.</li>
+                        </ul>
+                        <div class="p-2.5 bg-teal-50 rounded-xl text-center font-bold text-teal-800">
+                            Ponderación: 5% SAE
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <!-- Script del Simulador JS -->
+    <script>
+        function generarPromptEtico() {
+            const obj = document.getElementById('simIaObjetivo').value;
+            const outElem = document.getElementById('simPromptEticoOutput');
+
+            if (obj === "explicar") {
+                outElem.innerHTML = `
+                    &bull; <strong>Prompt Recomendado:</strong> "Actúa como un profesor de informática paciente y explícame la diferencia entre software libre y software de patente usando una analogía cotidiana con recetas de cocina. No me des la respuesta directa a un examen, ayúdame a entender el concepto con tus palabras."
+                `;
+            } else if (obj === "ejercicios") {
+                outElem.innerHTML = `
+                    &bull; <strong>Prompt Recomendado:</strong> "Genera 3 preguntas de opción múltiple con retroalimentación sobre la Ley Olimpia y los derechos de autor Copyleft para poner a prueba mis conocimientos antes de la clase. No me muestres las respuestas hasta que yo las responda."
+                `;
+            } else {
+                outElem.innerHTML = `
+                    &bull; <strong>Prompt Recomendado:</strong> "Revisa el siguiente algoritmo en pseudocódigo y señálame en qué línea hay un error de lógica, explicándome por qué ocurre sin darme el código completo reescrito para que yo lo pueda corregir por mí mismo."
+                `;
+            }
+        }
+        window.onload = generarPromptEtico;
+    </script>
+</body>
+</html>
