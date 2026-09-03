@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RA 2.1: Instalación y Configuración de Herramientas de Seguridad | ASIN-03 CONALEP</title>
+    <title>RA 2.1: Defensa Perimetral, Firewalls iptables y VPNs | ASIN-03 CONALEP</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- MathJax 3 -->
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -22,7 +20,7 @@
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        primary: '#4f46e5',
+                        primary: '#dc2626',
                         dark: '#0f172a',
                     }
                 }
@@ -31,33 +29,32 @@
     </script>
     <style>
         body { font-family: 'Outfit', sans-serif; background-color: #ffffff; color: #1e293b; }
-        .lll-info { background-color: #eff6ff; border-left: 4px solid #3b82f6; }
+        .lll-info { background-color: #fef2f2; border-left: 4px solid #ef4444; }
         .lll-warning { background-color: #fffbeb; border-left: 4px solid #f59e0b; }
         .lll-tip { background-color: #f0fdf4; border-left: 4px solid #10b981; }
-        .lll-danger { background-color: #fef2f2; border-left: 4px solid #ef4444; }
-        .code-block { font-family: 'JetBrains Mono', monospace; }
+        .lll-danger { background-color: #fef2f2; border-left: 4px solid #b91c1c; }
         .diff-easy { background-color: #dcfce7; color: #15803d; }
         .diff-med { background-color: #fef3c7; color: #b45309; }
         .diff-hard { background-color: #fee2e2; color: #b91c1c; }
         .step-badge { width: 28px; height: 28px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; }
     </style>
 </head>
-<body class="bg-white text-slate-800 antialiased selection:bg-indigo-100 selection:text-indigo-900">
+<body class="bg-white text-slate-800 antialiased selection:bg-red-100 selection:text-red-900">
 
     <!-- Top Bar Institucional -->
     <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <span class="font-semibold text-white"><i class="fas fa-shield-halved text-indigo-400 mr-1.5"></i> CONALEP — PT-B en Informática</span>
+                <span class="font-semibold text-white"><i class="fas fa-shield-halved text-red-500 mr-1.5"></i> CONALEP — PT-B en Informática (Blue Team Lab)</span>
                 <span class="text-slate-600 hidden sm:inline">|</span>
                 <span class="text-slate-400 hidden sm:inline">Módulo: <strong>ASIN-03</strong></span>
             </div>
             <div class="flex items-center space-x-4">
-                <a href="index.html" class="text-xs text-indigo-400 hover:text-indigo-300 transition flex items-center gap-1 font-semibold">
+                <a href="index.html" class="text-xs text-red-400 hover:text-red-300 transition flex items-center gap-1 font-semibold">
                     <i class="fas fa-arrow-left"></i> Índice del Módulo
                 </a>
                 <span class="text-slate-600">|</span>
-                <a href="index.html" class="text-xs text-emerald-400 hover:text-emerald-300 transition font-semibold">
+                <a href="../index.html" class="text-xs text-emerald-400 hover:text-emerald-300 transition font-semibold">
                     Portal CONALEP
                 </a>
             </div>
@@ -68,48 +65,49 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
-            <!-- COLUMNA 1: Menú Lateral Izquierdo de Navegación -->
+            <!-- COLUMNA 1: Menú Lateral Izquierdo -->
             <aside class="lg:col-span-3">
                 <div class="sticky top-16 space-y-6">
-                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                    <div class="p-4 bg-red-50/60 border border-red-200 rounded-2xl">
                         <div class="flex items-center gap-3 mb-3">
-                            <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
-                                <i class="fas fa-server"></i>
+                            <div class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                                <i class="fas fa-lock"></i>
                             </div>
                             <div>
                                 <h3 class="font-bold text-slate-900 text-sm leading-tight">Unidad 2</h3>
-                                <p class="text-[11px] text-slate-500">Herramientas de Seguridad</p>
+                                <p class="text-[11px] text-slate-500">Defensa Perimetral</p>
                             </div>
                         </div>
-                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-slate-200 pt-2.5">
-                            <div class="flex justify-between"><span>Duración Total:</span> <strong class="text-slate-800">23 Horas</strong></div>
-                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-indigo-600 font-bold">30% SAE</strong></div>
+                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-red-200 pt-2.5">
+                            <div class="flex justify-between"><span>Duración Total:</span> <strong class="text-slate-800">14 Horas</strong></div>
+                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-red-600 font-bold">25% SAE (Hetero)</strong></div>
+                            <div class="flex justify-between"><span>Semanas:</span> <strong class="text-slate-800 font-mono">9 a 12</strong></div>
                         </div>
                     </div>
 
                     <!-- Navegación de RAs -->
                     <div class="border border-slate-200 rounded-2xl p-4 bg-white">
                         <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Resultados de Aprendizaje</h4>
-                        <nav class="space-y-2 text-xs">
-                            <a href="tema1_1.html" class="flex items-center justify-between p-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-bug mr-1.5 text-slate-400"></i> RA 1.1: Riesgos y Triada CIA</span>
-                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">15h</span>
+                        <nav class="space-y-1.5 text-xs">
+                            <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-triangle-exclamation mr-1.5 text-slate-400"></i> RA 1.1: Evaluación de Riesgos</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">14h • 20%</span>
                             </a>
-                            <a href="tema1_2.html" class="flex items-center justify-between p-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-file-contract mr-1.5 text-slate-400"></i> RA 1.2: Plan de Seguridad e ISO</span>
-                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">12h</span>
+                            <a href="tema1_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-file-contract mr-1.5 text-slate-400"></i> RA 1.2: Políticas e ISO 27001</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">18h • 20%</span>
                             </a>
-                            <a href="tema2_1.html" class="flex items-center justify-between p-2.5 rounded-xl bg-indigo-50 text-indigo-700 font-bold border border-indigo-200">
-                                <span><i class="fas fa-chevron-right mr-1.5 text-[10px]"></i> RA 2.1: Hardening y Firewalls</span>
-                                <span class="diff-hard px-2 py-0.5 rounded-full text-[10px] font-mono">23h</span>
+                            <a href="tema2_1.html" class="flex items-center justify-between p-2 rounded-xl bg-red-50 text-red-800 font-bold border border-red-200">
+                                <span><i class="fas fa-chevron-right mr-1.5 text-[10px]"></i> RA 2.1: Firewalls & DMZ</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">14h • 25%</span>
                             </a>
-                            <a href="tema2_2.html" class="flex items-center justify-between p-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-chart-line mr-1.5 text-slate-400"></i> RA 2.2: Monitoreo y Logs</span>
-                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">10h</span>
+                            <a href="tema2_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-chart-line mr-1.5 text-slate-400"></i> RA 2.2: Monitoreo SIEM</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">14h • 20%</span>
                             </a>
-                            <a href="tema2_3.html" class="flex items-center justify-between p-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-clipboard-check mr-1.5 text-slate-400"></i> RA 2.3: Auditoría y DRP</span>
-                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">12h</span>
+                            <a href="tema2_3.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-server mr-1.5 text-slate-400"></i> RA 2.3: BCP, DRP & Backups</span>
+                                <span class="diff-hard px-2 py-0.5 rounded-full text-[10px] font-mono">12h • 15%</span>
                             </a>
                         </nav>
                     </div>
@@ -117,11 +115,11 @@
                     <!-- Fases Pedagógicas -->
                     <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-2">
                         <h4 class="font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-2">5 Fases de la Cátedra</h4>
-                        <a href="#fase1" class="block text-slate-600 hover:text-indigo-600"><span class="font-bold text-indigo-600">1.</span> Apertura & Hardening</a>
-                        <a href="#fase2" class="block text-slate-600 hover:text-indigo-600"><span class="font-bold text-sky-600">2.</span> Teoría de Firewalls e IDS</a>
-                        <a href="#fase3" class="block text-slate-600 hover:text-indigo-600"><span class="font-bold text-indigo-600">3.</span> Scripts & Comandos CLI</a>
-                        <a href="#fase4" class="block text-slate-600 hover:text-indigo-600"><span class="font-bold text-amber-600">4.</span> Terminal Simulada JS</a>
-                        <a href="#fase5" class="block text-slate-600 hover:text-indigo-600"><span class="font-bold text-emerald-600">5.</span> Cierre & Rúbrica AE 2.1.1</a>
+                        <a href="#fase1" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-red-600">1.</span> Apertura & HackLab</a>
+                        <a href="#fase2" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-sky-600">2.</span> iptables, DMZ & VPNs</a>
+                        <a href="#fase3" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-indigo-600">3.</span> Script Hardening en Bash</a>
+                        <a href="#fase4" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-amber-600">4.</span> Emulador de Firewall</a>
+                        <a href="#fase5" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-emerald-600">5.</span> Rúbrica Oficial AE 2.1.1</a>
                     </div>
                 </div>
             </aside>
@@ -131,104 +129,82 @@
 
                 <!-- Header de Unidad -->
                 <header class="border-b border-slate-200 pb-6">
-                    <div class="flex items-center gap-2 text-xs text-indigo-600 font-bold uppercase tracking-wider mb-2">
+                    <div class="flex items-center gap-2 text-xs text-red-600 font-bold uppercase tracking-wider mb-2">
                         <span>Unidad 2</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Resultado de Aprendizaje 2.1</span>
                     </div>
-                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
-                        Instalación y Configuración de Herramientas de Seguridad
+                    <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-3">
+                        Mecanismos de Defensa Perimetral, Firewalls iptables, Zonas DMZ y VPNs
                     </h1>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        Endurecimiento (Hardening) de sistemas operativos a nivel local y perimetral: administración de actualizaciones automáticas (WSUS), firewall perimetral y local, detección de intrusos (IDS/IPS), protocolos criptográficos (IPsec, HTTPS/TLS) y cifrado de datos con BitLocker.
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Configuración avanzada de defensa de red: filtrado de paquetes con estado (Stateful Inspection) mediante <code>iptables</code> y pfSense, aislamiento de servidores públicos en Zonas Desmilitarizadas (DMZ), interconexión cifrada punto a punto con túneles IPsec / OpenVPN, y autenticación centralizada mediante 802.1X y servidores RADIUS.
                     </p>
-                    <div class="mt-4 flex flex-wrap gap-2 text-xs">
-                        <span class="px-2.5 py-1 rounded-lg bg-indigo-100 text-indigo-800 font-bold font-mono">23 Horas (Semanas 8 a 13)</span>
-                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold">Ponderación: 30% SAE</span>
-                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">Evidencia: AE 2.1.1</span>
+
+                    <!-- Imagen Libre Unsplash -->
+                    <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm mb-4">
+                        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=80" alt="Defensa Perimetral y Servidores Firewall" class="w-full h-48 sm:h-64 object-cover">
+                        <div class="bg-slate-50 px-4 py-2 border-t border-slate-200 text-[11px] text-slate-500 flex justify-between">
+                            <span><i class="fas fa-camera mr-1"></i> Imagen Libre: Enrutamiento Seguro, Firewalls y Conectividad Perimetral</span>
+                            <span>Unsplash Free License</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 text-xs">
+                        <span class="px-2.5 py-1 rounded-lg bg-red-100 text-red-800 font-bold font-mono">14 Horas (Semanas 9 a 12)</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold">Ponderación: 25% SAE (Heteroevaluación)</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">Evidencia: AE 2.1.1 (Defensa Perimetral)</span>
                     </div>
                 </header>
 
-                <!-- FASE 1: APERTURA (ACTIVACIÓN Y CONTEXTUALIZACIÓN) -->
+                <!-- FASE 1: APERTURA DISRUPTIVA -->
                 <section id="fase1" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
-                        <span class="step-badge bg-indigo-600 text-white">1</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Contextualización)</h2>
+                        <span class="step-badge bg-red-600 text-white">1</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Reto Provocador)</h2>
                     </div>
 
-                    <div class="lll-danger p-5 rounded-2xl mb-6">
-                        <h3 class="font-bold text-red-900 text-sm mb-2 flex items-center gap-2">
-                            <i class="fas fa-network-wired text-red-600"></i> Caso Real: Brecha de Target Corp mediante Acceso de Terceros
-                        </h3>
+                    <div class="lll-info p-5 rounded-2xl mb-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-bold text-red-900 text-sm flex items-center gap-2">
+                                <i class="fas fa-network-wired text-red-600"></i> Caso Real: Escaneo de Puertos y Ataques de Botnets Automatizadas
+                            </h3>
+                            <span class="px-2 py-0.5 rounded bg-red-200 text-red-900 text-[10px] font-bold">HackLab #03</span>
+                        </div>
                         <p class="text-xs text-slate-700 leading-relaxed mb-3">
-                            En 2013, 40 millones de tarjetas bancarias fueron robadas de Target. Los atacantes no atacaron el servidor central directamente; accedieron con las credenciales robadas a un proveedor de aire acondicionado (HVAC) que tenía acceso sin segmentación a la red interna donde residían los puntos de venta (POS).
+                            En cuanto un servidor Linux con IP pública se enciende en la nube, recibe un promedio de <strong>30 intentos de escaneo y fuerza bruta por minuto</strong> en el puerto SSH (22). Si la política del firewall está configurada en <code>ACCEPT</code> por omisión o el puerto 22 está abierto sin rate limiting, el servidor será vulnerado e integrado a una red de botnets en menos de 2 horas.
                         </p>
-                        <p class="text-xs text-slate-700 leading-relaxed font-semibold">
-                            La falta de <strong>segmentación de red (VLANs), reglas estrictas de firewall perimetral y un sistema de detección de intrusos (IDS)</strong> permitió a los intrusos moverse lateralmente por meses sin ser detectados.
-                        </p>
-                    </div>
-
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
-                        <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700 mb-3"><i class="fas fa-terminal text-indigo-600 mr-1.5"></i> Preguntas Detonadoras de Laboratorio</h4>
-                        <ol class="list-decimal ml-5 text-xs text-slate-700 space-y-2">
-                            <li>¿Por qué tener un antivirus instalado no te protege si dejas el puerto 3389 (RDP) o 445 (SMB) abierto a todo Internet?</li>
-                            <li>¿Cuál es la diferencia operativa entre un <strong>Firewall Stateful</strong> (filtra paquetes y estados de conexión) y un <strong>IDS/IPS</strong> (analiza firmas de tráfico en tiempo real)?</li>
-                            <li>Si un usuario pierde su laptop corporativa, ¿de qué sirve la contraseña de Windows si el disco no tiene cifrado completo con <strong>BitLocker</strong>?</li>
-                        </ol>
+                        <div class="p-3 bg-white rounded-xl border border-red-200 text-xs font-mono text-red-950">
+                            <strong>🔥 Regla de Oro Blue Team:</strong> "Política por Defecto DROP: Todo lo que no esté explícitamente permitido, está terminantemente PROHIBIDO."
+                        </div>
                     </div>
                 </section>
 
-                <!-- FASE 2: DESARROLLO CONCEPTUAL (TEORÍA Y ARQUITECTURA) -->
+                <!-- FASE 2: DESARROLLO CONCEPTUAL -->
                 <section id="fase2" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="step-badge bg-sky-600 text-white">2</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (Mecanismos de Hardening y Red)</h2>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (Tablas iptables, DMZ y Túneles VPN)</h2>
                     </div>
 
-                    <!-- Hardening Local vs Seguridad de Red -->
-                    <div class="mb-6">
-                        <h3 class="text-lg font-bold text-slate-900 mb-3">1. Los Dos Pilares del Endurecimiento Operativo</h3>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-4">
-                            <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2">
-                                <h4 class="font-bold text-indigo-700 text-sm flex items-center gap-1.5">
-                                    <i class="fas fa-laptop"></i> Configuración Local de Seguridad
-                                </h4>
-                                <ul class="list-disc ml-4 space-y-1.5 text-slate-600">
-                                    <li><strong>Gestión de Actualizaciones:</strong> Servidores WSUS centrales para pruebas previas a producción y clasificación de parches (Críticos, Seguridad, Acumulativos).</li>
-                                    <li><strong>Firewall Local:</strong> Bloqueo de conexiones entrantes no solicitadas por perfil (Dominio, Privado, Público).</li>
-                                    <li><strong>Cifrado de Almacenamiento:</strong> BitLocker con chip TPM 2.0 para discos del sistema y EFS para carpetas confidenciales individuales.</li>
-                                    <li><strong>Permisos NTFS y ACL:</strong> Asignación granular basada en grupos; eliminación de permisos globales a "Todos" (Everyone).</li>
-                                </ul>
-                            </div>
-
-                            <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2">
-                                <h4 class="font-bold text-sky-700 text-sm flex items-center gap-1.5">
-                                    <i class="fas fa-shield-halved"></i> Configuración de Red y Perímetro
-                                </h4>
-                                <ul class="list-disc ml-4 space-y-1.5 text-slate-600">
-                                    <li><strong>Firewall Perimetral:</strong> Políticas de denegación por defecto (Default Drop / Deny All Inbound).</li>
-                                    <li><strong>Detección de Intrusos (IDS/IPS):</strong> Motores como Suricata o Snort para inspección profunda de paquetes (DPI) y alertas en tiempo real.</li>
-                                    <li><strong>Protocolos Seguros:</strong> IPsec (túneles cifrados en Capa 3 de red) y HTTPS con TLS 1.3 (cifrado extremo a extremo en Capa de Aplicación).</li>
-                                </ul>
-                            </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs mb-6">
+                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <strong class="text-red-700 block text-sm"><i class="fas fa-filter mr-1"></i> Cadenas de iptables</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                <strong>INPUT:</strong> Tráfico dirigido al propio host.<br>
+                                <strong>FORWARD:</strong> Tráfico enrutado a través del firewall (DMZ/LAN).<br>
+                                <strong>OUTPUT:</strong> Tráfico originado por el firewall.
+                            </p>
                         </div>
-
-                        <!-- Diagrama Vectorial SVG de Defensa en Profundidad -->
-                        <div class="p-4 bg-slate-900 rounded-2xl text-center text-white my-6">
-                            <span class="text-[11px] font-mono text-slate-400 block mb-2">Arquitectura de Defensa en Profundidad (Defense-in-Depth)</span>
-                            <svg class="w-full max-w-md mx-auto" viewBox="0 0 420 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <!-- Capas Concéntricas -->
-                                <circle cx="210" cy="90" r="85" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
-                                <text x="210" y="20" fill="#38bdf8" font-size="9" font-weight="bold" text-anchor="middle">1. Firewall Perimetral & DMZ</text>
-
-                                <circle cx="210" cy="90" r="60" fill="#0f172a" stroke="#818cf8" stroke-width="2"/>
-                                <text x="210" y="45" fill="#818cf8" font-size="9" font-weight="bold" text-anchor="middle">2. IDS / IPS & VLANs</text>
-
-                                <circle cx="210" cy="90" r="35" fill="#1e1b4b" stroke="#f43f5e" stroke-width="2"/>
-                                <text x="210" y="70" fill="#f43f5e" font-size="9" font-weight="bold" text-anchor="middle">3. Host Hardening</text>
-
-                                <circle cx="210" cy="90" r="14" fill="#dc2626"/>
-                                <text x="210" y="93" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">DATOS</text>
-                            </svg>
+                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <strong class="text-indigo-700 block text-sm"><i class="fas fa-shield mr-1"></i> Arquitectura DMZ</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                Aísla servidores Web (80/443) y DNS (53). Si el servidor web es comprometido, el atacante <strong>no puede saltar a la base de datos de la LAN interna</strong>.
+                            </p>
+                        </div>
+                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <strong class="text-emerald-700 block text-sm"><i class="fas fa-key mr-1"></i> VPNs & 802.1X RADIUS</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                Cifrado de túnel AES-256 (IPsec/OpenVPN) y autenticación de puertos de switch mediante certificados y credenciales de usuario centralizadas.
+                            </p>
                         </div>
                     </div>
                 </section>
@@ -237,171 +213,149 @@
                 <section id="fase3" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="step-badge bg-indigo-600 text-white">3</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Demostración y Modelado con Scripts Reales</h2>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Script de Hardening Perimetral en Linux Bash</h2>
                     </div>
 
-                    <p class="text-xs text-slate-600 mb-4">
-                        A continuación se demuestran comandos clave en PowerShell y Linux para el endurecimiento de servidores y reglas de firewall:
-                    </p>
-
-                    <!-- Comandos PowerShell -->
-                    <div class="bg-slate-900 text-slate-200 rounded-xl p-4 text-xs font-mono mb-4">
-                        <div class="flex justify-between items-center text-slate-400 text-[11px] mb-2 pb-1 border-b border-slate-800">
-                            <span><i class="fas fa-terminal text-indigo-400 mr-1"></i> Reglas de Firewall Avanzado (PowerShell)</span>
-                            <span>Windows Defender Firewall</span>
+                    <div class="bg-slate-900 text-slate-200 rounded-xl p-5 text-xs font-mono mb-4 overflow-x-auto space-y-2">
+                        <span class="text-emerald-400 font-bold block">[SCRIPT BASH: CONFIGURACIÓN SEGURA DE FIREWALL IPTABLES]</span>
+                        <div class="text-slate-300">
+                            #!/bin/bash<br>
+                            <span class="text-slate-400"># 1. Limpiar todas las reglas previas</span><br>
+                            iptables -F && iptables -X && iptables -t nat -F<br>
+                            <br>
+                            <span class="text-amber-300"># 2. Establecer Política por Defecto DROP (Bloqueo Total)</span><br>
+                            iptables -P INPUT DROP<br>
+                            iptables -P FORWARD DROP<br>
+                            iptables -P OUTPUT ACCEPT<br>
+                            <br>
+                            <span class="text-sky-300"># 3. Permitir Loopback y Conexiones Establecidas / Relacionadas</span><br>
+                            iptables -A INPUT -i lo -j ACCEPT<br>
+                            iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT<br>
+                            <br>
+                            <span class="text-emerald-300"># 4. Permitir SSH (Puerto 22) con Protección Anti-Fuerza Bruta</span><br>
+                            iptables -A INPUT -p tcp --dport 22 -m state --state NEW -m recent --set --name SSH<br>
+                            iptables -A INPUT -p tcp --dport 22 -m state --state NEW -m recent --update --seconds 60 --hitcount 4 -j DROP<br>
+                            iptables -A INPUT -p tcp --dport 22 -j ACCEPT<br>
+                            <br>
+                            <span class="text-emerald-300"># 5. Permitir Servidor Web Seguro (80 y 443)</span><br>
+                            iptables -A INPUT -p tcp -m multiport --dports 80,443 -j ACCEPT<br>
+                            echo "[+] Firewall iptables perimetral configurado y blindado."
                         </div>
-                        <span class="text-slate-400"># 1. Bloquear todo el tráfico entrante por defecto en todos los perfiles</span><br>
-                        <span class="text-emerald-400">PS></span> Set-NetFirewallProfile -Profile Domain,Public,Private -DefaultInboundAction Block<br><br>
-                        
-                        <span class="text-slate-400"># 2. Abrir únicamente puerto HTTPS (443) para el servidor web seguro</span><br>
-                        <span class="text-emerald-400">PS></span> New-NetFirewallRule -DisplayName "Servidor HTTPS Seguro" -Direction Inbound -LocalPort 443 -Protocol TCP -Action Allow<br><br>
-
-                        <span class="text-slate-400"># 3. Habilitar Cifrado de Unidad con BitLocker y TPM</span><br>
-                        <span class="text-emerald-400">PS></span> Enable-BitLocker -MountPoint "C:" -EncryptionMethod XtsAes256 -UsedSpaceOnly -TpmProtector
-                    </div>
-
-                    <!-- Comandos Linux IPTables / UFW -->
-                    <div class="bg-slate-900 text-slate-200 rounded-xl p-4 text-xs font-mono mb-4">
-                        <div class="flex justify-between items-center text-slate-400 text-[11px] mb-2 pb-1 border-b border-slate-800">
-                            <span><i class="fab fa-linux text-amber-400 mr-1"></i> Hardening de Servidor Linux (UFW & OpenSSL)</span>
-                            <span>Bash Console</span>
-                        </div>
-                        <span class="text-slate-400"># Configuración de políticas base en UFW</span><br>
-                        <span class="text-emerald-400">$</span> sudo ufw default deny incoming<br>
-                        <span class="text-emerald-400">$</span> sudo ufw default allow outgoing<br>
-                        <span class="text-emerald-400">$</span> sudo ufw allow 22/tcp comment 'SSH Administrativo'<br>
-                        <span class="text-emerald-400">$</span> sudo ufw enable<br><br>
-
-                        <span class="text-slate-400"># Verificación de integridad de archivo con SHA-256</span><br>
-                        <span class="text-emerald-400">$</span> sha256sum backup_db_2026.sql.gz<br>
-                        <span class="text-amber-400">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  backup_db_2026.sql.gz</span>
                     </div>
                 </section>
 
-                <!-- FASE 4: APLICACIÓN PRÁCTICA (SIMULADOR Y PROBLEMARIO) -->
+                <!-- FASE 4: APLICACIÓN PRÁCTICA Y SIMULADOR -->
                 <section id="fase4" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="step-badge bg-amber-600 text-white">4</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Simulador y Problemario)</h2>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Emulador iptables y Problemario)</h2>
                     </div>
 
-                    <!-- SIMULADOR INTERACTIVO JS: CONFIGURADOR DE FIREWALL Y PUERTOS -->
-                    <div class="border-2 border-indigo-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
-                        <div class="flex items-center justify-between mb-4 border-b border-indigo-100 pb-3">
+                    <!-- SIMULADOR INTERACTIVO JS: EMULADOR DE FIREWALL -->
+                    <div class="border-2 border-red-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
+                        <div class="flex items-center justify-between mb-4 border-b border-red-100 pb-3">
                             <div class="flex items-center gap-2">
-                                <i class="fas fa-network-wired text-indigo-600 text-xl"></i>
+                                <i class="fas fa-terminal text-red-600 text-xl"></i>
                                 <div>
-                                    <h3 class="font-bold text-slate-900 text-sm">Simulador de Reglas de Firewall & Detección de Puertos</h3>
-                                    <span class="text-[11px] text-slate-500 font-mono">Prueba el filtrado de paquetes en tiempo real</span>
+                                    <h3 class="font-bold text-slate-900 text-sm">Emulador Táctico de Filtrado de Paquetes iptables</h3>
+                                    <span class="text-[11px] text-slate-500 font-mono">Envía paquetes a puertos específicos y evalúa la respuesta del firewall</span>
                                 </div>
                             </div>
-                            <span class="px-2 py-1 rounded bg-indigo-100 text-indigo-800 text-[10px] font-bold">JavaScript Nativo</span>
+                            <span class="px-2 py-1 rounded bg-red-100 text-red-800 text-[10px] font-bold">JavaScript Nativo</span>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs mb-4">
                             <div>
-                                <label class="font-semibold text-slate-700 block mb-1">Puerto / Servicio a Evaluar:</label>
-                                <select id="firewallPort" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="testFirewallRule()">
-                                    <option value="80">Puerto 80 (HTTP Plano)</option>
-                                    <option value="443" selected>Puerto 443 (HTTPS Seguro)</option>
-                                    <option value="22">Puerto 22 (SSH)</option>
-                                    <option value="3389">Puerto 3389 (RDP Escritorio Remoto)</option>
-                                    <option value="445">Puerto 445 (SMB / Riesgo WannaCry)</option>
-                                    <option value="23">Puerto 23 (Telnet Sin Cifrar)</option>
+                                <label class="font-semibold text-slate-700 block mb-1">Puerto de Destino:</label>
+                                <select id="simPuerto" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="testFirewall()">
+                                    <option value="22">22 (SSH - Acceso Remoto)</option>
+                                    <option value="80">80 (HTTP - Web)</option>
+                                    <option value="443">443 (HTTPS - Web Seguro)</option>
+                                    <option value="3389">3389 (RDP - Windows Escritorio)</option>
+                                    <option value="445">445 (SMB - Ransomware Vector)</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="font-semibold text-slate-700 block mb-1">Acción de la Regla:</label>
-                                <select id="firewallAction" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="testFirewallRule()">
-                                    <option value="ALLOW">ALLOW (Permitir Tráfico)</option>
-                                    <option value="DROP" selected>DROP (Descartar Silenciosamente)</option>
-                                    <option value="REJECT">REJECT (Rechazar con Notificación)</option>
-                                </select>
+                                <label class="font-semibold text-slate-700 block mb-1">Dirección IP Origen:</label>
+                                <input type="text" id="simIpSrc" class="w-full p-2 border border-slate-300 rounded-lg text-xs font-mono" value="192.168.1.50" oninput="testFirewall()">
                             </div>
                             <div>
-                                <label class="font-semibold text-slate-700 block mb-1">Origen del Paquete (IP):</label>
-                                <select id="firewallSource" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="testFirewallRule()">
-                                    <option value="Internet">Internet Pública (0.0.0.0/0)</option>
-                                    <option value="LAN">Red Local LAN (192.168.1.0/24)</option>
-                                    <option value="VPN">Túnel Seguro VPN (10.8.0.0/24)</option>
+                                <label class="font-semibold text-slate-700 block mb-1">Política del Firewall:</label>
+                                <select id="simPolitica" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="testFirewall()">
+                                    <option value="hardened" selected>Hardened (DROP por defecto + reglas)</option>
+                                    <option value="open">Permisivo (ACCEPT por defecto)</option>
                                 </select>
                             </div>
                         </div>
 
-                        <!-- Consola de Resultados del Firewall -->
-                        <div id="firewallResultBox" class="p-4 rounded-xl border border-indigo-200 bg-slate-900 text-slate-200 text-xs font-mono mb-4">
-                            <div class="text-slate-400 text-[11px] mb-1">[MOTOR DE FILTRADO DE PAQUETES - FIREWALL KERNEL]</div>
-                            <div id="firewallOutput" class="text-emerald-400">
-                                -> EVALUACIÓN: Puerto 443 | Acción DROP | Origen: Internet Pública<br>
-                                -> ESTADO: Tráfico bloqueado conforme a directiva perimetral.
+                        <div class="p-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-200 text-xs font-mono">
+                            <div class="text-slate-400 text-[11px] mb-2">[TRAZA DE AUDITORÍA DEL PAQUETE EN TIEMPO REAL]</div>
+                            <div id="simFwOutput" class="space-y-1">
+                                <!-- Generado por JS -->
                             </div>
                         </div>
                     </div>
 
-                    <!-- PROBLEMARIO Y TALLER: 10 EJERCICIOS PARA FIRMAS -->
+                    <!-- PROBLEMARIO DISRUPTIVO (10 RETOS PARA 40% FIRMAS) -->
                     <div class="border border-slate-200 rounded-2xl p-6 bg-white">
                         <div class="flex items-center justify-between mb-4 border-b pb-3">
                             <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
-                                <i class="fas fa-tools text-indigo-600"></i> Problemario de Taller y Prácticas de Laboratorio (40% Firmas)
+                                <i class="fas fa-lock text-red-600"></i> Bitácora de Defensa Perimetral (40% Firmas)
                             </h3>
-                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">10 Ejercicios</span>
+                            <span class="px-2 py-0.5 rounded bg-red-100 text-red-800 text-[10px] font-bold">10 Retos</span>
                         </div>
 
                         <div class="space-y-3 text-xs text-slate-700">
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>1. Configuración de Windows Update vía GPO:</strong> Configura la directiva de grupo local (`gpedit.msc`) para que las actualizaciones se descarguen automáticamente pero solo se instalen a las 23:00 hrs.
+                                <strong>Reto 1 (Regla de Bloqueo de Ping ICMP):</strong> Escribe la regla de iptables para bloquear las respuestas a paquetes ICMP Echo Request y prevenir el mapeo de red con <code>ping</code>.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>2. Hardening de Cuentas Locales:</strong> Deshabilita la cuenta integrada de "Invitado" y renombra la cuenta "Administrador" mediante línea de comandos.
+                                <strong>Reto 2 (Aislamiento de Servidor en DMZ):</strong> Diseña las reglas de la cadena <code>FORWARD</code> para permitir tráfico de Internet al servidor Web en la DMZ (puerto 443), pero prohibir el tráfico de la DMZ a la LAN.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>3. Bloqueo de Puertos Peligrosos:</strong> Crea una regla de firewall en Windows Defender para bloquear todo el tráfico entrante al puerto 445 (SMB) desde redes públicas.
+                                <strong>Reto 3 (Port Forwarding con NAT):</strong> Configura una regla de <code>PREROUTING</code> en iptables para redirigir peticiones públicas del puerto 8080 hacia el puerto 80 interno.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>4. Permisos Granulares NTFS:</strong> Crea una carpeta compartida llamada `Contabilidad` y asigna permisos de Solo Lectura a usuarios estándar y Control Total únicamente al grupo Administradores.
+                                <strong>Reto 4 (Mitigación de Ataques SYN Flood):</strong> Escribe una regla de iptables con el módulo <code>limit</code> para limitar las conexiones TCP SYN a máximo 10 por segundo con ráfaga de 20.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>5. Cifrado con EFS:</strong> Cifra un archivo de texto con EFS, exporta el certificado de descifrado a una memoria USB y prueba que otro usuario no pueda abrirlo.
+                                <strong>Reto 5 (Bloqueo de Puertos Peligrosos de Windows):</strong> Diseña la lista de bloqueo perimetral para los puertos NetBIOS (137, 138, 139) y SMB (445) para mitigar propagación de ransomware.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>6. Análisis de Reglas de Firewall Perimetral:</strong> Diseña una tabla de 6 reglas de filtrado para un router empresarial que hospeda un servidor web público.
+                                <strong>Reto 6 (Configuración de Túnel OpenVPN con Certificados):</strong> Diseña el archivo de configuración <code>client.ovpn</code> utilizando certificados TLS/SSL y cifrado AES-256-GCM.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>7. Detección de Intrusos (Snort / Suricata):</strong> Escribe una regla de IDS para detectar un ping sweep (ICMP echo request masivo) contra la red interna.
+                                <strong>Reto 7 (Implementación de Port Knocking):</strong> Modela una secuencia secreta de paquetes a los puertos 7000, 8000 y 9000 para abrir dinámicamente el puerto SSH solo a quien conozca la combinación.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>8. Certificado SSL Autofirmado:</strong> Genera un certificado X.509 con OpenSSL y configúralo en un servidor web local para habilitar HTTPS.
+                                <strong>Reto 8 (Persistencia de Reglas con iptables-persistent):</strong> Documenta el procedimiento para guardar reglas en <code>/etc/iptables/rules.v4</code> y asegurar que se carguen al reiniciar el sistema.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>9. Política de Desinfección Antivirus:</strong> Configura Microsoft Defender Antivirus para realizar escaneos diarios rápidos y cuarentena automática de amenazas severas.
+                                <strong>Reto 9 (Auditoría de Reglas con Nmap Externo):</strong> Comprueba la efectividad de las reglas ejecutando <code>nmap -sS -p- IP_FIREWALL</code> desde una máquina externa verificando puertos filtrados.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>10. Manual de Instalación y Hardening (Evidencia 2.1.1):</strong> Redacta el manual paso a paso con capturas de pantalla de la configuración local y de red realizada en el laboratorio.
+                                <strong>Reto 10 (Implementación de Defensa Perimetral - Evidencia AE 2.1.1):</strong> Presenta el reporte técnico de implementación con topología, scripts probados y capturas de paquetes para el 25% SAE (Heteroevaluación).
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- FASE 5: CIERRE, EVALUACIÓN Y METACOGNICIÓN (RÚBRICA OFICIAL CONALEP) -->
+                <!-- FASE 5: CIERRE, EVALUACIÓN Y METACOGNICIÓN -->
                 <section id="fase5" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="step-badge bg-emerald-600 text-white">5</span>
                         <h2 class="text-xl font-bold text-slate-900">Fase 5: Cierre, Evaluación y Metacognición</h2>
                     </div>
 
-                    <!-- RÚBRICA OFICIAL CONALEP: AE 2.1.1 (30% PONDERACIÓN) -->
+                    <!-- RÚBRICA OFICIAL CONALEP: AE 2.1.1 (25% SAE - Heteroevaluación) -->
                     <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-sm mb-6">
                         <div class="flex items-center justify-between mb-4 border-b pb-3">
                             <div>
-                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 uppercase font-mono">Actividad de Evaluación 2.1.1</span>
-                                <h3 class="font-bold text-slate-900 text-sm mt-1">Rúbrica de Valoración Oficial (30% SAE)</h3>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-red-100 text-red-800 uppercase font-mono">Actividad de Evaluación 2.1.1 (Heteroevaluación)</span>
+                                <h3 class="font-bold text-slate-900 text-sm mt-1">Matriz de Valoración Oficial CONALEP (25% SAE)</h3>
                             </div>
-                            <span class="text-xs font-extrabold text-indigo-600">Siglema: ASIN-03</span>
+                            <span class="text-xs font-extrabold text-red-600">Siglema: ASIN-03</span>
                         </div>
-
-                        <p class="text-xs text-slate-600 mb-4">
-                            <strong>Actividad 2.1.1:</strong> Instala y configura herramientas informáticas de manera segura y en apego al manual determinado.
-                        </p>
 
                         <div class="overflow-x-auto text-[11px]">
                             <table class="w-full text-left border-collapse">
@@ -410,24 +364,43 @@
                                         <th class="p-2.5">Indicador</th>
                                         <th class="p-2.5 text-center">%</th>
                                         <th class="p-2.5">Excelente</th>
+                                        <th class="p-2.5">Bueno</th>
                                         <th class="p-2.5">Suficiente</th>
                                         <th class="p-2.5">Insuficiente</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-slate-200 text-slate-700">
                                     <tr>
-                                        <td class="p-2.5 font-bold">Configuración local</td>
-                                        <td class="p-2.5 text-center font-bold text-indigo-600">50%</td>
-                                        <td class="p-2.5 bg-emerald-50/50">Configura actualizaciones automáticas, cuentas, bitácoras, firewall local, permisos, cifrado y <strong>establece políticas para antivirus y antispyware</strong>.</td>
-                                        <td class="p-2.5">Configura actualizaciones automáticas, cuentas, bitácoras, firewall local, permisos y cifrado de archivos.</td>
-                                        <td class="p-2.5 bg-red-50/30">No se apega al manual o no integra los elementos mínimos locales.</td>
+                                        <td class="p-2.5 font-bold">Configuración de Firewall e iptables</td>
+                                        <td class="p-2.5 text-center font-bold text-red-600">35%</td>
+                                        <td class="p-2.5 bg-red-50/50">Establece política DROP por defecto, filtra puertos críticos, configura protección anti-DDoS/fuerza bruta y <strong>garantiza persistencia del servicio ante reinicios</strong>.</td>
+                                        <td class="p-2.5">Establece política DROP por defecto y filtra puertos críticos de la infraestructura.</td>
+                                        <td class="p-2.5">Configura reglas pero mantiene política permisiva ACCEPT.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite configurar reglas de firewall.</td>
                                     </tr>
                                     <tr>
-                                        <td class="p-2.5 font-bold">Configuración de red</td>
-                                        <td class="p-2.5 text-center font-bold text-indigo-600">50%</td>
-                                        <td class="p-2.5 bg-emerald-50/50">Configura firewall perimetral, detección de intrusos (IDS), IPSEC, HTTP sobre SSL, permisos compartidos y <strong>expresa una sinopsis escrita del proceso</strong>.</td>
-                                        <td class="p-2.5">Configura firewall perimetral, detección de intrusos, IPSEC, HTTP sobre SSL y permisos de aplicaciones compartidas.</td>
-                                        <td class="p-2.5 bg-red-50/30">No integra los elementos de seguridad en red requeridos.</td>
+                                        <td class="p-2.5 font-bold">Segmentación DMZ y VPN</td>
+                                        <td class="p-2.5 text-center font-bold text-red-600">30%</td>
+                                        <td class="p-2.5 bg-red-50/50">Aísla servidores en DMZ, implementa túneles VPN cifrados con autenticación robusta y <strong>valida el no acceso de la DMZ hacia la LAN interna</strong>.</td>
+                                        <td class="p-2.5">Aísla servidores en DMZ y configura túnel VPN cifrado funcional.</td>
+                                        <td class="p-2.5">Segmentación incompleta o VPN sin cifrado seguro.</td>
+                                        <td class="p-2.5 bg-red-50/30">No implementa DMZ ni VPNs.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Verificación y pruebas de penetración</td>
+                                        <td class="p-2.5 text-center font-bold text-red-600">25%</td>
+                                        <td class="p-2.5 bg-red-50/50">Audita la defensa con Nmap, demuestra el bloqueo de paquetes no autorizados y <strong>elabora reporte técnico con capturas de tráfico en Wireshark</strong>.</td>
+                                        <td class="p-2.5">Audita con Nmap y demuestra el bloqueo de puertos en el reporte.</td>
+                                        <td class="p-2.5">Pruebas incompletas o sin evidencias fotográficas/capturas.</td>
+                                        <td class="p-2.5 bg-red-50/30">No realiza pruebas de verificación.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold">Actitud técnica</td>
+                                        <td class="p-2.5 text-center font-bold text-red-600">10%</td>
+                                        <td class="p-2.5 bg-red-50/50">Rigor metodológico, seguimiento estricto de manuales de configuración y <strong>capacidad de depurar errores de sintaxis en consola</strong>.</td>
+                                        <td class="p-2.5">Seguimiento adecuado de instrucciones y entrega puntual.</td>
+                                        <td class="p-2.5">Dificultad recurrente en la ejecución de comandos.</td>
+                                        <td class="p-2.5 bg-red-50/30">Falta de interés o abandono de la práctica.</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -436,9 +409,9 @@
 
                     <!-- Metacognición -->
                     <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700">
-                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-brain text-emerald-600 mr-1.5"></i> Pregunta de Metacognición Final:</h4>
+                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-brain text-red-600 mr-1.5"></i> Pregunta de Metacognición Disruptiva:</h4>
                         <p>
-                            "¿Por qué el principio de 'Mínimo Privilegio' y la 'Denegación por Defecto' en firewalls son las reglas más seguras para evitar movimientos laterales de atacantes?"
+                            "¿Por qué la arquitectura de Zonas Desmilitarizadas (DMZ) se basa en la asunción de que 'cualquier servidor expuesto a Internet tarde o temprano será hackeado', y cómo esta mentalidad protege el núcleo de la empresa?"
                         </p>
                     </div>
                 </section>
@@ -446,10 +419,10 @@
                 <!-- Navegación Inferior -->
                 <div class="flex justify-between items-center border-t border-slate-200 pt-6">
                     <a href="tema1_2.html" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
-                        <i class="fas fa-arrow-left mr-1"></i> Anterior: RA 1.2 (Plan de Seguridad)
+                        <i class="fas fa-arrow-left mr-1"></i> Anterior: RA 1.2 (Políticas e ISO 27001)
                     </a>
-                    <a href="tema2_2.html" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs transition shadow-sm">
-                        Siguiente: RA 2.2 (Monitoreo y Logs) <i class="fas fa-arrow-right ml-1"></i>
+                    <a href="tema2_2.html" class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition shadow-sm">
+                        Siguiente: RA 2.2 (Monitoreo SIEM & Logs) <i class="fas fa-arrow-right ml-1"></i>
                     </a>
                 </div>
 
@@ -463,27 +436,27 @@
                     <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm">
                         <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">En esta Página</h4>
                         <ul class="space-y-2 text-xs text-slate-600">
-                            <li><a href="#fase1" class="hover:text-indigo-600 transition block">1. Caso Real: Brecha Target</a></li>
-                            <li><a href="#fase2" class="hover:text-indigo-600 transition block">2. Hardening Local & Red</a></li>
-                            <li><a href="#fase3" class="hover:text-indigo-600 transition block">3. Scripts PowerShell & Linux</a></li>
-                            <li><a href="#fase4" class="hover:text-indigo-600 transition block">4. Simulador de Firewall</a></li>
-                            <li><a href="#fase5" class="hover:text-indigo-600 transition block">5. Rúbrica Oficial AE 2.1.1</a></li>
+                            <li><a href="#fase1" class="hover:text-red-600 transition block">1. Caso Escaneo y Botnets</a></li>
+                            <li><a href="#fase2" class="hover:text-red-600 transition block">2. Cadenas iptables & DMZ</a></li>
+                            <li><a href="#fase3" class="hover:text-red-600 transition block">3. Script Bash de Hardening</a></li>
+                            <li><a href="#fase4" class="hover:text-red-600 transition block">4. Emulador de Firewall</a></li>
+                            <li><a href="#fase5" class="hover:text-red-600 transition block">5. Rúbrica Oficial AE 2.1.1</a></li>
                         </ul>
                     </div>
 
                     <!-- Cuadro de Evidencia SAE -->
-                    <div class="p-4 bg-gradient-to-br from-indigo-50 to-purple-50 border border-indigo-200 rounded-2xl text-xs space-y-2">
-                        <div class="flex items-center gap-2 text-indigo-900 font-bold text-xs">
-                            <i class="fas fa-folder-tree text-indigo-600"></i> Entregable SAE (AE 2.1.1)
+                    <div class="p-4 bg-gradient-to-br from-red-50 to-rose-50 border border-red-200 rounded-2xl text-xs space-y-2">
+                        <div class="flex items-center gap-2 text-red-900 font-bold text-xs">
+                            <i class="fas fa-lock text-red-600"></i> Entregable SAE (AE 2.1.1)
                         </div>
                         <ul class="text-[11px] text-slate-700 list-disc ml-4 space-y-1">
-                            <li>Manual de instalación y hardening.</li>
-                            <li>Configuración local (Updates, Cuentas, BitLocker).</li>
-                            <li>Configuración de red (Firewall, IDS, SSL).</li>
-                            <li>Sinopsis técnica ejecutiva.</li>
+                            <li>Script perimetral iptables.</li>
+                            <li>Segmentación de zona DMZ.</li>
+                            <li>Configuración VPN IPsec / OpenVPN.</li>
+                            <li>Evidencia de auditoría con Nmap.</li>
                         </ul>
-                        <div class="pt-2 border-t border-indigo-200 text-center">
-                            <span class="text-indigo-700 font-extrabold text-sm">Valor: 30% SAE</span>
+                        <div class="pt-2 border-t border-red-200 text-center">
+                            <span class="text-red-700 font-extrabold text-sm">Ponderación Oficial: 25% SAE</span>
                         </div>
                     </div>
 
@@ -495,34 +468,45 @@
 
     <!-- Script del Simulador JS -->
     <script>
-        function testFirewallRule() {
-            const port = document.getElementById('firewallPort').value;
-            const action = document.getElementById('firewallAction').value;
-            const source = document.getElementById('firewallSource').value;
-            
-            const outElem = document.getElementById('firewallOutput');
-            
-            let isDanger = false;
-            let msg = "";
+        function testFirewall() {
+            const puerto = document.getElementById('simPuerto').value;
+            const ipSrc = document.getElementById('simIpSrc').value;
+            const politica = document.getElementById('simPolitica').value;
+            const outElem = document.getElementById('simFwOutput');
 
-            if (port === "445" && action === "ALLOW" && source === "Internet") {
-                isDanger = true;
-                msg = "<span class='text-red-400 font-bold'>[ALERTA CRÍTICA DE SEGURIDAD]:</span> Puerto SMB 445 expuesto a Internet. Riesgo inminente de explotación por gusanos estilo WannaCry / EternalBlue.";
-            } else if (port === "3389" && action === "ALLOW" && source === "Internet") {
-                isDanger = true;
-                msg = "<span class='text-amber-400 font-bold'>[ADVERTENCIA]:</span> RDP 3389 expuesto a Internet sin VPN. Altamente vulnerable a ataques de fuerza bruta de contraseñas.";
-            } else if (port === "23" && action === "ALLOW") {
-                isDanger = true;
-                msg = "<span class='text-red-400 font-bold'>[PROTOCOLO INSEGURO]:</span> Telnet transmite credenciales en texto plano. Debe ser reemplazado inmediatamente por SSH (Puerto 22).";
-            } else if (action === "DROP") {
-                msg = "<span class='text-emerald-400 font-bold'>[PROTEGIDO]:</span> El paquete entrante al puerto " + port + " fue descartado silenciosamente sin responder al escaneo.";
+            let accion = "";
+            let motivo = "";
+            let color = "text-emerald-300";
+
+            if (politica === "open") {
+                accion = "ACCEPT (PAQUETE PERMITIDO)";
+                motivo = "La política por defecto es ACCEPT y no hay reglas de filtrado.";
+                color = "text-amber-300";
             } else {
-                msg = "<span class='text-sky-400 font-bold'>[PERMITIDO]:</span> Tráfico legítimo al puerto " + port + " autorizado desde " + source + ".";
+                if (puerto === "80" || puerto === "443") {
+                    accion = "ACCEPT (PERMITIDO POR REGLA EXPLÍCITA)";
+                    motivo = "Regla: iptables -A INPUT -p tcp -m multiport --dports 80,443 -j ACCEPT";
+                    color = "text-emerald-300";
+                } else if (puerto === "22") {
+                    accion = "ACCEPT (PERMITIDO CON RATE LIMITING)";
+                    motivo = "Regla: Permitido SSH con límite de 4 intentos por minuto.";
+                    color = "text-sky-300";
+                } else if (puerto === "445" || puerto === "3389") {
+                    accion = "DROP (PAQUETE DESCARTADO SILENCIOSAMENTE)";
+                    motivo = "Regla: Política por defecto DROP activa. Puerto peligroso bloqueado.";
+                    color = "text-red-400";
+                }
             }
 
-            outElem.innerHTML = `-> EVALUACIÓN: Puerto ${port} | Acción: ${action} | Origen: ${source}<br>-> ${msg}`;
+            outElem.innerHTML = `
+                &bull; Paquete entrante: <strong class="text-white">${ipSrc} &rarr; Servidor:Puerto ${puerto}/TCP</strong><br>
+                &bull; Veredicto del Firewall: <span class="${color} font-extrabold text-sm">${accion}</span><br>
+                &bull; Justificación Técnica: <span class="text-slate-300">${motivo}</span><br>
+                ------------------------------------------------------------<br>
+                <span class="text-purple-300 font-bold">&check; ESTADO BLUE TEAM:</span> ${politica === 'hardened' ? "<span class='text-emerald-300'>Servidor blindado contra escaneo y propagación lateral.</span>" : "<span class='text-red-400 font-bold'>¡ALERTA! Superficie de ataque abierta a ransomware.</span>"}
+            `;
         }
-        window.onload = testFirewallRule;
+        window.onload = testFirewall;
     </script>
 </body>
 </html>

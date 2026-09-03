@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RA 2.3: Auditoría, Balance de Seguridad y Contingencias | ASIN-03 CONALEP</title>
+    <title>RA 2.3: Continuidad BCP, DRP y Respaldos 3-2-1 | ASIN-03 CONALEP</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- MathJax 3 -->
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -22,7 +20,7 @@
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        primary: '#16a34a',
+                        primary: '#dc2626',
                         dark: '#0f172a',
                     }
                 }
@@ -31,33 +29,32 @@
     </script>
     <style>
         body { font-family: 'Outfit', sans-serif; background-color: #ffffff; color: #1e293b; }
-        .lll-info { background-color: #eff6ff; border-left: 4px solid #3b82f6; }
+        .lll-info { background-color: #fef2f2; border-left: 4px solid #ef4444; }
         .lll-warning { background-color: #fffbeb; border-left: 4px solid #f59e0b; }
         .lll-tip { background-color: #f0fdf4; border-left: 4px solid #10b981; }
-        .lll-danger { background-color: #fef2f2; border-left: 4px solid #ef4444; }
-        .code-block { font-family: 'JetBrains Mono', monospace; }
+        .lll-danger { background-color: #fef2f2; border-left: 4px solid #b91c1c; }
         .diff-easy { background-color: #dcfce7; color: #15803d; }
         .diff-med { background-color: #fef3c7; color: #b45309; }
         .diff-hard { background-color: #fee2e2; color: #b91c1c; }
         .step-badge { width: 28px; height: 28px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; }
     </style>
 </head>
-<body class="bg-white text-slate-800 antialiased selection:bg-emerald-100 selection:text-emerald-900">
+<body class="bg-white text-slate-800 antialiased selection:bg-red-100 selection:text-red-900">
 
     <!-- Top Bar Institucional -->
     <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <span class="font-semibold text-white"><i class="fas fa-shield-halved text-emerald-400 mr-1.5"></i> CONALEP — PT-B en Informática</span>
+                <span class="font-semibold text-white"><i class="fas fa-shield-halved text-red-500 mr-1.5"></i> CONALEP — PT-B en Informática (Blue Team Lab)</span>
                 <span class="text-slate-600 hidden sm:inline">|</span>
                 <span class="text-slate-400 hidden sm:inline">Módulo: <strong>ASIN-03</strong></span>
             </div>
             <div class="flex items-center space-x-4">
-                <a href="index.html" class="text-xs text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1 font-semibold">
+                <a href="index.html" class="text-xs text-red-400 hover:text-red-300 transition flex items-center gap-1 font-semibold">
                     <i class="fas fa-arrow-left"></i> Índice del Módulo
                 </a>
                 <span class="text-slate-600">|</span>
-                <a href="index.html" class="text-xs text-sky-400 hover:text-sky-300 transition font-semibold">
+                <a href="../index.html" class="text-xs text-emerald-400 hover:text-emerald-300 transition font-semibold">
                     Portal CONALEP
                 </a>
             </div>
@@ -68,48 +65,49 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
-            <!-- COLUMNA 1: Menú Lateral Izquierdo de Navegación -->
+            <!-- COLUMNA 1: Menú Lateral Izquierdo -->
             <aside class="lg:col-span-3">
                 <div class="sticky top-16 space-y-6">
-                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                    <div class="p-4 bg-red-50/60 border border-red-200 rounded-2xl">
                         <div class="flex items-center gap-3 mb-3">
-                            <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
-                                <i class="fas fa-clipboard-check"></i>
+                            <div class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                                <i class="fas fa-server"></i>
                             </div>
                             <div>
                                 <h3 class="font-bold text-slate-900 text-sm leading-tight">Unidad 2</h3>
-                                <p class="text-[11px] text-slate-500">Herramientas de Seguridad</p>
+                                <p class="text-[11px] text-slate-500">Continuidad & DRP</p>
                             </div>
                         </div>
-                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-slate-200 pt-2.5">
+                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-red-200 pt-2.5">
                             <div class="flex justify-between"><span>Duración Total:</span> <strong class="text-slate-800">12 Horas</strong></div>
-                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-emerald-600 font-bold">15% SAE</strong></div>
+                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-red-600 font-bold">15% SAE (Cierre Final)</strong></div>
+                            <div class="flex justify-between"><span>Semanas:</span> <strong class="text-slate-800 font-mono">17 y 18</strong></div>
                         </div>
                     </div>
 
                     <!-- Navegación de RAs -->
                     <div class="border border-slate-200 rounded-2xl p-4 bg-white">
                         <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Resultados de Aprendizaje</h4>
-                        <nav class="space-y-2 text-xs">
-                            <a href="tema1_1.html" class="flex items-center justify-between p-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-bug mr-1.5 text-slate-400"></i> RA 1.1: Riesgos y Triada CIA</span>
-                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">15h</span>
+                        <nav class="space-y-1.5 text-xs">
+                            <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-triangle-exclamation mr-1.5 text-slate-400"></i> RA 1.1: Evaluación de Riesgos</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">14h • 20%</span>
                             </a>
-                            <a href="tema1_2.html" class="flex items-center justify-between p-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-file-contract mr-1.5 text-slate-400"></i> RA 1.2: Plan de Seguridad e ISO</span>
-                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">12h</span>
+                            <a href="tema1_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-file-contract mr-1.5 text-slate-400"></i> RA 1.2: Políticas e ISO 27001</span>
+                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">18h • 20%</span>
                             </a>
-                            <a href="tema2_1.html" class="flex items-center justify-between p-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-lock mr-1.5 text-slate-400"></i> RA 2.1: Hardening y Firewalls</span>
-                                <span class="diff-hard px-2 py-0.5 rounded-full text-[10px] font-mono">23h</span>
+                            <a href="tema2_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-lock mr-1.5 text-slate-400"></i> RA 2.1: Firewalls & DMZ</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">14h • 25%</span>
                             </a>
-                            <a href="tema2_2.html" class="flex items-center justify-between p-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-chart-line mr-1.5 text-slate-400"></i> RA 2.2: Monitoreo y Logs</span>
-                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">10h</span>
+                            <a href="tema2_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+                                <span><i class="fas fa-chart-line mr-1.5 text-slate-400"></i> RA 2.2: Monitoreo SIEM</span>
+                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">14h • 20%</span>
                             </a>
-                            <a href="tema2_3.html" class="flex items-center justify-between p-2.5 rounded-xl bg-emerald-50 text-emerald-700 font-bold border border-emerald-200">
-                                <span><i class="fas fa-chevron-right mr-1.5 text-[10px]"></i> RA 2.3: Auditoría y DRP</span>
-                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">12h</span>
+                            <a href="tema2_3.html" class="flex items-center justify-between p-2 rounded-xl bg-red-50 text-red-800 font-bold border border-red-200">
+                                <span><i class="fas fa-chevron-right mr-1.5 text-[10px]"></i> RA 2.3: BCP, DRP & Backups</span>
+                                <span class="diff-hard px-2 py-0.5 rounded-full text-[10px] font-mono">12h • 15%</span>
                             </a>
                         </nav>
                     </div>
@@ -117,11 +115,11 @@
                     <!-- Fases Pedagógicas -->
                     <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-2">
                         <h4 class="font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-2">5 Fases de la Cátedra</h4>
-                        <a href="#fase1" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-emerald-600">1.</span> Apertura & Auditoría</a>
-                        <a href="#fase2" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-sky-600">2.</span> Gap Analysis & DRP</a>
-                        <a href="#fase3" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-indigo-600">3.</span> Matriz Comparativa</a>
-                        <a href="#fase4" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-amber-600">4.</span> Simulador de Auditoría</a>
-                        <a href="#fase5" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-emerald-600">5.</span> Heteroevaluación AE 2.3.1</a>
+                        <a href="#fase1" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-red-600">1.</span> Apertura & Caso OVHCloud</a>
+                        <a href="#fase2" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-sky-600">2.</span> BCP, DRP, RTO/RPO & 3-2-1</a>
+                        <a href="#fase3" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-indigo-600">3.</span> Script de Backup Cifrado</a>
+                        <a href="#fase4" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-amber-600">4.</span> Calculadora RTO/RPO</a>
+                        <a href="#fase5" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-emerald-600">5.</span> Rúbrica Final AE 2.3.1</a>
                     </div>
                 </div>
             </aside>
@@ -131,106 +129,85 @@
 
                 <!-- Header de Unidad -->
                 <header class="border-b border-slate-200 pb-6">
-                    <div class="flex items-center gap-2 text-xs text-emerald-600 font-bold uppercase tracking-wider mb-2">
-                        <span>Unidad 2</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Resultado de Aprendizaje 2.3</span>
+                    <div class="flex items-center gap-2 text-xs text-red-600 font-bold uppercase tracking-wider mb-2">
+                        <span>Unidad 2</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Resultado de Aprendizaje 2.3 (Cierre de Módulo)</span>
                     </div>
-                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
-                        Control de Parámetros, Auditoría y Planes de Contingencia
+                    <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-3">
+                        Continuidad del Negocio (BCP), Recuperación ante Desastres (DRP) y Respaldos 3-2-1
                     </h1>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        Revisión integral y auditoría técnica cruzada de las herramientas de seguridad configuradas, elaboración del balance comparativo de resultados, identificación de nuevos requerimientos de protección y formulación de Planes de Contingencia (DRP / BCP).
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Planificación de resiliencia operativa: desarrollo del Business Continuity Plan (BCP) y Disaster Recovery Plan (DRP), cálculo de métricas críticas de recuperación RTO (Recovery Time Objective) y RPO (Recovery Point Objective), selección de sitios alternos (Hot Site, Warm Site, Cold Site), estrategia de respaldo 3-2-1 inmutable y cadena de custodia forense.
                     </p>
-                    <div class="mt-4 flex flex-wrap gap-2 text-xs">
-                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold font-mono">12 Horas (Semanas 16 a 18)</span>
-                        <span class="px-2.5 py-1 rounded-lg bg-red-100 text-red-800 font-bold">Heteroevaluación: 15% SAE</span>
-                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">Evidencia: AE 2.3.1 (Final)</span>
+
+                    <!-- Imagen Libre Unsplash -->
+                    <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm mb-4">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80" alt="Data Center y Respaldo de Información" class="w-full h-48 sm:h-64 object-cover">
+                        <div class="bg-slate-50 px-4 py-2 border-t border-slate-200 text-[11px] text-slate-500 flex justify-between">
+                            <span><i class="fas fa-camera mr-1"></i> Imagen Libre: Centro de Datos, Almacenamiento Inmutable y Recuperación ante Desastres</span>
+                            <span>Unsplash Free License</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 text-xs">
+                        <span class="px-2.5 py-1 rounded-lg bg-red-100 text-red-800 font-bold font-mono">12 Horas (Semanas 17 y 18)</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold">Ponderación: 15% SAE (Coevaluación)</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">Evidencia: AE 2.3.1 (100% Acumulado)</span>
                     </div>
                 </header>
 
-                <!-- FASE 1: APERTURA (ACTIVACIÓN Y CONTEXTUALIZACIÓN) -->
+                <!-- FASE 1: APERTURA DISRUPTIVA -->
                 <section id="fase1" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
-                        <span class="step-badge bg-emerald-600 text-white">1</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Contextualización)</h2>
+                        <span class="step-badge bg-red-600 text-white">1</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Reto Provocador)</h2>
                     </div>
 
-                    <div class="lll-tip p-5 rounded-2xl mb-6">
-                        <h3 class="font-bold text-emerald-900 text-sm mb-2 flex items-center gap-2">
-                            <i class="fas fa-certificate text-emerald-600"></i> El Rol de la Auditoría Cruzada y la Mejora Continua
-                        </h3>
+                    <div class="lll-danger p-5 rounded-2xl mb-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-bold text-red-950 text-sm flex items-center gap-2">
+                                <i class="fas fa-fire-flame-curved text-red-600"></i> Caso Real: El Incendio de OVHCloud y la Lección del Respaldo Fuera de Sitio
+                            </h3>
+                            <span class="px-2 py-0.5 rounded bg-red-200 text-red-950 text-[10px] font-bold">HackLab #05</span>
+                        </div>
                         <p class="text-xs text-slate-700 leading-relaxed mb-3">
-                            En el ámbito profesional, ningún administrador de seguridad debe auditar su propio trabajo (Principio de Segregación de Funciones). En este cierre semestral, cada equipo de trabajo actuará como <strong>Comité Auditor Externo</strong> revisando la infraestructura blindada por otro equipo.
+                            En marzo de 2021, un incendio destruyó por completo el centro de datos SBG2 de OVHCloud en Francia. Cientos de empresas perdieron sus servidores principales y sus copias de seguridad... <strong>¡porque guardaban los backups en el mismo edificio que se quemó!</strong> Las únicas empresas que restauraron operaciones en horas fueron aquellas con copias inmutables en otra región geográfica (Estrategia 3-2-1).
                         </p>
-                        <p class="text-xs text-slate-700 leading-relaxed font-semibold">
-                            Se compararán las políticas planeadas en la Unidad 1 contra la configuración técnica real de la Unidad 2 para emitir un <strong>Balance de Resultados y Plan de Contingencias (DRP)</strong>.
-                        </p>
-                    </div>
-
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
-                        <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700 mb-3"><i class="fas fa-scale-balanced text-emerald-600 mr-1.5"></i> Preguntas Guía de Auditoría</h4>
-                        <ol class="list-decimal ml-5 text-xs text-slate-700 space-y-2">
-                            <li>¿Qué sucede si una auditoría descubre que un servidor productivo no tiene instalados los parches de seguridad de los últimos 6 meses?</li>
-                            <li>¿Cuál es la diferencia entre un <strong>Plan de Continuidad del Negocio (BCP)</strong> y un <strong>Plan de Recuperación ante Desastres (DRP)</strong>?</li>
-                            <li>¿Cómo se calcula el RTO (Recovery Time Objective) y el RPO (Recovery Point Objective) durante una contingencia informática?</li>
-                        </ol>
+                        <div class="p-3 bg-white rounded-xl border border-red-200 text-xs font-mono text-red-950">
+                            <strong>🔥 Ley Universal de los Respaldos:</strong> "Un respaldo no verificado no es un respaldo: es solo un acto de fe. Lo que se prueba no es el respaldo, ¡es la restauración!"
+                        </div>
                     </div>
                 </section>
 
-                <!-- FASE 2: DESARROLLO CONCEPTUAL (GAP ANALYSIS Y DRP) -->
+                <!-- FASE 2: DESARROLLO CONCEPTUAL -->
                 <section id="fase2" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="step-badge bg-sky-600 text-white">2</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (Auditoría, Gap Analysis y DRP)</h2>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (BCP vs DRP, RTO/RPO y Esquema 3-2-1)</h2>
                     </div>
 
-                    <!-- Conceptos de Auditoría y Contingencia -->
-                    <div class="mb-6">
-                        <h3 class="text-lg font-bold text-slate-900 mb-3">1. Metodología de Auditoría y Balance de Brechas (Gap Analysis)</h3>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-4">
-                            <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2">
-                                <h4 class="font-bold text-emerald-700 text-sm flex items-center gap-1.5">
-                                    <i class="fas fa-magnifying-glass"></i> Proceso de Auditoría Informática
-                                </h4>
-                                <ul class="list-disc ml-4 space-y-1.5 text-slate-600">
-                                    <li><strong>Recopilación de Evidencias:</strong> Extracción de tablas de reglas de firewall, listado de usuarios locales y directivas de contraseñas.</li>
-                                    <li><strong>Comparación contra Línea Base:</strong> Cotejo entre lo planificado en el Plan de Seguridad (AE 1.2.1) y lo realmente implementado (AE 2.1.1).</li>
-                                    <li><strong>Detección de Discrepancias:</strong> Identificación de puertos abiertos no autorizados, cuentas inactivas sin deshabilitar y fallas en respaldos.</li>
-                                </ul>
-                            </div>
-
-                            <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2">
-                                <h4 class="font-bold text-red-700 text-sm flex items-center gap-1.5">
-                                    <i class="fas fa-life-ring"></i> Planes de Contingencia y DRP
-                                </h4>
-                                <ul class="list-disc ml-4 space-y-1.5 text-slate-600">
-                                    <li><strong>Escalamiento de Problemas:</strong> Matriz de contacto con tiempos de respuesta máximos según la severidad del incidente.</li>
-                                    <li><strong>RTO (Recovery Time Objective):</strong> Tiempo máximo tolerable en el que un servicio puede estar fuera de línea tras un desastre.</li>
-                                    <li><strong>RPO (Recovery Point Objective):</strong> Cantidad máxima de datos que la organización puede tolerar perder (ej. máximo 4 horas de transacciones).</li>
-                                </ul>
-                            </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs mb-6">
+                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <strong class="text-red-700 block text-sm"><i class="fas fa-stopwatch mr-1"></i> RTO y RPO</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                <strong>RTO (Recovery Time Objective):</strong> Tiempo máximo tolerable para volver a operar.<br>
+                                <strong>RPO (Recovery Point Objective):</strong> Cantidad máxima de datos que se permite perder (ej. últimas 2 horas).
+                            </p>
                         </div>
-
-                        <!-- Diagrama Vectorial SVG de Matriz de Escalamiento -->
-                        <div class="p-4 bg-slate-900 rounded-2xl text-center text-white my-6">
-                            <span class="text-[11px] font-mono text-slate-400 block mb-2">Protocolo de Escalamiento de Incidentes y Contingencias</span>
-                            <svg class="w-full max-w-md mx-auto" viewBox="0 0 420 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="20" y="50" width="100" height="50" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
-                                <text x="70" y="73" fill="#38bdf8" font-size="9" font-weight="bold" text-anchor="middle">Nivel 1: Técnico</text>
-                                <text x="70" y="88" fill="#94a3b8" font-size="8" text-anchor="middle">Detección inicial</text>
-
-                                <path d="M120 75 H 155" stroke="#64748b" stroke-width="2"/>
-
-                                <rect x="160" y="50" width="100" height="50" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5"/>
-                                <text x="210" y="73" fill="#fbbf24" font-size="9" font-weight="bold" text-anchor="middle">Nivel 2: Blue Team</text>
-                                <text x="210" y="88" fill="#94a3b8" font-size="8" text-anchor="middle">Contención & DRP</text>
-
-                                <path d="M260 75 H 295" stroke="#64748b" stroke-width="2"/>
-
-                                <rect x="300" y="50" width="100" height="50" rx="8" fill="#1e293b" stroke="#f87171" stroke-width="1.5"/>
-                                <text x="350" y="73" fill="#f87171" font-size="9" font-weight="bold" text-anchor="middle">Nivel 3: Directiva</text>
-                                <text x="350" y="88" fill="#94a3b8" font-size="8" text-anchor="middle">Declaración Crisis</text>
-                            </svg>
+                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <strong class="text-indigo-700 block text-sm"><i class="fas fa-building mr-1"></i> Sitios de Contingencia</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                <strong>Hot Site:</strong> Réplica síncrona 100% activa (RTO &asymp; 0).<br>
+                                <strong>Warm Site:</strong> Servidores listos, requiere restaurar datos (RTO &asymp; 4-12h).<br>
+                                <strong>Cold Site:</strong> Espacio físico sin hardware listo (RTO &asymp; días).
+                            </p>
+                        </div>
+                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <strong class="text-emerald-700 block text-sm"><i class="fas fa-database mr-1"></i> Regla de Oro 3-2-1</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                <strong>3</strong> copias de los datos importantes.<br>
+                                <strong>2</strong> medios de almacenamiento diferentes (NAS + Cinta / Disco).<br>
+                                <strong>1</strong> copia fuera del sitio (Off-site / Nube inmutable WORM).
+                            </p>
                         </div>
                     </div>
                 </section>
@@ -239,204 +216,140 @@
                 <section id="fase3" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="step-badge bg-indigo-600 text-white">3</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Demostración y Modelado de la Matriz Comparativa</h2>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Script de Respaldo Cifrado con Verificación SHA-256</h2>
                     </div>
 
-                    <p class="text-xs text-slate-600 mb-4">
-                        A continuación se modela la estructura de la Matriz Comparativa de Resultados requerida para la evidencia de Heteroevaluación:
-                    </p>
-
-                    <!-- Modelo de Matriz Comparativa de Auditoría -->
-                    <div class="border border-slate-200 rounded-xl p-4 bg-white text-xs overflow-x-auto">
-                        <h4 class="font-bold text-slate-800 mb-3 flex items-center gap-2">
-                            <i class="fas fa-table-list text-emerald-600"></i> Matriz de Balance de Seguridad y Análisis de Brechas
-                        </h4>
-                        <table class="w-full text-[11px] text-left border-collapse">
-                            <thead>
-                                <tr class="bg-slate-100 text-slate-800 font-bold border-b">
-                                    <th class="p-2">Rubro Auditado</th>
-                                    <th class="p-2">Política Planeada (AE 1.2.1)</th>
-                                    <th class="p-2">Configuración Real (AE 2.1.1)</th>
-                                    <th class="p-2 text-center">Estado</th>
-                                    <th class="p-2">Acción Correctiva (DRP)</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-200 text-slate-700">
-                                <tr>
-                                    <td class="p-2 font-bold">Bloqueo de SMB</td>
-                                    <td class="p-2">Puerto 445 bloqueado</td>
-                                    <td class="p-2">Puerto 445 cerrado en firewall</td>
-                                    <td class="p-2 text-center"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">CUMPLE</span></td>
-                                    <td class="p-2">Mantener monitoreo continuo.</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-2 font-bold">Caducidad Contraseñas</td>
-                                    <td class="p-2">Cambio obligatorio 90 días</td>
-                                    <td class="p-2">Configurado en "Nunca expira"</td>
-                                    <td class="p-2 text-center"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-100 text-red-800">NO CUMPLE</span></td>
-                                    <td class="p-2">Aplicar script GPO inmediato para forzar expiración.</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-2 font-bold">Cifrado de Unidad</td>
-                                    <td class="p-2">BitLocker habilitado en C:</td>
-                                    <td class="p-2">BitLocker activo (AES-256)</td>
-                                    <td class="p-2 text-center"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">CUMPLE</span></td>
-                                    <td class="p-2">Resguardar clave de recuperación en bóveda.</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="bg-slate-900 text-slate-200 rounded-xl p-5 text-xs font-mono mb-4 overflow-x-auto space-y-2">
+                        <span class="text-emerald-400 font-bold block">[SCRIPT BASH: RESPALDO AUTOMATIZADO, CIFRADO Y COMPROBADO]</span>
+                        <div class="text-slate-300">
+                            #!/bin/bash<br>
+                            FECHA=$(date +%Y%m%d_%H%M%S)<br>
+                            ORIGEN="/var/www/sistema_escolar"<br>
+                            DESTINO="/backups/remoto"<br>
+                            ARCHIVO="backup_${FECHA}.tar.gz"<br>
+                            <br>
+                            <span class="text-slate-400"># 1. Comprimir datos</span><br>
+                            tar -czf /tmp/${ARCHIVO} ${ORIGEN}<br>
+                            <br>
+                            <span class="text-amber-300"># 2. Cifrar con AES-256 usando OpenSSL (Protección Anti-Ransomware)</span><br>
+                            openssl enc -aes-256-cbc -salt -in /tmp/${ARCHIVO} -out ${DESTINO}/${ARCHIVO}.enc -k "ClaveSecretaConalep2026!"<br>
+                            <br>
+                            <span class="text-sky-300"># 3. Generar Hash SHA-256 para validación de Integridad</span><br>
+                            sha256sum ${DESTINO}/${ARCHIVO}.enc > ${DESTINO}/${ARCHIVO}.sha256<br>
+                            <br>
+                            rm /tmp/${ARCHIVO}<br>
+                            echo "[+] Respaldo cifrado generado con éxito: ${DESTINO}/${ARCHIVO}.enc"
+                        </div>
                     </div>
                 </section>
 
-                <!-- FASE 4: APLICACIÓN PRÁCTICA (SIMULADOR Y PROBLEMARIO) -->
+                <!-- FASE 4: APLICACIÓN PRÁCTICA Y SIMULADOR -->
                 <section id="fase4" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="step-badge bg-amber-600 text-white">4</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Simulador y Problemario)</h2>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Calculadora DRP y Problemario)</h2>
                     </div>
 
-                    <!-- SIMULADOR INTERACTIVO JS: BALANCE DE AUDITORÍA Y GAP ANALYSIS -->
-                    <div class="border-2 border-emerald-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
-                        <div class="flex items-center justify-between mb-4 border-b border-emerald-100 pb-3">
+                    <!-- SIMULADOR INTERACTIVO JS: CALCULADORA RTO / RPO -->
+                    <div class="border-2 border-red-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
+                        <div class="flex items-center justify-between mb-4 border-b border-red-100 pb-3">
                             <div class="flex items-center gap-2">
-                                <i class="fas fa-scale-balanced text-emerald-600 text-xl"></i>
+                                <i class="fas fa-server text-red-600 text-xl"></i>
                                 <div>
-                                    <h3 class="font-bold text-slate-900 text-sm">Simulador de Dictamen de Auditoría Cruzada (Gap Analysis)</h3>
-                                    <span class="text-[11px] text-slate-500 font-mono">Evalúa el grado de conformidad del equipo auditado</span>
+                                    <h3 class="font-bold text-slate-900 text-sm">Calculadora de Continuidad BCP y Selección de Sitio DRP</h3>
+                                    <span class="text-[11px] text-slate-500 font-mono">Modela las tolerancias de interrupción de tu empresa y dimensiona el sitio alterno</span>
                                 </div>
                             </div>
-                            <span class="px-2 py-1 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">JavaScript Nativo</span>
+                            <span class="px-2 py-1 rounded bg-red-100 text-red-800 text-[10px] font-bold">JavaScript Nativo</span>
                         </div>
-
-                        <p class="text-xs text-slate-600 mb-4">
-                            Ingresa el resultado de la inspección técnica realizada al equipo asignado:
-                        </p>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs mb-4">
                             <div>
-                                <label class="font-semibold text-slate-700 block mb-1">Equipo / Sistema Auditado:</label>
-                                <input type="text" id="audSistema" class="w-full p-2 border border-slate-300 rounded-lg text-xs" value="Servidor de Archivos y Lab 03">
+                                <label class="font-semibold text-slate-700 block mb-1">RTO Máximo Tolerable (Tiempo de Caída):</label>
+                                <select id="simRto" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="calcularDrp()">
+                                    <option value="minutos">Menor a 15 Minutos (Misión Crítica / Banca)</option>
+                                    <option value="horas" selected>Entre 4 y 12 Horas (Operación Estándar)</option>
+                                    <option value="dias">Más de 24 Horas (Sistemas Secundarios)</option>
+                                </select>
                             </div>
                             <div>
-                                <label class="font-semibold text-slate-700 block mb-1">Equipo Evaluador (Auditores):</label>
-                                <input type="text" id="audEquipo" class="w-full p-2 border border-slate-300 rounded-lg text-xs" value="Equipo Blue Team Beta">
+                                <label class="font-semibold text-slate-700 block mb-1">Frecuencia de Respaldos (RPO Objetivo):</label>
+                                <select id="simRpo" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="calcularDrp()">
+                                    <option value="continuo">Replicación Continua en Tiempo Real (RPO = 0)</option>
+                                    <option value="diario" selected>Respaldo Diario Nocturno (RPO = 24 horas)</option>
+                                    <option value="semanal">Respaldo Semanal (RPO = 7 días)</option>
+                                </select>
                             </div>
                         </div>
 
-                        <div class="space-y-2 text-xs mb-4" id="audChecklist">
-                            <label class="flex justify-between items-center p-2 rounded-lg border border-slate-200 hover:bg-slate-50">
-                                <span>1. ¿Las actualizaciones del SO están al día según WSUS?</span>
-                                <select class="aud-item p-1 border rounded text-xs" onchange="calcularAuditoria()">
-                                    <option value="20">Cumple (20 pts)</option>
-                                    <option value="0">No Cumple (0 pts)</option>
-                                </select>
-                            </label>
-                            <label class="flex justify-between items-center p-2 rounded-lg border border-slate-200 hover:bg-slate-50">
-                                <span>2. ¿El Firewall bloquea puertos no autorizados (ej. 445/3389)?</span>
-                                <select class="aud-item p-1 border rounded text-xs" onchange="calcularAuditoria()">
-                                    <option value="20">Cumple (20 pts)</option>
-                                    <option value="0">No Cumple (0 pts)</option>
-                                </select>
-                            </label>
-                            <label class="flex justify-between items-center p-2 rounded-lg border border-slate-200 hover:bg-slate-50">
-                                <span>3. ¿Los permisos de carpetas compartidas restringen accesos?</span>
-                                <select class="aud-item p-1 border rounded text-xs" onchange="calcularAuditoria()">
-                                    <option value="20">Cumple (20 pts)</option>
-                                    <option value="0">No Cumple (0 pts)</option>
-                                </select>
-                            </label>
-                            <label class="flex justify-between items-center p-2 rounded-lg border border-slate-200 hover:bg-slate-50">
-                                <span>4. ¿Se cuenta con respaldo digital verificado de configuraciones?</span>
-                                <select class="aud-item p-1 border rounded text-xs" onchange="calcularAuditoria()">
-                                    <option value="20">Cumple (20 pts)</option>
-                                    <option value="0">No Cumple (0 pts)</option>
-                                </select>
-                            </label>
-                            <label class="flex justify-between items-center p-2 rounded-lg border border-slate-200 hover:bg-slate-50">
-                                <span>5. ¿Existe un Plan de Contingencia (DRP) con matriz de escalamiento?</span>
-                                <select class="aud-item p-1 border rounded text-xs" onchange="calcularAuditoria()">
-                                    <option value="20">Cumple (20 pts)</option>
-                                    <option value="0">No Cumple (0 pts)</option>
-                                </select>
-                            </label>
-                        </div>
-
-                        <!-- Dictamen Final de Auditoría -->
-                        <div class="p-4 rounded-xl border border-emerald-300 bg-emerald-50 text-xs">
-                            <div class="flex justify-between items-center mb-1">
-                                <strong class="text-emerald-950 font-bold text-sm">Calificación de Auditoría:</strong>
-                                <span id="audScore" class="text-xl font-extrabold text-emerald-700">100 / 100</span>
+                        <div class="p-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-200 text-xs font-mono">
+                            <div class="text-slate-400 text-[11px] mb-2">[DIMENSIONAMIENTO DEL PLAN DRP Y ESTRATEGIA RECOMENDADA]</div>
+                            <div id="simDrpOutput" class="space-y-1">
+                                <!-- Generado por JS -->
                             </div>
-                            <p id="audDictamen" class="text-slate-700">
-                                <strong>Dictamen Final:</strong> Sistema Certificado. Cumple al 100% con los estándares de seguridad establecidos en el Plan Maestro de Seguridad.
-                            </p>
                         </div>
                     </div>
 
-                    <!-- PROBLEMARIO Y TALLER: 10 EJERCICIOS PARA FIRMAS -->
+                    <!-- PROBLEMARIO DISRUPTIVO (10 RETOS PARA 40% FIRMAS) -->
                     <div class="border border-slate-200 rounded-2xl p-6 bg-white">
                         <div class="flex items-center justify-between mb-4 border-b pb-3">
                             <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
-                                <i class="fas fa-clipboard-check text-emerald-600"></i> Problemario de Taller y Prácticas de Cierre (40% Firmas)
+                                <i class="fas fa-server text-red-600"></i> Bitácora de Resiliencia DRP / BCP (40% Firmas)
                             </h3>
-                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">10 Ejercicios</span>
+                            <span class="px-2 py-0.5 rounded bg-red-100 text-red-800 text-[10px] font-bold">10 Retos</span>
                         </div>
 
                         <div class="space-y-3 text-xs text-slate-700">
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>1. Plan de Revisión de Software:</strong> Diseña el documento de términos de referencia definiendo los rubros y alcances de la auditoría técnica.
+                                <strong>Reto 1 (Definición de RTO y RPO Institucional):</strong> Establece los valores de RTO y RPO para 4 sistemas del plantel: Calificaciones, Nómina, Control de Acceso y Portal Web.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>2. Escaneo de Vulnerabilidades Cruzado:</strong> Utiliza una herramienta de auditoría de red (ej. Nmap) para escanear los puertos abiertos del equipo asignado y reportar discrepancias.
+                                <strong>Reto 2 (Arquitectura de Respaldo 3-2-1):</strong> Diseña el diagrama topológico de almacenamiento que cumpla las 3 copias, 2 medios y 1 copia en la nube.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>3. Matriz de Brechas (Gap Analysis):</strong> Construye una tabla comparativa de 8 puntos contrastando políticas deseadas vs configuraciones reales observadas.
+                                <strong>Reto 3 (Script de Backup Diferencial vs Incremental):</strong> Explica la diferencia técnica y escribe un comando de respaldo diferencial con <code>rsync</code>.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>4. Identificación de Nuevos Riesgos:</strong> Redacta un apartado con 3 riesgos emergentes detectados durante la auditoría (ej. versiones obsoletas de software).
+                                <strong>Reto 4 (Simulacro de Restauración ante Desastres):</strong> Realiza una prueba de recuperación de una base de datos MySQL en un servidor secundario y cronometra el tiempo total (RTO real).
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>5. Plan de Contingencia (DRP):</strong> Diseña un procedimiento de 4 pasos para recuperar el servidor de archivos ante un ataque de ransomware.
+                                <strong>Reto 5 (Protección WORM Anti-Inmutabilidad):</strong> Investiga cómo las bóvedas de almacenamiento WORM (Write Once, Read Many) impiden que el ransomware borre los backups.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>6. Matriz de Escalamiento:</strong> Define los números de contacto y funciones de los responsables ante una caída total del enlace de Internet.
+                                <strong>Reto 6 (Comparativa de Sitios Hot, Warm y Cold):</strong> Construye una tabla comparativa con costos de mantenimiento, tiempo de conmutación (failover) y hardware requerido.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>7. Cálculo de RTO y RPO:</strong> Establece los tiempos máximos tolerables de recuperación para la base de datos de control escolar del plantel.
+                                <strong>Reto 7 (Protocolo de Cadena de Custodia Forense):</strong> Diseña el formato de registro con firma, fecha, hash SHA-256 y responsable para resguardar un disco duro incautado tras un ciberataque.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>8. Plan de Actualización Tecnológica:</strong> Diseña el calendario para la actualización de firmware de switches y routers del plantel.
+                                <strong>Reto 8 (Clonación de Disco en Caliente):</strong> Documenta el uso de herramientas como Clonezilla o <code>dd</code> en Linux para generar una imagen forense bit a bit.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>9. Informe de Balance de Resultados:</strong> Redacta el balance general de la efectividad de las medidas de seguridad implementadas durante el semestre.
+                                <strong>Reto 9 (Plan de Comunicación en Crisis):</strong> Redacta la plantilla de comunicado a clientes y autoridades en caso de una interrupción mayor del servicio por ciberataque.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>10. Dictamen Final de Auditoría (Evidencia 2.3.1):</strong> Presenta el informe formal impreso y digital con firmas de los auditores y del catedrático evaluador.
+                                <strong>Reto 10 (Plan Integral de Continuidad DRP - Evidencia AE 2.3.1):</strong> Presenta el plan formal de continuidad y DRP para el 15% SAE Final (100% Acumulado).
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- FASE 5: CIERRE, EVALUACIÓN Y METACOGNICIÓN (RÚBRICA OFICIAL CONALEP) -->
+                <!-- FASE 5: CIERRE, EVALUACIÓN Y METACOGNICIÓN -->
                 <section id="fase5" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="step-badge bg-emerald-600 text-white">5</span>
                         <h2 class="text-xl font-bold text-slate-900">Fase 5: Cierre, Evaluación y Metacognición</h2>
                     </div>
 
-                    <!-- RÚBRICA OFICIAL CONALEP: AE 2.3.1 (15% PONDERACIÓN - HETEROEVALUACIÓN) -->
+                    <!-- RÚBRICA OFICIAL CONALEP: AE 2.3.1 (15% SAE - Coevaluación) -->
                     <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-sm mb-6">
                         <div class="flex items-center justify-between mb-4 border-b pb-3">
                             <div>
-                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 uppercase font-mono">Actividad de Evaluación 2.3.1 (Heteroevaluación)</span>
-                                <h3 class="font-bold text-slate-900 text-sm mt-1">Rúbrica de Valoración Oficial (15% SAE)</h3>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-red-100 text-red-800 uppercase font-mono">Actividad de Evaluación 2.3.1 (Coevaluación • Cierre de Módulo)</span>
+                                <h3 class="font-bold text-slate-900 text-sm mt-1">Matriz de Valoración Oficial CONALEP (15% SAE - 100% Total)</h3>
                             </div>
-                            <span class="text-xs font-extrabold text-emerald-600">Siglema: ASIN-03</span>
+                            <span class="text-xs font-extrabold text-red-600">Siglema: ASIN-03</span>
                         </div>
-
-                        <p class="text-xs text-slate-600 mb-4">
-                            <strong>Actividad 2.3.1:</strong> Revisa las configuraciones de equipos y redes de comunicación comprobando el cumplimiento de las políticas definidas en plan de seguridad determinado e identificando nuevos requerimientos.
-                        </p>
 
                         <div class="overflow-x-auto text-[11px]">
                             <table class="w-full text-left border-collapse">
@@ -445,56 +358,54 @@
                                         <th class="p-2.5">Indicador</th>
                                         <th class="p-2.5 text-center">%</th>
                                         <th class="p-2.5">Excelente</th>
+                                        <th class="p-2.5">Bueno</th>
                                         <th class="p-2.5">Suficiente</th>
                                         <th class="p-2.5">Insuficiente</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-slate-200 text-slate-700">
                                     <tr>
-                                        <td class="p-2.5 font-bold">Plan de revisión</td>
-                                        <td class="p-2.5 text-center font-bold text-emerald-600">20%</td>
-                                        <td class="p-2.5 bg-emerald-50/50">Elabora plan con rubros y alcances, y <strong>revisa el cumplimiento de las políticas de seguridad</strong>.</td>
-                                        <td class="p-2.5">Elabora plan de revisión conteniendo rubros y alcances de la revisión.</td>
-                                        <td class="p-2.5 bg-red-50/30">No cuenta con plan de revisión conteniendo los aspectos mínimos.</td>
+                                        <td class="p-2.5 font-bold">Diseño del Plan DRP / BCP</td>
+                                        <td class="p-2.5 text-center font-bold text-red-600">35%</td>
+                                        <td class="p-2.5 bg-red-50/50">Define con precisión métricas RTO y RPO, roles del comité de crisis, árbol de llamadas y <strong>procedimientos de conmutación a sitios alternos paso a paso</strong>.</td>
+                                        <td class="p-2.5">Define métricas RTO y RPO, roles de crisis y conmutación a sitios alternos.</td>
+                                        <td class="p-2.5">Plan DRP con procedimientos incompletos o sin métricas claras.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite diseñar el plan de contingencia.</td>
                                     </tr>
                                     <tr>
-                                        <td class="p-2.5 font-bold">Balance de resultados</td>
-                                        <td class="p-2.5 text-center font-bold text-emerald-600">20%</td>
-                                        <td class="p-2.5 bg-emerald-50/50">Elabora balance de resultados y <strong>construye una matriz comparativa para expresarlo</strong>.</td>
-                                        <td class="p-2.5">Elabora balance de resultados obtenidos en la configuración.</td>
-                                        <td class="p-2.5 bg-red-50/30">Omite elaborar el balance de resultados obtenidos.</td>
+                                        <td class="p-2.5 font-bold">Estrategia de respaldo y verificación</td>
+                                        <td class="p-2.5 text-center font-bold text-red-600">30%</td>
+                                        <td class="p-2.5 bg-red-50/50">Aplica la regla 3-2-1, implementa cifrado AES-256 en las copias, valida hashes de integridad y <strong>ejecuta simulacro de restauración exitoso</strong>.</td>
+                                        <td class="p-2.5">Aplica regla 3-2-1, implementa cifrado y valida la restauración de datos.</td>
+                                        <td class="p-2.5">Respaldos sin cifrado o sin verificación de restauración.</td>
+                                        <td class="p-2.5 bg-red-50/30">No incluye estrategia de respaldos.</td>
                                     </tr>
                                     <tr>
-                                        <td class="p-2.5 font-bold">Requerimientos</td>
-                                        <td class="p-2.5 text-center font-bold text-emerald-600">20%</td>
-                                        <td class="p-2.5 bg-emerald-50/50">Determina requerimientos y <strong>relaciona los riesgos asociados a dichos requerimientos</strong>.</td>
-                                        <td class="p-2.5">Determina los requerimientos de configuración de herramientas.</td>
-                                        <td class="p-2.5 bg-red-50/30">Desconoce la existencia de requerimientos de configuración.</td>
+                                        <td class="p-2.5 font-bold">Cadena de custodia y forense</td>
+                                        <td class="p-2.5 text-center font-bold text-red-600">25%</td>
+                                        <td class="p-2.5 bg-red-50/50">Formatos legales de resguardo de evidencia digital, cálculo de hashes forenses inmutables y <strong>documentación de lecciones aprendidas</strong>.</td>
+                                        <td class="p-2.5">Formatos de custodia y cálculo de hashes de la evidencia.</td>
+                                        <td class="p-2.5">Custodia deficiente o sin validación de integridad.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite protocolos de custodia forense.</td>
                                     </tr>
                                     <tr>
-                                        <td class="p-2.5 font-bold">Informe</td>
-                                        <td class="p-2.5 text-center font-bold text-emerald-600">20%</td>
-                                        <td class="p-2.5 bg-emerald-50/50">Elabora los 3 informes (resultados, balance, nuevos requerimientos) y <strong>los presenta tanto digital como impreso</strong>.</td>
-                                        <td class="p-2.5">Elabora los tres informes requeridos en formato digital o impreso.</td>
-                                        <td class="p-2.5 bg-red-50/30">Omite la elaboración de cualquiera de los tres informes.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-2.5 font-bold">Forma</td>
-                                        <td class="p-2.5 text-center font-bold text-emerald-600">20%</td>
-                                        <td class="p-2.5 bg-emerald-50/50">Integra lugar, periodo, sistema auditado, características, resultados, firmas y <strong>entrega en formato digital e impreso</strong>.</td>
-                                        <td class="p-2.5">Presenta informe impreso con datos de identificación y firmas completas.</td>
-                                        <td class="p-2.5 bg-red-50/30">No presenta informe con los datos de auditoría reglamentarios.</td>
+                                        <td class="p-2.5 font-bold">Evaluación colaborativa (COEVALUACIÓN)</td>
+                                        <td class="p-2.5 text-center font-bold text-red-600">10%</td>
+                                        <td class="p-2.5 bg-red-50/50">Evalúa con rigor técnico y objetividad el trabajo del compañero, retroalimenta constructivamente y <strong>demuestra ética profesional intachable</strong>.</td>
+                                        <td class="p-2.5">Evalúa objetivamente al compañero con retroalimentación clara.</td>
+                                        <td class="p-2.5">Evaluación poco fundamentada o superficial.</td>
+                                        <td class="p-2.5 bg-red-50/30">No realiza la coevaluación en la plataforma.</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                    <!-- Metacognición Final del Semestre -->
+                    <!-- Metacognición Final del Módulo -->
                     <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700">
-                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-graduation-cap text-emerald-600 mr-1.5"></i> Conclusión y Cierre de Competencias Profesionales:</h4>
+                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-brain text-red-600 mr-1.5"></i> Metacognición de Cierre de Cátedra:</h4>
                         <p>
-                            "Al completar las 72 horas del módulo ASIN-03, has adquirido las competencias técnicas para diagnosticar riesgos, estructurar políticas corporativas, endurecer infraestructuras locales y de red, monitorear eventos en tiempo real y liderar planes de respuesta ante incidentes en el sector productivo."
+                            "¿Cómo la combinación de gobierno normativo (ISO 27001), defensa perimetral técnica (Firewalls/DMZ), monitoreo activo (SIEM) y resiliencia ante desastres (DRP) te convierte en un profesional indispensable capaz de proteger la infraestructura tecnológica de cualquier organización del país?"
                         </p>
                     </div>
                 </section>
@@ -502,10 +413,10 @@
                 <!-- Navegación Inferior -->
                 <div class="flex justify-between items-center border-t border-slate-200 pt-6">
                     <a href="tema2_2.html" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
-                        <i class="fas fa-arrow-left mr-1"></i> Anterior: RA 2.2 (Monitoreo)
+                        <i class="fas fa-arrow-left mr-1"></i> Anterior: RA 2.2 (Monitoreo SIEM)
                     </a>
-                    <a href="index.html" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition shadow-sm">
-                        <i class="fas fa-home mr-1"></i> Volver a la Portada del Módulo
+                    <a href="index.html" class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition shadow-sm">
+                        Volver al Índice del Módulo <i class="fas fa-home ml-1"></i>
                     </a>
                 </div>
 
@@ -519,27 +430,27 @@
                     <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm">
                         <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">En esta Página</h4>
                         <ul class="space-y-2 text-xs text-slate-600">
-                            <li><a href="#fase1" class="hover:text-emerald-600 transition block">1. Auditoría Cruzada</a></li>
-                            <li><a href="#fase2" class="hover:text-emerald-600 transition block">2. Gap Analysis & DRP</a></li>
-                            <li><a href="#fase3" class="hover:text-emerald-600 transition block">3. Matriz Comparativa</a></li>
-                            <li><a href="#fase4" class="hover:text-emerald-600 transition block">4. Simulador de Auditoría</a></li>
-                            <li><a href="#fase5" class="hover:text-emerald-600 transition block">5. Rúbrica Oficial AE 2.3.1</a></li>
+                            <li><a href="#fase1" class="hover:text-red-600 transition block">1. Caso Incendio OVHCloud</a></li>
+                            <li><a href="#fase2" class="hover:text-red-600 transition block">2. RTO, RPO & Regla 3-2-1</a></li>
+                            <li><a href="#fase3" class="hover:text-red-600 transition block">3. Script de Backup Cifrado</a></li>
+                            <li><a href="#fase4" class="hover:text-red-600 transition block">4. Calculadora DRP</a></li>
+                            <li><a href="#fase5" class="hover:text-red-600 transition block">5. Rúbrica Final AE 2.3.1</a></li>
                         </ul>
                     </div>
 
-                    <!-- Cuadro de Evidencia SAE Final -->
-                    <div class="p-4 bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl text-xs space-y-2">
-                        <div class="flex items-center gap-2 text-emerald-900 font-bold text-xs">
-                            <i class="fas fa-award text-emerald-600"></i> Evidencia Final SAE (AE 2.3.1)
+                    <!-- Cuadro de Evidencia SAE -->
+                    <div class="p-4 bg-gradient-to-br from-red-50 to-emerald-50 border border-red-200 rounded-2xl text-xs space-y-2">
+                        <div class="flex items-center gap-2 text-red-900 font-bold text-xs">
+                            <i class="fas fa-trophy text-amber-500"></i> Entregable Final (AE 2.3.1)
                         </div>
                         <ul class="text-[11px] text-slate-700 list-disc ml-4 space-y-1">
-                            <li>Plan de revisión técnica de software.</li>
-                            <li>Matriz comparativa de balance.</li>
-                            <li>Informe de 3 vías (Resultados, Balance y Nuevos Requerimientos).</li>
-                            <li>Plan de Contingencias y Escalamiento.</li>
+                            <li>Plan de Contingencia y DRP.</li>
+                            <li>Definición de RTO y RPO.</li>
+                            <li>Estrategia 3-2-1 con cifrado.</li>
+                            <li>Cierre del Módulo (100% SAE).</li>
                         </ul>
-                        <div class="pt-2 border-t border-emerald-200 text-center">
-                            <span class="text-emerald-700 font-extrabold text-sm">Valor: 15% SAE • Cierre 100%</span>
+                        <div class="pt-2 border-t border-red-200 text-center">
+                            <span class="text-emerald-700 font-extrabold text-sm">Ponderación Oficial: 15% SAE</span>
                         </div>
                     </div>
 
@@ -551,25 +462,38 @@
 
     <!-- Script del Simulador JS -->
     <script>
-        function calcularAuditoria() {
-            const items = document.querySelectorAll('.aud-item');
-            let score = 0;
-            items.forEach(it => {
-                score += parseInt(it.value);
-            });
-            
-            document.getElementById('audScore').innerText = score + " / 100";
-            const dictamen = document.getElementById('audDictamen');
+        function calcularDrp() {
+            const rto = document.getElementById('simRto').value;
+            const rpo = document.getElementById('simRpo').value;
+            const outElem = document.getElementById('simDrpOutput');
 
-            if (score === 100) {
-                dictamen.innerHTML = "<strong>Dictamen Final:</strong> Sistema Altamente Seguro (Nivel Excelente). Cumple con todas las políticas del Plan Maestro y cuenta con DRP operativo.";
-            } else if (score >= 60) {
-                dictamen.innerHTML = "<strong>Dictamen Final:</strong> Sistema con Observaciones (Nivel Suficiente). Presenta brechas moderadas que deben corregirse en un plazo máximo de 15 días.";
+            let sitioRecomendado = "";
+            let costo = "";
+            let estrategia = "";
+
+            if (rto === "minutos" || rpo === "continuo") {
+                sitioRecomendado = "HOT SITE ACTIVO-ACTIVO (Conmutación Automática en Segundos)";
+                costo = "Inversión Alta (Duplicación completa de servidores e infraestructura)";
+                estrategia = "Replicación síncrona de base de datos + Clúster redundante fuera de sitio.";
+            } else if (rto === "horas" || rpo === "diario") {
+                sitioRecomendado = "WARM SITE (Infraestructura lista + Restauración de Snapshots)";
+                costo = "Inversión Moderada (Equilibrio óptimo costo-beneficio para la mayoría de empresas)";
+                estrategia = "Respaldos nocturnos cifrados enviados a nube inmutable WORM + Servidores standby.";
             } else {
-                dictamen.innerHTML = "<strong>Dictamen Final:</strong> Auditoría No Aprobada (Nivel Insuficiente). Vulnerabilidades críticas detectadas sin plan de contingencia activo.";
+                sitioRecomendado = "COLD SITE (Espacio físico e instalaciones básicas)";
+                costo = "Inversión Baja";
+                estrategia = "Respaldos periódicos en cinta/disco físico resguardados en bóveda de seguridad.";
             }
+
+            outElem.innerHTML = `
+                &bull; Tipo de Sitio DRP Recomendado: <strong class="text-white">${sitioRecomendado}</strong><br>
+                &bull; Nivel de Inversión Tecnológica: <span class="text-amber-300 font-bold">${costo}</span><br>
+                &bull; Arquitectura de Respaldo: <span class="text-emerald-300">${estrategia}</span><br>
+                ------------------------------------------------------------<br>
+                <span class="text-purple-300 font-bold">&check; CERTIFICACIÓN BCP/DRP:</span> Cumple con ISO 22301 de Continuidad del Negocio.
+            `;
         }
-        window.onload = calcularAuditoria;
+        window.onload = calcularDrp;
     </script>
 </body>
 </html>
