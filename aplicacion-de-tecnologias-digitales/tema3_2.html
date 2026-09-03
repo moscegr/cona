@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RA 3.2: Investigación Digital, HTML y Procesamiento Estadístico | ATDI-00 CONALEP</title>
+    <title>RA 3.2: Búsqueda Web, HTML5 y Hojas de Cálculo | ATDI-00 CONALEP</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -20,7 +20,7 @@
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        primary: '#059669',
+                        primary: '#0284c7', // Sky 600
                         dark: '#0f172a',
                     }
                 }
@@ -29,7 +29,7 @@
     </script>
     <style>
         body { font-family: 'Outfit', sans-serif; background-color: #ffffff; color: #1e293b; }
-        .lll-info { background-color: #eff6ff; border-left: 4px solid #3b82f6; }
+        .lll-info { background-color: #f0f9ff; border-left: 4px solid #0284c7; }
         .lll-warning { background-color: #fffbeb; border-left: 4px solid #f59e0b; }
         .lll-tip { background-color: #f0fdf4; border-left: 4px solid #10b981; }
         .lll-danger { background-color: #fef2f2; border-left: 4px solid #ef4444; }
@@ -39,18 +39,18 @@
         .step-badge { width: 28px; height: 28px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; }
     </style>
 </head>
-<body class="bg-white text-slate-800 antialiased selection:bg-emerald-100 selection:text-emerald-900">
+<body class="bg-white text-slate-800 antialiased selection:bg-sky-100 selection:text-sky-900">
 
     <!-- Top Bar Institucional -->
     <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <span class="font-semibold text-white"><i class="fas fa-chart-pie text-emerald-400 mr-1.5"></i> CONALEP — Cultura Digital I</span>
+                <span class="font-semibold text-white"><i class="fas fa-code text-sky-400 mr-1.5"></i> CONALEP — Cultura Digital I (Laboratorio Disruptivo)</span>
                 <span class="text-slate-600 hidden sm:inline">|</span>
                 <span class="text-slate-400 hidden sm:inline">Módulo: <strong>ATDI-00</strong></span>
             </div>
             <div class="flex items-center space-x-4">
-                <a href="index.html" class="text-xs text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1 font-semibold">
+                <a href="index.html" class="text-xs text-sky-400 hover:text-sky-300 transition flex items-center gap-1 font-semibold">
                     <i class="fas fa-arrow-left"></i> Índice del Módulo
                 </a>
                 <span class="text-slate-600">|</span>
@@ -68,19 +68,19 @@
             <!-- COLUMNA 1: Menú Lateral Izquierdo -->
             <aside class="lg:col-span-3">
                 <div class="sticky top-16 space-y-6">
-                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                    <div class="p-4 bg-sky-50/60 border border-sky-200 rounded-2xl">
                         <div class="flex items-center gap-3 mb-3">
-                            <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                            <div class="w-10 h-10 rounded-xl bg-sky-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
                                 <i class="fas fa-chart-pie"></i>
                             </div>
                             <div>
                                 <h3 class="font-bold text-slate-900 text-sm leading-tight">Unidad 3</h3>
-                                <p class="text-[11px] text-slate-500">Herramientas de Productividad</p>
+                                <p class="text-[11px] text-slate-500">Investigación & Web</p>
                             </div>
                         </div>
-                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-slate-200 pt-2.5">
+                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-sky-200 pt-2.5">
                             <div class="flex justify-between"><span>Duración Total:</span> <strong class="text-slate-800">15 Horas</strong></div>
-                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-emerald-600 font-bold">15% SAE</strong></div>
+                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-sky-600 font-bold">15% SAE</strong></div>
                         </div>
                     </div>
 
@@ -89,7 +89,7 @@
                         <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Resultados de Aprendizaje</h4>
                         <nav class="space-y-1.5 text-xs">
                             <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-id-card mr-1.5 text-slate-400"></i> RA 1.1: Normativa y Salud</span>
+                                <span><i class="fas fa-fingerprint mr-1.5 text-slate-400"></i> RA 1.1: Normativa y Salud</span>
                                 <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">10h</span>
                             </a>
                             <a href="tema1_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
@@ -108,7 +108,7 @@
                                 <span><i class="fas fa-palette mr-1.5 text-slate-400"></i> RA 3.1: Ofimática y Diseño</span>
                                 <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">10h</span>
                             </a>
-                            <a href="tema3_2.html" class="flex items-center justify-between p-2 rounded-xl bg-emerald-50 text-emerald-700 font-bold border border-emerald-200">
+                            <a href="tema3_2.html" class="flex items-center justify-between p-2 rounded-xl bg-sky-50 text-sky-800 font-bold border border-sky-200">
                                 <span><i class="fas fa-chevron-right mr-1.5 text-[10px]"></i> RA 3.2: Investigación & HTML</span>
                                 <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">15h</span>
                             </a>
@@ -122,11 +122,11 @@
                     <!-- Fases Pedagógicas -->
                     <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-2">
                         <h4 class="font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-2">5 Fases de la Cátedra</h4>
-                        <a href="#fase1" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-emerald-600">1.</span> Apertura & Big Data</a>
-                        <a href="#fase2" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-sky-600">2.</span> Cyber Etnografía & HTML</a>
-                        <a href="#fase3" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-indigo-600">3.</span> Modelado Estadístico</a>
-                        <a href="#fase4" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-amber-600">4.</span> Calculadora Estadística</a>
-                        <a href="#fase5" class="block text-slate-600 hover:text-emerald-600"><span class="font-bold text-emerald-600">5.</span> Cierre & Rúbrica AE 3.2.1</a>
+                        <a href="#fase1" class="block text-slate-600 hover:text-sky-600"><span class="font-bold text-sky-600">1.</span> Apertura & HackLab</a>
+                        <a href="#fase2" class="block text-slate-600 hover:text-sky-600"><span class="font-bold text-sky-600">2.</span> Google Dorks & HTML5</a>
+                        <a href="#fase3" class="block text-slate-600 hover:text-sky-600"><span class="font-bold text-indigo-600">3.</span> Modelado en Hoja de Cálculo</a>
+                        <a href="#fase4" class="block text-slate-600 hover:text-sky-600"><span class="font-bold text-amber-600">4.</span> Sandbox HTML5 & Stats</a>
+                        <a href="#fase5" class="block text-slate-600 hover:text-sky-600"><span class="font-bold text-emerald-600">5.</span> Cierre & Rúbrica AE 3.2.1</a>
                     </div>
                 </div>
             </aside>
@@ -136,45 +136,42 @@
 
                 <!-- Header de Unidad -->
                 <header class="border-b border-slate-200 pb-6">
-                    <div class="flex items-center gap-2 text-xs text-emerald-600 font-bold uppercase tracking-wider mb-2">
+                    <div class="flex items-center gap-2 text-xs text-sky-600 font-bold uppercase tracking-wider mb-2">
                         <span>Unidad 3</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Resultado de Aprendizaje 3.2</span>
                     </div>
-                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
-                        Métodos de Investigación Digital, HTML y Procesamiento Estadístico
+                    <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-3">
+                        Investigación Digital Avanzada, Creación en HTML5 y Hojas de Cálculo
                     </h1>
                     <p class="text-slate-600 text-sm leading-relaxed">
-                        Técnicas de investigación digital (cyber etnografía, focus group online, entrevistas asistidas), publicación de resultados mediante lenguaje de marcado HTML y procesamiento cuantitativo con medidas de tendencia central y dispersión.
+                        Técnicas de búsqueda académica y booleana con operadores avanzados, estructuración semántica de páginas web con HTML5 (`header`, `nav`, `main`, `article`, `footer`), y procesamiento estadístico de datos en hojas de cálculo (Media, Mediana, Moda, Tablas Dinámicas y Gráficos).
                     </p>
                     <div class="mt-4 flex flex-wrap gap-2 text-xs">
-                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold font-mono">15 Horas (Semanas 13 a 15)</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-sky-100 text-sky-800 font-bold font-mono">15 Horas (Semanas 13 a 15)</span>
                         <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold">Ponderación: 15% SAE</span>
                         <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">Evidencia: AE 3.2.1</span>
                     </div>
                 </header>
 
-                <!-- FASE 1: APERTURA -->
+                <!-- FASE 1: APERTURA DISRUPTIVA -->
                 <section id="fase1" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
-                        <span class="step-badge bg-emerald-600 text-white">1</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Contextualización)</h2>
+                        <span class="step-badge bg-sky-600 text-white">1</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Reto Provocador)</h2>
                     </div>
 
                     <div class="lll-info p-5 rounded-2xl mb-6">
-                        <h3 class="font-bold text-blue-900 text-sm mb-2 flex items-center gap-2">
-                            <i class="fas fa-magnifying-glass-chart text-blue-600"></i> La Toma de Decisiones Basada en Datos
-                        </h3>
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-bold text-sky-900 text-sm flex items-center gap-2">
+                                <i class="fas fa-globe text-sky-600"></i> Reto Disruptivo: ¿Cómo encontrar documentos secretos y datos duros en 3 segundos?
+                            </h3>
+                            <span class="px-2 py-0.5 rounded bg-sky-200 text-sky-900 text-[10px] font-bold">HackLab #06</span>
+                        </div>
                         <p class="text-xs text-slate-700 leading-relaxed mb-3">
-                            Las decisiones empresariales y científicas ya no se toman por intuición, sino mediante la recolección masiva de datos en encuestas online y el análisis estadístico de tendencias. Saber recopilar datos con rigor, procesarlos en hojas de cálculo y publicarlos en una página web HTML es una competencia transversal clave.
+                            La mayoría de las personas busca información escribiendo preguntas vagas en Google y conformándose con el primer resultado patrocinado. Los profesionales de la informática utilizan <strong>Google Dorks y operadores booleanos</strong> para filtrar exclusivamente archivos PDF académicos o bases de datos gubernamentales en Excel.
                         </p>
-                    </div>
-
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
-                        <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700 mb-3"><i class="fas fa-question-circle text-emerald-600 mr-1.5"></i> Preguntas Detonadoras</h4>
-                        <ol class="list-decimal ml-5 text-xs text-slate-700 space-y-2">
-                            <li>¿Qué es la <strong>Cyber Etnografía</strong> y cómo permite estudiar el comportamiento de comunidades en foros y redes sociales?</li>
-                            <li>¿Cuál es la diferencia entre la <strong>Media (promedio)</strong> y la <strong>Mediana</strong> cuando existen datos atípicos extremos?</li>
-                            <li>¿Qué función cumplen las etiquetas básicas `&lt;html&gt;`, `&lt;head&gt;`, `&lt;body&gt;` y `&lt;p&gt;` en un sitio web?</li>
-                        </ol>
+                        <div class="p-3 bg-white rounded-xl border border-sky-200 text-xs font-mono text-sky-950">
+                            <strong>🔥 Comando Pro:</strong> <code>site:gob.mx filetype:pdf "ciberseguridad" 2026</code> &rarr; ¡Acceso directo a documentos oficiales sin pasar por blogs ni publicidad!
+                        </div>
                     </div>
                 </section>
 
@@ -182,27 +179,27 @@
                 <section id="fase2" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="step-badge bg-sky-600 text-white">2</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (Investigación Digital y Estadística)</h2>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (Operadores, HTML5 y Estadísticas)</h2>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs mb-6">
-                        <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5">
-                            <strong class="text-blue-700 block text-sm"><i class="fas fa-calculator mr-1"></i> Medidas Estadísticas Descriptivas</strong>
-                            <ul class="list-disc ml-4 space-y-1 text-slate-600">
-                                <li><strong>Media (\(\bar{x}\)):</strong> Suma de todos los valores dividida entre el total de observaciones.</li>
-                                <li><strong>Mediana:</strong> Valor central que divide los datos ordenados en dos mitades del 50%.</li>
-                                <li><strong>Moda:</strong> El valor o categoría con mayor frecuencia de aparición.</li>
-                                <li><strong>Desviación Estándar (\(\sigma\)):</strong> Grado de dispersión de los datos respecto a la media.</li>
-                            </ul>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs mb-6">
+                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <strong class="text-sky-700 block text-sm"><i class="fas fa-magnifying-glass mr-1"></i> Búsqueda Booleana</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                <code>AND</code>, <code>OR</code>, <code>NOT (-)</code>, <code>site:</code>, <code>filetype:</code>, <code>intitle:</code>. Filtra fake news y fuentes no académicas.
+                            </p>
                         </div>
-
-                        <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5">
-                            <strong class="text-emerald-700 block text-sm"><i class="fas fa-code mr-1"></i> Fundamentos de HTML5 y Publicación Web</strong>
-                            <ul class="list-disc ml-4 space-y-1 text-slate-600">
-                                <li><strong>Estructura Semántica:</strong> <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>.</li>
-                                <li><strong>Hipervínculos e Imágenes:</strong> <code>&lt;a href="..."&gt;</code> e <code>&lt;img src="..."&gt;</code>.</li>
-                                <li><strong>Hospedaje y Dominio:</strong> Servidores web, nombres DNS y protocolo seguro HTTPS.</li>
-                            </ul>
+                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <strong class="text-indigo-700 block text-sm"><i class="fas fa-code mr-1"></i> Estructura Semántica HTML5</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code>. Accesibilidad SEO y lectores de pantalla.
+                            </p>
+                        </div>
+                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <strong class="text-emerald-700 block text-sm"><i class="fas fa-table mr-1"></i> Estadística en Hojas de Cálculo</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                <code>=PROMEDIO()</code>, <code>=MEDIANA()</code>, <code>=MODA.UNO()</code>, <code>=CONTAR.SI()</code>, <code>=BUSCARV()</code> y tablas dinámicas.
+                            </p>
                         </div>
                     </div>
                 </section>
@@ -211,112 +208,109 @@
                 <section id="fase3" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="step-badge bg-indigo-600 text-white">3</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Demostración y Modelado en HTML</h2>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Modelado de Portal Semántico en HTML5</h2>
                     </div>
 
-                    <div class="bg-slate-900 text-slate-200 rounded-xl p-5 text-xs font-mono mb-4">
-                        <div class="flex justify-between items-center text-slate-400 text-[11px] mb-3 pb-2 border-b border-slate-800">
-                            <span><i class="fab fa-html5 text-orange-400 mr-1.5"></i> informe_investigacion.html</span>
-                            <span>HTML5 Estándar</span>
+                    <div class="bg-slate-900 text-slate-200 rounded-xl p-5 text-xs font-mono mb-4 overflow-x-auto space-y-2">
+                        <span class="text-emerald-400 font-bold block">[CÓDIGO FUENTE HTML5 SEMÁNTICO LIMPIO]</span>
+                        <div class="text-slate-300">
+                            &lt;!DOCTYPE html&gt;<br>
+                            &lt;html lang="es"&gt;<br>
+                            &lt;head&gt;&lt;title&gt;Mi Portal CONALEP&lt;/title&gt;&lt;/head&gt;<br>
+                            &lt;body&gt;<br>
+                            &nbsp;&nbsp;&lt;header&gt;&lt;h1&gt;Cultura Digital I&lt;/h1&gt;&lt;/header&gt;<br>
+                            &nbsp;&nbsp;&lt;nav&gt;&lt;a href="#temas"&gt;Temario&lt;/a&gt;&lt;/nav&gt;<br>
+                            &nbsp;&nbsp;&lt;main&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;article&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;Innovación Tecnológica&lt;/h2&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Desarrollo de software ético y sustentable.&lt;/p&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/article&gt;<br>
+                            &nbsp;&nbsp;&lt;/main&gt;<br>
+                            &nbsp;&nbsp;&lt;footer&gt;&lt;p&gt;&copy; 2026 CONALEP Chilpancingo&lt;/p&gt;&lt;/footer&gt;<br>
+                            &lt;/body&gt;<br>
+                            &lt;/html&gt;
                         </div>
-                        &lt;!DOCTYPE html&gt;<br>
-                        &lt;html lang="es"&gt;<br>
-                        &lt;head&gt;<br>
-                        &nbsp;&nbsp;&lt;meta charset="UTF-8"&gt;<br>
-                        &nbsp;&nbsp;&lt;title&gt;Resultados de Encuesta de Hábitos Digitales&lt;/title&gt;<br>
-                        &lt;/head&gt;<br>
-                        &lt;body&gt;<br>
-                        &nbsp;&nbsp;&lt;header&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Reporte de Investigación Digital - CONALEP&lt;/h1&gt;<br>
-                        &nbsp;&nbsp;&lt;/header&gt;<br>
-                        &nbsp;&nbsp;&lt;main&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Muestra encuestada: 120 estudiantes del plantel.&lt;/p&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Promedio de horas de conexión: &lt;strong&gt;6.5 hrs/día&lt;/strong&gt;&lt;/p&gt;<br>
-                        &nbsp;&nbsp;&lt;/main&gt;<br>
-                        &lt;/body&gt;<br>
-                        &lt;/html&gt;
                     </div>
                 </section>
 
-                <!-- FASE 4: APLICACIÓN PRÁCTICA (SIMULADOR Y PROBLEMARIO) -->
+                <!-- FASE 4: APLICACIÓN PRÁCTICA Y SIMULADOR -->
                 <section id="fase4" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="step-badge bg-amber-600 text-white">4</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Simulador y Problemario)</h2>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Live Sandbox HTML5 y Stats)</h2>
                     </div>
 
-                    <!-- SIMULADOR INTERACTIVO JS: CALCULADORA ESTADÍSTICA -->
-                    <div class="border-2 border-emerald-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
-                        <div class="flex items-center justify-between mb-4 border-b border-emerald-100 pb-3">
+                    <!-- SIMULADOR INTERACTIVO JS: LIVE HTML5 SANDBOX -->
+                    <div class="border-2 border-sky-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
+                        <div class="flex items-center justify-between mb-4 border-b border-sky-100 pb-3">
                             <div class="flex items-center gap-2">
-                                <i class="fas fa-chart-line text-emerald-600 text-xl"></i>
+                                <i class="fas fa-code text-sky-600 text-xl"></i>
                                 <div>
-                                    <h3 class="font-bold text-slate-900 text-sm">Calculadora de Estadística Descriptiva en Vivo</h3>
-                                    <span class="text-[11px] text-slate-500 font-mono">Calcula Media, Mediana, Moda y Desviación Estándar</span>
+                                    <h3 class="font-bold text-slate-900 text-sm">Editor HTML5 en Vivo (Live Sandbox)</h3>
+                                    <span class="text-[11px] text-slate-500 font-mono">Modifica el código y observa el renderizado instantáneo en el navegador</span>
                                 </div>
                             </div>
-                            <span class="px-2 py-1 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">JavaScript Nativo</span>
+                            <span class="px-2 py-1 rounded bg-sky-100 text-sky-800 text-[10px] font-bold">JavaScript Nativo</span>
                         </div>
 
-                        <div class="space-y-3 text-xs mb-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs mb-4">
                             <div>
-                                <label class="font-semibold text-slate-700 block mb-1">Ingresa una serie de números separados por coma:</label>
-                                <div class="flex gap-2">
-                                    <input type="text" id="simDataInput" class="flex-grow p-2 border border-slate-300 rounded-xl font-mono text-xs" value="8, 9, 7, 10, 8, 9, 8, 6, 9, 10">
-                                    <button onclick="calcularEstadisticas()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs transition">
-                                        Calcular
-                                    </button>
-                                </div>
+                                <label class="font-semibold text-slate-700 block mb-1">Código HTML5:</label>
+                                <textarea id="simHtmlCode" class="w-full h-36 p-2.5 border border-slate-300 rounded-lg text-xs font-mono bg-slate-900 text-emerald-400" oninput="renderLiveHtml()">
+<div style="font-family:sans-serif; padding:15px; background:#f0f9ff; border:2px solid #0284c7; border-radius:10px;">
+  <h3 style="color:#0369a1; margin-top:0;">🚀 Mi Primera Web CONALEP</h3>
+  <p style="color:#334155; font-size:12px;">Desarrollado en el laboratorio de Cultura Digital I.</p>
+  <button style="background:#0284c7; color:white; border:none; padding:6px 12px; border-radius:6px; font-weight:bold; cursor:pointer;">¡Aprender Más!</button>
+</div></textarea>
                             </div>
-                        </div>
-
-                        <div class="p-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-200 text-xs font-mono">
-                            <div class="text-slate-400 text-[11px] mb-2">[RESULTADOS ESTADÍSTICOS DESCRIPTIVOS]</div>
-                            <div id="simStatsOutput" class="text-emerald-400 space-y-1">
-                                <!-- Generado por JS -->
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Resultado Renderizado en Vivo:</label>
+                                <div id="simHtmlPreview" class="w-full h-36 p-2.5 border border-slate-300 rounded-lg overflow-auto bg-white">
+                                    <!-- Renderizado en vivo -->
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- PROBLEMARIO DE 10 EJERCICIOS PARA FIRMAS -->
+                    <!-- PROBLEMARIO DISRUPTIVO (10 RETOS PARA 40% FIRMAS) -->
                     <div class="border border-slate-200 rounded-2xl p-6 bg-white">
                         <div class="flex items-center justify-between mb-4 border-b pb-3">
                             <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
-                                <i class="fas fa-pencil text-emerald-600"></i> Problemario de Investigación y Estadística (40% Firmas)
+                                <i class="fas fa-chart-pie text-sky-600"></i> Bitácora de Investigación y Creación Web (40% Firmas)
                             </h3>
-                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">10 Ejercicios</span>
+                            <span class="px-2 py-0.5 rounded bg-sky-100 text-sky-800 text-[10px] font-bold">10 Retos</span>
                         </div>
 
                         <div class="space-y-3 text-xs text-slate-700">
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>1. Diseño de Encuesta de Cyber Etnografía:</strong> Redacta un instrumento de encuesta con 8 preguntas para investigar el uso de redes sociales en tu plantel.
+                                <strong>Reto 1 (Búsqueda Booleana de Fuentes Académicas):</strong> Utiliza Google Académico con operadores booleanos para descargar 3 artículos científicos sobre Inteligencia Artificial en México.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>2. Cálculo Manual de Media y Mediana:</strong> Dados los valores \([12, 15, 18, 22, 25, 29, 31]\), calcula a mano la media aritmética y la mediana.
+                                <strong>Reto 2 (Auditoría de Fake News - Método CRAAP):</strong> Aplica el método CRAAP (Actualidad, Relevancia, Autoridad, Precisión y Propósito) a una noticia viral de redes sociales demostrando su veracidad o falsedad.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>3. Desviación Estándar en Hoja de Cálculo:</strong> Aplica la fórmula `=DESVEST.M(A1:A20)` a una columna de datos recolectados e interpreta la dispersión.
+                                <strong>Reto 3 (Página Web Semántica en HTML5):</strong> Escribe un archivo <code>index.html</code> estructurando un artículo de blog sobre ciberseguridad con encabezado, menú, sección y pie.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>4. Construcción de Página Web HTML5:</strong> Escribe el código HTML de una página con título, dos párrafos, una lista con viñetas y una imagen enlazada.
+                                <strong>Reto 4 (Tablas y Formularios en HTML):</strong> Modela una tabla HTML con 5 columnas y un formulario de contacto con validaciones de tipo <code>email</code> y <code>required</code>.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>5. Gráfico de Dispersión (Correlación):</strong> Genera un gráfico que compare "Horas de estudio" vs "Calificación obtenida" y redacta una conclusión.
+                                <strong>Reto 5 (Fórmulas Estadísticas en Hoja de Cálculo):</strong> En una base de datos de 30 estudiantes, calcula la Media, Mediana, Desviación Estándar y Calificación Máxima.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>6. Creación de Diagrama de Gantt:</strong> Elabora un cronograma visual de actividades para un proyecto escolar de 4 semanas en la hoja de cálculo.
+                                <strong>Reto 6 (Función Condicional =SI y =CONTAR.SI):</strong> Escribe la fórmula en Excel para categorizar automáticamente a los alumnos en 'Aprobado' (&ge;7.0) o 'Reprobado' (&lt;7.0).
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>7. Análisis de Redes Sociales (ARS):</strong> Diseña un mapa de actores o grafo que represente cómo fluye la información en tu grupo escolar.
+                                <strong>Reto 7 (Tabla Dinámica y Gráfico de Barras):</strong> Agrupa un listado de ventas por departamento utilizando una tabla dinámica y genera un gráfico comparativo.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>8. Limpieza y Normalización de Datos:</strong> Identifica y corrige 3 errores comunes en una base de datos (valores nulos, duplicados y tipografía inconsistente).
+                                <strong>Reto 8 (Función =BUSCARV / =BUSCARX):</strong> Diseña un buscador en hoja de cálculo que devuelva el nombre del alumno al ingresar su matrícula.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>9. Exportación de Datos en Formato CSV:</strong> Explica la diferencia entre un archivo propietario `.xlsx` y un formato abierto `.csv`.
+                                <strong>Reto 9 (Validación de Datos y Listas Desplegables):</strong> Configura celdas con listas desplegables para restringir las entradas a 'Informática', 'Pilotaje de Drones' o 'Electromecánica'.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>10. Proyecto de Investigación Digital (Evidencia AE 3.2.1):</strong> Presenta el reporte completo con recolección, cálculo estadístico y página web para el 15% SAE.
+                                <strong>Reto 10 (Página Web y Hoja de Análisis - Evidencia AE 3.2.1):</strong> Presenta el portal web HTML5 y el libro de cálculo estadístico para el 15% SAE.
                             </div>
                         </div>
                     </div>
@@ -333,10 +327,10 @@
                     <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-sm mb-6">
                         <div class="flex items-center justify-between mb-4 border-b pb-3">
                             <div>
-                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 uppercase font-mono">Actividad de Evaluación 3.2.1</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-sky-100 text-sky-800 uppercase font-mono">Actividad de Evaluación 3.2.1</span>
                                 <h3 class="font-bold text-slate-900 text-sm mt-1">Rúbrica de Valoración Oficial (15% SAE)</h3>
                             </div>
-                            <span class="text-xs font-extrabold text-emerald-600">Siglema: ATDI-00</span>
+                            <span class="text-xs font-extrabold text-sky-600">Siglema: ATDI-00</span>
                         </div>
 
                         <div class="overflow-x-auto text-[11px]">
@@ -346,43 +340,38 @@
                                         <th class="p-2.5">Indicador</th>
                                         <th class="p-2.5 text-center">%</th>
                                         <th class="p-2.5">Excelente</th>
-                                        <th class="p-2.5">Bueno</th>
                                         <th class="p-2.5">Suficiente</th>
                                         <th class="p-2.5">Insuficiente</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-slate-200 text-slate-700">
                                     <tr>
-                                        <td class="p-2.5 font-bold">Técnicas de investigación digital</td>
-                                        <td class="p-2.5 text-center font-bold text-emerald-600">30%</td>
-                                        <td class="p-2.5 bg-emerald-50/50">Incluye cyber etnografía, encuestas online, ARS y <strong>explica el uso del método</strong>.</td>
-                                        <td class="p-2.5">Incluye cyber etnografía, encuestas online y análisis.</td>
-                                        <td class="p-2.5">Incluye sólo la mitad de las técnicas.</td>
-                                        <td class="p-2.5 bg-red-50/30">Omite la mayoría de las técnicas.</td>
+                                        <td class="p-2.5 font-bold">Investigación Web y Detección de Fuentes</td>
+                                        <td class="p-2.5 text-center font-bold text-sky-600">30%</td>
+                                        <td class="p-2.5 bg-sky-50/50">Aplica operadores booleanos, evalúa fuentes con rigor CRAAP y <strong>cita correctamente bajo formato APA</strong>.</td>
+                                        <td class="p-2.5">Utiliza motores de búsqueda e identifica fuentes confiables.</td>
+                                        <td class="p-2.5 bg-red-50/30">Copia información de blogs sin verificar fiabilidad.</td>
                                     </tr>
                                     <tr>
-                                        <td class="p-2.5 font-bold">Herramientas en línea</td>
-                                        <td class="p-2.5 text-center font-bold text-emerald-600">30%</td>
-                                        <td class="p-2.5 bg-emerald-50/50">Recopila, extrae, exporta, analiza y <strong>agrega descripción detallada</strong>.</td>
-                                        <td class="p-2.5">Recopila, extrae y analiza de forma estructurada.</td>
-                                        <td class="p-2.5">Recopila y extrae información básica.</td>
-                                        <td class="p-2.5 bg-red-50/30">Sin análisis estructurado ni organizado.</td>
+                                        <td class="p-2.5 font-bold">Estructura y Creación Web en HTML5</td>
+                                        <td class="p-2.5 text-center font-bold text-sky-600">35%</td>
+                                        <td class="p-2.5 bg-sky-50/50">Estructura semántica HTML5 completa, tablas, enlaces, imágenes y <strong>código validado sin errores de sintaxis</strong>.</td>
+                                        <td class="p-2.5">Construye página web básica en HTML con encabezado y cuerpo.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite etiquetas semánticas o contiene errores de cierre.</td>
                                     </tr>
                                     <tr>
-                                        <td class="p-2.5 font-bold">Procesa datos</td>
-                                        <td class="p-2.5 text-center font-bold text-emerald-600">20%</td>
-                                        <td class="p-2.5 bg-emerald-50/50">Tendencia central, dispersión, gráficos y <strong>diseños novedosos de presentación</strong>.</td>
-                                        <td class="p-2.5">Tendencia central, dispersión y gráficos.</td>
-                                        <td class="p-2.5">Solo calcula tendencia central y dispersión.</td>
-                                        <td class="p-2.5 bg-red-50/30">Omite el cálculo estadístico.</td>
+                                        <td class="p-2.5 font-bold">Procesamiento en Hojas de Cálculo</td>
+                                        <td class="p-2.5 text-center font-bold text-sky-600">25%</td>
+                                        <td class="p-2.5 bg-sky-50/50">Fórmulas estadísticas, funciones lógicas (=SI), gráficos dinámicos y <strong>análisis interpretativo de datos</strong>.</td>
+                                        <td class="p-2.5">Aplica fórmulas básicas de suma y promedio en hojas de cálculo.</td>
+                                        <td class="p-2.5 bg-red-50/30">Fórmulas erróneas o ausencia de gráficos.</td>
                                     </tr>
                                     <tr>
-                                        <td class="p-2.5 font-bold">Comunidad virtual y Actitud</td>
-                                        <td class="p-2.5 text-center font-bold text-emerald-600">20%</td>
-                                        <td class="p-2.5 bg-emerald-50/50">Compartido en la nube, redacción clara, inclusión, <strong>perseverancia e innovación</strong>.</td>
-                                        <td class="p-2.5">Compartido con permisos y redacción clara.</td>
-                                        <td class="p-2.5">Cumple parcialmente con permisos o redacción.</td>
-                                        <td class="p-2.5 bg-red-50/30">Omite compartir en comunidad virtual.</td>
+                                        <td class="p-2.5 font-bold">Presentación y Desempeño</td>
+                                        <td class="p-2.5 text-center font-bold text-sky-600">10%</td>
+                                        <td class="p-2.5 bg-sky-50/50">Entrega digital completa, orden, puntualidad y <strong>liderazgo proactivo</strong>.</td>
+                                        <td class="p-2.5">Entrega digital ordenada y asistencia al 90%.</td>
+                                        <td class="p-2.5 bg-red-50/30">Entrega extemporánea o incompleta.</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -391,9 +380,9 @@
 
                     <!-- Metacognición -->
                     <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700">
-                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-brain text-emerald-600 mr-1.5"></i> Pregunta de Metacognición:</h4>
+                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-brain text-sky-600 mr-1.5"></i> Pregunta de Metacognición Disruptiva:</h4>
                         <p>
-                            "¿Cómo el análisis estadístico objetivo te permite fundamentar una propuesta ante autoridades o inversionistas con base en evidencia sólida?"
+                            "¿Cómo la capacidad de construir tus propias páginas web en HTML5 y analizar datos masivos en hojas de cálculo te posiciona por encima del 95% de los usuarios convencionales de computadoras?"
                         </p>
                     </div>
                 </section>
@@ -401,10 +390,10 @@
                 <!-- Navegación Inferior -->
                 <div class="flex justify-between items-center border-t border-slate-200 pt-6">
                     <a href="tema3_1.html" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
-                        <i class="fas fa-arrow-left mr-1"></i> Anterior: RA 3.1 (Ofimática)
+                        <i class="fas fa-arrow-left mr-1"></i> Anterior: RA 3.1 (Ofimática & Diseño)
                     </a>
-                    <a href="tema3_3.html" class="px-4 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs transition shadow-sm">
-                        Siguiente: RA 3.3 (Redes & IA) <i class="fas fa-arrow-right ml-1"></i>
+                    <a href="tema3_3.html" class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs transition shadow-sm">
+                        Siguiente: RA 3.3 (Redes & IA 4.0) <i class="fas fa-arrow-right ml-1"></i>
                     </a>
                 </div>
 
@@ -418,27 +407,27 @@
                     <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm">
                         <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">En esta Página</h4>
                         <ul class="space-y-2 text-xs text-slate-600">
-                            <li><a href="#fase1" class="hover:text-emerald-600 transition block">1. Big Data & Toma de Decisiones</a></li>
-                            <li><a href="#fase2" class="hover:text-emerald-600 transition block">2. Medidas Estadísticas & HTML</a></li>
-                            <li><a href="#fase3" class="hover:text-emerald-600 transition block">3. Modelado HTML5</a></li>
-                            <li><a href="#fase4" class="hover:text-emerald-600 transition block">4. Calculadora Estadística</a></li>
-                            <li><a href="#fase5" class="hover:text-emerald-600 transition block">5. Rúbrica Oficial AE 3.2.1</a></li>
+                            <li><a href="#fase1" class="hover:text-sky-600 transition block">1. Reto: HackLab #06</a></li>
+                            <li><a href="#fase2" class="hover:text-sky-600 transition block">2. Google Dorks & HTML5</a></li>
+                            <li><a href="#fase3" class="hover:text-sky-600 transition block">3. Código HTML5 Limpio</a></li>
+                            <li><a href="#fase4" class="hover:text-sky-600 transition block">4. Live Sandbox HTML5</a></li>
+                            <li><a href="#fase5" class="hover:text-sky-600 transition block">5. Rúbrica Oficial AE 3.2.1</a></li>
                         </ul>
                     </div>
 
                     <!-- Cuadro de Evidencia SAE -->
-                    <div class="p-4 bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl text-xs space-y-2">
-                        <div class="flex items-center gap-2 text-emerald-900 font-bold text-xs">
-                            <i class="fas fa-chart-pie text-emerald-600"></i> Entregable SAE (AE 3.2.1)
+                    <div class="p-4 bg-gradient-to-br from-sky-50 to-indigo-50 border border-sky-200 rounded-2xl text-xs space-y-2">
+                        <div class="flex items-center gap-2 text-sky-900 font-bold text-xs">
+                            <i class="fas fa-code text-sky-600"></i> Entregable SAE (AE 3.2.1)
                         </div>
                         <ul class="text-[11px] text-slate-700 list-disc ml-4 space-y-1">
-                            <li>Proyecto de investigación digital.</li>
-                            <li>Página web HTML con resultados.</li>
-                            <li>Cálculos estadísticos y gráficos.</li>
-                            <li>Publicación en plataforma online.</li>
+                            <li>Sitio web HTML5 semántico funcional.</li>
+                            <li>Libro de cálculo estadístico con gráficos.</li>
+                            <li>Reporte de investigación booleana.</li>
+                            <li>Reporte de coevaluación web.</li>
                         </ul>
-                        <div class="pt-2 border-t border-emerald-200 text-center">
-                            <span class="text-emerald-700 font-extrabold text-sm">Valor: 15% SAE</span>
+                        <div class="pt-2 border-t border-sky-200 text-center">
+                            <span class="text-sky-700 font-extrabold text-sm">Valor: 15% SAE</span>
                         </div>
                     </div>
 
@@ -450,37 +439,12 @@
 
     <!-- Script del Simulador JS -->
     <script>
-        function calcularEstadisticas() {
-            const raw = document.getElementById('simDataInput').value;
-            const nums = raw.split(',').map(n => parseFloat(n.trim())).filter(n => !isNaN(n));
-            const outElem = document.getElementById('simStatsOutput');
-
-            if (nums.length === 0) {
-                outElem.innerHTML = "<span class='text-red-400'>Ingresa al menos 2 números válidos.</span>";
-                return;
-            }
-
-            // Media
-            const suma = nums.reduce((a, b) => a + b, 0);
-            const media = (suma / nums.length).toFixed(2);
-
-            // Mediana
-            const ordenados = [...nums].sort((a, b) => a - b);
-            const mid = Math.floor(ordenados.length / 2);
-            const mediana = ordenados.length % 2 !== 0 ? ordenados[mid] : ((ordenados[mid - 1] + ordenados[mid]) / 2).toFixed(2);
-
-            // Desviación Estándar
-            const varianza = nums.reduce((acc, val) => acc + Math.pow(val - media, 2), 0) / nums.length;
-            const desvest = Math.sqrt(varianza).toFixed(2);
-
-            outElem.innerHTML = `
-                &bull; Total de Muestras (N): <strong>${nums.length}</strong><br>
-                &bull; Media Aritmética (&mu;): <strong class="text-amber-300">${media}</strong><br>
-                &bull; Mediana Central: <strong class="text-sky-300">${mediana}</strong><br>
-                &bull; Desviación Estándar (&sigma;): <strong class="text-emerald-300">${desvest}</strong> (Varianza: ${varianza.toFixed(2)})
-            `;
+        function renderLiveHtml() {
+            const code = document.getElementById('simHtmlCode').value;
+            const preview = document.getElementById('simHtmlPreview');
+            preview.innerHTML = code;
         }
-        window.onload = calcularEstadisticas;
+        window.onload = renderLiveHtml;
     </script>
 </body>
 </html>

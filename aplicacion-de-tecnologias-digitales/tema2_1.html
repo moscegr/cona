@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RA 2.1: Pensamiento Algorítmico y Diagramación | ATDI-00 CONALEP</title>
+    <title>RA 2.1: Diagramación Visual y Modelo IPO | ATDI-00 CONALEP</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -20,7 +20,7 @@
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        primary: '#7c3aed', // Purple 600
+                        primary: '#4f46e5', // Indigo 600
                         dark: '#0f172a',
                     }
                 }
@@ -29,7 +29,7 @@
     </script>
     <style>
         body { font-family: 'Outfit', sans-serif; background-color: #ffffff; color: #1e293b; }
-        .lll-info { background-color: #eff6ff; border-left: 4px solid #3b82f6; }
+        .lll-info { background-color: #eef2ff; border-left: 4px solid #6366f1; }
         .lll-warning { background-color: #fffbeb; border-left: 4px solid #f59e0b; }
         .lll-tip { background-color: #f0fdf4; border-left: 4px solid #10b981; }
         .lll-danger { background-color: #fef2f2; border-left: 4px solid #ef4444; }
@@ -39,18 +39,18 @@
         .step-badge { width: 28px; height: 28px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; }
     </style>
 </head>
-<body class="bg-white text-slate-800 antialiased selection:bg-purple-100 selection:text-purple-900">
+<body class="bg-white text-slate-800 antialiased selection:bg-indigo-100 selection:text-indigo-900">
 
     <!-- Top Bar Institucional -->
     <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <span class="font-semibold text-white"><i class="fas fa-sitemap text-purple-400 mr-1.5"></i> CONALEP — Cultura Digital I</span>
+                <span class="font-semibold text-white"><i class="fas fa-sitemap text-indigo-400 mr-1.5"></i> CONALEP — Cultura Digital I (Laboratorio Disruptivo)</span>
                 <span class="text-slate-600 hidden sm:inline">|</span>
                 <span class="text-slate-400 hidden sm:inline">Módulo: <strong>ATDI-00</strong></span>
             </div>
             <div class="flex items-center space-x-4">
-                <a href="index.html" class="text-xs text-purple-400 hover:text-purple-300 transition flex items-center gap-1 font-semibold">
+                <a href="index.html" class="text-xs text-indigo-400 hover:text-indigo-300 transition flex items-center gap-1 font-semibold">
                     <i class="fas fa-arrow-left"></i> Índice del Módulo
                 </a>
                 <span class="text-slate-600">|</span>
@@ -68,19 +68,19 @@
             <!-- COLUMNA 1: Menú Lateral Izquierdo -->
             <aside class="lg:col-span-3">
                 <div class="sticky top-16 space-y-6">
-                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                    <div class="p-4 bg-indigo-50/60 border border-indigo-200 rounded-2xl">
                         <div class="flex items-center gap-3 mb-3">
-                            <div class="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
                                 <i class="fas fa-sitemap"></i>
                             </div>
                             <div>
                                 <h3 class="font-bold text-slate-900 text-sm leading-tight">Unidad 2</h3>
-                                <p class="text-[11px] text-slate-500">Lenguaje Algorítmico</p>
+                                <p class="text-[11px] text-slate-500">Pensamiento Algorítmico</p>
                             </div>
                         </div>
-                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-slate-200 pt-2.5">
+                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-indigo-200 pt-2.5">
                             <div class="flex justify-between"><span>Duración Total:</span> <strong class="text-slate-800">15 Horas</strong></div>
-                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-purple-600 font-bold">10% SAE</strong></div>
+                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-indigo-600 font-bold">15% SAE</strong></div>
                         </div>
                     </div>
 
@@ -89,14 +89,14 @@
                         <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Resultados de Aprendizaje</h4>
                         <nav class="space-y-1.5 text-xs">
                             <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-id-card mr-1.5 text-slate-400"></i> RA 1.1: Normativa y Salud</span>
+                                <span><i class="fas fa-fingerprint mr-1.5 text-slate-400"></i> RA 1.1: Normativa y Salud</span>
                                 <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">10h</span>
                             </a>
                             <a href="tema1_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
                                 <span><i class="fas fa-shield-halved mr-1.5 text-slate-400"></i> RA 1.2: Amenazas Digitales</span>
                                 <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">10h</span>
                             </a>
-                            <a href="tema2_1.html" class="flex items-center justify-between p-2 rounded-xl bg-purple-50 text-purple-700 font-bold border border-purple-200">
+                            <a href="tema2_1.html" class="flex items-center justify-between p-2 rounded-xl bg-indigo-50 text-indigo-800 font-bold border border-indigo-200">
                                 <span><i class="fas fa-chevron-right mr-1.5 text-[10px]"></i> RA 2.1: Diagramación</span>
                                 <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">15h</span>
                             </a>
@@ -122,11 +122,11 @@
                     <!-- Fases Pedagógicas -->
                     <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-2">
                         <h4 class="font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-2">5 Fases de la Cátedra</h4>
-                        <a href="#fase1" class="block text-slate-600 hover:text-purple-600"><span class="font-bold text-purple-600">1.</span> Apertura & Pensamiento</a>
-                        <a href="#fase2" class="block text-slate-600 hover:text-purple-600"><span class="font-bold text-sky-600">2.</span> Métodos 5E & Diagramas</a>
-                        <a href="#fase3" class="block text-slate-600 hover:text-purple-600"><span class="font-bold text-indigo-600">3.</span> Modelado Paso a Paso</a>
-                        <a href="#fase4" class="block text-slate-600 hover:text-purple-600"><span class="font-bold text-amber-600">4.</span> Simulador de Diagramación</a>
-                        <a href="#fase5" class="block text-slate-600 hover:text-purple-600"><span class="font-bold text-emerald-600">5.</span> Cierre & Rúbrica AE 2.1.1</a>
+                        <a href="#fase1" class="block text-slate-600 hover:text-indigo-600"><span class="font-bold text-indigo-600">1.</span> Apertura & Algoritmos</a>
+                        <a href="#fase2" class="block text-slate-600 hover:text-indigo-600"><span class="font-bold text-sky-600">2.</span> Simbología ANSI & IPO</a>
+                        <a href="#fase3" class="block text-slate-600 hover:text-indigo-600"><span class="font-bold text-indigo-600">3.</span> Modelado en SVG</a>
+                        <a href="#fase4" class="block text-slate-600 hover:text-indigo-600"><span class="font-bold text-amber-600">4.</span> Trazador Interactivo</a>
+                        <a href="#fase5" class="block text-slate-600 hover:text-indigo-600"><span class="font-bold text-emerald-600">5.</span> Cierre & Rúbrica AE 2.1.1</a>
                     </div>
                 </div>
             </aside>
@@ -136,45 +136,42 @@
 
                 <!-- Header de Unidad -->
                 <header class="border-b border-slate-200 pb-6">
-                    <div class="flex items-center gap-2 text-xs text-purple-600 font-bold uppercase tracking-wider mb-2">
+                    <div class="flex items-center gap-2 text-xs text-indigo-600 font-bold uppercase tracking-wider mb-2">
                         <span>Unidad 2</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Resultado de Aprendizaje 2.1</span>
                     </div>
-                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
-                        Pensamiento Algorítmico, Técnicas de Diagramación y Métodos de Solución
+                    <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-3">
+                        Pensamiento Computacional: Modelo IPO, Simbología ANSI y Diagramación
                     </h1>
                     <p class="text-slate-600 text-sm leading-relaxed">
-                        Representación gráfica y conceptual de soluciones a problemáticas reales mediante el método 5E (Enganche, Explorar, Explicar, Elaborar, Evaluar), diseño descendente, descomposición "divide y vencerás" y diagramas de flujo bajo estándares ISO/ANSI.
+                        Descomposición lógica de problemas mediante el modelo Entrada-Proceso-Salida (IPO), construcción rigurosa de diagramas de flujo bajo el estándar internacional ANSI/ISO, y validación exhaustiva mediante pruebas de escritorio con tablas de traza.
                     </p>
                     <div class="mt-4 flex flex-wrap gap-2 text-xs">
-                        <span class="px-2.5 py-1 rounded-lg bg-purple-100 text-purple-800 font-bold font-mono">15 Horas (Semanas 5 a 7)</span>
-                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold">Ponderación: 10% SAE</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-indigo-100 text-indigo-800 font-bold font-mono">15 Horas (Semanas 5 a 7)</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold">Ponderación: 15% SAE</span>
                         <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">Evidencia: AE 2.1.1</span>
                     </div>
                 </header>
 
-                <!-- FASE 1: APERTURA -->
+                <!-- FASE 1: APERTURA DISRUPTIVA -->
                 <section id="fase1" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
-                        <span class="step-badge bg-purple-600 text-white">1</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Contextualización)</h2>
+                        <span class="step-badge bg-indigo-600 text-white">1</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Reto Provocador)</h2>
                     </div>
 
                     <div class="lll-info p-5 rounded-2xl mb-6">
-                        <h3 class="font-bold text-blue-900 text-sm mb-2 flex items-center gap-2">
-                            <i class="fas fa-lightbulb text-blue-600"></i> El Pensamiento Computacional: Resolver Problemas sin Computadora
-                        </h3>
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-bold text-indigo-900 text-sm flex items-center gap-2">
+                                <i class="fas fa-rocket text-indigo-600"></i> Caso Histórico: El bug de \$327 millones de dólares en Marte
+                            </h3>
+                            <span class="px-2 py-0.5 rounded bg-indigo-200 text-indigo-900 text-[10px] font-bold">HackLab #03</span>
+                        </div>
                         <p class="text-xs text-slate-700 leading-relaxed mb-3">
-                            El pensamiento algorítmico es la capacidad humana de <strong>descomponer un problema complejo en pasos finitos, ordenados y sin ambigüedades</strong>. Desde la logística para distribuir ayuda en desastres naturales hasta la planificación de rutas de un dron de rescate, la clave del éxito reside en el diseño del algoritmo antes de tocar cualquier teclado.
+                            En 1999, la sonda espacial <em>Mars Climate Orbiter</em> de la NASA se estrelló contra la atmósfera marciana. ¿El motivo? Una empresa programó las salidas en unidades del sistema anglosajón (libras-fuerza) mientras el software de navegación esperaba unidades del sistema métrico (Newtons). No fue un error de hardware, fue un fallo elemental en el <strong>modelo Entrada-Proceso-Salida (IPO)</strong>.
                         </p>
-                    </div>
-
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
-                        <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700 mb-3"><i class="fas fa-question-circle text-purple-600 mr-1.5"></i> Preguntas Detonadoras</h4>
-                        <ol class="list-decimal ml-5 text-xs text-slate-700 space-y-2">
-                            <li>¿Por qué una receta de cocina es considerada un algoritmo y qué sucede si los pasos están desordenados?</li>
-                            <li>¿En qué consiste el principio <em>"Divide y Vencerás"</em> al abordar un problema de ingeniería?</li>
-                            <li>¿Cuáles son las 4 figuras geométricas básicas en un diagrama de flujo y qué representa cada una?</li>
-                        </ol>
+                        <div class="p-3 bg-white rounded-xl border border-indigo-200 text-xs font-mono text-indigo-950">
+                            <strong>🔥 Lección Disruptiva:</strong> Una computadora no es inteligente; hace exactamente lo que tú le indicas paso a paso. Si tu diagrama de flujo tiene un error lógico, tu software colapsará en producción.
+                        </div>
                     </div>
                 </section>
 
@@ -182,29 +179,29 @@
                 <section id="fase2" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="step-badge bg-sky-600 text-white">2</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (Métodos y Diagramación)</h2>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (Simbología ANSI de Diagramas de Flujo)</h2>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs mb-6">
-                        <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5">
-                            <strong class="text-purple-700 block text-sm"><i class="fas fa-layer-group mr-1"></i> El Modelo Pedagógico 5E</strong>
-                            <ul class="list-disc ml-4 space-y-1 text-slate-600">
-                                <li><strong>Enganche (Engage):</strong> Despertar curiosidad con un reto real.</li>
-                                <li><strong>Explorar (Explore):</strong> Experimentar y recopilar datos.</li>
-                                <li><strong>Explicar (Explain):</strong> Formalizar conceptos y teorías.</li>
-                                <li><strong>Elaborar (Elaborate):</strong> Aplicar lo aprendido a nuevos contextos.</li>
-                                <li><strong>Evaluar (Evaluate):</strong> Autoevaluación y rúbrica formativa.</li>
-                            </ul>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs mb-6">
+                        <div class="p-3.5 rounded-xl border border-slate-200 bg-white text-center">
+                            <div class="w-12 h-6 mx-auto rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-[10px] mb-2">Inicio/Fin</div>
+                            <strong class="text-slate-800 block">Óvalo / Elipse</strong>
+                            <p class="text-slate-500 text-[10px]">Marca el inicio y término del algoritmo.</p>
                         </div>
-
-                        <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5">
-                            <strong class="text-blue-700 block text-sm"><i class="fas fa-shapes mr-1"></i> Simbología de Diagramas de Flujo (ISO)</strong>
-                            <ul class="list-disc ml-4 space-y-1 text-slate-600">
-                                <li><strong>Óvalo / Elipse:</strong> Inicio y Fin del algoritmo.</li>
-                                <li><strong>Rectángulo:</strong> Proceso u operación matemática (cálculos).</li>
-                                <li><strong>Rombo:</strong> Decisión condicional (bifurcación Sí / No).</li>
-                                <li><strong>Paralelogramo:</strong> Entrada y salida de datos (Leer / Imprimir).</li>
-                            </ul>
+                        <div class="p-3.5 rounded-xl border border-slate-200 bg-white text-center">
+                            <div class="w-12 h-6 mx-auto bg-sky-600 text-white flex items-center justify-center font-bold text-[10px] mb-2 transform skew-x-[-12deg]">Leer/Escribir</div>
+                            <strong class="text-slate-800 block">Paralelogramo</strong>
+                            <p class="text-slate-500 text-[10px]">Entrada y salida de datos por pantalla/teclado.</p>
+                        </div>
+                        <div class="p-3.5 rounded-xl border border-slate-200 bg-white text-center">
+                            <div class="w-12 h-6 mx-auto bg-amber-600 text-white flex items-center justify-center font-bold text-[10px] mb-2">Proceso</div>
+                            <strong class="text-slate-800 block">Rectángulo</strong>
+                            <p class="text-slate-500 text-[10px]">Operaciones matemáticas y asignaciones.</p>
+                        </div>
+                        <div class="p-3.5 rounded-xl border border-slate-200 bg-white text-center">
+                            <div class="w-6 h-6 mx-auto bg-emerald-600 text-white flex items-center justify-center font-bold text-[10px] mb-2 transform rotate-45">?</div>
+                            <strong class="text-slate-800 block">Rombo</strong>
+                            <p class="text-slate-500 text-[10px]">Toma de decisiones lógicas (Sí / No).</p>
                         </div>
                     </div>
                 </section>
@@ -213,117 +210,120 @@
                 <section id="fase3" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="step-badge bg-indigo-600 text-white">3</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Demostración y Modelado Paso a Paso</h2>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Modelado y Prueba de Escritorio</h2>
                     </div>
 
                     <div class="p-4 bg-slate-900 rounded-2xl text-center text-white my-4">
-                        <span class="text-[11px] font-mono text-slate-400 block mb-2">Diagrama de Flujo: Algoritmo de Calificación Aprobatoria</span>
-                        <svg class="w-full max-w-sm mx-auto" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="100" y="10" width="100" height="30" rx="15" fill="#2563eb"/>
-                            <text x="150" y="30" fill="#ffffff" font-size="10" font-weight="bold" text-anchor="middle">INICIO</text>
+                        <span class="text-[11px] font-mono text-slate-400 block mb-2">Diagrama de Flujo: Cálculo de Descuento en Tienda Departamental</span>
+                        <svg class="w-full max-w-xs mx-auto" viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="50" y="10" width="100" height="24" rx="12" fill="#4f46e5"/>
+                            <text x="100" y="26" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle">INICIO</text>
                             
-                            <path d="M150 40 V 60" stroke="#94a3b8" stroke-width="2"/>
+                            <path d="M100 34 V 46" stroke="#94a3b8" stroke-width="2"/>
                             
-                            <polygon points="110,60 190,60 170,90 90,90" fill="#0284c7"/>
-                            <text x="140" y="79" fill="#ffffff" font-size="9" text-anchor="middle">Leer Calificación</text>
-
-                            <path d="M140 90 V 110" stroke="#94a3b8" stroke-width="2"/>
-
-                            <polygon points="140,110 180,135 140,160 100,135" fill="#7c3aed"/>
-                            <text x="140" y="138" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle">¿Nota &ge; 7.0?</text>
-
-                            <path d="M180 135 H 220 V 170" stroke="#10b981" stroke-width="1.5"/>
-                            <text x="200" y="130" fill="#10b981" font-size="8" font-weight="bold">SI</text>
-                            <rect x="190" y="170" width="60" height="20" rx="3" fill="#047857"/>
-                            <text x="220" y="184" fill="#ffffff" font-size="7" text-anchor="middle">"Aprobado"</text>
-
-                            <path d="M100 135 H 60 V 170" stroke="#ef4444" stroke-width="1.5"/>
-                            <text x="75" y="130" fill="#ef4444" font-size="8" font-weight="bold">NO</text>
-                            <rect x="30" y="170" width="60" height="20" rx="3" fill="#b91c1c"/>
-                            <text x="60" y="184" fill="#ffffff" font-size="7" text-anchor="middle">"Reprobado"</text>
+                            <polygon points="40,68 150,68 160,46 50,46" fill="#0284c7"/>
+                            <text x="100" y="60" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle">LEER precio</text>
+                            
+                            <path d="M100 68 V 82" stroke="#94a3b8" stroke-width="2"/>
+                            
+                            <rect x="40" y="82" width="120" height="26" fill="#d97706"/>
+                            <text x="100" y="98" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle">total = precio * 0.85</text>
+                            
+                            <path d="M100 108 V 122" stroke="#94a3b8" stroke-width="2"/>
+                            
+                            <polygon points="40,144 150,144 160,122 50,122" fill="#0284c7"/>
+                            <text x="100" y="136" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle">MOSTRAR total</text>
+                            
+                            <path d="M100 144 V 156" stroke="#94a3b8" stroke-width="2"/>
+                            
+                            <rect x="50" y="156" width="100" height="24" rx="12" fill="#4f46e5"/>
+                            <text x="100" y="172" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle">FIN</text>
                         </svg>
                     </div>
                 </section>
 
-                <!-- FASE 4: APLICACIÓN PRÁCTICA -->
+                <!-- FASE 4: APLICACIÓN PRÁCTICA Y SIMULADOR -->
                 <section id="fase4" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="step-badge bg-amber-600 text-white">4</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Simulador y Problemario)</h2>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Trazador y Problemario)</h2>
                     </div>
 
-                    <!-- SIMULADOR INTERACTIVO JS: TRAZADOR DE DECISIONES ALGORÍTMICAS -->
-                    <div class="border-2 border-purple-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
-                        <div class="flex items-center justify-between mb-4 border-b border-purple-100 pb-3">
+                    <!-- SIMULADOR INTERACTIVO JS: TRAZADOR ALGORÍTMICO -->
+                    <div class="border-2 border-indigo-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
+                        <div class="flex items-center justify-between mb-4 border-b border-indigo-100 pb-3">
                             <div class="flex items-center gap-2">
-                                <i class="fas fa-play-circle text-purple-600 text-xl"></i>
+                                <i class="fas fa-play text-indigo-600 text-xl"></i>
                                 <div>
-                                    <h3 class="font-bold text-slate-900 text-sm">Simulador de Trazabilidad Algorítmica</h3>
-                                    <span class="text-[11px] text-slate-500 font-mono">Prueba de escritorio interactiva con datos de prueba</span>
+                                    <h3 class="font-bold text-slate-900 text-sm">Simulador de Trazado de Algoritmo IPO en Vivo</h3>
+                                    <span class="text-[11px] text-slate-500 font-mono">Modela las variables de entrada y observa el cálculo paso a paso</span>
                                 </div>
                             </div>
-                            <span class="px-2 py-1 rounded bg-purple-100 text-purple-800 text-[10px] font-bold">JavaScript Nativo</span>
+                            <span class="px-2 py-1 rounded bg-indigo-100 text-indigo-800 text-[10px] font-bold">JavaScript Nativo</span>
                         </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs mb-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs mb-4">
                             <div>
-                                <label class="font-semibold text-slate-700 block mb-1">Calificación del Alumno (0 a 10):</label>
-                                <input type="number" id="simNota" class="w-full p-2 border border-slate-300 rounded-lg text-xs" value="8.5" min="0" max="10" step="0.1" onchange="ejecutarTrazaAlgoritmica()">
+                                <label class="font-semibold text-slate-700 block mb-1">Precio Original ($):</label>
+                                <input type="number" id="simPrecio" class="w-full p-2 border border-slate-300 rounded-lg text-xs font-mono" value="1200" oninput="ejecutarTraza()">
                             </div>
-                            <div class="flex items-end">
-                                <button onclick="ejecutarTrazaAlgoritmica()" class="w-full py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg text-xs transition">
-                                    <i class="fas fa-forward-step mr-1"></i> Ejecutar Prueba
-                                </button>
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Porcentaje de Descuento (%):</label>
+                                <input type="number" id="simDesc" class="w-full p-2 border border-slate-300 rounded-lg text-xs font-mono" value="15" oninput="ejecutarTraza()">
+                            </div>
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Tasa de IVA (%):</label>
+                                <input type="number" id="simIva" class="w-full p-2 border border-slate-300 rounded-lg text-xs font-mono" value="16" oninput="ejecutarTraza()">
                             </div>
                         </div>
 
                         <div class="p-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-200 text-xs font-mono">
-                            <div class="text-slate-400 text-[11px] mb-2">[PASOS DEL ALGORITMO Y RESULTADO]</div>
-                            <div id="simTrazaOutput" class="text-emerald-400">
+                            <div class="text-slate-400 text-[11px] mb-2">[TABLA DE TRAZA DE EJECUCIÓN (PRUEBA DE ESCRITORIO)]</div>
+                            <div id="simTrazaOutput" class="space-y-1">
                                 <!-- Generado por JS -->
                             </div>
                         </div>
                     </div>
 
-                    <!-- PROBLEMARIO DE 10 EJERCICIOS PARA FIRMAS -->
+                    <!-- PROBLEMARIO DISRUPTIVO (10 RETOS PARA 40% FIRMAS) -->
                     <div class="border border-slate-200 rounded-2xl p-6 bg-white">
                         <div class="flex items-center justify-between mb-4 border-b pb-3">
                             <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
-                                <i class="fas fa-pencil text-purple-600"></i> Problemario de Diagramación y Métodos (40% Firmas)
+                                <i class="fas fa-sitemap text-indigo-600"></i> Bitácora de Diagramación (40% Firmas)
                             </h3>
-                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">10 Ejercicios</span>
+                            <span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 text-[10px] font-bold">10 Retos</span>
                         </div>
 
                         <div class="space-y-3 text-xs text-slate-700">
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>1. Diagrama de Preparación de Bebida:</strong> Diseña el diagrama de flujo detallado para preparar un café o té, incluyendo decisiones de endulzante y leche.
+                                <strong>Reto 1 (Conversión de Temperatura):</strong> Diseña el diagrama de flujo para convertir grados Celsius a Fahrenheit y Kelvin (\(F = C \times 1.8 + 32\)).
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>2. Descomposición "Divide y Vencerás":</strong> Toma el problema "Organizar un evento deportivo escolar" y divídelo en 4 subproblemas con sus respectivos algoritmos.
+                                <strong>Reto 2 (Cálculo de Promedio Escolar):</strong> Modela el algoritmo para leer 5 calificaciones parciales y calcular el promedio final con 2 decimales.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>3. Algoritmo del Mayor de 3 Números:</strong> Diseña el diagrama de flujo que reciba 3 números diferentes y determine cuál es el mayor mediante rombos de decisión.
+                                <strong>Reto 3 (Cálculo de Área y Perímetro):</strong> Construye el diagrama de flujo para calcular el área y perímetro de un círculo a partir de su radio.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>4. Método del Árbol de Causas:</strong> Elabora un árbol de causas para el problema "Batería de smartphone se descarga en 2 horas".
+                                <strong>Reto 4 (Salario Semanal con Horas Extras):</strong> Diseña el algoritmo para calcular el salario neto deduciendo el 16% de impuestos.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>5. Algoritmo de Cálculo de Área y Perímetro:</strong> Modela la solución para calcular área y perímetro de un triángulo con base y altura.
+                                <strong>Reto 5 (Conversión de Monedas en Tiempo Real):</strong> Modela la conversión de Pesos Mexicanos a Dólares y Euros con tasas dinámicas.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>6. Diagrama de Compra en Tienda Online:</strong> Modela el proceso de carrito de compras, validación de tarjeta de crédito y confirmación de envío.
+                                <strong>Reto 6 (Prueba de Escritorio con 5 Casos):</strong> Elabora una tabla de traza con 5 filas probando valores frontera (cero, números negativos y decimales).
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>7. Algoritmo de Control de Semáforo:</strong> Diseña la secuencia temporal y lógica para un cruce vehicular de 4 esquinas.
+                                <strong>Reto 7 (Algoritmo de Cambio de Dinero):</strong> Dado un monto pagado y el costo, calcula el cambio desglosado en billetes de \$500, \$200, \$100 y \$50.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>8. Prueba de Escritorio con Trace Table:</strong> Realiza a mano la tabla de traza para un algoritmo de cálculo de factorial con \(N = 5\).
+                                <strong>Reto 8 (Consumo de Combustible de Vehículo):</strong> Calcula los kilómetros por litro recorridos a partir de los km iniciales, km finales y litros cargados.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>9. Detección de Ciclos Infinitos en Diagramas:</strong> Identifica el error en un diagrama donde la flecha de decisión regresa a un paso previo sin modificar la variable de control.
+                                <strong>Reto 9 (Velocidad y Tiempo de Viaje):</strong> Diseña el diagrama para calcular el tiempo estimado de viaje en horas y minutos entre dos ciudades.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>10. Propuesta de Modelado de Datos (Evidencia AE 2.1.1):</strong> Elabora el reporte formal con diagrama de flujo y pseudocódigo para el 10% SAE.
+                                <strong>Reto 10 (Problemario Completo de Diagramas - Evidencia AE 2.1.1):</strong> Presenta el compendio digital de los 10 diagramas estandarizados para el 15% SAE.
                             </div>
                         </div>
                     </div>
@@ -336,14 +336,14 @@
                         <h2 class="text-xl font-bold text-slate-900">Fase 5: Cierre, Evaluación y Metacognición</h2>
                     </div>
 
-                    <!-- RÚBRICA OFICIAL CONALEP: AE 2.1.1 (10% SAE) -->
+                    <!-- RÚBRICA OFICIAL CONALEP: AE 2.1.1 (15% SAE) -->
                     <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-sm mb-6">
                         <div class="flex items-center justify-between mb-4 border-b pb-3">
                             <div>
-                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800 uppercase font-mono">Actividad de Evaluación 2.1.1</span>
-                                <h3 class="font-bold text-slate-900 text-sm mt-1">Rúbrica de Valoración Oficial (10% SAE)</h3>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 uppercase font-mono">Actividad de Evaluación 2.1.1</span>
+                                <h3 class="font-bold text-slate-900 text-sm mt-1">Rúbrica de Valoración Oficial (15% SAE)</h3>
                             </div>
-                            <span class="text-xs font-extrabold text-purple-600">Siglema: ATDI-00</span>
+                            <span class="text-xs font-extrabold text-indigo-600">Siglema: ATDI-00</span>
                         </div>
 
                         <div class="overflow-x-auto text-[11px]">
@@ -353,43 +353,38 @@
                                         <th class="p-2.5">Indicador</th>
                                         <th class="p-2.5 text-center">%</th>
                                         <th class="p-2.5">Excelente</th>
-                                        <th class="p-2.5">Bueno</th>
                                         <th class="p-2.5">Suficiente</th>
                                         <th class="p-2.5">Insuficiente</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-slate-200 text-slate-700">
                                     <tr>
-                                        <td class="p-2.5 font-bold">Diseño de la propuesta</td>
-                                        <td class="p-2.5 text-center font-bold text-purple-600">20%</td>
-                                        <td class="p-2.5 bg-emerald-50/50">Modelado congruente, reporte con descripción y <strong>agrega justificación de su elección</strong>.</td>
-                                        <td class="p-2.5">Modelado congruente y reporte descriptivo.</td>
-                                        <td class="p-2.5">Modelado congruente con áreas de mejora.</td>
-                                        <td class="p-2.5 bg-red-50/30">Sin coherencia ni pasos lógicos.</td>
+                                        <td class="p-2.5 font-bold">Identificación del Modelo IPO</td>
+                                        <td class="p-2.5 text-center font-bold text-indigo-600">30%</td>
+                                        <td class="p-2.5 bg-indigo-50/50">Desglosa entradas, procesos y salidas con variables tipadas y <strong>justifica la optimización matemática</strong>.</td>
+                                        <td class="p-2.5">Identifica entradas, procesos y salidas del problema planteado.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite entradas o salidas fundamentales.</td>
                                     </tr>
                                     <tr>
-                                        <td class="p-2.5 font-bold">Uso de técnica de diagramación</td>
-                                        <td class="p-2.5 text-center font-bold text-purple-600">35%</td>
-                                        <td class="p-2.5 bg-emerald-50/50">Técnicas según la problemática, <strong>adjunta diagramas y explica su elección</strong>.</td>
-                                        <td class="p-2.5">Técnicas de diagramación y adjunta diagramas.</td>
-                                        <td class="p-2.5">Uso parcial de las técnicas de diagramación.</td>
-                                        <td class="p-2.5 bg-red-50/30">Omite uso de técnicas de diagramación.</td>
+                                        <td class="p-2.5 font-bold">Simbología y Reglas de Diagramación</td>
+                                        <td class="p-2.5 text-center font-bold text-indigo-600">30%</td>
+                                        <td class="p-2.5 bg-indigo-50/50">Simbología ANSI impecable, flujo de arriba hacia abajo sin cruces y <strong>nomenclatura descriptiva clara</strong>.</td>
+                                        <td class="p-2.5">Utiliza la simbología estándar de diagramas de flujo.</td>
+                                        <td class="p-2.5 bg-red-50/30">Emplea símbolos incorrectos o líneas sin flechas.</td>
                                     </tr>
                                     <tr>
-                                        <td class="p-2.5 font-bold">Propuesta de solución</td>
-                                        <td class="p-2.5 text-center font-bold text-purple-600">35%</td>
-                                        <td class="p-2.5 bg-emerald-50/50">Secuencias según metodología, <strong>muestra dominio y describe la solución</strong>.</td>
-                                        <td class="p-2.5">Secuencias metodológicas y muestra conocimiento.</td>
-                                        <td class="p-2.5">Contiene algunos elementos de la metodología.</td>
-                                        <td class="p-2.5 bg-red-50/30">Omite elementos de la metodología.</td>
+                                        <td class="p-2.5 font-bold">Pruebas de Escritorio y Validación</td>
+                                        <td class="p-2.5 text-center font-bold text-indigo-600">25%</td>
+                                        <td class="p-2.5 bg-indigo-50/50">Tabla de traza con 5 casos exhaustivos incluyendo valores límite y <strong>cero errores de lógica</strong>.</td>
+                                        <td class="p-2.5">Realiza prueba de escritorio con valores de muestra.</td>
+                                        <td class="p-2.5 bg-red-50/30">No realiza prueba de escritorio o contiene errores aritméticos.</td>
                                     </tr>
                                     <tr>
-                                        <td class="p-2.5 font-bold">Autoevaluación</td>
-                                        <td class="p-2.5 text-center font-bold text-purple-600">10%</td>
-                                        <td class="p-2.5 bg-emerald-50/50">Redacción clara, salud digital y <strong>fomenta cultura de paz y colaboración</strong>.</td>
-                                        <td class="p-2.5">Redacción clara y acciones de salud digital.</td>
-                                        <td class="p-2.5">Presenta algunas faltas ortográficas.</td>
-                                        <td class="p-2.5 bg-red-50/30">Redacción deficiente y sin autocuidado.</td>
+                                        <td class="p-2.5 font-bold">Presentación y Desempeño</td>
+                                        <td class="p-2.5 text-center font-bold text-indigo-600">15%</td>
+                                        <td class="p-2.5 bg-indigo-50/50">Documento digital ordenado, puntualidad, ortografía y <strong>trabajo colaborativo destacado</strong>.</td>
+                                        <td class="p-2.5">Documento ordenado y asistencia al 90%.</td>
+                                        <td class="p-2.5 bg-red-50/30">Entrega extemporánea o incompleta.</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -398,9 +393,9 @@
 
                     <!-- Metacognición -->
                     <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700">
-                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-brain text-emerald-600 mr-1.5"></i> Pregunta de Metacognición:</h4>
+                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-brain text-indigo-600 mr-1.5"></i> Pregunta de Metacognición Disruptiva:</h4>
                         <p>
-                            "¿Cómo la capacidad de diagramar un proceso te ayuda a resolver problemas en la vida cotidiana y académica?"
+                            "¿Cómo la habilidad de descomponer cualquier problema complejo en un modelo Entrada-Proceso-Salida te convierte en un solucionador de problemas en cualquier área de tu vida y profesión?"
                         </p>
                     </div>
                 </section>
@@ -408,10 +403,10 @@
                 <!-- Navegación Inferior -->
                 <div class="flex justify-between items-center border-t border-slate-200 pt-6">
                     <a href="tema1_2.html" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
-                        <i class="fas fa-arrow-left mr-1"></i> Anterior: RA 1.2 (Amenazas)
+                        <i class="fas fa-arrow-left mr-1"></i> Anterior: RA 1.2 (Ciberseguridad)
                     </a>
-                    <a href="tema2_2.html" class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs transition shadow-sm">
-                        Siguiente: RA 2.2 (Modelado Digital) <i class="fas fa-arrow-right ml-1"></i>
+                    <a href="tema2_2.html" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs transition shadow-sm">
+                        Siguiente: RA 2.2 (Decisiones & Bucles) <i class="fas fa-arrow-right ml-1"></i>
                     </a>
                 </div>
 
@@ -425,27 +420,27 @@
                     <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm">
                         <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">En esta Página</h4>
                         <ul class="space-y-2 text-xs text-slate-600">
-                            <li><a href="#fase1" class="hover:text-purple-600 transition block">1. Pensamiento Algorítmico</a></li>
-                            <li><a href="#fase2" class="hover:text-purple-600 transition block">2. Método 5E & Simbología</a></li>
-                            <li><a href="#fase3" class="hover:text-purple-600 transition block">3. Modelado Gráfico</a></li>
-                            <li><a href="#fase4" class="hover:text-purple-600 transition block">4. Simulador de Traza</a></li>
-                            <li><a href="#fase5" class="hover:text-purple-600 transition block">5. Rúbrica Oficial AE 2.1.1</a></li>
+                            <li><a href="#fase1" class="hover:text-indigo-600 transition block">1. Reto: HackLab #03</a></li>
+                            <li><a href="#fase2" class="hover:text-indigo-600 transition block">2. Simbología ANSI & IPO</a></li>
+                            <li><a href="#fase3" class="hover:text-indigo-600 transition block">3. Modelado en SVG</a></li>
+                            <li><a href="#fase4" class="hover:text-indigo-600 transition block">4. Trazador Interactivo</a></li>
+                            <li><a href="#fase5" class="hover:text-indigo-600 transition block">5. Rúbrica Oficial AE 2.1.1</a></li>
                         </ul>
                     </div>
 
                     <!-- Cuadro de Evidencia SAE -->
-                    <div class="p-4 bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-200 rounded-2xl text-xs space-y-2">
-                        <div class="flex items-center gap-2 text-purple-900 font-bold text-xs">
-                            <i class="fas fa-sitemap text-purple-600"></i> Entregable SAE (AE 2.1.1)
+                    <div class="p-4 bg-gradient-to-br from-indigo-50 to-purple-50 border border-indigo-200 rounded-2xl text-xs space-y-2">
+                        <div class="flex items-center gap-2 text-indigo-900 font-bold text-xs">
+                            <i class="fas fa-sitemap text-indigo-600"></i> Entregable SAE (AE 2.1.1)
                         </div>
                         <ul class="text-[11px] text-slate-700 list-disc ml-4 space-y-1">
-                            <li>Propuesta de solución algorítmica.</li>
-                            <li>Diagrama de flujo normalizado ISO.</li>
-                            <li>Pseudocódigo y prueba de escritorio.</li>
-                            <li>Reporte justificativo.</li>
+                            <li>Problemario de diagramas de flujo.</li>
+                            <li>Definición de entradas y salidas.</li>
+                            <li>Tablas de prueba de escritorio.</li>
+                            <li>Reporte de análisis computacional.</li>
                         </ul>
-                        <div class="pt-2 border-t border-purple-200 text-center">
-                            <span class="text-purple-700 font-extrabold text-sm">Valor: 10% SAE</span>
+                        <div class="pt-2 border-t border-indigo-200 text-center">
+                            <span class="text-indigo-700 font-extrabold text-sm">Valor: 15% SAE</span>
                         </div>
                     </div>
 
@@ -457,23 +452,32 @@
 
     <!-- Script del Simulador JS -->
     <script>
-        function ejecutarTrazaAlgoritmica() {
-            const nota = parseFloat(document.getElementById('simNota').value) || 0;
+        function ejecutarTraza() {
+            const precio = parseFloat(document.getElementById('simPrecio').value);
+            const desc = parseFloat(document.getElementById('simDesc').value);
+            const iva = parseFloat(document.getElementById('simIva').value);
             const outElem = document.getElementById('simTrazaOutput');
 
-            let aprobado = nota >= 7.0;
-            let estado = aprobado ? "<strong class='text-emerald-400'>APROBADO</strong>" : "<strong class='text-red-400'>REPROBADO</strong>";
+            if (isNaN(precio) || isNaN(desc) || isNaN(iva)) {
+                outElem.innerHTML = `<span class="text-red-400">Ingresa valores numéricos válidos.</span>`;
+                return;
+            }
+
+            let montoDesc = precio * (desc / 100);
+            let subtotal = precio - montoDesc;
+            let montoIva = subtotal * (iva / 100);
+            let total = subtotal + montoIva;
 
             outElem.innerHTML = `
-                1. INICIO<br>
-                2. Entrada leída: nota = ${nota.toFixed(1)}<br>
-                3. Evaluación condición (nota &ge; 7.0): <strong class="${aprobado ? 'text-emerald-300' : 'text-red-300'}">${aprobado ? 'VERDADERO (Sí)' : 'FALSO (No)'}</strong><br>
-                4. Bifurcación tomada: Rama ${aprobado ? 'Derecha' : 'Izquierda'}<br>
-                5. Salida emitida: ${estado}<br>
-                6. FIN DEL ALGORITMO
+                &bull; Paso 1 (ENTRADA): <strong class="text-white">precio = $${precio.toFixed(2)} | desc = ${desc}% | iva = ${iva}%</strong><br>
+                &bull; Paso 2 (PROCESO 1): <span class="text-amber-300">monto_descuento = $${precio.toFixed(2)} * ${desc / 100} = $${montoDesc.toFixed(2)}</span><br>
+                &bull; Paso 3 (PROCESO 2): <span class="text-amber-300">subtotal = $${precio.toFixed(2)} - $${montoDesc.toFixed(2)} = $${subtotal.toFixed(2)}</span><br>
+                &bull; Paso 4 (PROCESO 3): <span class="text-sky-300">monto_iva = $${subtotal.toFixed(2)} * ${iva / 100} = $${montoIva.toFixed(2)}</span><br>
+                &bull; Paso 5 (SALIDA FINAL): <span class="text-emerald-300 font-bold">total_a_pagar = $${total.toFixed(2)}</span><br>
+                <span class="text-purple-300 font-bold">&check; PRUEBA DE ESCRITORIO EXITOSA (CERO ERRORES LÓGICOS)</span>
             `;
         }
-        window.onload = ejecutarTrazaAlgoritmica;
+        window.onload = ejecutarTraza;
     </script>
 </body>
 </html>

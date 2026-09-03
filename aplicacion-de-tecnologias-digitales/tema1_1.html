@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RA 1.1: Marco Normativo, Ciudadanía y Salud Digital | ATDI-00 CONALEP</title>
+    <title>RA 1.1: Ciberespacio, Huella Digital y Salud Digital | ATDI-00 CONALEP</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -20,7 +20,7 @@
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        primary: '#2563eb',
+                        primary: '#9333ea', // Purple 600
                         dark: '#0f172a',
                     }
                 }
@@ -29,7 +29,7 @@
     </script>
     <style>
         body { font-family: 'Outfit', sans-serif; background-color: #ffffff; color: #1e293b; }
-        .lll-info { background-color: #eff6ff; border-left: 4px solid #3b82f6; }
+        .lll-info { background-color: #faf5ff; border-left: 4px solid #a855f7; }
         .lll-warning { background-color: #fffbeb; border-left: 4px solid #f59e0b; }
         .lll-tip { background-color: #f0fdf4; border-left: 4px solid #10b981; }
         .lll-danger { background-color: #fef2f2; border-left: 4px solid #ef4444; }
@@ -39,18 +39,18 @@
         .step-badge { width: 28px; height: 28px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; }
     </style>
 </head>
-<body class="bg-white text-slate-800 antialiased selection:bg-blue-100 selection:text-blue-900">
+<body class="bg-white text-slate-800 antialiased selection:bg-purple-100 selection:text-purple-900">
 
     <!-- Top Bar Institucional -->
     <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <span class="font-semibold text-white"><i class="fas fa-network-wired text-purple-400 mr-1.5"></i> CONALEP — Cultura Digital I</span>
+                <span class="font-semibold text-white"><i class="fas fa-bolt text-purple-400 mr-1.5"></i> CONALEP — Cultura Digital I (Laboratorio Disruptivo)</span>
                 <span class="text-slate-600 hidden sm:inline">|</span>
                 <span class="text-slate-400 hidden sm:inline">Módulo: <strong>ATDI-00</strong></span>
             </div>
             <div class="flex items-center space-x-4">
-                <a href="index.html" class="text-xs text-blue-400 hover:text-blue-300 transition flex items-center gap-1 font-semibold">
+                <a href="index.html" class="text-xs text-purple-400 hover:text-purple-300 transition flex items-center gap-1 font-semibold">
                     <i class="fas fa-arrow-left"></i> Índice del Módulo
                 </a>
                 <span class="text-slate-600">|</span>
@@ -65,22 +65,22 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
-            <!-- COLUMNA 1: Menú Lateral Izquierdo de Navegación -->
+            <!-- COLUMNA 1: Menú Lateral Izquierdo -->
             <aside class="lg:col-span-3">
                 <div class="sticky top-16 space-y-6">
-                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                    <div class="p-4 bg-purple-50/60 border border-purple-200 rounded-2xl">
                         <div class="flex items-center gap-3 mb-3">
-                            <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
-                                <i class="fas fa-id-card"></i>
+                            <div class="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                                <i class="fas fa-fingerprint"></i>
                             </div>
                             <div>
                                 <h3 class="font-bold text-slate-900 text-sm leading-tight">Unidad 1</h3>
-                                <p class="text-[11px] text-slate-500">Ciudadanía en el Ciberespacio</p>
+                                <p class="text-[11px] text-slate-500">Ciudadanía Digital</p>
                             </div>
                         </div>
-                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-slate-200 pt-2.5">
+                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-purple-200 pt-2.5">
                             <div class="flex justify-between"><span>Duración Total:</span> <strong class="text-slate-800">10 Horas</strong></div>
-                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-blue-600 font-bold">15% SAE</strong></div>
+                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-purple-600 font-bold">15% SAE</strong></div>
                         </div>
                     </div>
 
@@ -88,7 +88,7 @@
                     <div class="border border-slate-200 rounded-2xl p-4 bg-white">
                         <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Resultados de Aprendizaje</h4>
                         <nav class="space-y-1.5 text-xs">
-                            <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl bg-blue-50 text-blue-700 font-bold border border-blue-200">
+                            <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl bg-purple-50 text-purple-800 font-bold border border-purple-200">
                                 <span><i class="fas fa-chevron-right mr-1.5 text-[10px]"></i> RA 1.1: Normativa y Salud</span>
                                 <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">10h</span>
                             </a>
@@ -122,11 +122,11 @@
                     <!-- Fases Pedagógicas -->
                     <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-2">
                         <h4 class="font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-2">5 Fases de la Cátedra</h4>
-                        <a href="#fase1" class="block text-slate-600 hover:text-blue-600"><span class="font-bold text-blue-600">1.</span> Apertura & Huella Digital</a>
-                        <a href="#fase2" class="block text-slate-600 hover:text-blue-600"><span class="font-bold text-sky-600">2.</span> Marco Legal & Licencias</a>
-                        <a href="#fase3" class="block text-slate-600 hover:text-blue-600"><span class="font-bold text-indigo-600">3.</span> Modelado y Salud Digital</a>
-                        <a href="#fase4" class="block text-slate-600 hover:text-blue-600"><span class="font-bold text-amber-600">4.</span> Simulador de Huella & Taller</a>
-                        <a href="#fase5" class="block text-slate-600 hover:text-blue-600"><span class="font-bold text-emerald-600">5.</span> Cierre & Rúbrica AE 1.1.1</a>
+                        <a href="#fase1" class="block text-slate-600 hover:text-purple-600"><span class="font-bold text-purple-600">1.</span> Apertura & HackLab</a>
+                        <a href="#fase2" class="block text-slate-600 hover:text-purple-600"><span class="font-bold text-sky-600">2.</span> Huella & Licenciamiento</a>
+                        <a href="#fase3" class="block text-slate-600 hover:text-purple-600"><span class="font-bold text-indigo-600">3.</span> Modelado y Ergonomía</a>
+                        <a href="#fase4" class="block text-slate-600 hover:text-purple-600"><span class="font-bold text-amber-600">4.</span> Simulador de Huella</a>
+                        <a href="#fase5" class="block text-slate-600 hover:text-purple-600"><span class="font-bold text-emerald-600">5.</span> Cierre & Rúbrica AE 1.1.1</a>
                     </div>
                 </div>
             </aside>
@@ -136,48 +136,42 @@
 
                 <!-- Header de Unidad -->
                 <header class="border-b border-slate-200 pb-6">
-                    <div class="flex items-center gap-2 text-xs text-blue-600 font-bold uppercase tracking-wider mb-2">
+                    <div class="flex items-center gap-2 text-xs text-purple-600 font-bold uppercase tracking-wider mb-2">
                         <span>Unidad 1</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Resultado de Aprendizaje 1.1</span>
                     </div>
-                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
-                        Ciberespacio, Marco Normativo, Licenciamiento y Salud Digital
+                    <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-3">
+                        Ciberespacio, Huella Digital, Licenciamiento de Software y Salud Digital
                     </h1>
                     <p class="text-slate-600 text-sm leading-relaxed">
-                        Comprensión integral de la ciudadanía digital, derechos y obligaciones en línea, tipos de licenciamiento de software (Copyright, Copyleft, Creative Commons, MIT, GPL), impacto ambiental de los desechos electrónicos y protocolos de autocuidado ante la hiperconectividad.
+                        Exploración crítica del ciberespacio: cómo los algoritmos de recomendación monetizan tu atención, auditoría de huella digital activa y pasiva, tipos de licencias de software (Copyright vs Creative Commons vs MIT/GPL), mitigación de la basura electrónica (e-waste) y protocolos de ergonomía y desintoxicación digital.
                     </p>
                     <div class="mt-4 flex flex-wrap gap-2 text-xs">
-                        <span class="px-2.5 py-1 rounded-lg bg-blue-100 text-blue-800 font-bold font-mono">10 Horas (Semanas 1 y 2)</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-purple-100 text-purple-800 font-bold font-mono">10 Horas (Semanas 1 y 2)</span>
                         <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold">Ponderación: 15% SAE</span>
                         <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">Evidencia: AE 1.1.1</span>
                     </div>
                 </header>
 
-                <!-- FASE 1: APERTURA -->
+                <!-- FASE 1: APERTURA DISRUPTIVA -->
                 <section id="fase1" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
-                        <span class="step-badge bg-blue-600 text-white">1</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Contextualización)</h2>
+                        <span class="step-badge bg-purple-600 text-white">1</span>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Reto Provocador)</h2>
                     </div>
 
                     <div class="lll-info p-5 rounded-2xl mb-6">
-                        <h3 class="font-bold text-blue-900 text-sm mb-2 flex items-center gap-2">
-                            <i class="fas fa-fingerprint text-blue-600"></i> Caso Real: La Huella Digital Indeleble y el Empleo del Futuro
-                        </h3>
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-bold text-purple-900 text-sm flex items-center gap-2">
+                                <i class="fas fa-radar text-purple-600"></i> Reto Disruptivo: ¿Cuánto sabe Internet sobre ti en 60 segundos?
+                            </h3>
+                            <span class="px-2 py-0.5 rounded bg-purple-200 text-purple-900 text-[10px] font-bold">HackLab #01</span>
+                        </div>
                         <p class="text-xs text-slate-700 leading-relaxed mb-3">
-                            Actualmente, más del 80% de los reclutadores laborales y universidades internacionales revisan la presencia digital de los candidatos antes de contratarlos o admitirlos. Un comentario imprudente, una fotografía con derechos reservados usada sin autorización o una mala reputación digital de hace 5 años pueden arruinar una carrera profesional.
+                            Cada vez que abres TikTok, Instagram o juegas online, no eres el cliente: <strong>eres el producto</strong>. Los algoritmos registran tus milisegundos de pausa en cada video, tu geolocalización precisa, el nivel de batería de tu teléfono y tus patrones de tecleo para predecir tus compras y emociones.
                         </p>
-                        <p class="text-xs text-slate-700 leading-relaxed font-semibold">
-                            Ser un <strong>ciudadano digital</strong> implica entender que el ciberespacio no es un mundo virtual sin consecuencias, sino una extensión directa de nuestra vida cívica, jurídica y social.
-                        </p>
-                    </div>
-
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
-                        <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700 mb-3"><i class="fas fa-question-circle text-blue-600 mr-1.5"></i> Preguntas Detonadoras (Diagnóstico Inicial)</h4>
-                        <ol class="list-decimal ml-5 text-xs text-slate-700 space-y-2">
-                            <li>¿Qué diferencia legal existe entre descargar una imagen de Google Imágenes para una tarea escolar y usarla en un sitio web comercial?</li>
-                            <li>¿Qué es el <em>Software Libre</em> y por qué no siempre significa que sea "gratuito"?</li>
-                            <li>¿Cuáles son los síntomas físicos y psicológicos del <em>Síndrome de Fatiga Visual Digital</em> y la hiperconectividad nocturna?</li>
-                        </ol>
+                        <div class="p-3 bg-white rounded-xl border border-purple-200 text-xs font-mono text-purple-950">
+                            <strong>🔥 Pregunta Detonadora del Catedrático:</strong> Si buscaras tu nombre completo entre comillas en Google en este instante... ¿aparecerían fotos, comentarios o datos que podrían costarte tu primera entrevista de trabajo en una empresa de tecnología?
+                        </div>
                     </div>
                 </section>
 
@@ -185,44 +179,30 @@
                 <section id="fase2" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="step-badge bg-sky-600 text-white">2</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (Normativa, Licencias y Almacenamiento)</h2>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (Huella, Licencias y Ergonomía)</h2>
                     </div>
 
-                    <!-- Marco Normativo y Tipos de Licencias -->
-                    <div class="mb-6">
-                        <h3 class="text-lg font-bold text-slate-900 mb-3">1. Propiedad Intelectual y Modelos de Licenciamiento de Software</h3>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs mb-4">
-                            <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5">
-                                <strong class="text-blue-700 block text-sm"><i class="fas fa-copyright mr-1"></i> Copyright vs Copyleft</strong>
-                                <ul class="list-disc ml-4 space-y-1 text-slate-600">
-                                    <li><strong>Copyright (&copy;):</strong> Todos los derechos reservados. Requiere autorización expresa y pago de regalías.</li>
-                                    <li><strong>Copyleft:</strong> Permite usar, modificar y redistribuir el código siempre que las obras derivadas mantengan la misma libertad.</li>
-                                    <li><strong>Creative Commons (CC):</strong> Licencias modulares (BY, NC, ND, SA) para contenidos multimedia y educativos.</li>
-                                </ul>
-                            </div>
-
-                            <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5">
-                                <strong class="text-emerald-700 block text-sm"><i class="fas fa-code-branch mr-1"></i> Licencias de Software de Código Abierto</strong>
-                                <ul class="list-disc ml-4 space-y-1 text-slate-600">
-                                    <li><strong>GNU GPL v3:</strong> Código abierto estricto; cualquier derivado debe ser 100% libre y publicado.</li>
-                                    <li><strong>MIT / Apache 2.0:</strong> Licencias permisivas que permiten incorporar el código en proyectos comerciales cerrados.</li>
-                                    <li><strong>Propietario / EULA:</strong> Solo se otorga el derecho de uso (licencia), sin acceso al código fuente.</li>
-                                </ul>
-                            </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs mb-6">
+                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <strong class="text-purple-700 block text-sm"><i class="fas fa-fingerprint mr-1"></i> Huella Activa vs Pasiva</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                <strong>Activa:</strong> Posts, fotos, comentarios y mensajes que publicas conscientemente.<br>
+                                <strong>Pasiva:</strong> Cookies de rastreo, dirección IP, metadatos EXIF de fotos y registros del ISP.
+                            </p>
                         </div>
-
-                        <!-- Unidades de Medida en Computación -->
-                        <div class="p-4 bg-slate-900 rounded-2xl text-center text-white my-6">
-                            <span class="text-[11px] font-mono text-slate-400 block mb-2">Escala de Unidades de Medida y Almacenamiento Digital</span>
-                            <div class="grid grid-cols-2 sm:grid-cols-6 gap-2 text-xs font-mono">
-                                <div class="bg-slate-800 p-2 rounded border border-slate-700"><strong>1 Byte (B)</strong><br><span class="text-[10px] text-slate-400">8 Bits</span></div>
-                                <div class="bg-slate-800 p-2 rounded border border-slate-700"><strong>1 KB</strong><br><span class="text-[10px] text-slate-400">1,024 B</span></div>
-                                <div class="bg-slate-800 p-2 rounded border border-slate-700"><strong>1 MB</strong><br><span class="text-[10px] text-slate-400">1,024 KB</span></div>
-                                <div class="bg-slate-800 p-2 rounded border border-slate-700"><strong>1 GB</strong><br><span class="text-[10px] text-slate-400">1,024 MB</span></div>
-                                <div class="bg-slate-800 p-2 rounded border border-slate-700"><strong>1 TB</strong><br><span class="text-[10px] text-slate-400">1,024 GB</span></div>
-                                <div class="bg-purple-950 p-2 rounded border border-purple-500"><strong>1 PB</strong><br><span class="text-[10px] text-purple-300">1,024 TB</span></div>
-                            </div>
+                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <strong class="text-blue-700 block text-sm"><i class="fas fa-scale-balanced mr-1"></i> Licenciamiento de Software</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                <strong>Copyright (&copy;):</strong> Todos los derechos reservados.<br>
+                                <strong>Creative Commons (CC):</strong> Licencias libres modulares (BY-NC-SA).<br>
+                                <strong>Open Source (MIT/GPL):</strong> Código fuente abierto modificable.
+                            </p>
+                        </div>
+                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <strong class="text-emerald-700 block text-sm"><i class="fas fa-heart-pulse mr-1"></i> Salud & Ergonomía 20-20-20</strong>
+                            <p class="text-slate-600 text-[11px]">
+                                Cada 20 minutos de pantalla, mira a 20 pies (6 metros) durante 20 segundos. Postura de 90&deg; en codos/rodillas y filtro de luz azul nocturno.
+                            </p>
                         </div>
                     </div>
                 </section>
@@ -231,116 +211,113 @@
                 <section id="fase3" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="step-badge bg-indigo-600 text-white">3</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Demostración y Protocolos de Salud Digital</h2>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Modelado de Auditoría de Metadatos EXIF</h2>
                     </div>
 
-                    <p class="text-xs text-slate-600 mb-4">
-                        A continuación se modela el <strong>Protocolo de Autocuidado y Ergonomía Digital</strong> para estudiantes de informática y drones:
-                    </p>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs mb-4">
-                        <div class="p-3.5 bg-white border border-slate-200 rounded-xl space-y-1">
-                            <strong class="text-blue-700 block font-bold"><i class="fas fa-eye mr-1"></i> Regla 20-20-20</strong>
-                            <p class="text-slate-600">Cada 20 minutos frente a la pantalla, mira un objeto a 20 pies (6 metros) de distancia durante al menos 20 segundos para relajar el músculo ciliar.</p>
-                        </div>
-                        <div class="p-3.5 bg-white border border-slate-200 rounded-xl space-y-1">
-                            <strong class="text-amber-700 block font-bold"><i class="fas fa-chair mr-1"></i> Ergonomía Postural</strong>
-                            <p class="text-slate-600">Espalda recta a 90-100°, pies apoyados en el suelo, borde superior del monitor a la altura de los ojos y codos alineados con el teclado.</p>
-                        </div>
-                        <div class="p-3.5 bg-white border border-slate-200 rounded-xl space-y-1">
-                            <strong class="text-emerald-700 block font-bold"><i class="fas fa-moon mr-1"></i> Desconexión Digital</strong>
-                            <p class="text-slate-600">Evitar pantallas con luz azul 1 hora antes de dormir para permitir la secreción natural de melatonina y descanso reparador.</p>
+                    <div class="bg-slate-900 text-slate-200 rounded-xl p-5 text-xs font-mono mb-4 overflow-x-auto space-y-2">
+                        <span class="text-emerald-400 font-bold block">[DEMO DOCENTE: EXTRACCIÓN DE METADATOS OCULTOS EN UNA FOTO]</span>
+                        <div class="text-slate-300">
+                            $ exiftool foto_perfil.jpg<br>
+                            Camera Model&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: iPhone 14 Pro<br>
+                            Date/Time Original&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 2026:08:24 16:42:10<br>
+                            GPS Latitude&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 17 deg 33' 15.2" N (Chilpancingo, Gro.)<br>
+                            GPS Longitude&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 99 deg 30' 04.8" W<br>
+                            <span class="text-amber-300">==> ¡Una simple foto revela las coordenadas exactas de tu casa o escuela si no limpias los metadatos!</span>
                         </div>
                     </div>
                 </section>
 
-                <!-- FASE 4: APLICACIÓN PRÁCTICA (SIMULADOR Y PROBLEMARIO) -->
+                <!-- FASE 4: APLICACIÓN PRÁCTICA Y SIMULADOR -->
                 <section id="fase4" class="scroll-mt-20">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="step-badge bg-amber-600 text-white">4</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Simulador y Problemario)</h2>
+                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Simulador Interactivo y Retos)</h2>
                     </div>
 
-                    <!-- SIMULADOR INTERACTIVO JS: AUDITOR DE HUELLA DIGITAL Y LICENCIAS -->
-                    <div class="border-2 border-blue-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
-                        <div class="flex items-center justify-between mb-4 border-b border-blue-100 pb-3">
+                    <!-- SIMULADOR INTERACTIVO JS: CALCULADORA DE HUELLA DIGITAL -->
+                    <div class="border-2 border-purple-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
+                        <div class="flex items-center justify-between mb-4 border-b border-purple-100 pb-3">
                             <div class="flex items-center gap-2">
-                                <i class="fas fa-calculator text-blue-600 text-xl"></i>
+                                <i class="fas fa-radar text-purple-600 text-xl"></i>
                                 <div>
-                                    <h3 class="font-bold text-slate-900 text-sm">Calculadora Interactiva de Huella Digital y Licencias</h3>
-                                    <span class="text-[11px] text-slate-500 font-mono">Calcula el nivel de exposición de tu identidad y elige la licencia correcta</span>
+                                    <h3 class="font-bold text-slate-900 text-sm">Calculadora de Nivel de Exposición de Huella Digital</h3>
+                                    <span class="text-[11px] text-slate-500 font-mono">Audita tus hábitos en línea y evalúa tu vulnerabilidad digital</span>
                                 </div>
                             </div>
-                            <span class="px-2 py-1 rounded bg-blue-100 text-blue-800 text-[10px] font-bold">JavaScript Nativo</span>
+                            <span class="px-2 py-1 rounded bg-purple-100 text-purple-800 text-[10px] font-bold">JavaScript Nativo</span>
                         </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs mb-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs mb-4">
                             <div>
-                                <label class="font-semibold text-slate-700 block mb-1">Horas diarias en Pantallas:</label>
-                                <input type="range" id="simHoras" min="1" max="16" value="8" class="w-full" oninput="actualizarCalculoHuella()">
-                                <div class="flex justify-between text-[10px] text-slate-500 font-mono">
-                                    <span>1 hr</span><span id="lblHoras" class="font-bold text-blue-600">8 hrs/día</span><span>16 hrs</span>
-                                </div>
+                                <label class="font-semibold text-slate-700 block mb-1">Perfiles de Redes Sociales:</label>
+                                <select id="simProfiles" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="calcularHuella()">
+                                    <option value="publicos">Públicos (Cualquiera puede verlos)</option>
+                                    <option value="privados" selected>Privados (Solo amigos verificados)</option>
+                                </select>
                             </div>
                             <div>
-                                <label class="font-semibold text-slate-700 block mb-1">Tipo de Proyecto a Licenciar:</label>
-                                <select id="simLicencia" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="actualizarCalculoHuella()">
-                                    <option value="gpl">Software Escolar Open Source Obligatorio (GPL v3)</option>
-                                    <option value="mit">Librería de Código Comercial Permisivo (MIT)</option>
-                                    <option value="cc">Infografía / Video Educativo Multimedia (Creative Commons BY-SA)</option>
-                                    <option value="prop">Software Propietario Comercial Cerrado (Copyright &copy;)</option>
+                                <label class="font-semibold text-slate-700 block mb-1">Geolocalización en Fotos:</label>
+                                <select id="simGeo" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="calcularHuella()">
+                                    <option value="activa">Activada en tiempo real</option>
+                                    <option value="desactivada" selected>Desactivada / Sin GPS</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="font-semibold text-slate-700 block mb-1">Uso de Wi-Fi Pública sin VPN:</label>
+                                <select id="simWifi" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="calcularHuella()">
+                                    <option value="frecuente">Frecuente (Cafeterías, Plazas)</option>
+                                    <option value="nunca" selected>Nunca / Solo datos móviles con VPN</option>
                                 </select>
                             </div>
                         </div>
 
-                        <!-- Panel de Diagnóstico -->
                         <div class="p-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-200 text-xs font-mono">
-                            <div class="text-slate-400 text-[11px] mb-2">[DIAGNÓSTICO DIGITAL EN TIEMPO REAL]</div>
+                            <div class="text-slate-400 text-[11px] mb-2">[REPORTE DE AUDITORÍA DE PRIVACIDAD EN TIEMPO REAL]</div>
                             <div id="simHuellaOutput" class="space-y-1">
                                 <!-- Generado por JS -->
                             </div>
                         </div>
                     </div>
 
-                    <!-- PROBLEMARIO DE 10 EJERCICIOS PARA FIRMAS -->
+                    <!-- PROBLEMARIO DISRUPTIVO (10 RETOS PARA 40% FIRMAS) -->
                     <div class="border border-slate-200 rounded-2xl p-6 bg-white">
                         <div class="flex items-center justify-between mb-4 border-b pb-3">
                             <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
-                                <i class="fas fa-pencil text-blue-600"></i> Problemario de Taller y Prácticas en Libreta (40% Firmas)
+                                <i class="fas fa-fire text-purple-600"></i> Bitácora de Retos Disruptivos (40% Firmas)
                             </h3>
-                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">10 Ejercicios</span>
+                            <span class="px-2 py-0.5 rounded bg-purple-100 text-purple-800 text-[10px] font-bold">10 Retos</span>
                         </div>
 
                         <div class="space-y-3 text-xs text-slate-700">
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>1. Cuadro Comparativo de Licenciamiento:</strong> Diseña una tabla comparativa en tu libreta con 4 columnas (Licencia, Acceso al código, Obras derivadas, Uso comercial) para Copyright, GPL, MIT y Creative Commons.
+                                <strong>Reto 1 (Auditoría Google Dorks):</strong> Busca tu nombre en Google con comillas exactas <code>"Tu Nombre Completo"</code> y documenta qué información pública aparece sobre ti.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>2. Conversión de Unidades de Almacenamiento:</strong> Si una memoria USB tiene 64 GB de capacidad, calcula cuántas fotos de 4.5 MB caben exactamente y cuántos KB representa en total.
+                                <strong>Reto 2 (Eliminación de Metadatos EXIF):</strong> Toma una fotografía con tu teléfono, inspecciona sus metadatos y redacta el procedimiento para deshabilitar el GPS de la cámara.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>3. Auditoría de Huella Digital Personal:</strong> Busca tu nombre completo entre comillas en Google y registra qué información pública aparece sobre tu persona.
+                                <strong>Reto 3 (Términos y Condiciones de TikTok/Meta):</strong> Lee la cláusula de derechos de autor de una red social y explica qué derechos sobre tus fotos y videos le estás cediendo a la empresa.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>4. Análisis de Contrato EULA:</strong> Lee los términos de servicio de una red social y redacta un resumen de 5 derechos que el usuario cede sobre sus fotografías.
+                                <strong>Reto 4 (Matriz Comparativa de Licencias):</strong> Elabora un cuadro comparando Copyright, Copyleft, Creative Commons (CC-BY-NC-SA) y Licencia MIT.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>5. Protocolo de Desconexión Digital:</strong> Diseña un horario semanal de uso saludable de pantallas incluyendo pausas activas cada 45 minutos.
+                                <strong>Reto 5 (E-Waste y Basura Electrónica):</strong> Investiga cuántos kilogramos de basura electrónica genera un smartphone promedio al desecharse y qué metales pesados contaminan los mantos acuíferos.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>6. Cálculo de Ancho de Banda:</strong> Si tienes una conexión a Internet de 100 Mbps (Megabits por segundo), calcula el tiempo teórico de descarga de un archivo de 2.5 GB.
+                                <strong>Reto 6 (Plan de Ergonomía 20-20-20):</strong> Registra tu tiempo diario de uso de pantalla en el celular y diseña un horario de descansos visuales activos.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>7. Gestión de Basura Electrónica (E-Waste):</strong> Investiga y redacta qué componentes tóxicos contiene una batería de dron o smartphone (Litio, Plomo, Cadmio) y dónde se desechan en Chilpancingo.
+                                <strong>Reto 7 (Diferenciación de Licencias en Repositorios):</strong> Ingresa a GitHub y localiza un proyecto con licencia GPL v3 y otro con licencia Apache 2.0 explicando sus permisos.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>8. Normativa Mexicana del Ciberespacio:</strong> Investiga qué artículos del Código Penal Federal sancionan el acceso no autorizado a sistemas informáticos.
+                                <strong>Reto 8 (Identidad Digital Positiva):</strong> Diseña un perfil profesional en LinkedIn o portafolio web que proyecte tus habilidades técnicas como técnico en informática.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>9. Criterios de Selección de Fuentes:</strong> Enumera 5 preguntas clave para evaluar si una página web es confiable o contiene noticias falsas (Fake News).
+                                <strong>Reto 9 (Desintoxicación Digital de Notificaciones):</strong> Desactiva las notificaciones innecesarias de 3 aplicaciones en tu celular durante 24 horas y escribe una reflexión sobre tu nivel de concentración.
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>10. Elaboración del Producto Digital (Evidencia AE 1.1.1):</strong> Diseña un tríptico digital o infografía sobre normatividad y salud digital para la entrega del 15% SAE.
+                                <strong>Reto 10 (Infografía Disruptiva - Evidencia AE 1.1.1):</strong> Diseña una infografía digital interactiva sobre ciudadanía digital y huella digital para el 15% SAE.
                             </div>
                         </div>
                     </div>
@@ -357,10 +334,10 @@
                     <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-sm mb-6">
                         <div class="flex items-center justify-between mb-4 border-b pb-3">
                             <div>
-                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800 uppercase font-mono">Actividad de Evaluación 1.1.1</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800 uppercase font-mono">Actividad de Evaluación 1.1.1</span>
                                 <h3 class="font-bold text-slate-900 text-sm mt-1">Rúbrica de Valoración Oficial (15% SAE)</h3>
                             </div>
-                            <span class="text-xs font-extrabold text-blue-600">Siglema: ATDI-00</span>
+                            <span class="text-xs font-extrabold text-purple-600">Siglema: ATDI-00</span>
                         </div>
 
                         <div class="overflow-x-auto text-[11px]">
@@ -370,51 +347,38 @@
                                         <th class="p-2.5">Indicador</th>
                                         <th class="p-2.5 text-center">%</th>
                                         <th class="p-2.5">Excelente</th>
-                                        <th class="p-2.5">Bueno</th>
                                         <th class="p-2.5">Suficiente</th>
                                         <th class="p-2.5">Insuficiente</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-slate-200 text-slate-700">
                                     <tr>
-                                        <td class="p-2.5 font-bold">Normatividad nacional</td>
-                                        <td class="p-2.5 text-center font-bold text-blue-600">25%</td>
-                                        <td class="p-2.5 bg-emerald-50/50">Describe normatividad, salud digital, derechos de autor, licencias y <strong>justifica sus argumentos</strong>.</td>
-                                        <td class="p-2.5">Describe normatividad, salud digital, medio ambiente y licencias de software.</td>
-                                        <td class="p-2.5">Describe normatividad y sólo algunos criterios de selección.</td>
-                                        <td class="p-2.5 bg-red-50/30">Omite describir la normatividad nacional.</td>
+                                        <td class="p-2.5 font-bold">Conceptos de Ciberespacio y Huella Digital</td>
+                                        <td class="p-2.5 text-center font-bold text-purple-600">30%</td>
+                                        <td class="p-2.5 bg-purple-50/50">Diferencia huella activa/pasiva, analiza riesgos, aporta ejemplos reales y <strong>propone medidas proactivas de privacidad</strong>.</td>
+                                        <td class="p-2.5">Diferencia huella activa y pasiva y menciona riesgos en línea.</td>
+                                        <td class="p-2.5 bg-red-50/30">Confunde conceptos o no identifica huella digital.</td>
                                     </tr>
                                     <tr>
-                                        <td class="p-2.5 font-bold">Herramienta digital</td>
-                                        <td class="p-2.5 text-center font-bold text-blue-600">25%</td>
-                                        <td class="p-2.5 bg-emerald-50/50">Implementa la herramienta de forma óptima, estructurada y <strong>explica la elección</strong>.</td>
-                                        <td class="p-2.5">Implementa la herramienta de forma óptima y estructurada.</td>
-                                        <td class="p-2.5">Presenta la información sin la estructura solicitada.</td>
-                                        <td class="p-2.5 bg-red-50/30">Omite implementar la herramienta digital.</td>
+                                        <td class="p-2.5 font-bold">Licenciamiento de Software y Ética</td>
+                                        <td class="p-2.5 text-center font-bold text-purple-600">30%</td>
+                                        <td class="p-2.5 bg-purple-50/50">Compara Copyright, Creative Commons y Open Source con precisión y <strong>propone licencias adecuadas para proyectos</strong>.</td>
+                                        <td class="p-2.5">Identifica los tipos de licencias de software y derechos de autor.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite diferencias entre licencias libres y propietarias.</td>
                                     </tr>
                                     <tr>
-                                        <td class="p-2.5 font-bold">Salud digital</td>
-                                        <td class="p-2.5 text-center font-bold text-blue-600">10%</td>
-                                        <td class="p-2.5 bg-emerald-50/50">Describe autocuidado ante hiperconectividad, <strong>difunde en redes y diseño creativo</strong>.</td>
-                                        <td class="p-2.5">Describe autocuidado y difunde en alguna red social.</td>
-                                        <td class="p-2.5">Describe las enfermedades sin difundir el contenido.</td>
-                                        <td class="p-2.5 bg-red-50/30">Omite el apartado de salud digital.</td>
+                                        <td class="p-2.5 font-bold">Salud Digital y Cuidado Ambiental</td>
+                                        <td class="p-2.5 text-center font-bold text-purple-600">25%</td>
+                                        <td class="p-2.5 bg-purple-50/50">Estructura plan ergonómico 20-20-20, analiza e-waste y <strong>propone campaña de reciclaje de residuos tecnológicos</strong>.</td>
+                                        <td class="p-2.5">Menciona reglas ergonómicas y consecuencias del e-waste.</td>
+                                        <td class="p-2.5 bg-red-50/30">Omite medidas ergonómicas o impacto ambiental.</td>
                                     </tr>
                                     <tr>
-                                        <td class="p-2.5 font-bold">Presentación del producto</td>
-                                        <td class="p-2.5 text-center font-bold text-blue-600">30%</td>
-                                        <td class="p-2.5 bg-emerald-50/50">Creatividad, sin faltas ortográficas, en tiempo y <strong>añade propuesta de valor</strong>.</td>
-                                        <td class="p-2.5">Creatividad, sin faltas y entrega en tiempo y forma.</td>
-                                        <td class="p-2.5">Presenta algunas faltas o entrega fuera de tiempo.</td>
-                                        <td class="p-2.5 bg-red-50/30">Redacción deficiente o entrega tardía.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-2.5 font-bold">Exposición del producto</td>
-                                        <td class="p-2.5 text-center font-bold text-blue-600">10%</td>
-                                        <td class="p-2.5 bg-emerald-50/50">Dominio del tema, hace participar a compañeros y <strong>responde certeramente dudas</strong>.</td>
-                                        <td class="p-2.5">Dominio del tema y hace participar al grupo.</td>
-                                        <td class="p-2.5">Titubea al exponer o medio inadecuado.</td>
-                                        <td class="p-2.5 bg-red-50/30">Omite realizar la exposición.</td>
+                                        <td class="p-2.5 font-bold">Presentación y Actitud</td>
+                                        <td class="p-2.5 text-center font-bold text-purple-600">15%</td>
+                                        <td class="p-2.5 bg-purple-50/50">Infografía digital de alto impacto visual, ortografía perfecta, puntualidad y <strong>liderazgo colaborativo</strong>.</td>
+                                        <td class="p-2.5">Infografía digital ordenada con criterios solicitados.</td>
+                                        <td class="p-2.5 bg-red-50/30">Entrega incompleta o extemporánea.</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -423,9 +387,9 @@
 
                     <!-- Metacognición -->
                     <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700">
-                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-brain text-emerald-600 mr-1.5"></i> Pregunta de Metacognición Final:</h4>
+                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-brain text-purple-600 mr-1.5"></i> Pregunta de Metacognición Disruptiva:</h4>
                         <p>
-                            "¿Cómo el respeto a las licencias de software y derechos de autor en la escuela refleja tu ética profesional en el sector tecnológico?"
+                            "¿Cómo el control consciente de tu huella digital y el conocimiento de licencias de software te empodera como un creador de tecnología libre y no solo como un consumidor vulnerable?"
                         </p>
                     </div>
                 </section>
@@ -435,8 +399,8 @@
                     <a href="index.html" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
                         <i class="fas fa-arrow-left mr-1"></i> Portada del Módulo
                     </a>
-                    <a href="tema1_2.html" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition shadow-sm">
-                        Siguiente: RA 1.2 (Amenazas) <i class="fas fa-arrow-right ml-1"></i>
+                    <a href="tema1_2.html" class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs transition shadow-sm">
+                        Siguiente: RA 1.2 (Ciberseguridad) <i class="fas fa-arrow-right ml-1"></i>
                     </a>
                 </div>
 
@@ -450,27 +414,27 @@
                     <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm">
                         <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">En esta Página</h4>
                         <ul class="space-y-2 text-xs text-slate-600">
-                            <li><a href="#fase1" class="hover:text-blue-600 transition block">1. Caso Real: Huella Digital</a></li>
-                            <li><a href="#fase2" class="hover:text-blue-600 transition block">2. Licencias & Almacenamiento</a></li>
-                            <li><a href="#fase3" class="hover:text-blue-600 transition block">3. Salud Digital (20-20-20)</a></li>
-                            <li><a href="#fase4" class="hover:text-blue-600 transition block">4. Simulador de Huella</a></li>
-                            <li><a href="#fase5" class="hover:text-blue-600 transition block">5. Rúbrica Oficial AE 1.1.1</a></li>
+                            <li><a href="#fase1" class="hover:text-purple-600 transition block">1. Reto: HackLab #01</a></li>
+                            <li><a href="#fase2" class="hover:text-purple-600 transition block">2. Huella & Licenciamiento</a></li>
+                            <li><a href="#fase3" class="hover:text-purple-600 transition block">3. Extracción de Metadatos</a></li>
+                            <li><a href="#fase4" class="hover:text-purple-600 transition block">4. Simulador de Huella</a></li>
+                            <li><a href="#fase5" class="hover:text-purple-600 transition block">5. Rúbrica Oficial AE 1.1.1</a></li>
                         </ul>
                     </div>
 
                     <!-- Cuadro de Evidencia SAE -->
-                    <div class="p-4 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl text-xs space-y-2">
-                        <div class="flex items-center gap-2 text-blue-900 font-bold text-xs">
-                            <i class="fas fa-file-pdf text-blue-600"></i> Entregable SAE (AE 1.1.1)
+                    <div class="p-4 bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-200 rounded-2xl text-xs space-y-2">
+                        <div class="flex items-center gap-2 text-purple-900 font-bold text-xs">
+                            <i class="fas fa-fingerprint text-purple-600"></i> Entregable SAE (AE 1.1.1)
                         </div>
                         <ul class="text-[11px] text-slate-700 list-disc ml-4 space-y-1">
-                            <li>Producto digital / Tríptico o infografía.</li>
-                            <li>Propuesta de licenciamiento de software.</li>
-                            <li>Plan de autocuidado y salud digital.</li>
-                            <li>Exposición ante el grupo.</li>
+                            <li>Infografía digital de ciudadanía y huella.</li>
+                            <li>Cuadro de licenciamiento de software.</li>
+                            <li>Plan de salud ergonómica 20-20-20.</li>
+                            <li>Reporte de auditoría digital.</li>
                         </ul>
-                        <div class="pt-2 border-t border-blue-200 text-center">
-                            <span class="text-blue-700 font-extrabold text-sm">Valor: 15% SAE</span>
+                        <div class="pt-2 border-t border-purple-200 text-center">
+                            <span class="text-purple-700 font-extrabold text-sm">Valor: 15% SAE</span>
                         </div>
                     </div>
 
@@ -482,27 +446,46 @@
 
     <!-- Script del Simulador JS -->
     <script>
-        function actualizarCalculoHuella() {
-            const h = document.getElementById('simHoras').value;
-            const lic = document.getElementById('simLicencia').value;
-            document.getElementById('lblHoras').innerText = `${h} hrs/día`;
+        function calcularHuella() {
+            const prof = document.getElementById('simProfiles').value;
+            const geo = document.getElementById('simGeo').value;
+            const wifi = document.getElementById('simWifi').value;
+            const outElem = document.getElementById('simHuellaOutput');
 
-            let nivelRiesgo = h > 8 ? "<span class='text-red-400 font-bold'>ALTO (Riesgo de fatiga visual y alta exposición)</span>" : "<span class='text-emerald-400 font-bold'>MODERADO</span>";
-            let datosGenerados = (h * 0.45).toFixed(2); // GB aprox
+            let score = 100;
+            let riesgos = [];
 
-            let licTexto = "";
-            if (lic === 'gpl') licTexto = "GNU GPL v3: Obliga a compartir el código fuente de cualquier modificación de forma libre.";
-            else if (lic === 'mit') licTexto = "MIT: Máxima libertad, permite integración en software comercial sin compartir código.";
-            else if (lic === 'cc') licTexto = "Creative Commons BY-SA: Requiere dar crédito y compartir bajo la misma licencia.";
-            else licTexto = "Copyright: Todos los derechos reservados; prohibida la redistribución sin contrato previo.";
+            if (prof === "publicos") {
+                score -= 35;
+                riesgos.push("&bull; <span class='text-red-400 font-bold'>Perfiles Públicos:</span> Tus fotos e información personal pueden ser scrapeadas por bots y usadas para suplantación de identidad o deepfakes.");
+            } else {
+                riesgos.push("&bull; <span class='text-emerald-300 font-bold'>Perfiles Privados:</span> Buen control de acceso a tu círculo de confianza.");
+            }
 
-            document.getElementById('simHuellaOutput').innerHTML = `
-                &bull; Nivel de Exposición de Huella Digital: ${nivelRiesgo}<br>
-                &bull; Datos promedio generados al mes: <strong class="text-amber-300">${datosGenerados} GB</strong><br>
-                &bull; Licencia recomendada: <span class="text-sky-300">${licTexto}</span>
+            if (geo === "activa") {
+                score -= 35;
+                riesgos.push("&bull; <span class='text-red-400 font-bold'>GPS Activo:</span> Cada foto revela tus coordenadas geográficas de casa y escuela en los metadatos EXIF.");
+            } else {
+                riesgos.push("&bull; <span class='text-emerald-300 font-bold'>GPS Desactivado:</span> Anonimato espacial protegido.");
+            }
+
+            if (wifi === "frecuente") {
+                score -= 30;
+                riesgos.push("&bull; <span class='text-red-400 font-bold'>Wi-Fi Pública sin VPN:</span> Tráfico vulnerable a ataques Man-in-the-Middle (MitM) y robo de cookies de sesión.");
+            } else {
+                riesgos.push("&bull; <span class='text-emerald-300 font-bold'>Conexión Segura:</span> Canal cifrado o datos protegidos.");
+            }
+
+            let estado = score >= 80 ? "<span class='text-emerald-300 font-bold'>ALTA PROTECCIÓN (Segura)</span>" : (score >= 50 ? "<span class='text-amber-300 font-bold'>EXPOSICIÓN MODERADA (Alerta)</span>" : "<span class='text-red-400 font-bold'>RIESGO CRÍTICO (Muy Vulnerable)</span>");
+
+            outElem.innerHTML = `
+                &bull; Puntuación de Privacidad: <strong class="text-white">${score} / 100</strong> — Nivel: ${estado}<br>
+                ${riesgos.join('<br>')}<br>
+                ------------------------------------------------------------<br>
+                <span class="text-purple-300 font-bold">&check; Acción Disruptiva Recomendada:</span> Ejecuta una búsqueda booleana de tu nombre y limpia los permisos de geolocalización en las apps de tu teléfono.
             `;
         }
-        window.onload = actualizarCalculoHuella;
+        window.onload = calcularHuella;
     </script>
 </body>
 </html>

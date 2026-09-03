@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATDI-00: Aplicación de Tecnologías Digitales (Cultura Digital) | CONALEP</title>
+    <title>ATDI-00: Cultura Digital I — Laboratorio Disruptivo | CONALEP</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -20,14 +20,14 @@
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        cdig: {
-                            50: '#f5f3ff',
-                            100: '#ede9fe',
-                            500: '#8b5cf6',
-                            600: '#7c3aed',
-                            700: '#6d28d9',
-                            800: '#5b21b6',
-                            900: '#4c1d95',
+                        brand: {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7e22ce',
+                            800: '#6b21a8',
+                            900: '#581c87',
                         }
                     }
                 }
@@ -46,12 +46,12 @@
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 1.25rem;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .unit-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.08);
-            border-color: #cbd5e1;
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px -8px rgba(147, 51, 234, 0.12);
+            border-color: #c084fc;
         }
 
         .sticky-top-nav {
@@ -62,6 +62,14 @@
             backdrop-filter: blur(12px);
             border-bottom: 1px solid #e2e8f0;
         }
+
+        .pulse-badge {
+            animation: pulse-glow 2s infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.85; transform: scale(1.03); }
+        }
     </style>
 </head>
 <body class="bg-white text-slate-800 antialiased selection:bg-purple-100 selection:text-purple-900">
@@ -70,16 +78,16 @@
     <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
             <div class="flex items-center space-x-3">
-                <span class="font-semibold text-white"><i class="fas fa-network-wired text-purple-400 mr-1.5"></i> CONALEP — Núcleo Interdisciplinar (1° Semestre)</span>
+                <span class="font-semibold text-white"><i class="fas fa-bolt text-purple-400 mr-1.5"></i> CONALEP — Recursos Sociocognitivos (1° Semestre)</span>
                 <span class="text-slate-600 hidden sm:inline">|</span>
-                <span class="text-slate-400 hidden sm:inline">Clave Oficial: <strong>ATDI-00</strong> (90 Horas • 5 hrs/sem)</span>
+                <span class="text-slate-400 hidden sm:inline">Clave: <strong>ATDI-00</strong> (Cultura Digital I • 90 Horas)</span>
             </div>
             <div class="flex items-center space-x-4">
-                <a href="../index.html" class="text-xs text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1 font-semibold">
+                <a href="../index.html" class="text-xs text-purple-400 hover:text-purple-300 transition flex items-center gap-1 font-semibold">
                     <i class="fas fa-arrow-left"></i> Catálogo CONALEP
                 </a>
                 <span class="text-slate-600">|</span>
-                <span class="text-slate-400"><i class="fas fa-chalkboard-teacher text-purple-400 mr-1"></i> Catedrático: <strong>Cruz Enrique García</strong></span>
+                <span class="text-slate-400"><i class="fas fa-fire text-amber-400 mr-1"></i> Docente Disruptivo: <strong>Cruz Enrique García</strong></span>
             </div>
         </div>
     </div>
@@ -89,39 +97,40 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-700 flex items-center justify-center text-white font-bold text-lg shadow-sm">
-                        <i class="fas fa-laptop-code"></i>
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-purple-500/20">
+                        <i class="fas fa-microchip"></i>
                     </div>
                     <div>
                         <span class="text-base font-bold text-slate-900 leading-tight block">Aplicación de Tecnologías Digitales</span>
-                        <span class="text-[11px] text-slate-500 font-mono">ATDI-00 • Cultura Digital I • 18 Semanas (5 hrs/semana • 90 Horas)</span>
+                        <span class="text-[11px] text-purple-700 font-mono font-semibold">Cultura Digital I • 18 Semanas (5 hrs/sem • 90 Horas)</span>
                     </div>
                 </div>
                 <div class="hidden md:flex items-center space-x-6 text-sm font-semibold text-slate-600">
-                    <a href="#unidades" class="hover:text-purple-600 transition">Resultados de Aprendizaje</a>
+                    <a href="#manifiesto" class="hover:text-purple-600 transition">Manifiesto Disruptivo</a>
+                    <a href="#unidades" class="hover:text-purple-600 transition">Misiones y RAs</a>
                     <a href="#ponderacion" class="hover:text-purple-600 transition">Ponderación SAE</a>
                     <a href="#cronograma" class="hover:text-purple-600 transition">Cronograma 18 Semanas</a>
-                    <a href="#metodologia" class="hover:text-purple-600 transition">Modelo 5 Fases</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Header Hero -->
-    <header class="border-b border-slate-200 bg-gradient-to-b from-purple-50/50 via-white to-white py-12 px-4">
+    <!-- Header Hero Disruptivo -->
+    <header class="border-b border-slate-200 bg-gradient-to-b from-purple-50/60 via-white to-white py-12 px-4">
         <div class="max-w-5xl mx-auto text-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-xs font-semibold uppercase tracking-wider mb-4 border border-purple-200">
-                <i class="fas fa-globe"></i> Recurso Sociocognitivo • Marco Curricular Común (MCCEMS)
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-100 text-purple-800 text-xs font-bold uppercase tracking-wider mb-4 border border-purple-200 shadow-sm">
+                <i class="fas fa-rocket text-purple-600"></i> Pedagogía Activa • Hackathons • IA • Ciberseguridad • Creación Digital
             </div>
-            <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
-                Aplicación de <span class="text-purple-600">Tecnologías Digitales</span>
+            <h1 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight mb-4">
+                Cultura Digital <span class="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Sin Filtros ni Teoría Aburrida</span>
             </h1>
             <p class="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto font-normal leading-relaxed mb-6">
-                Planeación didáctica orientada al desarrollo de la ciudadanía digital, ciberseguridad personal, pensamiento algorítmico, herramientas de productividad colaborativa, investigación digital, teoría del color, procesamiento estadístico, redes informáticas, Inteligencia Artificial e Industria 4.0.
+                Una experiencia de aprendizaje 100% práctica y disruptiva. No memorizamos conceptos: <strong>hackeamos contraseñas débiles en entornos seguros, auditamos algoritmos de redes sociales, construimos micro-aplicaciones HTML5 en tiempo real, dominamos la Inteligencia Artificial generativa y programamos automatizaciones de la Industria 4.0</strong>.
             </p>
             <div class="flex flex-wrap justify-center gap-3 text-xs font-semibold">
                 <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200"><i class="fas fa-clock text-purple-600 mr-1"></i> 90 Horas Semestrales</span>
                 <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200"><i class="fas fa-calendar-alt text-purple-600 mr-1"></i> 5 Horas / Semana (18 Semanas)</span>
+                <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200"><i class="fas fa-gamepad text-indigo-600 mr-1"></i> 7 Simuladores JS Interactivos</span>
                 <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200"><i class="fas fa-tasks text-emerald-600 mr-1"></i> 7 Evidencias Oficiales SAE (100%)</span>
             </div>
         </div>
@@ -130,41 +139,54 @@
     <!-- Contenido Principal -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-        <!-- MENSAJE DOCENTE -->
-        <div class="mb-14 bg-gradient-to-r from-slate-900 via-slate-800 to-purple-950 text-white rounded-2xl p-6 sm:p-8 shadow-md border border-slate-700">
-            <div class="flex flex-col md:flex-row items-start md:items-center gap-5">
-                <div class="w-14 h-14 rounded-2xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-purple-400 text-2xl flex-shrink-0">
-                    <i class="fas fa-brain"></i>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-white mb-1 flex items-center gap-2">
-                        Encuadre de Cultura Digital (Catedrático Cruz Enrique García)
-                    </h3>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                        "La tecnología no solo se consume, se analiza críticamente y se crea. En este módulo formativo de 90 horas (5 horas por semana), el estudiantado aprenderá a navegar como un <strong>ciudadano digital responsable</strong>, resguardar su identidad ante amenazas cibernéticas, modelar problemas mediante <strong>algoritmos y diagramas de flujo</strong>, dominar herramientas ofimáticas y estadísticas, y comprender los pilares tecnológicos del futuro: redes de telecomunicaciones, Inteligencia Artificial e Industria 4.0."
-                    </p>
+        <!-- MANIFIESTO DEL DOCENTE DISRUPTIVO -->
+        <section id="manifiesto" class="mb-14 scroll-mt-24">
+            <div class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-purple-800/40 relative overflow-hidden">
+                <div class="absolute -right-8 -bottom-8 w-48 h-48 bg-purple-500/10 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+                    <div class="w-16 h-16 rounded-2xl bg-purple-500/20 border border-purple-400/30 flex items-center justify-center text-purple-300 text-3xl flex-shrink-0 shadow-inner">
+                        <i class="fas fa-fire-flame-curved"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xs font-bold text-purple-300 uppercase tracking-widest font-mono">Manifiesto de Cátedra Disruptiva</span>
+                            <span class="px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-[10px] font-bold border border-amber-400/30">Cruz Enrique García</span>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-black text-white mb-2">
+                            Aprender Creando, Rompiendo y Resolviendo Problemas Reales
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                            "En este laboratorio no venimos a transcribir diapositivas ni a copiar definiciones de Wikipedia. Aquí el estudiante es un <strong>creador digital crítico y proactivo</strong>. Cada sesión combina retos de pensamiento computacional, retos de ciberdefensa personal, batallas de prompt engineering con IA y desarrollo ágil. La tecnología no es para consumirla pasivamente, es para dominarla y transformar el entorno."
+                        </p>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-[11px] font-mono">
+                            <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 text-center"><i class="fas fa-brain text-purple-400 block text-base mb-1"></i> Pensamiento 5E</div>
+                            <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 text-center"><i class="fas fa-shield-virus text-emerald-400 block text-base mb-1"></i> HackLabs Seguros</div>
+                            <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 text-center"><i class="fas fa-code text-sky-400 block text-base mb-1"></i> Live Web Sandboxes</div>
+                            <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 text-center"><i class="fas fa-robot text-amber-400 block text-base mb-1"></i> Prompt Engineering</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- SECCIÓN 1: Resultados de Aprendizaje y Unidades -->
+        <!-- SECCIÓN 1: Resultados de Aprendizaje y Misiones -->
         <section id="unidades" class="mb-16 scroll-mt-24">
             <div class="flex flex-col sm:flex-row justify-between sm:items-end mb-8 gap-4">
                 <div>
-                    <span class="text-xs font-bold text-purple-600 uppercase tracking-widest">Estructura Curricular</span>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Unidades y Resultados de Aprendizaje (RA)</h2>
-                    <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Accede directamente al material de cátedra interactivo y simuladores de cada RA</p>
+                    <span class="text-xs font-bold text-purple-600 uppercase tracking-widest">Mapa de Misiones Formativas</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">3 Unidades • 7 Resultados de Aprendizaje</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Accede directamente al simulador, laboratorio interactivo y rúbrica oficial de cada tema</p>
                 </div>
             </div>
 
             <!-- UNIDAD 1 -->
-            <div class="mb-10 bg-slate-50/70 border border-slate-200 rounded-3xl p-6 sm:p-8">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-2 border-b border-slate-200 pb-4">
+            <div class="mb-10 bg-purple-50/40 border border-purple-200/80 rounded-3xl p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-2 border-b border-purple-200/80 pb-4">
                     <div>
-                        <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200 uppercase">Unidad 1 • 20 Horas (25% Ponderación)</span>
-                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mt-2">Ejerce la Ciudadanía Digital en el Ciberespacio</h3>
+                        <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-purple-100 text-purple-800 border border-purple-300 uppercase">Unidad 1 • 20 Horas (30% SAE)</span>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mt-2">Ciberespacio, Ciudadanía Digital y Ciberseguridad Personal</h3>
                     </div>
-                    <span class="text-xs text-slate-500 font-medium">Semanas 1 a 4 • 2 Resultados de Aprendizaje</span>
+                    <span class="text-xs text-slate-500 font-medium">Semanas 1 a 4 • 2 Misiones de Aprendizaje</span>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -172,23 +194,23 @@
                     <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
                         <div>
                             <div class="flex justify-between items-start mb-3">
-                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 1.1</span>
-                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">10 Horas • 15% SAE</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-purple-100 text-purple-900 font-bold text-xs font-mono">RA 1.1</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">10h • 15% SAE</span>
                             </div>
-                            <h4 class="text-lg font-bold text-slate-900 mb-2 hover:text-purple-600 transition">
-                                <a href="tema1_1.html">Ciberespacio, Marco Normativo y Salud Digital</a>
+                            <h4 class="text-base font-bold text-slate-900 mb-2 hover:text-purple-600 transition">
+                                <a href="tema1_1.html">Ciberespacio, Marco Normativo, Licenciamiento y Salud Digital</a>
                             </h4>
                             <p class="text-xs text-slate-600 mb-4 leading-relaxed">
-                                Normatividad del ciberespacio, derechos de autor, licenciamiento de software (GPL vs Propietario), salud digital ante la hiperconectividad y unidades de almacenamiento.
+                                Huella digital, identidad en línea, licencias Copyright vs Creative Commons vs Open Source, desintoxicación digital y ergonomía.
                             </p>
                             <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
-                                <div class="flex justify-between"><span>Calendario:</span> <strong class="text-slate-800">Semanas 1 y 2 (10 hrs)</strong></div>
-                                <div class="flex justify-between"><span>Evidencia SAE:</span> <strong class="text-blue-700 font-semibold">AE 1.1.1 (Producto Digital)</strong></div>
-                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-slate-800">Calculadora de Huella y Licencias</strong></div>
+                                <div class="flex justify-between"><span>Semanas:</span> <strong class="text-slate-800">1 y 2 (10 hrs)</strong></div>
+                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-purple-700 font-semibold">Calculadora de Huella Digital</strong></div>
+                                <div class="flex justify-between"><span>Evidencia:</span> <strong class="text-emerald-700 font-semibold">AE 1.1.1 (Infografía Digital)</strong></div>
                             </div>
                         </div>
-                        <a href="tema1_1.html" class="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
-                            Ver RA 1.1 y Simulador <i class="fas fa-arrow-right ml-2 text-blue-200"></i>
+                        <a href="tema1_1.html" class="w-full py-2 px-3 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Iniciar Misión 1.1 y Simulador <i class="fas fa-arrow-right ml-1.5 text-purple-200"></i>
                         </a>
                     </div>
 
@@ -196,36 +218,36 @@
                     <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
                         <div>
                             <div class="flex justify-between items-start mb-3">
-                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 1.2</span>
-                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">10 Horas • 10% SAE</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-purple-100 text-purple-900 font-bold text-xs font-mono">RA 1.2</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">10h • 15% SAE</span>
                             </div>
-                            <h4 class="text-lg font-bold text-slate-900 mb-2 hover:text-purple-600 transition">
-                                <a href="tema1_2.html">Resguardo de Identidad y Amenazas Digitales</a>
+                            <h4 class="text-base font-bold text-slate-900 mb-2 hover:text-purple-600 transition">
+                                <a href="tema1_2.html">Amenazas Digitales, Ciberseguridad y Prevención de Riesgos</a>
                             </h4>
                             <p class="text-xs text-slate-600 mb-4 leading-relaxed">
-                                Ciberseguridad personal, amenazas en línea (phishing, ciberacoso, robo de identidad), consecuencias legales del uso indebido de redes y producción multimedia.
+                                Malware, phishing, ransomware, ingeniería social, autenticación 2FA, entropía criptográfica de passwords y ciberdefensa.
                             </p>
                             <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
-                                <div class="flex justify-between"><span>Calendario:</span> <strong class="text-slate-800">Semanas 3 y 4 (10 hrs)</strong></div>
-                                <div class="flex justify-between"><span>Evidencia SAE:</span> <strong class="text-blue-700 font-semibold">AE 1.2.1 (Material Multimedia)</strong></div>
-                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-slate-800">Verificador de Seguridad y Phishing</strong></div>
+                                <div class="flex justify-between"><span>Semanas:</span> <strong class="text-slate-800">3 y 4 (10 hrs)</strong></div>
+                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-purple-700 font-semibold">Medidor Criptográfico & Anti-Phishing</strong></div>
+                                <div class="flex justify-between"><span>Evidencia:</span> <strong class="text-emerald-700 font-semibold">AE 1.2.1 (Protocolo de Seguridad)</strong></div>
                             </div>
                         </div>
-                        <a href="tema1_2.html" class="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
-                            Ver RA 1.2 y Simulador <i class="fas fa-arrow-right ml-2 text-blue-200"></i>
+                        <a href="tema1_2.html" class="w-full py-2 px-3 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Iniciar Misión 1.2 y Simulador <i class="fas fa-arrow-right ml-1.5 text-purple-200"></i>
                         </a>
                     </div>
                 </div>
             </div>
 
             <!-- UNIDAD 2 -->
-            <div class="mb-10 bg-slate-50/70 border border-slate-200 rounded-3xl p-6 sm:p-8">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-2 border-b border-slate-200 pb-4">
+            <div class="mb-10 bg-indigo-50/40 border border-indigo-200/80 rounded-3xl p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-2 border-b border-indigo-200/80 pb-4">
                     <div>
-                        <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-purple-100 text-purple-800 border border-purple-200 uppercase">Unidad 2 • 30 Horas (25% Ponderación)</span>
-                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mt-2">Solución de Problemas Mediante Lenguaje Algorítmico</h3>
+                        <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-800 border border-indigo-300 uppercase">Unidad 2 • 30 Horas (30% SAE)</span>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mt-2">Pensamiento Algorítmico y Diagramación Visual</h3>
                     </div>
-                    <span class="text-xs text-slate-500 font-medium">Semanas 5 a 10 • 2 Resultados de Aprendizaje</span>
+                    <span class="text-xs text-slate-500 font-medium">Semanas 5 a 10 • 2 Misiones de Aprendizaje</span>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -233,23 +255,23 @@
                     <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
                         <div>
                             <div class="flex justify-between items-start mb-3">
-                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 2.1</span>
-                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200">15 Horas • 10% SAE</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-indigo-100 text-indigo-900 font-bold text-xs font-mono">RA 2.1</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">15h • 15% SAE</span>
                             </div>
-                            <h4 class="text-lg font-bold text-slate-900 mb-2 hover:text-purple-600 transition">
-                                <a href="tema2_1.html">Pensamiento Algorítmico y Diagramación</a>
+                            <h4 class="text-base font-bold text-slate-900 mb-2 hover:text-indigo-600 transition">
+                                <a href="tema2_1.html">Diagramas de Flujo y Estructuras Algorítmicas Básicas</a>
                             </h4>
                             <p class="text-xs text-slate-600 mb-4 leading-relaxed">
-                                Métodos de resolución de problemas (Modelo 5E, Divide y vencerás, Árbol de causas), diseño de diagramas de flujo normalizados ISO y pseudocódigo estructurado.
+                                Modelo IPO (Entrada-Proceso-Salida), simbología ANSI de diagramas de flujo, pruebas de escritorio y resolución sistemática de problemas.
                             </p>
                             <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
-                                <div class="flex justify-between"><span>Calendario:</span> <strong class="text-slate-800">Semanas 5 a 7 (15 hrs)</strong></div>
-                                <div class="flex justify-between"><span>Evidencia SAE:</span> <strong class="text-purple-700 font-semibold">AE 2.1.1 (Modelado de Datos)</strong></div>
-                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-slate-800">Diseñador Dinámico de Diagramas</strong></div>
+                                <div class="flex justify-between"><span>Semanas:</span> <strong class="text-slate-800">5 a 7 (15 hrs)</strong></div>
+                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-indigo-700 font-semibold">Trazador de Diagramas y Pruebas</strong></div>
+                                <div class="flex justify-between"><span>Evidencia:</span> <strong class="text-emerald-700 font-semibold">AE 2.1.1 (Problemario Diagramado)</strong></div>
                             </div>
                         </div>
-                        <a href="tema2_1.html" class="w-full py-2.5 px-4 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
-                            Ver RA 2.1 y Simulador <i class="fas fa-arrow-right ml-2 text-purple-200"></i>
+                        <a href="tema2_1.html" class="w-full py-2 px-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Iniciar Misión 2.1 y Trazador <i class="fas fa-arrow-right ml-1.5 text-indigo-200"></i>
                         </a>
                     </div>
 
@@ -257,36 +279,36 @@
                     <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
                         <div>
                             <div class="flex justify-between items-start mb-3">
-                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 2.2</span>
-                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200">15 Horas • 15% SAE</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-indigo-100 text-indigo-900 font-bold text-xs font-mono">RA 2.2</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">15h • 15% SAE</span>
                             </div>
-                            <h4 class="text-lg font-bold text-slate-900 mb-2 hover:text-purple-600 transition">
-                                <a href="tema2_2.html">Lenguaje Algorítmico y Modelado Digital</a>
+                            <h4 class="text-base font-bold text-slate-900 mb-2 hover:text-indigo-600 transition">
+                                <a href="tema2_2.html">Algoritmia Digital: Toma de Decisiones y Ciclos Repetitivos</a>
                             </h4>
                             <p class="text-xs text-slate-600 mb-4 leading-relaxed">
-                                Variables, constantes, operadores aritméticos, relacionales y lógicos, estructuras condicionales (`if/else`) y repetitivas aplicadas a la solución de problemas reales.
+                                Condicionales simples, dobles y anidados (`SI-ENTONCES-SINO`), operadores lógicos y bucles de repetición (`MIENTRAS`, `PARA`).
                             </p>
                             <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
-                                <div class="flex justify-between"><span>Calendario:</span> <strong class="text-slate-800">Semanas 8 a 10 (15 hrs)</strong></div>
-                                <div class="flex justify-between"><span>Evidencia SAE:</span> <strong class="text-purple-700 font-semibold">AE 2.2.1 (Representación Digital)</strong></div>
-                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-slate-800">Ejecutor Algorítmico de Código</strong></div>
+                                <div class="flex justify-between"><span>Semanas:</span> <strong class="text-slate-800">8 a 10 (15 hrs)</strong></div>
+                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-indigo-700 font-semibold">Evaluador Lógico & Bucles en Vivo</strong></div>
+                                <div class="flex justify-between"><span>Evidencia:</span> <strong class="text-emerald-700 font-semibold">AE 2.2.1 (Algoritmos Lógicos)</strong></div>
                             </div>
                         </div>
-                        <a href="tema2_2.html" class="w-full py-2.5 px-4 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
-                            Ver RA 2.2 y Simulador <i class="fas fa-arrow-right ml-2 text-purple-200"></i>
+                        <a href="tema2_2.html" class="w-full py-2 px-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Iniciar Misión 2.2 y Simulador <i class="fas fa-arrow-right ml-1.5 text-indigo-200"></i>
                         </a>
                     </div>
                 </div>
             </div>
 
             <!-- UNIDAD 3 -->
-            <div class="bg-slate-50/70 border border-slate-200 rounded-3xl p-6 sm:p-8">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-2 border-b border-slate-200 pb-4">
+            <div class="bg-sky-50/40 border border-sky-200/80 rounded-3xl p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-2 border-b border-sky-200/80 pb-4">
                     <div>
-                        <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 uppercase">Unidad 3 • 40 Horas (50% Ponderación)</span>
-                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mt-2">Implementación de Herramientas Digitales para la Productividad</h3>
+                        <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-sky-100 text-sky-800 border border-sky-300 uppercase">Unidad 3 • 40 Horas (40% SAE)</span>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mt-2">Creación Digital, Web HTML5, Inteligencia Artificial e Industria 4.0</h3>
                     </div>
-                    <span class="text-xs text-slate-500 font-medium">Semanas 11 a 18 • 3 Resultados de Aprendizaje</span>
+                    <span class="text-xs text-slate-500 font-medium">Semanas 11 a 18 • 3 Misiones de Aprendizaje</span>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -294,22 +316,23 @@
                     <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
                         <div>
                             <div class="flex justify-between items-start mb-3">
-                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 3.1</span>
-                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">10h • 15% SAE</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-sky-100 text-sky-900 font-bold text-xs font-mono">RA 3.1</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">10h • 10% SAE</span>
                             </div>
-                            <h4 class="text-base font-bold text-slate-900 mb-2 hover:text-emerald-600 transition">
-                                <a href="tema3_1.html">Ofimática y Metodología de Diseño</a>
+                            <h4 class="text-base font-bold text-slate-900 mb-2 hover:text-sky-600 transition">
+                                <a href="tema3_1.html">Herramientas Ofimáticas en la Nube y Creación Visual</a>
                             </h4>
                             <p class="text-xs text-slate-600 mb-4 leading-relaxed">
-                                Procesadores de texto, hojas de cálculo, presentaciones electrónicas, teoría del color, tipografía y colaboración en la nube.
+                                Trabajo colaborativo en tiempo real, procesadores de texto, diseño de presentaciones efectivas y paletas cromáticas accesibles.
                             </p>
                             <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
                                 <div class="flex justify-between"><span>Semanas:</span> <strong class="text-slate-800">11 y 12 (10 hrs)</strong></div>
-                                <div class="flex justify-between"><span>Evidencia:</span> <strong class="text-emerald-700 font-semibold">AE 3.1.1 (Hetero)</strong></div>
+                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-sky-700 font-semibold">Generador de Color & Accesibilidad</strong></div>
+                                <div class="flex justify-between"><span>Evidencia:</span> <strong class="text-emerald-700 font-semibold">AE 3.1.1 (Presentación Interactiva)</strong></div>
                             </div>
                         </div>
-                        <a href="tema3_1.html" class="w-full py-2 px-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
-                            Ver RA 3.1 <i class="fas fa-arrow-right ml-1.5 text-emerald-200"></i>
+                        <a href="tema3_1.html" class="w-full py-2 px-3 bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Iniciar Misión 3.1 <i class="fas fa-arrow-right ml-1.5 text-sky-200"></i>
                         </a>
                     </div>
 
@@ -317,22 +340,23 @@
                     <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
                         <div>
                             <div class="flex justify-between items-start mb-3">
-                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 3.2</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-sky-100 text-sky-900 font-bold text-xs font-mono">RA 3.2</span>
                                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">15h • 15% SAE</span>
                             </div>
-                            <h4 class="text-base font-bold text-slate-900 mb-2 hover:text-emerald-600 transition">
-                                <a href="tema3_2.html">Investigación Digital y Estadística</a>
+                            <h4 class="text-base font-bold text-slate-900 mb-2 hover:text-sky-600 transition">
+                                <a href="tema3_2.html">Investigación Web, Creación en HTML5 y Hojas de Cálculo</a>
                             </h4>
                             <p class="text-xs text-slate-600 mb-4 leading-relaxed">
-                                Cyber etnografía, recolección online, páginas HTML básicas, medidas de tendencia central y gráficos estadísticos.
+                                Búsquedas booleanas avanzadas, estructura semántica HTML5 (sitio web en vivo), fórmulas estadísticas y gráficos dinámicos.
                             </p>
                             <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
                                 <div class="flex justify-between"><span>Semanas:</span> <strong class="text-slate-800">13 a 15 (15 hrs)</strong></div>
-                                <div class="flex justify-between"><span>Evidencia:</span> <strong class="text-emerald-700 font-semibold">AE 3.2.1 (Proyecto)</strong></div>
+                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-sky-700 font-semibold">Editor HTML5 en Vivo & Stats</strong></div>
+                                <div class="flex justify-between"><span>Evidencia:</span> <strong class="text-emerald-700 font-semibold">AE 3.2.1 (Página Web + Hoja)</strong></div>
                             </div>
                         </div>
-                        <a href="tema3_2.html" class="w-full py-2 px-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
-                            Ver RA 3.2 <i class="fas fa-arrow-right ml-1.5 text-emerald-200"></i>
+                        <a href="tema3_2.html" class="w-full py-2 px-3 bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Iniciar Misión 3.2 <i class="fas fa-arrow-right ml-1.5 text-sky-200"></i>
                         </a>
                     </div>
 
@@ -340,35 +364,36 @@
                     <div class="unit-card p-6 bg-white flex flex-col justify-between border-slate-200 shadow-sm relative">
                         <div>
                             <div class="flex justify-between items-start mb-3">
-                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 font-bold text-xs font-mono">RA 3.3</span>
-                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">15h • 20% SAE</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-sky-100 text-sky-900 font-bold text-xs font-mono">RA 3.3</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">15h • 15% SAE</span>
                             </div>
-                            <h4 class="text-base font-bold text-slate-900 mb-2 hover:text-emerald-600 transition">
-                                <a href="tema3_3.html">Redes, IA e Industria 4.0</a>
+                            <h4 class="text-base font-bold text-slate-900 mb-2 hover:text-sky-600 transition">
+                                <a href="tema3_3.html">Redes, Inteligencia Artificial, Drones e Industria 4.0</a>
                             </h4>
                             <p class="text-xs text-slate-600 mb-4 leading-relaxed">
-                                Redes informáticas (PAN, LAN, WAN, topologías), medios de transmisión, Inteligencia Artificial, IoT, Robótica y difusión multimedia.
+                                Topologías de red, modelo cliente-servidor, IoT, pilotaje de drones autónomos, Big Data y Prompt Engineering para IA.
                             </p>
                             <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1 mb-5">
                                 <div class="flex justify-between"><span>Semanas:</span> <strong class="text-slate-800">16 a 18 (15 hrs)</strong></div>
-                                <div class="flex justify-between"><span>Evidencia:</span> <strong class="text-emerald-700 font-semibold">AE 3.3.1 (Difusión)</strong></div>
+                                <div class="flex justify-between"><span>Simulador:</span> <strong class="text-sky-700 font-semibold">Laboratorio de Topologías & IA</strong></div>
+                                <div class="flex justify-between"><span>Evidencia:</span> <strong class="text-emerald-700 font-semibold">AE 3.3.1 (Heteroevaluación Final)</strong></div>
                             </div>
                         </div>
-                        <a href="tema3_3.html" class="w-full py-2 px-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
-                            Ver RA 3.3 <i class="fas fa-arrow-right ml-1.5 text-emerald-200"></i>
+                        <a href="tema3_3.html" class="w-full py-2 px-3 bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs rounded-xl transition text-center shadow-sm flex items-center justify-center">
+                            Iniciar Misión 3.3 (Cierre) <i class="fas fa-arrow-right ml-1.5 text-sky-200"></i>
                         </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN 2: Tabla Oficial de Ponderación SAE CONALEP -->
+        <!-- SECCIÓN 2: Tabla Oficial de Ponderación SAE -->
         <section id="ponderacion" class="mb-16 scroll-mt-24">
             <div class="border border-slate-200 rounded-2xl bg-white p-6 sm:p-8 shadow-sm">
                 <div class="mb-6 pb-4 border-b border-slate-100">
-                    <span class="text-xs font-bold text-purple-600 uppercase tracking-widest">Guía de Evaluación Oficial</span>
-                    <h2 class="text-2xl font-bold text-slate-900 mt-1">Tabla Oficial de Ponderación (Sistema SAE)</h2>
-                    <p class="text-xs text-slate-500 mt-0.5">Desglose porcentual y criterios de acreditación del Módulo ATDI-00</p>
+                    <span class="text-xs font-bold text-purple-600 uppercase tracking-widest">Acreditación Institucional</span>
+                    <h2 class="text-2xl font-bold text-slate-900 mt-1">Tabla Oficial de Ponderación SAE (100% Total)</h2>
+                    <p class="text-xs text-slate-500 mt-0.5">Captura continua de evidencias en el Sistema de Administración Escolar (SAE)</p>
                 </div>
 
                 <div class="overflow-x-auto">
@@ -378,62 +403,62 @@
                                 <th class="p-3.5 rounded-tl-xl">Unidad</th>
                                 <th class="p-3.5">Resultado de Aprendizaje (RA)</th>
                                 <th class="p-3.5 text-center">Horas</th>
-                                <th class="p-3.5 text-center">Actividad Evaluación</th>
+                                <th class="p-3.5 text-center">Evidencia SAE</th>
                                 <th class="p-3.5 text-center">% Específico</th>
                                 <th class="p-3.5 text-center rounded-tr-xl">% Acumulado</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-200 text-slate-700">
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="p-3.5 font-bold text-slate-900 align-top" rowspan="2">1. Ciudadanía digital en el ciberespacio (20 hrs • 25%)</td>
-                                <td class="p-3.5"><strong>1.1</strong> Utiliza el ciberespacio y servicios digitales a partir del marco normativo y salud digital.</td>
+                            <tr class="hover:bg-purple-50/40">
+                                <td class="p-3.5 font-bold text-slate-900 align-top" rowspan="2">1. Ciberespacio y Ciudadanía Digital (20h • 30%)</td>
+                                <td class="p-3.5"><strong>1.1</strong> Normativa, licenciamiento y salud digital.</td>
                                 <td class="p-3.5 text-center font-mono font-bold">10 h</td>
-                                <td class="p-3.5 text-center font-mono font-bold text-blue-700">1.1.1</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-purple-700">AE 1.1.1</td>
                                 <td class="p-3.5 text-center font-bold text-slate-900">15%</td>
                                 <td class="p-3.5 text-center font-bold text-slate-900">15%</td>
                             </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="p-3.5"><strong>1.2</strong> Resguarda su identidad identificando amenazas, riesgos y consecuencias de su uso.</td>
+                            <tr class="hover:bg-purple-50/40">
+                                <td class="p-3.5"><strong>1.2</strong> Amenazas digitales, ciberseguridad y prevención.</td>
                                 <td class="p-3.5 text-center font-mono font-bold">10 h</td>
-                                <td class="p-3.5 text-center font-mono font-bold text-blue-700">1.2.1</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-purple-700">AE 1.2.1</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">15%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">30%</td>
+                            </tr>
+                            <tr class="hover:bg-indigo-50/40">
+                                <td class="p-3.5 font-bold text-slate-900 align-top" rowspan="2">2. Pensamiento Algorítmico (30h • 30%)</td>
+                                <td class="p-3.5"><strong>2.1</strong> Diagramas de flujo y estructuras secuenciales (IPO).</td>
+                                <td class="p-3.5 text-center font-mono font-bold">15 h</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-indigo-700">AE 2.1.1</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">15%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">45%</td>
+                            </tr>
+                            <tr class="hover:bg-indigo-50/40">
+                                <td class="p-3.5"><strong>2.2</strong> Decisiones lógicas (SI-SINO) y ciclos repetitivos.</td>
+                                <td class="p-3.5 text-center font-mono font-bold">15 h</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-indigo-700">AE 2.2.1</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">15%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">60%</td>
+                            </tr>
+                            <tr class="hover:bg-sky-50/40">
+                                <td class="p-3.5 font-bold text-slate-900 align-top" rowspan="3">3. Creación Web, IA y 4.0 (40h • 40%)</td>
+                                <td class="p-3.5"><strong>3.1</strong> Herramientas ofimáticas colaborativas y diseño.</td>
+                                <td class="p-3.5 text-center font-mono font-bold">10 h</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-sky-700">AE 3.1.1</td>
                                 <td class="p-3.5 text-center font-bold text-slate-900">10%</td>
-                                <td class="p-3.5 text-center font-bold text-slate-900">25%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">70%</td>
                             </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="p-3.5 font-bold text-slate-900 align-top" rowspan="2">2. Solución de problemas mediante lenguaje algorítmico (30 hrs • 25%)</td>
-                                <td class="p-3.5"><strong>2.1</strong> Representa la solución de problemas mediante pensamiento algorítmico y diagramas.</td>
+                            <tr class="hover:bg-sky-50/40">
+                                <td class="p-3.5"><strong>3.2</strong> Investigación web, HTML5 y hojas de cálculo.</td>
                                 <td class="p-3.5 text-center font-mono font-bold">15 h</td>
-                                <td class="p-3.5 text-center font-mono font-bold text-purple-700">2.1.1</td>
-                                <td class="p-3.5 text-center font-bold text-slate-900">10%</td>
-                                <td class="p-3.5 text-center font-bold text-slate-900">35%</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="p-3.5"><strong>2.2</strong> Emplea lenguaje algorítmico y aplicaciones digitales para resolución de problemas.</td>
-                                <td class="p-3.5 text-center font-mono font-bold">15 h</td>
-                                <td class="p-3.5 text-center font-mono font-bold text-purple-700">2.2.1</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-sky-700">AE 3.2.1</td>
                                 <td class="p-3.5 text-center font-bold text-slate-900">15%</td>
-                                <td class="p-3.5 text-center font-bold text-slate-900">50%</td>
+                                <td class="p-3.5 text-center font-bold text-slate-900">85%</td>
                             </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="p-3.5 font-bold text-slate-900 align-top" rowspan="3">3. Herramientas digitales para la productividad (40 hrs • 50%)</td>
-                                <td class="p-3.5"><strong>3.1</strong> Participa en comunidades virtuales y suites ofimáticas con diseño y teoría del color.</td>
-                                <td class="p-3.5 text-center font-mono font-bold">10 h</td>
-                                <td class="p-3.5 text-center font-mono font-bold text-emerald-700">3.1.1 (Hetero)</td>
-                                <td class="p-3.5 text-center font-bold text-slate-900">15%</td>
-                                <td class="p-3.5 text-center font-bold text-slate-900">65%</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="p-3.5"><strong>3.2</strong> Emplea herramientas digitales para investigaciones, páginas web y cálculo estadístico.</td>
+                            <tr class="hover:bg-sky-50/40">
+                                <td class="p-3.5"><strong>3.3</strong> Redes, Inteligencia Artificial, Drones e Industria 4.0.</td>
                                 <td class="p-3.5 text-center font-mono font-bold">15 h</td>
-                                <td class="p-3.5 text-center font-mono font-bold text-emerald-700">3.2.1</td>
+                                <td class="p-3.5 text-center font-mono font-bold text-sky-700">AE 3.3.1 (Hetero)</td>
                                 <td class="p-3.5 text-center font-bold text-slate-900">15%</td>
-                                <td class="p-3.5 text-center font-bold text-slate-900">80%</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50/80">
-                                <td class="p-3.5"><strong>3.3</strong> Utiliza herramientas digitales para crear contenido: redes, telecomunicaciones e IA.</td>
-                                <td class="p-3.5 text-center font-mono font-bold">15 h</td>
-                                <td class="p-3.5 text-center font-mono font-bold text-emerald-700">3.3.1</td>
-                                <td class="p-3.5 text-center font-bold text-slate-900">20%</td>
                                 <td class="p-3.5 text-center font-bold text-slate-900">100%</td>
                             </tr>
                         </tbody>
@@ -451,54 +476,50 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 3: Cronograma Semestral de 18 Semanas (5 hrs/sem = 90 hrs) -->
+        <!-- SECCIÓN 3: Cronograma Semestral de 18 Semanas -->
         <section id="cronograma" class="mb-16 scroll-mt-24">
             <div class="border border-slate-200 rounded-2xl bg-white p-6 sm:p-8 shadow-sm">
                 <div class="mb-6 pb-4 border-b border-slate-100">
                     <span class="text-xs font-bold text-purple-600 uppercase tracking-widest">Dosificación Semestral</span>
                     <h2 class="text-2xl font-bold text-slate-900 mt-1">Cronograma de 18 Semanas (5 Horas/Semana)</h2>
-                    <p class="text-xs text-slate-500 mt-0.5">Distribución semanal de contenidos y actividades de evaluación</p>
+                    <p class="text-xs text-slate-500 mt-0.5">Distribución semanal de misiones, talleres prácticos y entregas SAE</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-                    <!-- Sem 1-4 -->
-                    <div class="p-4 rounded-xl border border-blue-200 bg-blue-50/30">
-                        <div class="flex justify-between items-center mb-2">
-                            <strong class="text-blue-900">Semanas 1 a 4 (20 hrs)</strong>
-                            <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold text-[10px]">Unidad 1</span>
-                        </div>
-                        <p class="text-slate-600 mb-2">Ciudadanía digital, marco normativo, salud digital, amenazas y privacidad en línea.</p>
-                        <span class="text-[11px] font-bold text-blue-700 block">📌 AE 1.1.1 (Sem 2) & AE 1.2.1 (Sem 4)</span>
-                    </div>
-
-                    <!-- Sem 5-10 -->
                     <div class="p-4 rounded-xl border border-purple-200 bg-purple-50/30">
                         <div class="flex justify-between items-center mb-2">
-                            <strong class="text-purple-900">Semanas 5 a 10 (30 hrs)</strong>
-                            <span class="px-2 py-0.5 rounded bg-purple-100 text-purple-800 font-bold text-[10px]">Unidad 2</span>
+                            <strong class="text-purple-900">Semanas 1 a 4 (20 hrs)</strong>
+                            <span class="px-2 py-0.5 rounded bg-purple-100 text-purple-800 font-bold text-[10px]">Unidad 1</span>
                         </div>
-                        <p class="text-slate-600 mb-2">Pensamiento algorítmico, método 5E, diagramas de flujo ISO, operadores y control de flujo.</p>
-                        <span class="text-[11px] font-bold text-purple-700 block">📌 AE 2.1.1 (Sem 7) & AE 2.2.1 (Sem 10)</span>
+                        <p class="text-slate-600 mb-2">Huella digital, licencias de software, salud ergonómica, malware, phishing y ciberseguridad.</p>
+                        <span class="text-[11px] font-bold text-purple-700 block">📌 AE 1.1.1 (Sem 2) & AE 1.2.1 (Sem 4)</span>
                     </div>
 
-                    <!-- Sem 11-15 -->
+                    <div class="p-4 rounded-xl border border-indigo-200 bg-indigo-50/30">
+                        <div class="flex justify-between items-center mb-2">
+                            <strong class="text-indigo-900">Semanas 5 a 10 (30 hrs)</strong>
+                            <span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 font-bold text-[10px]">Unidad 2</span>
+                        </div>
+                        <p class="text-slate-600 mb-2">Pensamiento algorítmico, diagramas de flujo ANSI, pruebas de escritorio, condicionales y bucles.</p>
+                        <span class="text-[11px] font-bold text-indigo-700 block">📌 AE 2.1.1 (Sem 7) & AE 2.2.1 (Sem 10)</span>
+                    </div>
+
+                    <div class="p-4 rounded-xl border border-sky-200 bg-sky-50/30">
+                        <div class="flex justify-between items-center mb-2">
+                            <strong class="text-sky-900">Semanas 11 a 15 (25 hrs)</strong>
+                            <span class="px-2 py-0.5 rounded bg-sky-100 text-sky-800 font-bold text-[10px]">Unidad 3 (Parte 1)</span>
+                        </div>
+                        <p class="text-slate-600 mb-2">Ofimática en la nube, diseño visual inclusivo, investigación web booleana, HTML5 y hojas de cálculo.</p>
+                        <span class="text-[11px] font-bold text-sky-700 block">📌 AE 3.1.1 (Sem 12) & AE 3.2.1 (Sem 15)</span>
+                    </div>
+
                     <div class="p-4 rounded-xl border border-emerald-200 bg-emerald-50/30">
                         <div class="flex justify-between items-center mb-2">
-                            <strong class="text-emerald-900">Semanas 11 a 15 (25 hrs)</strong>
-                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">Unidad 3.1-3.2</span>
+                            <strong class="text-emerald-900">Semanas 16 a 18 (15 hrs)</strong>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">Unidad 3 (Cierre)</span>
                         </div>
-                        <p class="text-slate-600 mb-2">Ofimática colaborativa, teoría del color, cyber etnografía, HTML y estadística descriptiva.</p>
-                        <span class="text-[11px] font-bold text-emerald-700 block">📌 AE 3.1.1 (Sem 12) & AE 3.2.1 (Sem 15)</span>
-                    </div>
-
-                    <!-- Sem 16-18 -->
-                    <div class="p-4 rounded-xl border border-teal-200 bg-teal-50/30">
-                        <div class="flex justify-between items-center mb-2">
-                            <strong class="text-teal-900">Semanas 16 a 18 (15 hrs)</strong>
-                            <span class="px-2 py-0.5 rounded bg-teal-100 text-teal-800 font-bold text-[10px]">Unidad 3.3</span>
-                        </div>
-                        <p class="text-slate-600 mb-2">Redes (PAN/LAN/WAN, topologías), medios físicos/inalámbricos, IA, IoT y cierre.</p>
-                        <span class="text-[11px] font-bold text-teal-700 block">🏆 AE 3.3.1 y Cierre Semestral</span>
+                        <p class="text-slate-600 mb-2">Redes, arquitectura cliente-servidor, IoT, pilotaje de drones autónomos, Big Data e IA generativa.</p>
+                        <span class="text-[11px] font-bold text-emerald-700 block">🏆 AE 3.3.1 (Heteroevaluación Final 100%)</span>
                     </div>
                 </div>
             </div>
@@ -510,12 +531,12 @@
     <footer class="bg-white border-t border-slate-200 py-10 text-slate-600 text-xs">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
             <div>
-                <div class="font-bold text-slate-900 text-sm">CONALEP — Módulo ATDI-00: Aplicación de Tecnologías Digitales</div>
-                <div class="text-slate-500">Recurso Sociocognitivo: Cultura Digital I • Catedrático: Cruz Enrique García</div>
+                <div class="font-bold text-slate-900 text-sm">CONALEP — Módulo ATDI-00: Cultura Digital I</div>
+                <div class="text-slate-500">Recurso Sociocognitivo • Docente Disruptivo: Cruz Enrique García</div>
             </div>
             <div class="text-slate-500">
-                Planeación Semestral Oficial de 18 Semanas (90 Horas / 5 hrs/semana)<br>
-                <span>Alineado a las Progresiones MCCEMS y Rúbricas Oficiales SAE CONALEP</span>
+                Planeación Didáctica Semestral de 18 Semanas (90 Horas / 5 hrs/semana)<br>
+                <span>Alineado al MCCEMS y Rúbricas Oficiales SAE CONALEP</span>
             </div>
         </div>
     </footer>
