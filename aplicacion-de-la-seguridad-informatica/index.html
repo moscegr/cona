@@ -64,12 +64,53 @@
             border-bottom: 1px solid #e2e8f0;
         }
     </style>
+    <style id="platform-wide-ui-override">
+        /* === Expansión de Ancho y Eliminación de Tarjetas Anidadas (Toda la Plataforma) === */
+        .concept-card,
+        .topic-container {
+            background: transparent !important;
+            border: none !important;
+            border-bottom: 1px solid #e2e8f0 !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            padding: 0 0 2.25rem 0 !important;
+            margin-bottom: 2.25rem !important;
+        }
+        .pedagogy-step {
+            background: transparent !important;
+            border: none !important;
+            border-left: 3px solid #cbd5e1 !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            padding: 0.25rem 0 0.25rem 1.25rem !important;
+            margin-bottom: 1.5rem !important;
+        }
+        /* Evitar redundancia de tarjetas dentro de tarjetas en toda la plataforma */
+        main div[class*="rounded-"][class*="border"] div[class*="rounded-"][class*="border"] {
+            box-shadow: none !important;
+        }
+        main div[class*="rounded-"][class*="border"] > div[class*="bg-slate-50"][class*="rounded-"][class*="border"]:has(div[class*="rounded-"][class*="border"]) {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0.25rem 0 !important;
+        }
+        /* Grafos SVG e imágenes 100% responsivos sin recortes */
+        main svg {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+        /* Laterales compactos y elegantes */
+        aside .sticky {
+            padding: 0.875rem !important;
+        }
+    </style>
 </head>
 <body class="bg-white text-slate-800 antialiased selection:bg-red-100 selection:text-red-900">
 
     <!-- Top Bar Institucional -->
     <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+        <div class="max-w-[1600px] mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
             <div class="flex items-center space-x-3">
                 <span class="font-semibold text-white"><i class="fas fa-shield-halved text-red-500 mr-1.5"></i> CONALEP — PT-B en Informática (3° Semestre)</span>
                 <span class="text-slate-600 hidden sm:inline">|</span>
@@ -87,7 +128,7 @@
 
     <!-- Navegación Principal -->
     <nav class="sticky-top-nav">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-red-600 to-rose-700 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-red-500/20">
@@ -130,7 +171,7 @@
     </header>
 
     <!-- Contenido Principal -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <main class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
         <!-- MANIFIESTO DEL DOCENTE DISRUPTIVO BLUE TEAM -->
         <section id="manifiesto" class="mb-14 scroll-mt-24">
@@ -467,7 +508,7 @@
 
     <!-- Footer -->
     <footer class="bg-white border-t border-slate-200 py-10 text-slate-600 text-xs">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
             <div>
                 <div class="font-bold text-slate-900 text-sm">CONALEP — Módulo ASIN-03: Aplicación de la Seguridad Informática</div>
                 <div class="text-slate-500">Profesional Técnico-Bachiller en Informática • Catedrático: Cruz Enrique García</div>
