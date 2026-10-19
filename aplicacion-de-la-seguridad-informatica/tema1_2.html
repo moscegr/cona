@@ -3,496 +3,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RA 1.2: Políticas de Seguridad, SGSI e ISO 27001 | ASIN-03 CONALEP</title>
+    <title>Misión 1.2: Creando las Reglas del Juego (Plan de Seguridad) | ASIN-21</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        primary: '#dc2626',
-                        dark: '#0f172a',
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        }
                     }
                 }
             }
         }
     </script>
     <style>
-        body { font-family: 'Outfit', sans-serif; background-color: #ffffff; color: #1e293b; }
-        .lll-info { background-color: #fef2f2; border-left: 4px solid #ef4444; }
-        .lll-warning { background-color: #fffbeb; border-left: 4px solid #f59e0b; }
-        .lll-tip { background-color: #f0fdf4; border-left: 4px solid #10b981; }
-        .lll-danger { background-color: #fef2f2; border-left: 4px solid #b91c1c; }
-        .diff-easy { background-color: #dcfce7; color: #15803d; }
-        .diff-med { background-color: #fef3c7; color: #b45309; }
-        .diff-hard { background-color: #fee2e2; color: #b91c1c; }
-        .step-badge { width: 28px; height: 28px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; }
-    </style>
-    <style id="platform-wide-ui-override">
-        /* === Expansión de Ancho y Eliminación de Tarjetas Anidadas (Toda la Plataforma) === */
-        .concept-card,
-        .topic-container {
-            background: transparent !important;
-            border: none !important;
-            border-bottom: 1px solid #e2e8f0 !important;
-            border-radius: 0 !important;
-            box-shadow: none !important;
-            padding: 0 0 2.25rem 0 !important;
-            margin-bottom: 2.25rem !important;
-        }
-        .pedagogy-step {
-            background: transparent !important;
-            border: none !important;
-            border-left: 3px solid #cbd5e1 !important;
-            border-radius: 0 !important;
-            box-shadow: none !important;
-            padding: 0.25rem 0 0.25rem 1.25rem !important;
-            margin-bottom: 1.5rem !important;
-        }
-        /* Evitar redundancia de tarjetas dentro de tarjetas en toda la plataforma */
-        main div[class*="rounded-"][class*="border"] div[class*="rounded-"][class*="border"] {
-            box-shadow: none !important;
-        }
-        main div[class*="rounded-"][class*="border"] > div[class*="bg-slate-50"][class*="rounded-"][class*="border"]:has(div[class*="rounded-"][class*="border"]) {
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-            padding: 0.25rem 0 !important;
-        }
-        /* Grafos SVG e imágenes 100% responsivos sin recortes */
-        main svg {
-            max-width: 100% !important;
-            height: auto !important;
-        }
-        /* Laterales compactos y elegantes */
-        aside .sticky {
-            padding: 0.875rem !important;
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; color: #0f172a; }
+        .slide-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1.25rem; }
+        .badge-step { width: 32px; height: 32px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; }
+        .template-box { background: #f8fafc; border: 2px dashed #99f6e4; border-radius: 1rem; }
     </style>
 </head>
-<body class="bg-white text-slate-800 antialiased selection:bg-red-100 selection:text-red-900">
+<body class="antialiased selection:bg-teal-100 selection:text-teal-900">
 
-    <!-- Top Bar Institucional -->
-    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 sticky top-0 z-50">
-        <div class="max-w-[1600px] mx-auto flex justify-between items-center">
+    <!-- Top Bar Guía de Clase -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2.5 px-4 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <span class="font-semibold text-white"><i class="fas fa-shield-halved text-red-500 mr-1.5"></i> CONALEP — PT-B en Informática (Blue Team Lab)</span>
+                <span class="font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-clipboard-list text-teal-400"></i> Misión 1.2: Creando las Reglas del Juego (Plan de Seguridad)
+                </span>
                 <span class="text-slate-600 hidden sm:inline">|</span>
-                <span class="text-slate-400 hidden sm:inline">Módulo: <strong>ASIN-03</strong></span>
+                <span class="text-teal-400 font-mono hidden sm:inline">1er Parcial • ASIN-21 (12 Horas)</span>
             </div>
             <div class="flex items-center space-x-4">
-                <a href="index.html" class="text-xs text-red-400 hover:text-red-300 transition flex items-center gap-1 font-semibold">
-                    <i class="fas fa-arrow-left"></i> Índice del Módulo
-                </a>
-                <span class="text-slate-600">|</span>
-                <a href="../index.html" class="text-xs text-emerald-400 hover:text-emerald-300 transition font-semibold">
-                    Portal CONALEP
+                <a href="index.html" class="text-xs text-teal-300 hover:text-white transition flex items-center gap-1 font-semibold">
+                    <i class="fas fa-arrow-left"></i> Índice de Misiones
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- Layout en 3 Columnas (White UI Luis Llamas) -->
-    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- Layout Presentador en 3 Columnas -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
-            <!-- COLUMNA 1: Menú Lateral Izquierdo -->
-            <aside class="lg:col-span-2">
+            <!-- COLUMNA 1: Datos Oficiales y Navegación -->
+            <aside class="lg:col-span-3">
                 <div class="sticky top-16 space-y-6">
-                    <div class="p-4 bg-red-50/60 border border-red-200 rounded-2xl">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
-                                <i class="fas fa-file-contract"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-slate-900 text-sm leading-tight">Unidad 1</h3>
-                                <p class="text-[11px] text-slate-500">Políticas y SGSI</p>
-                            </div>
-                        </div>
-                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-red-200 pt-2.5">
-                            <div class="flex justify-between"><span>Duración Total:</span> <strong class="text-slate-800">18 Horas</strong></div>
-                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-red-600 font-bold">20% SAE</strong></div>
-                            <div class="flex justify-between"><span>Semanas:</span> <strong class="text-slate-800 font-mono">5 a 8</strong></div>
+                    <div class="p-4 bg-teal-50/70 border border-teal-200 rounded-2xl">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-teal-800 font-mono">Programa Oficial CONALEP</span>
+                        <h3 class="font-extrabold text-slate-900 text-sm mt-1">Resultado de Aprendizaje 1.2</h3>
+                        <p class="text-xs text-slate-700 mt-1 leading-relaxed">
+                            <strong>1.2.</strong> Elabora el plan de seguridad en cómputo acorde con los riesgos determinados y estándares de protección.
+                        </p>
+                        <div class="mt-3 pt-3 border-t border-teal-200 text-[11px] text-slate-600 flex justify-between">
+                            <span>Duración: <strong class="text-slate-800">12 Horas</strong></span>
+                            <span>Evidencia: <strong class="text-teal-700 font-mono">AE 1.2.1 (20%)</strong></span>
                         </div>
                     </div>
 
-                    <!-- Navegación de RAs -->
-                    <div class="border border-slate-200 rounded-2xl p-4 bg-white">
-                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Resultados de Aprendizaje</h4>
-                        <nav class="space-y-1.5 text-xs">
-                            <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-triangle-exclamation mr-1.5 text-slate-400"></i> RA 1.1: Evaluación de Riesgos</span>
-                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">14h • 20%</span>
+                    <!-- Contenido Formativo Oficial -->
+                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm text-xs">
+                        <h4 class="font-bold text-slate-900 mb-2 flex items-center gap-1.5 text-xs text-teal-800">
+                            <i class="fas fa-book-open text-teal-600"></i> Lo que aprenderemos hoy (Pág. 22-23)
+                        </h4>
+                        <ul class="space-y-1.5 text-[11px] text-slate-600 list-disc ml-4">
+                            <li><strong>A. Consejos de los Expertos:</strong> Guías mundiales (ITIL, Cobit, ISM3).</li>
+                            <li><strong>B. Las Reglas Mundiales:</strong> La familia de normas ISO 27000 explicada fácil.</li>
+                            <li><strong>C. Nuestro Reglamento (Plan de Seguridad):</strong> Reglas para entrar al laboratorio, crear contraseñas, cuidar el Wi-Fi y guardar copias.</li>
+                            <li><strong>D. ¿Cómo saber si funciona?:</strong> Medir si todos están cumpliendo las reglas.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Menú de Misiones -->
+                    <div class="border border-slate-200 rounded-2xl p-4 bg-white shadow-sm">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Misiones del Semestre</h4>
+                        <nav class="space-y-1 text-xs">
+                            <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.1 Cazadores de Riesgos</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">15h</span>
                             </a>
-                            <a href="tema1_2.html" class="flex items-center justify-between p-2 rounded-xl bg-red-50 text-red-800 font-bold border border-red-200">
-                                <span><i class="fas fa-chevron-right mr-1.5 text-[10px]"></i> RA 1.2: Políticas e ISO 27001</span>
-                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">18h • 20%</span>
+                            <a href="tema1_2.html" class="flex items-center justify-between p-2 rounded-xl bg-teal-50 text-teal-900 font-bold border border-teal-200">
+                                <span>1.2 El Plan de Seguridad</span>
+                                <span class="text-[10px] bg-teal-200 text-teal-900 px-1.5 py-0.5 rounded font-mono">12h</span>
                             </a>
-                            <a href="tema2_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-lock mr-1.5 text-slate-400"></i> RA 2.1: Firewalls & DMZ</span>
-                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">14h • 25%</span>
+                            <a href="tema2_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>2.1 Candados y Escudos</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">23h</span>
                             </a>
-                            <a href="tema2_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-chart-line mr-1.5 text-slate-400"></i> RA 2.2: Monitoreo SIEM</span>
-                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">14h • 20%</span>
+                            <a href="tema2_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>2.2 Caja Negra y Vigilancia</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">10h</span>
                             </a>
-                            <a href="tema2_3.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-server mr-1.5 text-slate-400"></i> RA 2.3: BCP, DRP & Backups</span>
-                                <span class="diff-hard px-2 py-0.5 rounded-full text-[10px] font-mono">12h • 15%</span>
+                            <a href="tema2_3.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>2.3 Rescate ante Desastres</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">12h</span>
                             </a>
                         </nav>
-                    </div>
-
-                    <!-- Fases Pedagógicas -->
-                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-2">
-                        <h4 class="font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-2">5 Fases de la Cátedra</h4>
-                        <a href="#fase1" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-red-600">1.</span> Apertura & Amenaza Interna</a>
-                        <a href="#fase2" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-sky-600">2.</span> SGSI, ISO 27001/27002 & AUP</a>
-                        <a href="#fase3" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-indigo-600">3.</span> Auditoría en PowerShell</a>
-                        <a href="#fase4" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-amber-600">4.</span> Validador ISO 27001</a>
-                        <a href="#fase5" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-emerald-600">5.</span> Rúbrica Oficial AE 1.2.1</a>
                     </div>
                 </div>
             </aside>
 
-            <!-- COLUMNA 2: Contenido Didáctico Central -->
-            <main class="lg:col-span-8 space-y-12">
+            <!-- COLUMNA 2: Presentación de Clase y Prácticas Divertidas -->
+            <main class="lg:col-span-6 space-y-10">
 
-                <!-- Header de Unidad -->
+                <!-- Header de la Clase -->
                 <header class="border-b border-slate-200 pb-6">
-                    <div class="flex items-center gap-2 text-xs text-red-600 font-bold uppercase tracking-wider mb-2">
-                        <span>Unidad 1</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Resultado de Aprendizaje 1.2</span>
+                    <div class="flex items-center gap-2 text-xs text-teal-600 font-bold uppercase tracking-wider mb-2">
+                        <span>Seguridad Informática</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Misión 1.2</span>
                     </div>
                     <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-3">
-                        Políticas de Seguridad Informática, SGSI y Marco Normativo ISO/IEC 27001
+                        Las Reglas del Juego: Cómo armar el Plan de Seguridad para nuestra Escuela o Negocio
                     </h1>
                     <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                        Diseño e implantación de un Sistema de Gestión de Seguridad de la Información (SGSI): ciclo de Deming (Plan-Do-Check-Act), catálogo de controles ISO/IEC 27002 (organizacionales, de personas, físicos y tecnológicos), Políticas de Uso Aceptable (AUP), clasificación de la información (Pública, Interna, Confidencial, Restringida) y acuerdos de confidencialidad (NDA).
+                        En la Misión 1.1 descubrimos los peligros; ahora toca poner orden. Aprenderás qué son las normas mundiales de seguridad (sin aburrirte con leyes eternas) y crearás un reglamento práctico para que nadie pierda su información.
                     </p>
 
-                    <!-- Imagen Libre Unsplash -->
                     <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm mb-4">
-                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80" alt="Políticas y Normativa ISO 27001" class="w-full h-48 sm:h-64 object-cover">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" alt="Equipo planeando seguridad" class="w-full h-48 sm:h-64 object-cover">
                         <div class="bg-slate-50 px-4 py-2 border-t border-slate-200 text-[11px] text-slate-500 flex justify-between">
-                            <span><i class="fas fa-camera mr-1"></i> Imagen Libre: Gobierno de TI, Cumplimiento Normativo y Políticas de Seguridad</span>
+                            <span><i class="fas fa-camera mr-1"></i> Imagen Libre: Trabajo en Equipo y Creación de Reglas de Protección</span>
                             <span>Unsplash Free License</span>
                         </div>
                     </div>
-
-                    <div class="flex flex-wrap gap-2 text-xs">
-                        <span class="px-2.5 py-1 rounded-lg bg-red-100 text-red-800 font-bold font-mono">18 Horas (Semanas 5 a 8)</span>
-                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold">Ponderación: 20% SAE (Cierre Unidad 1 • 40% Acumulado)</span>
-                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">Evidencia: AE 1.2.1 (Plan de Seguridad)</span>
-                    </div>
                 </header>
 
-                <!-- FASE 1: APERTURA DISRUPTIVA -->
-                <section id="fase1" class="scroll-mt-20">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="step-badge bg-red-600 text-white">1</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Reto Provocador)</h2>
+                <!-- FASE 1: APERTURA (ANALOGÍA CON EL FÚTBOL Y LA VIDA REAL) -->
+                <section class="slide-card p-6 border-l-4 border-l-teal-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-teal-600 text-white">1</span>
+                        <h2 class="text-lg font-bold text-slate-900">Fase 1: Apertura — ¿Qué pasaría en un partido de fútbol sin árbitro ni reglas?</h2>
                     </div>
-
-                    <div class="lll-warning p-5 rounded-2xl mb-6">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="font-bold text-amber-900 text-sm flex items-center gap-2">
-                                <i class="fas fa-user-ninja text-amber-600"></i> Caso Real: La Amenaza Interna (Insider Threat) en Tesla y Uber
-                            </h3>
-                            <span class="px-2 py-0.5 rounded bg-amber-200 text-amber-900 text-[10px] font-bold">HackLab #02</span>
-                        </div>
-                        <p class="text-xs text-slate-700 leading-relaxed mb-3">
-                            En 2023, un exempleado de Tesla filtró más de 100 GB de datos confidenciales con información salarial y secretos de fabricación del piloto automático. La empresa tenía firewalls de última generación, pero <strong>falló en el control más elemental: la gestión de privilegios mínimos (Principle of Least Privilege) y la revocación inmediata de accesos al despedir al personal</strong>.
-                        </p>
-                        <div class="p-3 bg-white rounded-xl border border-amber-200 text-xs font-mono text-amber-950">
-                            <strong>🔥 Máxima de Seguridad:</strong> "El firewall más caro del mundo no puede detener a un usuario con credenciales de administrador legítimas que decide robarse la base de datos en una memoria USB."
-                        </div>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4">
+                        Imagínate una final de fútbol en tu colonia donde no hubiera líneas en la cancha, cualquiera pudiera agarrar el balón con la mano y pudieran meter 20 jugadores a la vez. ¡Sería un caos total!
+                        <br><br>
+                        Lo mismo pasa en el centro de cómputo de una escuela o en una empresa mexicana: si no hay reglas claras sobre <strong>quién puede entrar, qué programas están prohibidos y cada cuándo se guarda una copia de los archivos</strong>, tarde o temprano alguien meterá un virus o borrará todo el trabajo del semestre. A ese conjunto de reglas escritas le llamamos <strong>Plan de Seguridad Informática</strong>.
+                    </p>
+                    <div class="p-3 bg-teal-50 rounded-xl border border-teal-200 text-xs font-semibold text-teal-950 flex items-center gap-2">
+                        <i class="fas fa-futbol text-teal-600 text-base"></i>
+                        <span><strong>Idea Clave:</strong> Las normas internacionales (como la famosa <strong>ISO 27000</strong>) son como el reglamento de la FIFA, pero para proteger computadoras en todo el mundo.</span>
                     </div>
                 </section>
 
-                <!-- FASE 2: DESARROLLO CONCEPTUAL -->
-                <section id="fase2" class="scroll-mt-20">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="step-badge bg-sky-600 text-white">2</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (SGSI, ISO 27001:2022 y Controles 27002)</h2>
+                <!-- FASE 2: DESARROLLO CONCEPTUAL (EXPLICADO FÁCIL) -->
+                <section class="slide-card p-6 border-l-4 border-l-sky-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-sky-600 text-white">2</span>
+                        <h2 class="text-lg font-bold text-slate-900">Fase 2: Los 4 Subtemas Explicados en Español Simple</h2>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs mb-6">
-                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
-                            <strong class="text-red-700 block text-sm"><i class="fas fa-arrows-spin mr-1"></i> Ciclo PDCA en el SGSI</strong>
-                            <ul class="list-disc ml-4 space-y-1 text-slate-600">
-                                <li><strong>Plan (Planificar):</strong> Definir alcance, política y análisis de riesgos.</li>
-                                <li><strong>Do (Hacer):</strong> Implementar controles, capacitar y asignar roles.</li>
-                                <li><strong>Check (Verificar):</strong> Auditar registros, métricas y pruebas de penetración.</li>
-                                <li><strong>Act (Actuar):</strong> Acciones correctivas y mejora continua.</li>
-                            </ul>
-                        </div>
-
-                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
-                            <strong class="text-indigo-700 block text-sm"><i class="fas fa-layer-group mr-1"></i> 4 Dominios ISO/IEC 27002:2022</strong>
-                            <ul class="list-disc ml-4 space-y-1 text-slate-600">
-                                <li><strong>Controles Organizacionales (37):</strong> Políticas, NDA, teletrabajo.</li>
-                                <li><strong>Controles de Personas (8):</strong> Capacitación, filtrado previo a la contratación.</li>
-                                <li><strong>Controles Físicos (14):</strong> Perímetro seguro, salas de servidores, CCTV.</li>
-                                <li><strong>Controles Tecnológicos (34):</strong> Cifrado, control de acceso, respaldo.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- FASE 3: DEMOSTRACIÓN Y MODELADO PASO A PASO -->
-                <section id="fase3" class="scroll-mt-20">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="step-badge bg-indigo-600 text-white">3</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Modelado y Script de Auditoría de Cuentas en PowerShell</h2>
-                    </div>
-
-                    <div class="bg-slate-900 text-slate-200 rounded-xl p-5 text-xs font-mono mb-4 overflow-x-auto space-y-2">
-                        <span class="text-emerald-400 font-bold block">[SCRIPT POWERSHELL: AUDITORÍA DE POLÍTICA DE CUENTAS INACTIVAS]</span>
-                        <div class="text-slate-300">
-                            <span class="text-slate-400"># Identificar usuarios locales que no han iniciado sesión en más de 90 días</span><br>
-                            $LimiteDias = (Get-Date).AddDays(-90)<br>
-                            $UsuariosInactivos = Get-LocalUser | Where-Object { $_.LastLogon -lt $LimiteDias -and $_.Enabled -eq $true }<br>
-                            <br>
-                            Write-Host "[!] ALERTA ISO 27001 - CONTROL DE ACCESO (A.5.15)" -ForegroundColor Yellow<br>
-                            foreach ($user in $UsuariosInactivos) {<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;Write-Host "[-] Cuenta activa sin uso detectada: $($user.Name) | Último login: $($user.LastLogon)" -ForegroundColor Red<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-400"># Deshabilitar automáticamente para mitigar riesgo de cuenta zombi:</span><br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-sky-300"># Disable-LocalUser -Name $user.Name</span><br>
-                            }<br>
-                            Write-Host "[+] Auditoría de políticas de acceso finalizada con éxito." -ForegroundColor Green
-                        </div>
-                    </div>
-                </section>
-
-                <!-- FASE 4: APLICACIÓN PRÁCTICA Y SIMULADOR -->
-                <section id="fase4" class="scroll-mt-20">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="step-badge bg-amber-600 text-white">4</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Validador ISO 27001 y Problemario)</h2>
-                    </div>
-
-                    <!-- SIMULADOR INTERACTIVO JS: VALIDADOR DE POLÍTICAS ISO 27001 -->
-                    <div class="border-2 border-red-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
-                        <div class="flex items-center justify-between mb-4 border-b border-red-100 pb-3">
-                            <div class="flex items-center gap-2">
-                                <i class="fas fa-shield-check text-red-600 text-xl"></i>
-                                <div>
-                                    <h3 class="font-bold text-slate-900 text-sm">Validador de Madurez del SGSI (ISO/IEC 27001:2022)</h3>
-                                    <span class="text-[11px] text-slate-500 font-mono">Evalúa el nivel de cumplimiento de los controles de seguridad de la organización</span>
+                    <div class="space-y-4 text-xs">
+                        <!-- Subtemas A y B -->
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-sky-900 block mb-2 font-bold text-sm"><i class="fas fa-award text-sky-600 mr-1"></i> Subtemas A y B: El Club de las Normas Mundiales (ITIL, Cobit y la Familia ISO 27000)</strong>
+                            <p class="text-slate-600 mb-2">Para no inventar las reglas desde cero, los expertos del mundo crearon manuales de consejos que cualquier empresa o escuela puede seguir:</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-[11px]">
+                                <div class="p-3 bg-white rounded-lg border border-slate-200">
+                                    <span class="font-bold text-teal-700 block mb-1">📘 Los 3 Modelos de Organización:</span>
+                                    &bull; <strong>ITIL:</strong> Consejos para dar buen servicio técnico y atender fallas rápido.<br>
+                                    &bull; <strong>Cobit:</strong> Reglas para que los jefes revisen que la tecnología se use bien.<br>
+                                    &bull; <strong>ISM3:</strong> Mide qué tan madura y ordenada es la seguridad de un lugar.
+                                </div>
+                                <div class="p-3 bg-white rounded-lg border border-slate-200">
+                                    <span class="font-bold text-sky-700 block mb-1">🌍 La Familia ISO 27000 (Cada número cuida algo):</span>
+                                    &bull; <strong>ISO 27001 y 27002:</strong> El reglamento principal de seguridad.<br>
+                                    &bull; <strong>ISO 27032:</strong> Cuidado al navegar en Internet.<br>
+                                    &bull; <strong>ISO 27033:</strong> Cuidado de las redes y el Wi-Fi.<br>
+                                    &bull; <strong>ISO 27034:</strong> Cuidado de las apps y programas.<br>
+                                    &bull; <strong>ISO 27035:</strong> Qué hacer cuando ocurre un accidente o ataque.
                                 </div>
                             </div>
-                            <span class="px-2 py-1 rounded bg-red-100 text-red-800 text-[10px] font-bold">JavaScript Nativo</span>
                         </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs mb-4">
-                            <label class="flex items-center gap-2 p-2.5 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer">
-                                <input type="checkbox" id="chk1" class="rounded text-red-600" onchange="evaluarSGSI()">
-                                <span>Política de Uso Aceptable (AUP) firmada por empleados.</span>
-                            </label>
-                            <label class="flex items-center gap-2 p-2.5 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer">
-                                <input type="checkbox" id="chk2" class="rounded text-red-600" onchange="evaluarSGSI()">
-                                <span>Doble factor de autenticación (2FA) en todos los accesos remotos.</span>
-                            </label>
-                            <label class="flex items-center gap-2 p-2.5 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer">
-                                <input type="checkbox" id="chk3" class="rounded text-red-600" onchange="evaluarSGSI()">
-                                <span>Acuerdos de confidencialidad (NDA) con proveedores.</span>
-                            </label>
-                            <label class="flex items-center gap-2 p-2.5 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer">
-                                <input type="checkbox" id="chk4" class="rounded text-red-600" onchange="evaluarSGSI()">
-                                <span>Inventario y clasificación formal de activos de información.</span>
-                            </label>
-                            <label class="flex items-center gap-2 p-2.5 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer">
-                                <input type="checkbox" id="chk5" class="rounded text-red-600" onchange="evaluarSGSI()">
-                                <span>Procedimiento documentado de respuesta ante incidentes.</span>
-                            </label>
-                            <label class="flex items-center gap-2 p-2.5 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer">
-                                <input type="checkbox" id="chk6" class="rounded text-red-600" onchange="evaluarSGSI()">
-                                <span>Capacitación semestral de concientización contra phishing.</span>
-                            </label>
+                        <!-- Subtema C -->
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-indigo-900 block mb-2 font-bold text-sm"><i class="fas fa-list-check text-indigo-600 mr-1"></i> Subtema C: ¿Qué lleva adentro un Plan de Seguridad? (Las Políticas)</strong>
+                            <p class="text-slate-600 mb-2">Una <strong>Política</strong> es una regla clara y obligatoria. Todo buen plan incluye estas reglas básicas:</p>
+                            <ul class="space-y-1.5 text-slate-600 text-[11px] list-disc ml-4">
+                                <li><strong>Regla de Entrada (Acceso Físico y Lógico):</strong> Nadie entra al cuarto de servidores sin permiso y cada computadora tiene su propia contraseña.</li>
+                                <li><strong>Regla del Escudo y Antivirus:</strong> Prohibido desactivar el antivirus o el Firewall para instalar juegos.</li>
+                                <li><strong>Regla 3-2-1 de Copias de Respaldo:</strong> Guardar los archivos importantes en 2 lugares distintos (por ejemplo, en la PC y en Google Drive) cada viernes.</li>
+                                <li><strong>Regla de Carpetas Compartidas:</strong> Cada grupo de alumnos solo puede ver y editar su propia carpeta de tareas.</li>
+                            </ul>
                         </div>
 
-                        <div class="p-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-200 text-xs font-mono">
-                            <div class="text-slate-400 text-[11px] mb-2">[ÍNDICE DE CUMPLIMIENTO NORMATIVO Y MADUREZ DEL SGSI]</div>
-                            <div id="simIsoOutput" class="space-y-1">
-                                <!-- Generado por JS -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- PROBLEMARIO DISRUPTIVO (10 RETOS PARA 40% FIRMAS) -->
-                    <div class="border border-slate-200 rounded-2xl p-6 bg-white">
-                        <div class="flex items-center justify-between mb-4 border-b pb-3">
-                            <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
-                                <i class="fas fa-file-contract text-red-600"></i> Bitácora de Políticas y SGSI (40% Firmas)
-                            </h3>
-                            <span class="px-2 py-0.5 rounded bg-red-100 text-red-800 text-[10px] font-bold">10 Retos</span>
-                        </div>
-
-                        <div class="space-y-3 text-xs text-slate-700">
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 1 (Redacción de Política de Uso Aceptable - AUP):</strong> Redacta un decálogo formal de reglas de uso para las computadoras y red Wi-Fi de los laboratorios del CONALEP.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 2 (Esquema de Clasificación de la Información):</strong> Diseña la tabla de clasificación de 4 niveles (Pública, Interna, Confidencial, Restringida) definiendo quién tiene permisos de lectura, edición y borrado.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 3 (Contrato de Confidencialidad NDA):</strong> Elabora una cláusula jurídica técnica de no divulgación de contraseñas y datos personales para prestadores de servicio social.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 4 (Política de Escritorio Limpio y Pantalla Bloqueada):</strong> Define el procedimiento para el bloqueo automático de sesiones a los 5 minutos y la prohibición de escribir claves en notas adhesivas (Post-its).
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 5 (Política de Control de Accesos Basado en Roles - RBAC):</strong> Modela la matriz de permisos para 3 roles: Administrador de Sistemas, Docente y Alumno en una plataforma educativa.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 6 (Procedimiento de Baja de Empleados - Offboarding):</strong> Diseña la lista de verificación (checklist) de 8 pasos para revocar correos, accesos VPN, tarjetas de entrada y recuperar equipos ante renuncias o despidos.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 7 (Política de Uso de Dispositivos Propios - BYOD):</strong> Establece las condiciones técnicas (antivirus obligatorio, cifrado de disco BitLocker, prohibición de root/jailbreak) para conectar laptops personales a la red institucional.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 8 (Diseño de un Flujo de Gestión de Incidentes):</strong> Modela el diagrama de flujo de 6 etapas: Preparación, Identificación, Contención, Erradicación, Recuperación y Lecciones Aprendidas.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 9 (Política de Gestión de Parches y Actualizaciones):</strong> Diseña el calendario y política obligatoria de actualización de sistemas operativos y parches críticos en servidores.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 10 (Plan Integral de Seguridad Informática - Evidencia AE 1.2.1):</strong> Presenta el compendio documental del Plan de Seguridad y Políticas bajo ISO 27001 para el 20% SAE (Cierre Unidad 1).
-                            </div>
+                        <!-- Subtema D -->
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-emerald-900 block mb-2 font-bold text-sm"><i class="fas fa-chart-simple text-emerald-600 mr-1"></i> Subtema D: ¿Cómo medimos si nuestro Plan funciona? (Métricas)</strong>
+                            <p class="text-slate-600 text-[11px] leading-relaxed">
+                                Muy fácil: contando con números sencillos. Por ejemplo: <em>"De las 30 computadoras del laboratorio CONALEP, ¿cuántas tienen el antivirus actualizado hoy?"</em> Si las 30 lo tienen, ¡llevamos <strong>100% de efectividad</strong>!
+                            </p>
                         </div>
                     </div>
                 </section>
 
-                <!-- FASE 5: CIERRE, EVALUACIÓN Y METACOGNICIÓN -->
-                <section id="fase5" class="scroll-mt-20">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="step-badge bg-emerald-600 text-white">5</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 5: Cierre, Evaluación y Metacognición</h2>
+                <!-- FASE 3: EJEMPLO PASO A PASO GUIADO -->
+                <section class="slide-card p-6 border-l-4 border-l-indigo-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-indigo-600 text-white">3</span>
+                        <h2 class="text-lg font-bold text-slate-900">Fase 3: Ejemplo Paso a Paso — Cómo escribir una Regla (Política) Fácil</h2>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-3">Mira qué sencillo es redactar una regla para el Laboratorio de Cómputo de nuestro plantel:</p>
+
+                    <div class="bg-slate-900 text-slate-200 rounded-xl p-4 text-xs font-mono space-y-2">
+                        <span class="text-teal-400 font-bold block">[EJEMPLO DE REGLA PARA EL LABORATORIO DE INFORMÁTICA]</span>
+                        <div>&bull; <strong>Nombre de la Regla:</strong> Uso seguro de Memorias USB en el Laboratorio.</div>
+                        <div>&bull; <strong>¿Qué norma mundial aplica?:</strong> ISO 27002 (Control contra virus).</div>
+                        <div>&bull; <strong>La Regla clara:</strong> "Todo alumno que conecte una memoria USB en las computadoras del laboratorio deberá darle clic derecho &rarr; <em>Analizar con el Antivirus</em> antes de abrir cualquier archivo."</div>
+                        <div>&bull; <strong>¿Cómo la mediremos?:</strong> Cero computadoras infectadas por USB al terminar el parcial.</div>
+                    </div>
+                </section>
+
+                <!-- FASE 4: SIMULADOR DIVERTIDO Y RETOS PRÁCTICOS (40% FIRMAS) -->
+                <section class="slide-card p-6 border-l-4 border-l-amber-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-amber-600 text-white">4</span>
+                        <h2 class="text-lg font-bold text-slate-900">Fase 4: Simulador Interactivo y Prácticas Divertidas</h2>
                     </div>
 
-                    <!-- RÚBRICA OFICIAL CONALEP: AE 1.2.1 (20% SAE) -->
-                    <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-sm mb-6">
-                        <div class="flex items-center justify-between mb-4 border-b pb-3">
-                            <div>
-                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-red-100 text-red-800 uppercase font-mono">Actividad de Evaluación 1.2.1</span>
-                                <h3 class="font-bold text-slate-900 text-sm mt-1">Matriz de Valoración Oficial CONALEP (20% SAE - Cierre Unidad 1)</h3>
-                            </div>
-                            <span class="text-xs font-extrabold text-red-600">Siglema: ASIN-03</span>
+                    <!-- JUEGO INTERACTIVO JS: TERMÓMETRO DEL LABORATORIO -->
+                    <div class="p-5 bg-slate-900 text-white rounded-2xl mb-6 shadow-sm">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-teal-400 font-mono"><i class="fas fa-sliders mr-1"></i> Simulador: Pon a Prueba el Nivel de Seguridad de tu Escuela</span>
+                            <span class="text-[10px] bg-teal-500/20 text-teal-300 px-2 py-0.5 rounded">Interactivo en Vivo</span>
                         </div>
-
-                        <div class="overflow-x-auto text-[11px]">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr class="bg-slate-900 text-white">
-                                        <th class="p-2.5">Indicador</th>
-                                        <th class="p-2.5 text-center">%</th>
-                                        <th class="p-2.5">Excelente</th>
-                                        <th class="p-2.5">Bueno</th>
-                                        <th class="p-2.5">Suficiente</th>
-                                        <th class="p-2.5">Insuficiente</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-slate-200 text-slate-700">
-                                    <tr>
-                                        <td class="p-2.5 font-bold">Diseño de políticas de seguridad</td>
-                                        <td class="p-2.5 text-center font-bold text-red-600">35%</td>
-                                        <td class="p-2.5 bg-red-50/50">Redacta políticas claras de control de acceso, AUP, BYOD, contraseñas y <strong>las alinea estrictamente al catálogo de controles de la norma ISO/IEC 27002</strong>.</td>
-                                        <td class="p-2.5">Redacta políticas de control de acceso, AUP y contraseñas aplicables a la organización.</td>
-                                        <td class="p-2.5">Políticas redactadas de manera genérica o incompletas.</td>
-                                        <td class="p-2.5 bg-red-50/30">Omite diseñar políticas de seguridad.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-2.5 font-bold">Procedimientos y acuerdos NDA</td>
-                                        <td class="p-2.5 text-center font-bold text-red-600">30%</td>
-                                        <td class="p-2.5 bg-red-50/50">Establece el procedimiento de clasificación de la información, acuerdos NDA, gestión de incidentes y <strong>matriz de responsabilidades RACI</strong>.</td>
-                                        <td class="p-2.5">Establece clasificación de la información, acuerdos NDA y flujo de incidentes.</td>
-                                        <td class="p-2.5">Procedimientos incompletos o sin considerar acuerdos legales.</td>
-                                        <td class="p-2.5 bg-red-50/30">No incluye procedimientos ni acuerdos de confidencialidad.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-2.5 font-bold">Estructura del Plan de Seguridad</td>
-                                        <td class="p-2.5 text-center font-bold text-red-600">25%</td>
-                                        <td class="p-2.5 bg-red-50/50">Plan integral encuadernado digitalmente, índice, justificación, alcance, cronograma de difusión y <strong>mecanismos de auditoría periódica</strong>.</td>
-                                        <td class="p-2.5">Plan de seguridad estructurado con todos los apartados solicitados.</td>
-                                        <td class="p-2.5">Falta alguno de los apartados o redacción confusa.</td>
-                                        <td class="p-2.5 bg-red-50/30">Plan incompleto o desordenado.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-2.5 font-bold">Actitud y responsabilidad</td>
-                                        <td class="p-2.5 text-center font-bold text-red-600">10%</td>
-                                        <td class="p-2.5 bg-red-50/50">Demuestra rigor ético, compromiso con la confidencialidad y <strong>colabora activamente en la revisión de políticas</strong>.</td>
-                                        <td class="p-2.5">Participación responsable y entrega en tiempo y forma.</td>
-                                        <td class="p-2.5">Cumple con la entrega pero con baja participación.</td>
-                                        <td class="p-2.5 bg-red-50/30">Entrega fuera de tiempo o sin compromiso.</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <p class="text-xs text-slate-300 mb-3">Marca con una palomita las reglas que SÍ se cumplen en un laboratorio o negocio y mira qué calificación obtiene:</p>
+                        <div class="space-y-2 mb-4 text-xs">
+                            <label class="flex items-center gap-2 text-slate-200 cursor-pointer">
+                                <input type="checkbox" id="regla1" class="rounded text-teal-500" onchange="medirPlan()">
+                                <span>1. Está prohibido comer o meter refrescos junto a los teclados (Seguridad Física).</span>
+                            </label>
+                            <label class="flex items-center gap-2 text-slate-200 cursor-pointer">
+                                <input type="checkbox" id="regla2" class="rounded text-teal-500" onchange="medirPlan()">
+                                <span>2. Todas las computadoras tienen antivirus activo y no dejan instalar juegos pirata.</span>
+                            </label>
+                            <label class="flex items-center gap-2 text-slate-200 cursor-pointer">
+                                <input type="checkbox" id="regla3" class="rounded text-teal-500" onchange="medirPlan()">
+                                <span>3. Hay una red Wi-Fi separada para maestros/oficina y otra distinta para invitados.</span>
+                            </label>
+                            <label class="flex items-center gap-2 text-slate-200 cursor-pointer">
+                                <input type="checkbox" id="regla4" class="rounded text-teal-500" onchange="medirPlan()">
+                                <span>4. Cada semana se guarda una copia de los trabajos importantes en la nube o disco externo.</span>
+                            </label>
+                        </div>
+                        <div id="simPlanOut" class="p-3.5 bg-slate-800 rounded-xl text-xs leading-relaxed">
+                            <!-- Generado por JS -->
                         </div>
                     </div>
 
-                    <!-- Metacognición -->
-                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700">
-                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-brain text-red-600 mr-1.5"></i> Pregunta de Metacognición Disruptiva:</h4>
-                        <p>
-                            "¿Por qué la cultura organizacional y la capacitación continua de los colaboradores son el escudo de seguridad más efectivo frente a los ciberataques basados en ingeniería social y phishing?"
+                    <!-- ACTIVIDADES DIVERTIDAS Y PRÁCTICAS (PORTAFOLIO 40%) -->
+                    <div class="space-y-3 text-xs">
+                        <h3 class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+                            <i class="fas fa-gamepad text-teal-600"></i> 4 Prácticas Divertidas para tu Portafolio de Firmas (40%)
+                        </h3>
+                        <div class="p-3.5 bg-white rounded-xl border border-slate-200 hover:border-teal-300 transition">
+                            <span class="font-bold text-teal-700 block mb-0.5">🃏 Práctica 1: Tarjetas Coleccionables de la Familia ISO 27000</span>
+                            En tu libreta o en diseño digital, crea 5 tarjetas tipo "cartas de superhéroes" para las normas <strong>ISO 27001, 27032, 27033, 27034 y 27035</strong>: ponle un dibujo a cada una y cuál es su poder especial para proteger datos.
+                        </div>
+                        <div class="p-3.5 bg-white rounded-xl border border-slate-200 hover:border-teal-300 transition">
+                            <span class="font-bold text-sky-700 block mb-0.5">🏫 Práctica 2: Los "10 Mandamientos" del Laboratorio CONALEP</span>
+                            En equipo, diseñen un póster colorido y amigable para pegar en la entrada del laboratorio de cómputo con las 10 reglas de oro para cuidar los equipos y las cuentas de los alumnos.
+                        </div>
+                        <div class="p-3.5 bg-white rounded-xl border border-slate-200 hover:border-teal-300 transition">
+                            <span class="font-bold text-indigo-700 block mb-0.5">🗣️ Práctica 3: Debate Rápido "¿Qué harías si fueras el Director?"</span>
+                            En plenaria grupal, discutan qué reglas pondrían en la escuela para evitar que alguien desconecte los cables de red o deje abiertas sus redes sociales en las computadoras compartidas.
+                        </div>
+                        <div class="p-3.5 bg-white rounded-xl border border-slate-200 hover:border-teal-300 transition">
+                            <span class="font-bold text-emerald-700 block mb-0.5">📅 Práctica 4: Nuestro Calendario del Guardián (Cronograma)</span>
+                            Arma una tablita de 4 semanas indicando qué día revisarías los antivirus, qué día limpiarías los equipos y qué día harías la copia de seguridad.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 5: PROYECTO PRÁCTICO OFICIAL (AE 1.2.1 - 20% SAE) Y PLANTILLA WORD -->
+                <section class="slide-card p-6 border-l-4 border-l-emerald-500">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <span class="badge-step bg-emerald-600 text-white">5</span>
+                            <h2 class="text-lg font-bold text-slate-900">Fase 5: Misión Oficial de Evaluación 1.2.1 (20% SAE)</h2>
+                        </div>
+                        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">Vale 20% SAE</span>
+                    </div>
+
+                    <div class="space-y-3 text-xs text-slate-700">
+                        <p class="leading-relaxed">
+                            <strong>¿En qué consiste tu proyecto de esta misión?</strong><br>
+                            Con base en los peligros que encontraste en la Misión 1.1 (en tu escuela o negocio local), ahora vas a redactar su <strong>Plan de Seguridad Informática</strong> usando esta plantilla súper clara en Word:
                         </p>
+
+                        <!-- PLANTILLA WORD FÁCIL DE COPIAR -->
+                        <div class="template-box p-4 my-3 space-y-2">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs font-bold text-teal-900 flex items-center gap-1.5">
+                                    <i class="fas fa-file-word text-blue-600 text-sm"></i> Plantilla Lista para Copiar y Pegar en Word / Writer
+                                </span>
+                                <button onclick="copiarPlantilla12()" class="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-[11px] font-bold transition shadow-sm flex items-center gap-1.5">
+                                    <i class="fas fa-copy"></i> Copiar Plantilla del Plan
+                                </button>
+                            </div>
+                            <pre id="plantillaWord12" class="p-3 bg-white rounded-xl border border-slate-200 text-[10px] font-mono text-slate-700 overflow-x-auto leading-relaxed">
+======================================================================
+CONALEP PLANTEL CHILPANCINGO — PLAN DE SEGURIDAD INFORMÁTICA (AE 1.2.1)
+======================================================================
+Autores del Plan (Alumnos): __________________________________________
+Grupo: _________   Fecha: _____________   Lugar protegido: ___________
+
+1. NUESTRAS METAS DE SEGURIDAD:
+- Meta 1: Que el 100% de las computadoras tengan antivirus y contraseña.
+- Meta 2: Hacer copias de respaldo cada semana para no perder ningún trabajo.
+- Normas mundiales en las que nos basamos: ISO 27001, ISO 27032, ISO 27033 e ITIL.
+
+2. REGLAMENTO DE SEGURIDAD (POLÍTICAS OBLIGATORIAS):
+- Regla de Entrada Física: Solo personal o alumnos autorizados pueden usar los equipos; prohibido introducir alimentos o bebidas.
+- Regla de Cuentas y Contraseñas: Cada usuario tendrá clave de mínimo 8 letras y números; cerrar sesión al terminar.
+- Regla de Red y Wi-Fi (Firewall): Bloquear páginas peligrosas y separar el Wi-Fi de trabajo del Wi-Fi de visitantes.
+- Regla de Copias de Respaldo: Todos los viernes a las 2:00 PM se guardará copia de las carpetas importantes en Google Drive y en una memoria USB segura.
+- Regla de Capacitación: Dar una plática de 15 minutos contra estafas de WhatsApp y correos falsos.
+
+3. CALENDARIO DE ACTIVIDADES (CRONOGRAMA DE 4 SEMANAS):
+- Semana 1: Poner contraseñas a los equipos y revisar reguladores de luz.
+- Semana 2: Instalar y actualizar el Antivirus y activar el Firewall.
+- Semana 3: Organizar las carpetas compartidas con permisos y hacer el primer respaldo.
+- Semana 4: Revisar que todas las reglas se estén cumpliendo.
+
+4. ¿CÓMO VAMOS A MEDIR SI FUNCIONA? (INDICADORES / MÉTRICAS):
+- Medida 1: Número de computadoras con antivirus al día (Meta: Todas).
+- Medida 2: Número de virus o pérdidas de archivos en el mes (Meta: Cero).
+======================================================================</pre>
+                        </div>
                     </div>
                 </section>
 
-                <!-- Navegación Inferior -->
+                <!-- Navegación de Pie de Página -->
                 <div class="flex justify-between items-center border-t border-slate-200 pt-6">
                     <a href="tema1_1.html" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
-                        <i class="fas fa-arrow-left mr-1"></i> Anterior: RA 1.1 (Evaluación de Riesgos)
+                        <i class="fas fa-arrow-left mr-1"></i> Anterior: Misión 1.1
                     </a>
-                    <a href="tema2_1.html" class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition shadow-sm">
-                        Siguiente: RA 2.1 (Firewalls & DMZ) <i class="fas fa-arrow-right ml-1"></i>
+                    <a href="tema2_1.html" class="px-4 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs transition shadow-sm">
+                        Siguiente: Misión 2.1 (Candados y Escudos) <i class="fas fa-arrow-right ml-1"></i>
                     </a>
                 </div>
 
             </main>
 
-            <!-- COLUMNA 3: Barra Lateral Derecha -->
-            <aside class="lg:col-span-2">
+            <!-- COLUMNA 3: Checklist para el Alumno -->
+            <aside class="lg:col-span-3">
                 <div class="sticky top-16 space-y-6">
-
-                    <!-- TOC Interactivo -->
-                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm">
-                        <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">En esta Página</h4>
-                        <ul class="space-y-2 text-xs text-slate-600">
-                            <li><a href="#fase1" class="hover:text-red-600 transition block">1. Caso Insider Threat</a></li>
-                            <li><a href="#fase2" class="hover:text-red-600 transition block">2. SGSI & Controles ISO 27002</a></li>
-                            <li><a href="#fase3" class="hover:text-red-600 transition block">3. Script PowerShell de Auditoría</a></li>
-                            <li><a href="#fase4" class="hover:text-red-600 transition block">4. Validador ISO 27001</a></li>
-                            <li><a href="#fase5" class="hover:text-red-600 transition block">5. Rúbrica Oficial AE 1.2.1</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Cuadro de Evidencia SAE -->
-                    <div class="p-4 bg-gradient-to-br from-red-50 to-rose-50 border border-red-200 rounded-2xl text-xs space-y-2">
-                        <div class="flex items-center gap-2 text-red-900 font-bold text-xs">
-                            <i class="fas fa-file-contract text-red-600"></i> Entregable SAE (AE 1.2.1)
+                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm text-xs">
+                        <div class="flex items-center gap-2 text-teal-900 font-bold mb-2">
+                            <i class="fas fa-flag-checkered text-teal-600"></i> Cierre del 1er Parcial
                         </div>
-                        <ul class="text-[11px] text-slate-700 list-disc ml-4 space-y-1">
-                            <li>Plan Integral de Seguridad.</li>
-                            <li>Políticas AUP y control de acceso.</li>
-                            <li>Acuerdos de confidencialidad NDA.</li>
-                            <li>Cierre Unidad 1 (40% acumulado).</li>
+                        <ul class="text-[11px] text-slate-600 list-disc ml-4 space-y-1.5 mb-3">
+                            <li>Conocer para qué sirve la familia ISO 27000.</li>
+                            <li>Crear las tarjetas de normas mundiales.</li>
+                            <li>Redactar reglas claras de seguridad.</li>
+                            <li>Entregar tu Plan de Seguridad (20% SAE).</li>
                         </ul>
-                        <div class="pt-2 border-t border-red-200 text-center">
-                            <span class="text-red-700 font-extrabold text-sm">Ponderación Oficial: 20% SAE</span>
+                        <div class="p-2.5 bg-teal-50 rounded-xl text-center font-bold text-teal-800">
+                            ¡1er Parcial Completado! (35% SAE)
                         </div>
                     </div>
-
                 </div>
             </aside>
 
@@ -501,45 +388,31 @@
 
     <!-- Script del Simulador JS -->
     <script>
-        function evaluarSGSI() {
-            let checks = [
-                document.getElementById('chk1').checked,
-                document.getElementById('chk2').checked,
-                document.getElementById('chk3').checked,
-                document.getElementById('chk4').checked,
-                document.getElementById('chk5').checked,
-                document.getElementById('chk6').checked
-            ];
+        function medirPlan() {
+            const r1 = document.getElementById('regla1').checked ? 25 : 0;
+            const r2 = document.getElementById('regla2').checked ? 25 : 0;
+            const r3 = document.getElementById('regla3').checked ? 25 : 0;
+            const r4 = document.getElementById('regla4').checked ? 25 : 0;
+            const total = r1 + r2 + r3 + r4;
+            const out = document.getElementById('simPlanOut');
 
-            let cumplidos = checks.filter(c => c).length;
-            let porcentaje = Math.round((cumplidos / checks.length) * 100);
-            let outElem = document.getElementById('simIsoOutput');
-
-            let nivel = "";
-            let color = "text-emerald-300";
-
-            if (porcentaje === 100) {
-                nivel = "MADUREZ OPTIMIZADA (Listo para Certificación ISO/IEC 27001)";
-                color = "text-emerald-300";
-            } else if (porcentaje >= 66) {
-                nivel = "MADUREZ INTERMEDIA (Cumplimiento sustancial con brechas operativas)";
-                color = "text-sky-300";
-            } else if (porcentaje >= 33) {
-                nivel = "MADUREZ BÁSICA (Riesgo alto de incidentes no detectados)";
-                color = "text-amber-300";
+            if (total <= 25) {
+                out.innerHTML = `<span class="text-red-400 font-bold">⚠️ Nivel de Protección: ${total}% (¡Peligro!)</span><br>El laboratorio está casi indefenso. Si entra un virus o se va la luz, se perderán todas las tareas. ¡Marca más reglas para protegerlo!`;
+            } else if (total <= 75) {
+                out.innerHTML = `<span class="text-amber-300 font-bold">🛡️ Nivel de Protección: ${total}% (Buen Avance)</span><br>Ya tienen buenas reglas, pero todavía hay huecos que un descuido puede aprovechar. ¡Activa las 4 reglas para llegar al 100%!`;
             } else {
-                nivel = "CRÍTICO / NO CONFORME (Vulnerable a ciberataques masivos)";
-                color = "text-red-400";
+                out.innerHTML = `<span class="text-emerald-400 font-bold">🏆 Nivel de Protección: 100% (¡Laboratorio Blindado!)</span><br>¡Felicidades! Cumples con las recomendaciones de la norma mundial <strong>ISO 27001</strong>. Tus equipos y archivos están seguros.`;
             }
-
-            outElem.innerHTML = `
-                &bull; Controles ISO/IEC 27002 Cumplidos: <strong class="text-white">${cumplidos} de 6 (${porcentaje}%)</strong><br>
-                &bull; Nivel de Madurez del SGSI: <span class="${color} font-extrabold text-sm">${nivel}</span><br>
-                ------------------------------------------------------------<br>
-                ${porcentaje < 100 ? "<span class='text-amber-300'>&bull; Brechas detectadas: Se requiere formalizar los controles no seleccionados para cerrar la superficie de ataque.</span>" : "<span class='text-emerald-300 font-bold'>&check; ¡EXCELENTE! Organización con gobierno de seguridad sólido y resiliente.</span>"}
-            `;
         }
-        window.onload = evaluarSGSI;
+
+        function copiarPlantilla12() {
+            const txt = document.getElementById('plantillaWord12').innerText;
+            navigator.clipboard.writeText(txt).then(() => {
+                alert('¡Listo! Ya se copió la plantilla del Plan de Seguridad. Pégala en Word o LibreOffice Writer.');
+            });
+        }
+
+        window.onload = medirPlan;
     </script>
 </body>
 </html>

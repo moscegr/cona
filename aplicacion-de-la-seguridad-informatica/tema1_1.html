@@ -3,493 +3,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RA 1.1: Diagnóstico de Seguridad y Evaluación de Riesgos | ASIN-03 CONALEP</title>
+    <title>Misión 1.1: Cazadores de Riesgos Digitales en México | ASIN-21</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- MathJax 3 -->
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        primary: '#dc2626', // Red 600
-                        dark: '#0f172a',
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        }
                     }
                 }
             }
         }
     </script>
     <style>
-        body { font-family: 'Outfit', sans-serif; background-color: #ffffff; color: #1e293b; }
-        .lll-info { background-color: #fef2f2; border-left: 4px solid #ef4444; }
-        .lll-warning { background-color: #fffbeb; border-left: 4px solid #f59e0b; }
-        .lll-tip { background-color: #f0fdf4; border-left: 4px solid #10b981; }
-        .lll-danger { background-color: #fef2f2; border-left: 4px solid #b91c1c; }
-        .diff-easy { background-color: #dcfce7; color: #15803d; }
-        .diff-med { background-color: #fef3c7; color: #b45309; }
-        .diff-hard { background-color: #fee2e2; color: #b91c1c; }
-        .step-badge { width: 28px; height: 28px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; }
-    </style>
-    <style id="platform-wide-ui-override">
-        /* === Expansión de Ancho y Eliminación de Tarjetas Anidadas (Toda la Plataforma) === */
-        .concept-card,
-        .topic-container {
-            background: transparent !important;
-            border: none !important;
-            border-bottom: 1px solid #e2e8f0 !important;
-            border-radius: 0 !important;
-            box-shadow: none !important;
-            padding: 0 0 2.25rem 0 !important;
-            margin-bottom: 2.25rem !important;
-        }
-        .pedagogy-step {
-            background: transparent !important;
-            border: none !important;
-            border-left: 3px solid #cbd5e1 !important;
-            border-radius: 0 !important;
-            box-shadow: none !important;
-            padding: 0.25rem 0 0.25rem 1.25rem !important;
-            margin-bottom: 1.5rem !important;
-        }
-        /* Evitar redundancia de tarjetas dentro de tarjetas en toda la plataforma */
-        main div[class*="rounded-"][class*="border"] div[class*="rounded-"][class*="border"] {
-            box-shadow: none !important;
-        }
-        main div[class*="rounded-"][class*="border"] > div[class*="bg-slate-50"][class*="rounded-"][class*="border"]:has(div[class*="rounded-"][class*="border"]) {
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-            padding: 0.25rem 0 !important;
-        }
-        /* Grafos SVG e imágenes 100% responsivos sin recortes */
-        main svg {
-            max-width: 100% !important;
-            height: auto !important;
-        }
-        /* Laterales compactos y elegantes */
-        aside .sticky {
-            padding: 0.875rem !important;
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; color: #0f172a; }
+        .slide-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1.25rem; }
+        .badge-step { width: 32px; height: 32px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; }
+        .template-box { background: #f8fafc; border: 2px dashed #99f6e4; border-radius: 1rem; }
     </style>
 </head>
-<body class="bg-white text-slate-800 antialiased selection:bg-red-100 selection:text-red-900">
+<body class="antialiased selection:bg-teal-100 selection:text-teal-900">
 
-    <!-- Top Bar Institucional -->
-    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 sticky top-0 z-50">
-        <div class="max-w-[1600px] mx-auto flex justify-between items-center">
+    <!-- Top Bar Guía de Clase -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2.5 px-4 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <span class="font-semibold text-white"><i class="fas fa-shield-halved text-red-500 mr-1.5"></i> CONALEP — PT-B en Informática (Blue Team Lab)</span>
+                <span class="font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-user-secret text-teal-400"></i> Misión 1.1: Cazadores de Riesgos en la Escuela y Negocios Locales
+                </span>
                 <span class="text-slate-600 hidden sm:inline">|</span>
-                <span class="text-slate-400 hidden sm:inline">Módulo: <strong>ASIN-03</strong></span>
+                <span class="text-teal-400 font-mono hidden sm:inline">1er Parcial • ASIN-21 (15 Horas)</span>
             </div>
             <div class="flex items-center space-x-4">
-                <a href="index.html" class="text-xs text-red-400 hover:text-red-300 transition flex items-center gap-1 font-semibold">
-                    <i class="fas fa-arrow-left"></i> Índice del Módulo
-                </a>
-                <span class="text-slate-600">|</span>
-                <a href="../index.html" class="text-xs text-emerald-400 hover:text-emerald-300 transition font-semibold">
-                    Portal CONALEP
+                <a href="index.html" class="text-xs text-teal-300 hover:text-white transition flex items-center gap-1 font-semibold">
+                    <i class="fas fa-arrow-left"></i> Índice de Misiones
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- Layout en 3 Columnas (White UI Luis Llamas) -->
-    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- Layout Presentador en 3 Columnas -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
-            <!-- COLUMNA 1: Menú Lateral Izquierdo -->
-            <aside class="lg:col-span-2">
+            <!-- COLUMNA 1: Datos Oficiales y Navegación -->
+            <aside class="lg:col-span-3">
                 <div class="sticky top-16 space-y-6">
-                    <div class="p-4 bg-red-50/60 border border-red-200 rounded-2xl">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
-                                <i class="fas fa-triangle-exclamation"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-slate-900 text-sm leading-tight">Unidad 1</h3>
-                                <p class="text-[11px] text-slate-500">Gestión de la Seguridad</p>
-                            </div>
-                        </div>
-                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-red-200 pt-2.5">
-                            <div class="flex justify-between"><span>Duración Total:</span> <strong class="text-slate-800">14 Horas</strong></div>
-                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-red-600 font-bold">20% SAE</strong></div>
-                            <div class="flex justify-between"><span>Semanas:</span> <strong class="text-slate-800 font-mono">1 a 4</strong></div>
+                    <div class="p-4 bg-teal-50/70 border border-teal-200 rounded-2xl">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-teal-800 font-mono">Programa Oficial CONALEP</span>
+                        <h3 class="font-extrabold text-slate-900 text-sm mt-1">Resultado de Aprendizaje 1.1</h3>
+                        <p class="text-xs text-slate-700 mt-1 leading-relaxed">
+                            <strong>1.1.</strong> Determina riesgos de seguridad informática con base en las características del equipo y las necesidades del usuario.
+                        </p>
+                        <div class="mt-3 pt-3 border-t border-teal-200 text-[11px] text-slate-600 flex justify-between">
+                            <span>Duración: <strong class="text-slate-800">15 Horas</strong></span>
+                            <span>Evidencia: <strong class="text-teal-700 font-mono">AE 1.1.1 (15%)</strong></span>
                         </div>
                     </div>
 
-                    <!-- Navegación de RAs -->
-                    <div class="border border-slate-200 rounded-2xl p-4 bg-white">
-                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Resultados de Aprendizaje</h4>
-                        <nav class="space-y-1.5 text-xs">
-                            <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl bg-red-50 text-red-800 font-bold border border-red-200">
-                                <span><i class="fas fa-chevron-right mr-1.5 text-[10px]"></i> RA 1.1: Evaluación de Riesgos</span>
-                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">14h • 20%</span>
+                    <!-- Contenido Formativo Oficial -->
+                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm text-xs">
+                        <h4 class="font-bold text-slate-900 mb-2 flex items-center gap-1.5 text-xs text-teal-800">
+                            <i class="fas fa-book-open text-teal-600"></i> Lo que aprenderemos hoy (Pág. 16-17)
+                        </h4>
+                        <ul class="space-y-1.5 text-[11px] text-slate-600 list-disc ml-4">
+                            <li><strong>A. Los 3 Pilares:</strong> Confidencialidad, Integridad y Disponibilidad.</li>
+                            <li><strong>B. Peligros Digitales:</strong> Virus, correo basura (Spam), estafas por mensaje (Ingeniería social), secuestro de archivos (Ransomware) y saturación de páginas (DDoS).</li>
+                            <li><strong>C y D. Inspección de un Negocio:</strong> Cuentas de usuario, contraseñas, permisos en carpetas y copias de respaldo.</li>
+                            <li><strong>E. Peligros Físicos:</strong> Apagones de luz, tormentas, sismos y acceso al cuarto de cómputo.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Menú de Misiones -->
+                    <div class="border border-slate-200 rounded-2xl p-4 bg-white shadow-sm">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Misiones del Semestre</h4>
+                        <nav class="space-y-1 text-xs">
+                            <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl bg-teal-50 text-teal-900 font-bold border border-teal-200">
+                                <span>1.1 Cazadores de Riesgos</span>
+                                <span class="text-[10px] bg-teal-200 text-teal-900 px-1.5 py-0.5 rounded font-mono">15h</span>
                             </a>
-                            <a href="tema1_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-file-contract mr-1.5 text-slate-400"></i> RA 1.2: Políticas e ISO 27001</span>
-                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">18h • 20%</span>
+                            <a href="tema1_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.2 El Plan de Seguridad</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">12h</span>
                             </a>
-                            <a href="tema2_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-lock mr-1.5 text-slate-400"></i> RA 2.1: Firewalls & DMZ</span>
-                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">14h • 25%</span>
+                            <a href="tema2_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>2.1 Candados y Escudos</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">23h</span>
                             </a>
-                            <a href="tema2_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-chart-line mr-1.5 text-slate-400"></i> RA 2.2: Monitoreo SIEM</span>
-                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">14h • 20%</span>
+                            <a href="tema2_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>2.2 Caja Negra y Vigilancia</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">10h</span>
                             </a>
-                            <a href="tema2_3.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-server mr-1.5 text-slate-400"></i> RA 2.3: BCP, DRP & Backups</span>
-                                <span class="diff-hard px-2 py-0.5 rounded-full text-[10px] font-mono">12h • 15%</span>
+                            <a href="tema2_3.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>2.3 Rescate ante Desastres</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">12h</span>
                             </a>
                         </nav>
-                    </div>
-
-                    <!-- Fases Pedagógicas -->
-                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-2">
-                        <h4 class="font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-2">5 Fases de la Cátedra</h4>
-                        <a href="#fase1" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-red-600">1.</span> Apertura & HackLab</a>
-                        <a href="#fase2" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-sky-600">2.</span> CIA, ISO 27005 & SLE/ALE</a>
-                        <a href="#fase3" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-indigo-600">3.</span> Modelado en Python</a>
-                        <a href="#fase4" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-amber-600">4.</span> Calculadora de Riesgo ALE</a>
-                        <a href="#fase5" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-emerald-600">5.</span> Rúbrica Oficial AE 1.1.1</a>
                     </div>
                 </div>
             </aside>
 
-            <!-- COLUMNA 2: Contenido Didáctico Central -->
-            <main class="lg:col-span-8 space-y-12">
+            <!-- COLUMNA 2: Presentación de Clase y Prácticas Divertidas -->
+            <main class="lg:col-span-6 space-y-10">
 
-                <!-- Header de Unidad -->
+                <!-- Header de la Clase -->
                 <header class="border-b border-slate-200 pb-6">
-                    <div class="flex items-center gap-2 text-xs text-red-600 font-bold uppercase tracking-wider mb-2">
-                        <span>Unidad 1</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Resultado de Aprendizaje 1.1</span>
+                    <div class="flex items-center gap-2 text-xs text-teal-600 font-bold uppercase tracking-wider mb-2">
+                        <span>Seguridad Informática</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Misión 1.1</span>
                     </div>
                     <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-3">
-                        Diagnóstico del Estado de Seguridad y Evaluación Cuantitativa de Riesgos
+                        Cazadores de Riesgos: ¿Qué pone en peligro nuestras computadoras y celulares en México?
                     </h1>
                     <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                        Determinación sistemática de la postura de seguridad organizacional: análisis de la Triada CIA, estándares ISO/IEC 27005 e ITIL, inventario y valoración de activos críticos, y cálculo financiero del riesgo cuantitativo mediante las fórmulas SLE (Single Loss Expectancy), ARO (Annualized Rate of Occurrence) y ALE (Annualized Loss Expectancy).
+                        Desde el ciber de tu colonia hasta una tienda de abarrotes o el laboratorio de la escuela, todos usan computadoras. Hoy aprenderás a detectar dónde están los puntos débiles antes de que ocurra un accidente o un robo de información.
                     </p>
 
-                    <!-- Imagen Libre Unsplash -->
                     <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm mb-4">
-                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80" alt="Auditoría de Ciberseguridad y Riesgos" class="w-full h-48 sm:h-64 object-cover">
+                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80" alt="Ciberseguridad Cotidiana" class="w-full h-48 sm:h-64 object-cover">
                         <div class="bg-slate-50 px-4 py-2 border-t border-slate-200 text-[11px] text-slate-500 flex justify-between">
-                            <span><i class="fas fa-camera mr-1"></i> Imagen Libre: Auditoría de Infraestructura y Evaluación de Riesgos</span>
+                            <span><i class="fas fa-camera mr-1"></i> Imagen Libre: Protección de Dispositivos y Redes Cotidianas</span>
                             <span>Unsplash Free License</span>
                         </div>
                     </div>
-
-                    <div class="flex flex-wrap gap-2 text-xs">
-                        <span class="px-2.5 py-1 rounded-lg bg-red-100 text-red-800 font-bold font-mono">14 Horas (Semanas 1 a 4)</span>
-                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold">Ponderación: 20% SAE</span>
-                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">Evidencia: AE 1.1.1 (Diagnóstico Técnico)</span>
-                    </div>
                 </header>
 
-                <!-- FASE 1: APERTURA DISRUPTIVA -->
-                <section id="fase1" class="scroll-mt-20">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="step-badge bg-red-600 text-white">1</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Caso Real de la Industria)</h2>
+                <!-- FASE 1: APERTURA (HISTORIA REAL EN MÉXICO) -->
+                <section class="slide-card p-6 border-l-4 border-l-teal-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-teal-600 text-white">1</span>
+                        <h2 class="text-lg font-bold text-slate-900">Fase 1: Apertura — El Viernes Negro en el Ciber "El Estudiante"</h2>
                     </div>
-
-                    <div class="lll-info p-5 rounded-2xl mb-6">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="font-bold text-red-900 text-sm flex items-center gap-2">
-                                <i class="fas fa-radiation text-red-600"></i> Caso Real: El Colapso de Colonial Pipeline por una Contraseña sin 2FA
-                            </h3>
-                            <span class="px-2 py-0.5 rounded bg-red-200 text-red-900 text-[10px] font-bold">HackLab #01</span>
-                        </div>
-                        <p class="text-xs text-slate-700 leading-relaxed mb-3">
-                            En mayo de 2021, el mayor oleoducto de EE.UU. paralizó el suministro del 45% del combustible de la Costa Este durante 6 días. El grupo cibercriminal DarkSide no utilizó exploits de día cero: <strong>compró en la Dark Web una contraseña filtrada de una cuenta VPN inactiva que no tenía doble factor de autenticación (2FA)</strong>. La empresa pagó \$4.4 millones de dólares de rescate.
-                        </p>
-                        <div class="p-3 bg-white rounded-xl border border-red-200 text-xs font-mono text-red-950">
-                            <strong>🔥 Pregunta Detonadora del Catedrático:</strong> Si fueras el Oficial de Seguridad (CISO) de un hospital o banco, ¿cómo justificarías a la junta directiva invertir \$10,000 USD en controles preventivos para evitar una pérdida potencial de \$1,000,000 USD?
-                        </div>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4">
+                        Imagina esto: Don Roberto tiene una papelería y ciber frente a una escuela en Chilpancingo. Un viernes por la tarde pasó todo lo peor al mismo tiempo:
+                        <br><br>
+                        1. Un joven descargó un "activador gratis para un juego" y <strong>metió un virus que le puso candado a todos los archivos</strong> de Don Roberto pidiéndole \$10,000 pesos para devolverlos.<br>
+                        2. Como todos usaban la misma cuenta de usuario sin contraseña, un cliente curioso pudo ver las fotos y tareas que otros estudiantes habían dejado guardadas en la carpeta <em>Descargas</em>.<br>
+                        3. Cayó un aguacero con tormenta eléctrica, hubo un apagón y la computadora principal se quemó porque estaba conectada directo al enchufe de la pared sin regulador.
+                    </p>
+                    <div class="p-3 bg-teal-50 rounded-xl border border-teal-200 text-xs font-semibold text-teal-950 flex items-center gap-2">
+                        <i class="fas fa-lightbulb text-teal-600 text-base"></i>
+                        <span><strong>Pregunta para comentar en clase:</strong> ¿Cuál de esos 3 accidentes te ha pasado a ti o a alguien de tu familia en casa?</span>
                     </div>
                 </section>
 
-                <!-- FASE 2: DESARROLLO CONCEPTUAL -->
-                <section id="fase2" class="scroll-mt-20">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="step-badge bg-sky-600 text-white">2</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (Triada CIA, ISO 27005 y Cálculo ALE)</h2>
+                <!-- FASE 2: DESARROLLO CONCEPTUAL (SIN TECNICISMOS PESADOS) -->
+                <section class="slide-card p-6 border-l-4 border-l-sky-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-sky-600 text-white">2</span>
+                        <h2 class="text-lg font-bold text-slate-900">Fase 2: Explicación Sencilla de los 5 Subtemas</h2>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs mb-6">
-                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
-                            <strong class="text-red-700 block text-sm"><i class="fas fa-lock mr-1"></i> Triada CIA</strong>
-                            <p class="text-slate-600 text-[11px]">
-                                <strong>Confidencialidad:</strong> Solo personal autorizado accede.<br>
-                                <strong>Integridad:</strong> Datos inalterados y exactos.<br>
-                                <strong>Disponibilidad:</strong> Sistemas accesibles 24/7.
-                            </p>
-                        </div>
-                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
-                            <strong class="text-indigo-700 block text-sm"><i class="fas fa-clipboard-list mr-1"></i> ISO/IEC 27005 & ITIL</strong>
-                            <p class="text-slate-600 text-[11px]">
-                                Metodología estructurada para identificar amenazas, vulnerabilidades, estimar impacto y clasificar el riesgo en matriz 5x5.
-                            </p>
-                        </div>
-                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
-                            <strong class="text-emerald-700 block text-sm"><i class="fas fa-calculator mr-1"></i> Fórmulas de Riesgo Financiero</strong>
-                            <p class="text-slate-600 text-[11px]">
-                                \(SLE = AV \times EF\)<br>
-                                \(ALE = SLE \times ARO\)<br>
-                                Donde \(AV\) = Valor del Activo, \(EF\) = Factor de Exposición, \(ARO\) = Tasa Anual de Ocurrencia.
-                            </p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- FASE 3: DEMOSTRACIÓN Y MODELADO PASO A PASO -->
-                <section id="fase3" class="scroll-mt-20">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="step-badge bg-indigo-600 text-white">3</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Modelado de Cálculo Cuantitativo en Python</h2>
-                    </div>
-
-                    <div class="bg-slate-900 text-slate-200 rounded-xl p-5 text-xs font-mono mb-4 overflow-x-auto space-y-2">
-                        <span class="text-emerald-400 font-bold block">[SCRIPT DE AUDITORÍA FINANCIERA DE RIESGO: riesgo_ale.py]</span>
-                        <div class="text-slate-300">
-                            def calcular_riesgo_ale(valor_activo, factor_exposicion, aro):<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;"""Calcula SLE (Pérdida por Evento Único) y ALE (Pérdida Anual Esperada)"""<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;sle = valor_activo * factor_exposicion<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;ale = sle * aro<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;return sle, ale<br>
-                            <br>
-                            <span class="text-slate-400"># Ejemplo: Servidor de Base de Datos Valuado en $500,000 MXN</span><br>
-                            av = 500000.0&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-400"># Asset Value</span><br>
-                            ef = 0.40&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-400"># Exposure Factor (40% de daño ante Ransomware)</span><br>
-                            aro = 0.50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-400"># 1 ataque cada 2 años (0.50 anual)</span><br>
-                            <br>
-                            sle_res, ale_res = calcular_riesgo_ale(av, ef, aro)<br>
-                            print(f"[+] SLE (Costo por Incidente): ${sle_res:,.2f} MXN")<br>
-                            print(f"[+] ALE (Pérdida Anual Esperada): ${ale_res:,.2f} MXN")<br>
-                            <span class="text-emerald-300">==> Si un control anti-ransomware cuesta $30,000/año y el ALE es $100,000/año, ¡EL CONTROL ES RENTABLE!</span>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- FASE 4: APLICACIÓN PRÁCTICA Y SIMULADOR -->
-                <section id="fase4" class="scroll-mt-20">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="step-badge bg-amber-600 text-white">4</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Calculadora ALE y Problemario)</h2>
-                    </div>
-
-                    <!-- SIMULADOR INTERACTIVO JS: CALCULADORA DE RIESGO ALE -->
-                    <div class="border-2 border-red-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
-                        <div class="flex items-center justify-between mb-4 border-b border-red-100 pb-3">
-                            <div class="flex items-center gap-2">
-                                <i class="fas fa-calculator text-red-600 text-xl"></i>
-                                <div>
-                                    <h3 class="font-bold text-slate-900 text-sm">Calculadora Financiera de Riesgo Cuantitativo (ALE / SLE)</h3>
-                                    <span class="text-[11px] text-slate-500 font-mono">Modela el valor de los activos y determina la viabilidad de la inversión en ciberdefensa</span>
+                    <div class="space-y-4 text-xs">
+                        <!-- Subtema A -->
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-sky-900 block mb-2 font-bold text-sm"><i class="fas fa-shield-heart text-sky-600 mr-1"></i> Subtema A: Los 3 Superpoderes de la Seguridad (La Tríada de Protección)</strong>
+                            <p class="text-slate-600 mb-2">Para que tu información esté segura, siempre debe cumplir estas 3 reglas fáciles de recordar:</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px]">
+                                <div class="p-2.5 bg-white rounded-lg border border-slate-200">
+                                    <span class="font-bold text-teal-700 block">🔒 1. Confidencialidad</span>
+                                    Que tus cosas privadas solo las veas tú (como ponerle patrón o huella a tu WhatsApp).
+                                </div>
+                                <div class="p-2.5 bg-white rounded-lg border border-slate-200">
+                                    <span class="font-bold text-sky-700 block">✏️ 2. Integridad</span>
+                                    Que nadie pueda modificar tus archivos a escondidas (que un compañero no cambie tu calificación o borre tu tarea).
+                                </div>
+                                <div class="p-2.5 bg-white rounded-lg border border-slate-200">
+                                    <span class="font-bold text-emerald-700 block">⚡ 3. Disponibilidad</span>
+                                    Que tu información esté lista cuando la ocupes (tener una copia en la nube por si se te olvida la USB).
                                 </div>
                             </div>
-                            <span class="px-2 py-1 rounded bg-red-100 text-red-800 text-[10px] font-bold">JavaScript Nativo</span>
                         </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs mb-4">
-                            <div>
-                                <label class="font-semibold text-slate-700 block mb-1">Valor del Activo (AV en $ MXN):</label>
-                                <input type="number" id="simAV" class="w-full p-2 border border-slate-300 rounded-lg text-xs font-mono" value="800000" oninput="calcularRiesgoALE()">
-                            </div>
-                            <div>
-                                <label class="font-semibold text-slate-700 block mb-1">Factor de Exposición (EF en %):</label>
-                                <input type="number" id="simEF" class="w-full p-2 border border-slate-300 rounded-lg text-xs font-mono" value="50" oninput="calcularRiesgoALE()">
-                            </div>
-                            <div>
-                                <label class="font-semibold text-slate-700 block mb-1">Frecuencia Anual (ARO - Veces/Año):</label>
-                                <input type="number" id="simARO" step="0.1" class="w-full p-2 border border-slate-300 rounded-lg text-xs font-mono" value="0.5" oninput="calcularRiesgoALE()">
-                            </div>
+                        <!-- Subtema B -->
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-indigo-900 block mb-2 font-bold text-sm"><i class="fas fa-biohazard text-indigo-600 mr-1"></i> Subtema B: Los Villanos Digitales (Riesgos Lógicos)</strong>
+                            <p class="text-slate-600 mb-2">No necesitan tocar tu computadora con las manos; entran por Internet o por memorias USB:</p>
+                            <ul class="space-y-1.5 text-slate-600 text-[11px] list-disc ml-4">
+                                <li><strong>Engaño Digital (Ingeniería Social / Phishing):</strong> Cuando se hacen pasar por tu banco, por MercadoLibre o por un familiar en WhatsApp para que tú mismo les entregues tu contraseña o dinero.</li>
+                                <li><strong>Secuestradores de Archivos (Ransomware):</strong> Un programa dañino que le pone candado a todas tus fotos y tareas y te pide dinero a cambio de la llave.</li>
+                                <li><strong>Programas Espía y Virus (Códigos Maliciosos):</strong> Se esconden en juegos "pirata" o películas gratis para robar las claves que escribes en el teclado.</li>
+                                <li><strong>Montoneros Digitales (Ataques DDoS):</strong> Cuando miles de computadoras falsas entran al mismo tiempo a una página (como cuando todos quieren comprar boletos o subir calificaciones) hasta que la página se traba y se cae.</li>
+                            </ul>
                         </div>
 
-                        <div class="p-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-200 text-xs font-mono">
-                            <div class="text-slate-400 text-[11px] mb-2">[REPORTE DE IMPACTO FINANCIERO Y JUSTIFICACIÓN DE CONTROLES]</div>
-                            <div id="simRiskOutput" class="space-y-1">
-                                <!-- Generado por JS -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- PROBLEMARIO DISRUPTIVO (10 RETOS PARA 40% FIRMAS) -->
-                    <div class="border border-slate-200 rounded-2xl p-6 bg-white">
-                        <div class="flex items-center justify-between mb-4 border-b pb-3">
-                            <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
-                                <i class="fas fa-shield-virus text-red-600"></i> Bitácora de Auditoría de Riesgos (40% Firmas)
-                            </h3>
-                            <span class="px-2 py-0.5 rounded bg-red-100 text-red-800 text-[10px] font-bold">10 Retos</span>
-                        </div>
-
-                        <div class="space-y-3 text-xs text-slate-700">
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 1 (Matriz de Impacto CIA):</strong> Clasifica 5 activos del CONALEP (servidor escolar, red Wi-Fi alumnos, nómina, cámaras de seguridad, portal web) según Confidencialidad, Integridad y Disponibilidad (Alto, Medio, Bajo).
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 2 (Cálculo Financiero SLE y ALE):</strong> Una empresa tiene un servidor de comercio electrónico valuado en \$1,200,000 MXN. Un ataque DDoS genera un EF del 30% y se estima un ARO de 2 veces al año. Calcula el SLE y el ALE.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 3 (Análisis Costo-Beneficio de Controles):</strong> Si implementar una solución Anti-DDoS en la nube cuesta \$180,000 MXN al año, justifica matemáticamente si conviene adquirir el control frente al ALE del Reto 2.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 4 (Matriz Cualitativa de Riesgos 5x5):</strong> Mapea 6 amenazas (fuga de datos, robo de equipo, incendio en site, ransomware, phishing a docentes, corte de energía) en una cuadrícula de Probabilidad vs Impacto.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 5 (Estrategias de Tratamiento del Riesgo):</strong> Define con ejemplos reales las 4 opciones de tratamiento según ISO 27005: Mitigar, Transferir (seguro), Evitar y Aceptar.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 6 (Escaneo de Vulnerabilidades con Nmap):</strong> Ejecuta un escaneo de puertos autorizado <code>nmap -sV -p 1-1024 192.168.1.100</code> y documenta las versiones de servicios obsoletos identificados.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 7 (Auditoría de Políticas de Contraseñas en Active Directory / Linux):</strong> Audita los requisitos de longitud mínima, complejidad, historial y bloqueo por intentos fallidos.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 8 (Análisis de Vectores de Ataque Físico):</strong> Inspecciona el centro de cómputo y documenta 3 vulnerabilidades de seguridad física (falta de UPS, cableado expuesto, acceso sin llave biométrica).
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 9 (Threat Modeling de una Aplicación Web):</strong> Aplica la metodología STRIDE (Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege) al sistema de calificaciones escolar.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 10 (Diagnóstico Integral de Seguridad - Evidencia AE 1.1.1):</strong> Presenta el reporte técnico de diagnóstico con inventario, matriz de riesgos y cálculo ALE para el 20% SAE.
-                            </div>
+                        <!-- Subtema C, D y E -->
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-emerald-900 block mb-2 font-bold text-sm"><i class="fas fa-plug-circle-bolt text-emerald-600 mr-1"></i> Subtemas C, D y E: Cómo Inspeccionar un Lugar y Cuidar los Equipos (Riesgos Físicos)</strong>
+                            <p class="text-slate-600 mb-2">De nada sirve el mejor antivirus si la computadora se moja con la lluvia o se quema con un apagón:</p>
+                            <ul class="space-y-1.5 text-slate-600 text-[11px] list-disc ml-4">
+                                <li><strong>Cuentas separadas:</strong> El dueño o maestro debe tener cuenta de <em>Administrador</em> y los clientes o alumnos cuenta de <em>Invitado/Estándar</em> para que no instalen programas raros.</li>
+                                <li><strong>Protección contra apagones:</strong> Usar un <strong>No-Break (UPS)</strong>, que es una batería que te da 15 minutos de energía cuando se va la luz de la CFE para guardar tu trabajo y apagar bien la PC.</li>
+                                <li><strong>Cuidado contra el clima y robos:</strong> Chapas en las puertas, extintores especiales para computadoras y poner los equipos lejos de ventanas donde entre lluvia.</li>
+                            </ul>
                         </div>
                     </div>
                 </section>
 
-                <!-- FASE 5: CIERRE, EVALUACIÓN Y METACOGNICIÓN -->
-                <section id="fase5" class="scroll-mt-20">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="step-badge bg-emerald-600 text-white">5</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 5: Cierre, Evaluación y Metacognición</h2>
+                <!-- FASE 3: EJEMPLO PASO A PASO GUIADO -->
+                <section class="slide-card p-6 border-l-4 border-l-indigo-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-indigo-600 text-white">3</span>
+                        <h2 class="text-lg font-bold text-slate-900">Fase 3: Ejemplo Paso a Paso — El Semáforo de Peligros (Matriz de Riesgo)</h2>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-3">
+                        Una <strong>Matriz de Riesgo</strong> suena muy elegante, pero en realidad es simplemente un <strong>Semáforo</strong> donde clasificamos los peligros en <strong>Bajo (Verde)</strong>, <strong>Medio (Amarillo)</strong> y <strong>Alto (Rojo)</strong>. Mira este ejemplo de una tienda de abarrotes:
+                    </p>
+
+                    <div class="bg-slate-900 text-slate-200 rounded-xl p-4 text-xs font-mono space-y-2 overflow-x-auto">
+                        <span class="text-teal-400 font-bold block">[EJEMPLO DE SEMÁFORO DE RIESGOS: ABARROTES "LA CONFIANZA"]</span>
+                        <div>🟢 <strong>RIESGO BAJO (Verde):</strong> El teclado está un poco sucio. &rarr; <em>Solución: Limpiarlo con aire comprimido el fin de semana.</em></div>
+                        <div>🟡 <strong>RIESGO MEDIO (Amarillo):</strong> Los empleados usan la misma contraseña desde hace 2 años. &rarr; <em>Solución: Cambiarla hoy mismo por una más segura.</em></div>
+                        <div>🔴 <strong>RIESGO ALTO (Rojo):</strong> La computadora donde está toda la lista de clientes que deben dinero NO tiene copia de respaldo ni regulador de luz. &rarr; <em>Solución Urgente: Hacer copia en USB/Nube hoy mismo y ponerle regulador.</em></div>
+                    </div>
+                </section>
+
+                <!-- FASE 4: SIMULADOR DIVERTIDO Y RETOS PRÁCTICOS (40% FIRMAS) -->
+                <section class="slide-card p-6 border-l-4 border-l-amber-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-amber-600 text-white">4</span>
+                        <h2 class="text-lg font-bold text-slate-900">Fase 4: Juego Interactivo y Retos Divertidos en Clase</h2>
                     </div>
 
-                    <!-- RÚBRICA OFICIAL CONALEP: AE 1.1.1 (20% SAE) -->
-                    <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-sm mb-6">
-                        <div class="flex items-center justify-between mb-4 border-b pb-3">
-                            <div>
-                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-red-100 text-red-800 uppercase font-mono">Actividad de Evaluación 1.1.1</span>
-                                <h3 class="font-bold text-slate-900 text-sm mt-1">Matriz de Valoración Oficial CONALEP (20% SAE)</h3>
-                            </div>
-                            <span class="text-xs font-extrabold text-red-600">Siglema: ASIN-03</span>
+                    <!-- JUEGO INTERACTIVO JS: TERMÓMETRO DE PELIGRO -->
+                    <div class="p-5 bg-slate-900 text-white rounded-2xl mb-6 shadow-sm">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-teal-400 font-mono"><i class="fas fa-traffic-light mr-1"></i> Simulador: El Semáforo del Detective Digital</span>
+                            <span class="text-[10px] bg-teal-500/20 text-teal-300 px-2 py-0.5 rounded">Interactivo en Vivo</span>
                         </div>
-
-                        <div class="overflow-x-auto text-[11px]">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr class="bg-slate-900 text-white">
-                                        <th class="p-2.5">Indicador</th>
-                                        <th class="p-2.5 text-center">%</th>
-                                        <th class="p-2.5">Excelente</th>
-                                        <th class="p-2.5">Bueno</th>
-                                        <th class="p-2.5">Suficiente</th>
-                                        <th class="p-2.5">Insuficiente</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-slate-200 text-slate-700">
-                                    <tr>
-                                        <td class="p-2.5 font-bold">Diagnóstico del estado de seguridad</td>
-                                        <td class="p-2.5 text-center font-bold text-red-600">30%</td>
-                                        <td class="p-2.5 bg-red-50/50">Identifica activos críticos, evalúa la Triada CIA, analiza vulnerabilidades y <strong>propone medidas correctivas inmediatas con base en estándares internacionales</strong>.</td>
-                                        <td class="p-2.5">Identifica activos críticos, evalúa la Triada CIA y analiza vulnerabilidades de la infraestructura.</td>
-                                        <td class="p-2.5">Identifica activos pero realiza un análisis superficial de vulnerabilidades.</td>
-                                        <td class="p-2.5 bg-red-50/30">Omite identificar activos o evaluar la Triada CIA.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-2.5 font-bold">Evaluación cuantitativa y cualitativa de riesgos</td>
-                                        <td class="p-2.5 text-center font-bold text-red-600">35%</td>
-                                        <td class="p-2.5 bg-red-50/50">Aplica con precisión las fórmulas SLE y ALE, construye la matriz de riesgo 5x5 y <strong>justifica financieramente la viabilidad de los controles preventivos</strong>.</td>
-                                        <td class="p-2.5">Calcula el SLE y ALE y elabora la matriz de riesgo con criterios lógicos.</td>
-                                        <td class="p-2.5">Calcula métricas de riesgo pero contiene errores aritméticos o matriz incompleta.</td>
-                                        <td class="p-2.5 bg-red-50/30">No realiza el cálculo cuantitativo de riesgos.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-2.5 font-bold">Estructura del informe técnico de diagnóstico</td>
-                                        <td class="p-2.5 text-center font-bold text-red-600">25%</td>
-                                        <td class="p-2.5 bg-red-50/50">Reporte ejecutivo formal, redacción técnica impecable, tablas comparativas y <strong>resumen ejecutivo para la alta dirección</strong>.</td>
-                                        <td class="p-2.5">Reporte técnico estructurado con todos los apartados solicitados.</td>
-                                        <td class="p-2.5">Reporte desordenado o con faltas de ortografía.</td>
-                                        <td class="p-2.5 bg-red-50/30">Entrega incompleta o fuera de tiempo.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-2.5 font-bold">Actitud y trabajo colaborativo</td>
-                                        <td class="p-2.5 text-center font-bold text-red-600">10%</td>
-                                        <td class="p-2.5 bg-red-50/50">Liderazgo proactivo, puntualidad estricta, ética profesional y <strong>resolución asertiva de problemas en equipo</strong>.</td>
-                                        <td class="p-2.5">Trabajo colaborativo adecuado y entrega puntual en tiempo y forma.</td>
-                                        <td class="p-2.5">Participación irregular en el equipo de trabajo.</td>
-                                        <td class="p-2.5 bg-red-50/30">Falta de compromiso o entrega extemporánea.</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <p class="text-xs text-slate-300 mb-3">Elige una situación real y descubre qué color del semáforo se enciende y cómo salvar el día:</p>
+                        <div class="mb-3">
+                            <select id="simSituacion" class="w-full p-2.5 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white" onchange="jugarSemaforo()">
+                                <option value="usb">1. Encontraste una memoria USB tirada en el patio de la escuela y la conectas a tu laptop para ver de quién es.</option>
+                                <option value="wifi">2. Te conectas al Wi-Fi gratis del zócalo sin contraseña y entras a la app del banco de tu papá.</option>
+                                <option value="nobreak">3. Se empieza a nublar muy feo con truenos en Chilpancingo y guardas tu tarea en Google Drive.</option>
+                                <option value="juego">4. Descargas un juego gratis de una página llena de anuncios parpadeantes que te pide desactivar el antivirus.</option>
+                            </select>
+                        </div>
+                        <div id="simSemaforoOut" class="p-3.5 bg-slate-800 rounded-xl text-xs leading-relaxed">
+                            <!-- Generado por JS -->
                         </div>
                     </div>
 
-                    <!-- Metacognición -->
-                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700">
-                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-brain text-red-600 mr-1.5"></i> Pregunta de Metacognición Disruptiva:</h4>
-                        <p>
-                            "¿Por qué un análisis cuantitativo de riesgos riguroso (ALE) transforma la seguridad informática de ser vista como un 'gasto innecesario' a convertirse en una inversión estratégica indispensable para cualquier empresa?"
+                    <!-- ACTIVIDADES DIVERTIDAS Y PRÁCTICAS (PORTAFOLIO 40%) -->
+                    <div class="space-y-3 text-xs">
+                        <h3 class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+                            <i class="fas fa-gamepad text-teal-600"></i> 4 Prácticas Divertidas para tu Portafolio de Firmas (40%)
+                        </h3>
+                        <div class="p-3.5 bg-white rounded-xl border border-slate-200 hover:border-teal-300 transition">
+                            <span class="font-bold text-teal-700 block mb-0.5">🎨 Práctica 1: El Folleto "Anti-Estafas para mis Abuelitos y Tíos" (Tríptico)</span>
+                            Diseña en una hoja doblada en 3 partes (o en Canva/LibreOffice) una guía súper visual con dibujos para enseñar a tu familia a cuidar sus 3 pilares (Confidencialidad, Integridad y Disponibilidad) y no caer en estafas de WhatsApp.
+                        </div>
+                        <div class="p-3.5 bg-white rounded-xl border border-slate-200 hover:border-teal-300 transition">
+                            <span class="font-bold text-sky-700 block mb-0.5">🕵️‍♂️ Práctica 2: Caza de Peligros en el Salón o Laboratorio</span>
+                            En equipos de 3, recorran el laboratorio de cómputo como inspectores: ¿Hay cables sueltos donde alguien se pueda tropezar? ¿Hay reguladores de luz? ¿Las computadoras tienen clave o cualquiera entra? Anoten 5 hallazgos en su libreta.
+                        </div>
+                        <div class="p-3.5 bg-white rounded-xl border border-slate-200 hover:border-teal-300 transition">
+                            <span class="font-bold text-indigo-700 block mb-0.5">🎭 Práctica 3: El Reto del "Mensaje Trampa" (Roleplay en Clase)</span>
+                            Un equipo inventa un mensaje falso súper convincente (ej. "Ganaste un celular" o "Se bloqueó tu cuenta escolar") y el resto del salón debe encontrar las 3 pistas que demuestran que es un engaño.
+                        </div>
+                        <div class="p-3.5 bg-white rounded-xl border border-slate-200 hover:border-teal-300 transition">
+                            <span class="font-bold text-emerald-700 block mb-0.5">🗺️ Práctica 4: Mapa Visual de los "Villanos Digitales"</span>
+                            Elabora un mapa mental o cuadro sinóptico ilustrado donde dibujes como personajes a los riesgos lógicos (el Virus, el Secuestrador Ransomware, el Estafador Phishing) y cómo derrotarlos.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 5: PROYECTO PRÁCTICO OFICIAL (AE 1.1.1 - 15% SAE) Y PLANTILLA WORD -->
+                <section class="slide-card p-6 border-l-4 border-l-emerald-500">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <span class="badge-step bg-emerald-600 text-white">5</span>
+                            <h2 class="text-lg font-bold text-slate-900">Fase 5: Misión Oficial de Evaluación 1.1.1 (15% SAE)</h2>
+                        </div>
+                        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">Vale 15% SAE</span>
+                    </div>
+
+                    <div class="space-y-3 text-xs text-slate-700">
+                        <p class="leading-relaxed">
+                            <strong>¿En qué consiste tu proyecto de esta misión?</strong><br>
+                            En equipo, elijan un pequeño negocio real de su colonia (una papelería, ciber, farmacia, tienda de abarrotes o el laboratorio de la escuela) y llenen este <strong>Reporte de Inspector Digital</strong> que incluye: 1) Los datos de su computadora (Ficha técnica), 2) Una pequeña entrevista al encargado (Cuestionario) y 3) Su Semáforo de Riesgos (Matriz).
                         </p>
+
+                        <!-- PLANTILLA WORD FÁCIL DE COPIAR -->
+                        <div class="template-box p-4 my-3 space-y-2">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs font-bold text-teal-900 flex items-center gap-1.5">
+                                    <i class="fas fa-file-word text-blue-600 text-sm"></i> Plantilla Lista para Copiar y Pegar en Word / Writer
+                                </span>
+                                <button onclick="copiarPlantilla11()" class="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-[11px] font-bold transition shadow-sm flex items-center gap-1.5">
+                                    <i class="fas fa-copy"></i> Copiar Plantilla para mi Tarea
+                                </button>
+                            </div>
+                            <pre id="plantillaWord11" class="p-3 bg-white rounded-xl border border-slate-200 text-[10px] font-mono text-slate-700 overflow-x-auto leading-relaxed">
+======================================================================
+CONALEP PLANTEL CHILPANCINGO — REPORTE DE INSPECTOR DIGITAL (AE 1.1.1)
+======================================================================
+Nombre de los Detectives (Alumnos): __________________________________
+Grupo: _________   Fecha: _____________   Lugar visitado: ____________
+
+PARTE 1: FICHA TÉCNICA DE LA COMPUTADORA INSPECCIONADA
+- ¿Qué equipo es?: [ ] Computadora de Escritorio   [ ] Laptop
+- Sistema que usa: [ ] Windows 10/11   [ ] Linux   [ ] Mac
+- Memoria RAM y Disco: ___________________
+- ¿Tiene Antivirus instalado?: [ ] Sí  [ ] No  (¿Cuál?: _____________)
+- ¿Tiene regulador o No-Break contra apagones?: [ ] Sí  [ ] No
+
+PARTE 2: ENTREVISTA RÁPIDA AL ENCARGADO (CUESTIONARIO)
+1. ¿La computadora tiene contraseña para iniciar sesión?  [ ] Sí  [ ] No
+2. ¿Cualquier persona puede instalar programas o juegos? [ ] Sí  [ ] No
+3. ¿Hacen copias de seguridad de sus archivos importantes?[ ] Sí  [ ] No
+4. ¿Les ha entrado algún virus o se les ha borrado info?  [ ] Sí  [ ] No
+5. ¿Las carpetas importantes tienen permiso restringido?  [ ] Sí  [ ] No
+
+PARTE 3: SEMÁFORO DE PELIGROS DETECTADOS (MATRIZ DE RIESGO)
+----------------------------------------------------------------------
+| Peligro que encontramos        | Tipo (Físico o Lógico) | Semáforo |
+|--------------------------------|------------------------|----------|
+| 1. No tienen copia de respaldo | Lógico (Digital)       | ROJO 🔴  |
+| 2. No hay No-Break para la luz | Físico (Eléctrico)     | ROJO 🔴  |
+| 3. Contraseña muy fácil (1234) | Lógico (Cuentas)       | AMARILLO🟡|
+----------------------------------------------------------------------
+
+PARTE 4: NUESTROS 3 CONSEJOS PARA MEJORAR SU SEGURIDAD:
+1. ___________________________________________________________________
+2. ___________________________________________________________________
+3. ___________________________________________________________________
+======================================================================</pre>
+                        </div>
                     </div>
                 </section>
 
-                <!-- Navegación Inferior -->
+                <!-- Navegación de Pie de Página -->
                 <div class="flex justify-between items-center border-t border-slate-200 pt-6">
                     <a href="index.html" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
-                        <i class="fas fa-arrow-left mr-1"></i> Portada del Módulo
+                        <i class="fas fa-arrow-left mr-1"></i> Volver al Inicio
                     </a>
-                    <a href="tema1_2.html" class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition shadow-sm">
-                        Siguiente: RA 1.2 (Políticas e ISO 27001) <i class="fas fa-arrow-right ml-1"></i>
+                    <a href="tema1_2.html" class="px-4 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs transition shadow-sm">
+                        Siguiente: Misión 1.2 (El Plan de Seguridad) <i class="fas fa-arrow-right ml-1"></i>
                     </a>
                 </div>
 
             </main>
 
-            <!-- COLUMNA 3: Barra Lateral Derecha -->
-            <aside class="lg:col-span-2">
+            <!-- COLUMNA 3: Checklist para el Alumno -->
+            <aside class="lg:col-span-3">
                 <div class="sticky top-16 space-y-6">
-
-                    <!-- TOC Interactivo -->
-                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm">
-                        <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">En esta Página</h4>
-                        <ul class="space-y-2 text-xs text-slate-600">
-                            <li><a href="#fase1" class="hover:text-red-600 transition block">1. Caso Real Colonial Pipeline</a></li>
-                            <li><a href="#fase2" class="hover:text-red-600 transition block">2. Triada CIA & Cálculo ALE</a></li>
-                            <li><a href="#fase3" class="hover:text-red-600 transition block">3. Script Python de Riesgo</a></li>
-                            <li><a href="#fase4" class="hover:text-red-600 transition block">4. Calculadora ALE en Vivo</a></li>
-                            <li><a href="#fase5" class="hover:text-red-600 transition block">5. Rúbrica Oficial AE 1.1.1</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Cuadro de Evidencia SAE -->
-                    <div class="p-4 bg-gradient-to-br from-red-50 to-rose-50 border border-red-200 rounded-2xl text-xs space-y-2">
-                        <div class="flex items-center gap-2 text-red-900 font-bold text-xs">
-                            <i class="fas fa-triangle-exclamation text-red-600"></i> Entregable SAE (AE 1.1.1)
+                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm text-xs">
+                        <div class="flex items-center gap-2 text-teal-900 font-bold mb-2">
+                            <i class="fas fa-flag-checkered text-teal-600"></i> Tu Meta en esta Misión
                         </div>
-                        <ul class="text-[11px] text-slate-700 list-disc ml-4 space-y-1">
-                            <li>Diagnóstico técnico de seguridad.</li>
-                            <li>Inventario valorado de activos.</li>
-                            <li>Cálculo financiero SLE y ALE.</li>
-                            <li>Matriz 5x5 de riesgos ISO 27005.</li>
+                        <ul class="text-[11px] text-slate-600 list-disc ml-4 space-y-1.5 mb-3">
+                            <li>Explicar con tus palabras los 3 pilares de seguridad.</li>
+                            <li>Diferenciar un peligro físico de uno digital.</li>
+                            <li>Hacer el folleto anti-estafas para tu familia.</li>
+                            <li>Entregar tu Reporte de Inspector Digital (15% SAE).</li>
                         </ul>
-                        <div class="pt-2 border-t border-red-200 text-center">
-                            <span class="text-red-700 font-extrabold text-sm">Ponderación Oficial: 20% SAE</span>
+                        <div class="p-2.5 bg-teal-50 rounded-xl text-center font-bold text-teal-800">
+                            Misión 1.1 • 15% SAE
                         </div>
                     </div>
-
                 </div>
             </aside>
 
@@ -498,44 +388,41 @@
 
     <!-- Script del Simulador JS -->
     <script>
-        function calcularRiesgoALE() {
-            const av = parseFloat(document.getElementById('simAV').value);
-            const ef = parseFloat(document.getElementById('simEF').value) / 100.0;
-            const aro = parseFloat(document.getElementById('simARO').value);
-            const outElem = document.getElementById('simRiskOutput');
+        function jugarSemaforo() {
+            const val = document.getElementById('simSituacion').value;
+            const out = document.getElementById('simSemaforoOut');
 
-            if (isNaN(av) || isNaN(ef) || isNaN(aro)) {
-                outElem.innerHTML = `<span class="text-red-400">Ingresa valores numéricos válidos.</span>`;
-                return;
-            }
-
-            const sle = av * ef;
-            const ale = sle * aro;
-
-            let nivelRiesgo = "";
-            let color = "text-emerald-300";
-
-            if (ale > 500000) {
-                nivelRiesgo = "CRÍTICO (Exige mitigación inmediata con controles redundantes)";
-                color = "text-red-400";
-            } else if (ale > 150000) {
-                nivelRiesgo = "ALTO (Requiere plan de tratamiento y controles técnicos)";
-                color = "text-amber-300";
+            if (val === 'usb') {
+                out.innerHTML = `
+                    <div class="text-red-400 font-bold mb-1">🔴 SEMÁFORO ROJO (Riesgo Alto - Lógico)</div>
+                    <p class="text-slate-200"><strong>¿Por qué es peligroso?</strong> Muchos virus se programan para activarse solitos apenas conectas la memoria USB. <br><strong>Consejo de Guardián:</strong> Analízala primero con el antivirus sin abrir ninguna carpeta.</p>
+                `;
+            } else if (val === 'wifi') {
+                out.innerHTML = `
+                    <div class="text-red-400 font-bold mb-1">🔴 SEMÁFORO ROJO (Riesgo Alto - Robo de Datos)</div>
+                    <p class="text-slate-200"><strong>¿Por qué es peligroso?</strong> En una red Wi-Fi abierta sin candado, un intruso conectado a la misma red puede interceptar lo que envías. <br><strong>Consejo de Guardián:</strong> Nunca abras apps de bancos en redes públicas; usa tus datos móviles.</p>
+                `;
+            } else if (val === 'nobreak') {
+                out.innerHTML = `
+                    <div class="text-emerald-400 font-bold mb-1">🟢 SEMÁFORO VERDE (Excelente Prevención)</div>
+                    <p class="text-slate-200"><strong>¡Muy bien hecho!</strong> Guardar tu tarea en la nube asegura la <strong>Disponibilidad</strong>. Si se va la luz en tu colonia, tu archivo sigue intacto en Internet.</p>
+                `;
             } else {
-                nivelRiesgo = "MODERADO / ACEPTABLE (Monitoreo periódico)";
-                color = "text-emerald-300";
+                out.innerHTML = `
+                    <div class="text-red-400 font-bold mb-1">🔴 SEMÁFORO ROJO (Riesgo Extremo de Secuestro de Archivos)</div>
+                    <p class="text-slate-200"><strong>¡Trampa detectada!</strong> Ningún juego legítimo te pide apagar tu antivirus. Esa es la forma #1 en que entra el <em>Ransomware</em> a las computadoras de los estudiantes.</p>
+                `;
             }
-
-            outElem.innerHTML = `
-                &bull; Valor del Activo (AV): <strong class="text-white">$${av.toLocaleString('es-MX', {minimumFractionDigits: 2})} MXN</strong><br>
-                &bull; SLE (Pérdida por Evento Único = AV &times; ${ef * 100}%): <span class="text-amber-300 font-bold">$${sle.toLocaleString('es-MX', {minimumFractionDigits: 2})} MXN</span><br>
-                &bull; ALE (Pérdida Anual Esperada = SLE &times; ${aro} ocurrencias/año): <span class="${color} font-extrabold text-sm">$${ale.toLocaleString('es-MX', {minimumFractionDigits: 2})} MXN</span><br>
-                &bull; Clasificación de Riesgo: <span class="${color} font-bold">${nivelRiesgo}</span><br>
-                ------------------------------------------------------------<br>
-                <span class="text-red-300 font-bold">&check; Regla de Inversión Financiera:</span> El presupuesto anual para salvaguardas (firewall, EDR, backups) NO debe superar los <strong class="text-white">$${ale.toLocaleString('es-MX', {minimumFractionDigits: 2})} MXN</strong>.
-            `;
         }
-        window.onload = calcularRiesgoALE;
+
+        function copiarPlantilla11() {
+            const txt = document.getElementById('plantillaWord11').innerText;
+            navigator.clipboard.writeText(txt).then(() => {
+                alert('¡Listo! Ya se copió la plantilla. Ábrela y pégala en Word o LibreOffice Writer para llenarla con tu equipo.');
+            });
+        }
+
+        window.onload = jugarSemaforo;
     </script>
 </body>
 </html>

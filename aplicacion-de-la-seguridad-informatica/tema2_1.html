@@ -3,504 +3,362 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RA 2.1: Defensa Perimetral, Firewalls iptables y VPNs | ASIN-03 CONALEP</title>
+    <title>Misión 2.1: Poniendo Candados a tu Compu y al Wi-Fi | ASIN-21</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        primary: '#dc2626',
-                        dark: '#0f172a',
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        }
                     }
                 }
             }
         }
     </script>
     <style>
-        body { font-family: 'Outfit', sans-serif; background-color: #ffffff; color: #1e293b; }
-        .lll-info { background-color: #fef2f2; border-left: 4px solid #ef4444; }
-        .lll-warning { background-color: #fffbeb; border-left: 4px solid #f59e0b; }
-        .lll-tip { background-color: #f0fdf4; border-left: 4px solid #10b981; }
-        .lll-danger { background-color: #fef2f2; border-left: 4px solid #b91c1c; }
-        .diff-easy { background-color: #dcfce7; color: #15803d; }
-        .diff-med { background-color: #fef3c7; color: #b45309; }
-        .diff-hard { background-color: #fee2e2; color: #b91c1c; }
-        .step-badge { width: 28px; height: 28px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; }
-    </style>
-    <style id="platform-wide-ui-override">
-        /* === Expansión de Ancho y Eliminación de Tarjetas Anidadas (Toda la Plataforma) === */
-        .concept-card,
-        .topic-container {
-            background: transparent !important;
-            border: none !important;
-            border-bottom: 1px solid #e2e8f0 !important;
-            border-radius: 0 !important;
-            box-shadow: none !important;
-            padding: 0 0 2.25rem 0 !important;
-            margin-bottom: 2.25rem !important;
-        }
-        .pedagogy-step {
-            background: transparent !important;
-            border: none !important;
-            border-left: 3px solid #cbd5e1 !important;
-            border-radius: 0 !important;
-            box-shadow: none !important;
-            padding: 0.25rem 0 0.25rem 1.25rem !important;
-            margin-bottom: 1.5rem !important;
-        }
-        /* Evitar redundancia de tarjetas dentro de tarjetas en toda la plataforma */
-        main div[class*="rounded-"][class*="border"] div[class*="rounded-"][class*="border"] {
-            box-shadow: none !important;
-        }
-        main div[class*="rounded-"][class*="border"] > div[class*="bg-slate-50"][class*="rounded-"][class*="border"]:has(div[class*="rounded-"][class*="border"]) {
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-            padding: 0.25rem 0 !important;
-        }
-        /* Grafos SVG e imágenes 100% responsivos sin recortes */
-        main svg {
-            max-width: 100% !important;
-            height: auto !important;
-        }
-        /* Laterales compactos y elegantes */
-        aside .sticky {
-            padding: 0.875rem !important;
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; color: #0f172a; }
+        .slide-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1.25rem; }
+        .badge-step { width: 32px; height: 32px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; }
+        .template-box { background: #f8fafc; border: 2px dashed #7dd3fc; border-radius: 1rem; }
     </style>
 </head>
-<body class="bg-white text-slate-800 antialiased selection:bg-red-100 selection:text-red-900">
+<body class="antialiased selection:bg-sky-100 selection:text-sky-900">
 
-    <!-- Top Bar Institucional -->
-    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800 sticky top-0 z-50">
-        <div class="max-w-[1600px] mx-auto flex justify-between items-center">
+    <!-- Top Bar Guía de Clase -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2.5 px-4 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <span class="font-semibold text-white"><i class="fas fa-shield-halved text-red-500 mr-1.5"></i> CONALEP — PT-B en Informática (Blue Team Lab)</span>
+                <span class="font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-lock text-sky-400"></i> Misión 2.1: Poniendo Candados a tu Compu y al Wi-Fi
+                </span>
                 <span class="text-slate-600 hidden sm:inline">|</span>
-                <span class="text-slate-400 hidden sm:inline">Módulo: <strong>ASIN-03</strong></span>
+                <span class="text-sky-400 font-mono hidden sm:inline">2do Parcial • ASIN-21 (23 Horas)</span>
             </div>
             <div class="flex items-center space-x-4">
-                <a href="index.html" class="text-xs text-red-400 hover:text-red-300 transition flex items-center gap-1 font-semibold">
-                    <i class="fas fa-arrow-left"></i> Índice del Módulo
-                </a>
-                <span class="text-slate-600">|</span>
-                <a href="../index.html" class="text-xs text-emerald-400 hover:text-emerald-300 transition font-semibold">
-                    Portal CONALEP
+                <a href="index.html" class="text-xs text-sky-300 hover:text-white transition flex items-center gap-1 font-semibold">
+                    <i class="fas fa-arrow-left"></i> Índice de Misiones
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- Layout en 3 Columnas (White UI Luis Llamas) -->
-    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- Layout Presentador en 3 Columnas -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
-            <!-- COLUMNA 1: Menú Lateral Izquierdo -->
-            <aside class="lg:col-span-2">
+            <!-- COLUMNA 1: Datos Oficiales y Navegación -->
+            <aside class="lg:col-span-3">
                 <div class="sticky top-16 space-y-6">
-                    <div class="p-4 bg-red-50/60 border border-red-200 rounded-2xl">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
-                                <i class="fas fa-lock"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-slate-900 text-sm leading-tight">Unidad 2</h3>
-                                <p class="text-[11px] text-slate-500">Defensa Perimetral</p>
-                            </div>
-                        </div>
-                        <div class="text-[11px] space-y-1 text-slate-600 border-t border-red-200 pt-2.5">
-                            <div class="flex justify-between"><span>Duración Total:</span> <strong class="text-slate-800">14 Horas</strong></div>
-                            <div class="flex justify-between"><span>Ponderación:</span> <strong class="text-red-600 font-bold">25% SAE (Hetero)</strong></div>
-                            <div class="flex justify-between"><span>Semanas:</span> <strong class="text-slate-800 font-mono">9 a 12</strong></div>
+                    <div class="p-4 bg-sky-50/70 border border-sky-200 rounded-2xl">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-sky-800 font-mono">Programa Oficial CONALEP</span>
+                        <h3 class="font-extrabold text-slate-900 text-sm mt-1">Resultado de Aprendizaje 2.1</h3>
+                        <p class="text-xs text-slate-700 mt-1 leading-relaxed">
+                            <strong>2.1.</strong> Instala herramientas informáticas acorde con los estándares y buenas prácticas de seguridad en cómputo.
+                        </p>
+                        <div class="mt-3 pt-3 border-t border-sky-200 text-[11px] text-slate-600 flex justify-between">
+                            <span>Duración: <strong class="text-slate-800">23 Horas</strong></span>
+                            <span>Evidencia: <strong class="text-sky-700 font-mono">AE 2.1.1 (30%)</strong></span>
                         </div>
                     </div>
 
-                    <!-- Navegación de RAs -->
-                    <div class="border border-slate-200 rounded-2xl p-4 bg-white">
-                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Resultados de Aprendizaje</h4>
-                        <nav class="space-y-1.5 text-xs">
-                            <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-triangle-exclamation mr-1.5 text-slate-400"></i> RA 1.1: Evaluación de Riesgos</span>
-                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">14h • 20%</span>
+                    <!-- Contenido Formativo Oficial -->
+                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm text-xs">
+                        <h4 class="font-bold text-slate-900 mb-2 flex items-center gap-1.5 text-xs text-sky-800">
+                            <i class="fas fa-book-open text-sky-600"></i> Lo que aprenderemos hoy (Pág. 27)
+                        </h4>
+                        <ul class="space-y-1.5 text-[11px] text-slate-600 list-disc ml-4">
+                            <li><strong>A. Nuestra Guía Paso a Paso:</strong> Cómo hacer un manual con capturas de pantalla.</li>
+                            <li><strong>B. Blindar tu Compu (Seguridad Local):</strong> Actualizaciones, cuentas de usuario, escudo Firewall, Antivirus y poner candado secreto a carpetas (Cifrado).</li>
+                            <li><strong>C. Blindar el Internet (Seguridad en Red):</strong> Cuidar el módem, detector de intrusos y el candadito verde de las páginas web (HTTPS).</li>
+                        </ul>
+                    </div>
+
+                    <!-- Menú de Misiones -->
+                    <div class="border border-slate-200 rounded-2xl p-4 bg-white shadow-sm">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Misiones del Semestre</h4>
+                        <nav class="space-y-1 text-xs">
+                            <a href="tema1_1.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.1 Cazadores de Riesgos</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">15h</span>
                             </a>
-                            <a href="tema1_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-file-contract mr-1.5 text-slate-400"></i> RA 1.2: Políticas e ISO 27001</span>
-                                <span class="diff-easy px-2 py-0.5 rounded-full text-[10px] font-mono">18h • 20%</span>
+                            <a href="tema1_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>1.2 El Plan de Seguridad</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">12h</span>
                             </a>
-                            <a href="tema2_1.html" class="flex items-center justify-between p-2 rounded-xl bg-red-50 text-red-800 font-bold border border-red-200">
-                                <span><i class="fas fa-chevron-right mr-1.5 text-[10px]"></i> RA 2.1: Firewalls & DMZ</span>
-                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">14h • 25%</span>
+                            <a href="tema2_1.html" class="flex items-center justify-between p-2 rounded-xl bg-sky-50 text-sky-900 font-bold border border-sky-200">
+                                <span>2.1 Candados y Escudos</span>
+                                <span class="text-[10px] bg-sky-200 text-sky-900 px-1.5 py-0.5 rounded font-mono">23h</span>
                             </a>
-                            <a href="tema2_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-chart-line mr-1.5 text-slate-400"></i> RA 2.2: Monitoreo SIEM</span>
-                                <span class="diff-med px-2 py-0.5 rounded-full text-[10px] font-mono">14h • 20%</span>
+                            <a href="tema2_2.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>2.2 Caja Negra y Vigilancia</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">10h</span>
                             </a>
-                            <a href="tema2_3.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
-                                <span><i class="fas fa-server mr-1.5 text-slate-400"></i> RA 2.3: BCP, DRP & Backups</span>
-                                <span class="diff-hard px-2 py-0.5 rounded-full text-[10px] font-mono">12h • 15%</span>
+                            <a href="tema2_3.html" class="flex items-center justify-between p-2 rounded-xl text-slate-600 hover:bg-slate-50 transition">
+                                <span>2.3 Rescate ante Desastres</span>
+                                <span class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded font-mono">12h</span>
                             </a>
                         </nav>
-                    </div>
-
-                    <!-- Fases Pedagógicas -->
-                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-2">
-                        <h4 class="font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-2">5 Fases de la Cátedra</h4>
-                        <a href="#fase1" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-red-600">1.</span> Apertura & HackLab</a>
-                        <a href="#fase2" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-sky-600">2.</span> iptables, DMZ & VPNs</a>
-                        <a href="#fase3" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-indigo-600">3.</span> Script Hardening en Bash</a>
-                        <a href="#fase4" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-amber-600">4.</span> Emulador de Firewall</a>
-                        <a href="#fase5" class="block text-slate-600 hover:text-red-600"><span class="font-bold text-emerald-600">5.</span> Rúbrica Oficial AE 2.1.1</a>
                     </div>
                 </div>
             </aside>
 
-            <!-- COLUMNA 2: Contenido Didáctico Central -->
-            <main class="lg:col-span-8 space-y-12">
+            <!-- COLUMNA 2: Presentación de Clase y Prácticas Divertidas -->
+            <main class="lg:col-span-6 space-y-10">
 
-                <!-- Header de Unidad -->
+                <!-- Header de la Clase -->
                 <header class="border-b border-slate-200 pb-6">
-                    <div class="flex items-center gap-2 text-xs text-red-600 font-bold uppercase tracking-wider mb-2">
-                        <span>Unidad 2</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Resultado de Aprendizaje 2.1</span>
+                    <div class="flex items-center gap-2 text-xs text-sky-600 font-bold uppercase tracking-wider mb-2">
+                        <span>Seguridad Informática</span> <i class="fas fa-chevron-right text-[10px] text-slate-400"></i> <span>Misión 2.1 (Vale 30%)</span>
                     </div>
                     <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-3">
-                        Mecanismos de Defensa Perimetral, Firewalls iptables, Zonas DMZ y VPNs
+                        Manos a la Obra: Cómo Ponerle Escudos y Candados a tu Computadora y a tu Red
                     </h1>
                     <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                        Configuración avanzada de defensa de red: filtrado de paquetes con estado (Stateful Inspection) mediante <code>iptables</code> y pfSense, aislamiento de servidores públicos en Zonas Desmilitarizadas (DMZ), interconexión cifrada punto a punto con túneles IPsec / OpenVPN, y autenticación centralizada mediante 802.1X y servidores RADIUS.
+                        ¡Llegó el momento de la práctica real! En esta misión aprenderás a configurar las defensas que ya vienen incluidas en tu computadora y a proteger tus carpetas con una clave secreta para que nadie pueda husmear en tus archivos.
                     </p>
 
-                    <!-- Imagen Libre Unsplash -->
                     <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm mb-4">
-                        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=80" alt="Defensa Perimetral y Servidores Firewall" class="w-full h-48 sm:h-64 object-cover">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80" alt="Candados Digitales y Protección" class="w-full h-48 sm:h-64 object-cover">
                         <div class="bg-slate-50 px-4 py-2 border-t border-slate-200 text-[11px] text-slate-500 flex justify-between">
-                            <span><i class="fas fa-camera mr-1"></i> Imagen Libre: Enrutamiento Seguro, Firewalls y Conectividad Perimetral</span>
+                            <span><i class="fas fa-camera mr-1"></i> Imagen Libre: Configuración Práctica de Escudos Digitales</span>
                             <span>Unsplash Free License</span>
                         </div>
                     </div>
-
-                    <div class="flex flex-wrap gap-2 text-xs">
-                        <span class="px-2.5 py-1 rounded-lg bg-red-100 text-red-800 font-bold font-mono">14 Horas (Semanas 9 a 12)</span>
-                        <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold">Ponderación: 25% SAE (Heteroevaluación)</span>
-                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-semibold">Evidencia: AE 2.1.1 (Defensa Perimetral)</span>
-                    </div>
                 </header>
 
-                <!-- FASE 1: APERTURA DISRUPTIVA -->
-                <section id="fase1" class="scroll-mt-20">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="step-badge bg-red-600 text-white">1</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 1: Apertura (Activación y Reto Provocador)</h2>
+                <!-- FASE 1: APERTURA (HISTORIA CERCANA) -->
+                <section class="slide-card p-6 border-l-4 border-l-sky-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-sky-600 text-white">1</span>
+                        <h2 class="text-lg font-bold text-slate-900">Fase 1: Apertura — El Misterio de la Memoria USB Perdida en el Transporte</h2>
                     </div>
-
-                    <div class="lll-info p-5 rounded-2xl mb-6">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="font-bold text-red-900 text-sm flex items-center gap-2">
-                                <i class="fas fa-network-wired text-red-600"></i> Caso Real: Escaneo de Puertos y Ataques de Botnets Automatizadas
-                            </h3>
-                            <span class="px-2 py-0.5 rounded bg-red-200 text-red-900 text-[10px] font-bold">HackLab #03</span>
-                        </div>
-                        <p class="text-xs text-slate-700 leading-relaxed mb-3">
-                            En cuanto un servidor Linux con IP pública se enciende en la nube, recibe un promedio de <strong>30 intentos de escaneo y fuerza bruta por minuto</strong> en el puerto SSH (22). Si la política del firewall está configurada en <code>ACCEPT</code> por omisión o el puerto 22 está abierto sin rate limiting, el servidor será vulnerado e integrado a una red de botnets en menos de 2 horas.
-                        </p>
-                        <div class="p-3 bg-white rounded-xl border border-red-200 text-xs font-mono text-red-950">
-                            <strong>🔥 Regla de Oro Blue Team:</strong> "Política por Defecto DROP: Todo lo que no esté explícitamente permitido, está terminantemente PROHIBIDO."
-                        </div>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4">
+                        Sofía, alumna de 3er semestre, llevaba en su mochila su memoria USB con su proyecto final, fotos familiares y un documento con las contraseñas de su correo. Al bajar de la combi rumbo al CONALEP, la USB se le cayó del bolsillo.
+                        <br><br>
+                        Si cualquier persona la encuentra y la conecta a su computadora, ¿podrá ver todo lo de Sofía? <strong>¡Sí, a menos que Sofía le haya puesto un candado digital (Cifrado)!</strong> Hoy aprenderás cómo poner ese candado invisible a tus archivos y carpetas.
+                    </p>
+                    <div class="p-3 bg-sky-50 rounded-xl border border-sky-200 text-xs font-semibold text-sky-950 flex items-center gap-2">
+                        <i class="fas fa-key text-sky-600 text-base"></i>
+                        <span><strong>¿Qué es "Cifrar"?</strong> Es revolver las letras de un archivo como si fuera un idioma extraterrestre secreto; solo vuelve a ser legible cuando escribes tu contraseña correcta.</span>
                     </div>
                 </section>
 
-                <!-- FASE 2: DESARROLLO CONCEPTUAL -->
-                <section id="fase2" class="scroll-mt-20">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="step-badge bg-sky-600 text-white">2</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 2: Desarrollo Conceptual (Tablas iptables, DMZ y Túneles VPN)</h2>
+                <!-- FASE 2: DESARROLLO CONCEPTUAL (EXPLICADO FÁCIL) -->
+                <section class="slide-card p-6 border-l-4 border-l-teal-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-teal-600 text-white">2</span>
+                        <h2 class="text-lg font-bold text-slate-900">Fase 2: Las 3 Herramientas que todo Estudiante debe Dominar</h2>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs mb-6">
-                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
-                            <strong class="text-red-700 block text-sm"><i class="fas fa-filter mr-1"></i> Cadenas de iptables</strong>
-                            <p class="text-slate-600 text-[11px]">
-                                <strong>INPUT:</strong> Tráfico dirigido al propio host.<br>
-                                <strong>FORWARD:</strong> Tráfico enrutado a través del firewall (DMZ/LAN).<br>
-                                <strong>OUTPUT:</strong> Tráfico originado por el firewall.
+                    <div class="space-y-4 text-xs">
+                        <!-- Subtema A -->
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-sky-900 block mb-1.5 font-bold text-sm"><i class="fas fa-camera-retro text-sky-600 mr-1"></i> Subtema A: ¿Cómo se hace un Manual de Instalación Fácil?</strong>
+                            <p class="text-slate-600 leading-relaxed text-[11px]">
+                                Un buen manual técnico no lleva rollos mareadores. Es como una receta de cocina con 3 partes: <strong>1. ¿Qué necesito antes de empezar?</strong> (ej. tener Windows 10/11 y 2 GB libres), <strong>2. Pasos numerados con capturas de pantalla</strong> señalando con flechitas rojas dónde dar clic, y <strong>3. ¿Cómo lo configuro para que quede seguro?</strong>
                             </p>
                         </div>
-                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
-                            <strong class="text-indigo-700 block text-sm"><i class="fas fa-shield mr-1"></i> Arquitectura DMZ</strong>
-                            <p class="text-slate-600 text-[11px]">
-                                Aísla servidores Web (80/443) y DNS (53). Si el servidor web es comprometido, el atacante <strong>no puede saltar a la base de datos de la LAN interna</strong>.
-                            </p>
+
+                        <!-- Subtema B -->
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-teal-900 block mb-1.5 font-bold text-sm"><i class="fas fa-laptop-medical text-teal-600 mr-1"></i> Subtema B: Los 5 Escudos Dentro de tu Computadora (Configuración Local)</strong>
+                            <ul class="space-y-1.5 text-slate-600 text-[11px] list-disc ml-4">
+                                <li><strong>1. Actualizaciones Automáticas:</strong> Son "vacunas" gratuitas que manda Windows o Linux para tapar agujeros por donde entran los virus nuevos. ¡Nunca las apagues!</li>
+                                <li><strong>2. Cuentas de Usuario:</strong> Crear una cuenta de <em>Invitado</em> para cuando prestes tu compu a tu primo o amigo.</li>
+                                <li><strong>3. El Policía en la Puerta (Firewall Local):</strong> Es una pared invisible que vigila qué programas quieren conectarse a Internet sin tu permiso y les cierra la puerta.</li>
+                                <li><strong>4. El Médico Guardián (Antivirus y Antispyware):</strong> Revisa cada archivo que descargas o cada USB que conectas para atrapar virus y programas espía.</li>
+                                <li><strong>5. Candado Secreto a Carpetas (Cifrado):</strong> Usar programas gratuitos como <em>7-Zip</em> (con contraseña AES-256) o <em>BitLocker</em> para ponerle clave a tus carpetas privadas.</li>
+                            </ul>
                         </div>
-                        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
-                            <strong class="text-emerald-700 block text-sm"><i class="fas fa-key mr-1"></i> VPNs & 802.1X RADIUS</strong>
-                            <p class="text-slate-600 text-[11px]">
-                                Cifrado de túnel AES-256 (IPsec/OpenVPN) y autenticación de puertos de switch mediante certificados y credenciales de usuario centralizadas.
-                            </p>
-                        </div>
-                    </div>
-                </section>
 
-                <!-- FASE 3: DEMOSTRACIÓN Y MODELADO PASO A PASO -->
-                <section id="fase3" class="scroll-mt-20">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="step-badge bg-indigo-600 text-white">3</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 3: Script de Hardening Perimetral en Linux Bash</h2>
-                    </div>
-
-                    <div class="bg-slate-900 text-slate-200 rounded-xl p-5 text-xs font-mono mb-4 overflow-x-auto space-y-2">
-                        <span class="text-emerald-400 font-bold block">[SCRIPT BASH: CONFIGURACIÓN SEGURA DE FIREWALL IPTABLES]</span>
-                        <div class="text-slate-300">
-                            #!/bin/bash<br>
-                            <span class="text-slate-400"># 1. Limpiar todas las reglas previas</span><br>
-                            iptables -F && iptables -X && iptables -t nat -F<br>
-                            <br>
-                            <span class="text-amber-300"># 2. Establecer Política por Defecto DROP (Bloqueo Total)</span><br>
-                            iptables -P INPUT DROP<br>
-                            iptables -P FORWARD DROP<br>
-                            iptables -P OUTPUT ACCEPT<br>
-                            <br>
-                            <span class="text-sky-300"># 3. Permitir Loopback y Conexiones Establecidas / Relacionadas</span><br>
-                            iptables -A INPUT -i lo -j ACCEPT<br>
-                            iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT<br>
-                            <br>
-                            <span class="text-emerald-300"># 4. Permitir SSH (Puerto 22) con Protección Anti-Fuerza Bruta</span><br>
-                            iptables -A INPUT -p tcp --dport 22 -m state --state NEW -m recent --set --name SSH<br>
-                            iptables -A INPUT -p tcp --dport 22 -m state --state NEW -m recent --update --seconds 60 --hitcount 4 -j DROP<br>
-                            iptables -A INPUT -p tcp --dport 22 -j ACCEPT<br>
-                            <br>
-                            <span class="text-emerald-300"># 5. Permitir Servidor Web Seguro (80 y 443)</span><br>
-                            iptables -A INPUT -p tcp -m multiport --dports 80,443 -j ACCEPT<br>
-                            echo "[+] Firewall iptables perimetral configurado y blindado."
-                        </div>
-                    </div>
-                </section>
-
-                <!-- FASE 4: APLICACIÓN PRÁCTICA Y SIMULADOR -->
-                <section id="fase4" class="scroll-mt-20">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="step-badge bg-amber-600 text-white">4</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 4: Aplicación Práctica (Emulador iptables y Problemario)</h2>
-                    </div>
-
-                    <!-- SIMULADOR INTERACTIVO JS: EMULADOR DE FIREWALL -->
-                    <div class="border-2 border-red-300 rounded-2xl p-6 bg-white shadow-sm mb-8">
-                        <div class="flex items-center justify-between mb-4 border-b border-red-100 pb-3">
-                            <div class="flex items-center gap-2">
-                                <i class="fas fa-terminal text-red-600 text-xl"></i>
-                                <div>
-                                    <h3 class="font-bold text-slate-900 text-sm">Emulador Táctico de Filtrado de Paquetes iptables</h3>
-                                    <span class="text-[11px] text-slate-500 font-mono">Envía paquetes a puertos específicos y evalúa la respuesta del firewall</span>
+                        <!-- Subtema C -->
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-indigo-900 block mb-1.5 font-bold text-sm"><i class="fas fa-wifi text-indigo-600 mr-1"></i> Subtema C: Protegiendo el Wi-Fi y la Navegación (Configuración de Red)</strong>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-[11px] pt-1">
+                                <div class="p-2.5 bg-white rounded-lg border border-slate-200">
+                                    <span class="font-bold text-indigo-700 block">🔒 El Candadito de Internet (HTTPS / SSL):</span>
+                                    Cuando compras en línea o entras a tu correo, fíjate que la dirección empiece con <strong><code>https://</code></strong> (la "S" significa Seguro). Así nadie en el Wi-Fi puede espiar tu clave.
+                                </div>
+                                <div class="p-2.5 bg-white rounded-lg border border-slate-200">
+                                    <span class="font-bold text-emerald-700 block">🚨 La Alarma contra Intrusos (IDS):</span>
+                                    Así como una casa tiene alarma si alguien fuerza la chapa, las redes tienen programas que avisan al administrador si alguien está intentando robar la clave del Wi-Fi.
                                 </div>
                             </div>
-                            <span class="px-2 py-1 rounded bg-red-100 text-red-800 text-[10px] font-bold">JavaScript Nativo</span>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs mb-4">
-                            <div>
-                                <label class="font-semibold text-slate-700 block mb-1">Puerto de Destino:</label>
-                                <select id="simPuerto" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="testFirewall()">
-                                    <option value="22">22 (SSH - Acceso Remoto)</option>
-                                    <option value="80">80 (HTTP - Web)</option>
-                                    <option value="443">443 (HTTPS - Web Seguro)</option>
-                                    <option value="3389">3389 (RDP - Windows Escritorio)</option>
-                                    <option value="445">445 (SMB - Ransomware Vector)</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="font-semibold text-slate-700 block mb-1">Dirección IP Origen:</label>
-                                <input type="text" id="simIpSrc" class="w-full p-2 border border-slate-300 rounded-lg text-xs font-mono" value="192.168.1.50" oninput="testFirewall()">
-                            </div>
-                            <div>
-                                <label class="font-semibold text-slate-700 block mb-1">Política del Firewall:</label>
-                                <select id="simPolitica" class="w-full p-2 border border-slate-300 rounded-lg text-xs" onchange="testFirewall()">
-                                    <option value="hardened" selected>Hardened (DROP por defecto + reglas)</option>
-                                    <option value="open">Permisivo (ACCEPT por defecto)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="p-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-200 text-xs font-mono">
-                            <div class="text-slate-400 text-[11px] mb-2">[TRAZA DE AUDITORÍA DEL PAQUETE EN TIEMPO REAL]</div>
-                            <div id="simFwOutput" class="space-y-1">
-                                <!-- Generado por JS -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- PROBLEMARIO DISRUPTIVO (10 RETOS PARA 40% FIRMAS) -->
-                    <div class="border border-slate-200 rounded-2xl p-6 bg-white">
-                        <div class="flex items-center justify-between mb-4 border-b pb-3">
-                            <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
-                                <i class="fas fa-lock text-red-600"></i> Bitácora de Defensa Perimetral (40% Firmas)
-                            </h3>
-                            <span class="px-2 py-0.5 rounded bg-red-100 text-red-800 text-[10px] font-bold">10 Retos</span>
-                        </div>
-
-                        <div class="space-y-3 text-xs text-slate-700">
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 1 (Regla de Bloqueo de Ping ICMP):</strong> Escribe la regla de iptables para bloquear las respuestas a paquetes ICMP Echo Request y prevenir el mapeo de red con <code>ping</code>.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 2 (Aislamiento de Servidor en DMZ):</strong> Diseña las reglas de la cadena <code>FORWARD</code> para permitir tráfico de Internet al servidor Web en la DMZ (puerto 443), pero prohibir el tráfico de la DMZ a la LAN.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 3 (Port Forwarding con NAT):</strong> Configura una regla de <code>PREROUTING</code> en iptables para redirigir peticiones públicas del puerto 8080 hacia el puerto 80 interno.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 4 (Mitigación de Ataques SYN Flood):</strong> Escribe una regla de iptables con el módulo <code>limit</code> para limitar las conexiones TCP SYN a máximo 10 por segundo con ráfaga de 20.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 5 (Bloqueo de Puertos Peligrosos de Windows):</strong> Diseña la lista de bloqueo perimetral para los puertos NetBIOS (137, 138, 139) y SMB (445) para mitigar propagación de ransomware.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 6 (Configuración de Túnel OpenVPN con Certificados):</strong> Diseña el archivo de configuración <code>client.ovpn</code> utilizando certificados TLS/SSL y cifrado AES-256-GCM.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 7 (Implementación de Port Knocking):</strong> Modela una secuencia secreta de paquetes a los puertos 7000, 8000 y 9000 para abrir dinámicamente el puerto SSH solo a quien conozca la combinación.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 8 (Persistencia de Reglas con iptables-persistent):</strong> Documenta el procedimiento para guardar reglas en <code>/etc/iptables/rules.v4</code> y asegurar que se carguen al reiniciar el sistema.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 9 (Auditoría de Reglas con Nmap Externo):</strong> Comprueba la efectividad de las reglas ejecutando <code>nmap -sS -p- IP_FIREWALL</code> desde una máquina externa verificando puertos filtrados.
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                                <strong>Reto 10 (Implementación de Defensa Perimetral - Evidencia AE 2.1.1):</strong> Presenta el reporte técnico de implementación con topología, scripts probados y capturas de paquetes para el 25% SAE (Heteroevaluación).
-                            </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- FASE 5: CIERRE, EVALUACIÓN Y METACOGNICIÓN -->
-                <section id="fase5" class="scroll-mt-20">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="step-badge bg-emerald-600 text-white">5</span>
-                        <h2 class="text-xl font-bold text-slate-900">Fase 5: Cierre, Evaluación y Metacognición</h2>
+                <!-- FASE 3: DEMOSTRACIÓN PASO A PASO GUIADA -->
+                <section class="slide-card p-6 border-l-4 border-l-indigo-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-indigo-600 text-white">3</span>
+                        <h2 class="text-lg font-bold text-slate-900">Fase 3: Tutorial Exprés — Cómo Ponerle Contraseña Secreta a una Carpeta en 1 Minuto</h2>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-3">Puedes hacer esta práctica hoy mismo en cualquier computadora de la escuela o de tu casa:</p>
+
+                    <div class="bg-slate-900 text-slate-200 rounded-xl p-4 text-xs font-mono space-y-2">
+                        <span class="text-sky-400 font-bold block">[RECETA RÁPIDA: CIFRAR MI CARPETA DE TAREAS]</span>
+                        <div><strong>Paso 1:</strong> Crea una carpeta en el Escritorio llamada <code>Mis_Archivos_Secretos</code> y mete ahí un documento de prueba.</div>
+                        <div><strong>Paso 2:</strong> Dale clic derecho a la carpeta y elige <em>Añadir al archivo...</em> (usando el programa libre <strong>7-Zip</strong> o WinRAR).</div>
+                        <div><strong>Paso 3:</strong> Busca el recuadro que dice <strong>"Encriptación / Establecer contraseña"</strong>.</div>
+                        <div><strong>Paso 4:</strong> Escribe una contraseña fuerte (ej. <code>Chilpo#2026!</code>) y marca la casilla <em>"Cifrar también nombres de archivo"</em>.</div>
+                        <div class="text-emerald-300 font-bold">¡LISTO! Ahora nadie en el mundo podrá ver ni abrir lo que hay adentro sin saber tu clave secreta.</div>
+                    </div>
+                </section>
+
+                <!-- FASE 4: SIMULADOR DIVERTIDO Y RETOS PRÁCTICOS (40% FIRMAS) -->
+                <section class="slide-card p-6 border-l-4 border-l-amber-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="badge-step bg-amber-600 text-white">4</span>
+                        <h2 class="text-lg font-bold text-slate-900">Fase 4: Simulador de Cifrado Secreto y Retos en Equipo</h2>
                     </div>
 
-                    <!-- RÚBRICA OFICIAL CONALEP: AE 2.1.1 (25% SAE - Heteroevaluación) -->
-                    <div class="border border-slate-200 rounded-2xl p-6 bg-white shadow-sm mb-6">
-                        <div class="flex items-center justify-between mb-4 border-b pb-3">
-                            <div>
-                                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-red-100 text-red-800 uppercase font-mono">Actividad de Evaluación 2.1.1 (Heteroevaluación)</span>
-                                <h3 class="font-bold text-slate-900 text-sm mt-1">Matriz de Valoración Oficial CONALEP (25% SAE)</h3>
-                            </div>
-                            <span class="text-xs font-extrabold text-red-600">Siglema: ASIN-03</span>
+                    <!-- JUEGO INTERACTIVO JS: MÁQUINA DE CIFRADO SECRETO -->
+                    <div class="p-5 bg-slate-900 text-white rounded-2xl mb-6 shadow-sm">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-sky-400 font-mono"><i class="fas fa-user-lock mr-1"></i> Simulador: La Máquina de Mensajes Cifrados</span>
+                            <span class="text-[10px] bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded">Juega en Vivo</span>
                         </div>
-
-                        <div class="overflow-x-auto text-[11px]">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr class="bg-slate-900 text-white">
-                                        <th class="p-2.5">Indicador</th>
-                                        <th class="p-2.5 text-center">%</th>
-                                        <th class="p-2.5">Excelente</th>
-                                        <th class="p-2.5">Bueno</th>
-                                        <th class="p-2.5">Suficiente</th>
-                                        <th class="p-2.5">Insuficiente</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-slate-200 text-slate-700">
-                                    <tr>
-                                        <td class="p-2.5 font-bold">Configuración de Firewall e iptables</td>
-                                        <td class="p-2.5 text-center font-bold text-red-600">35%</td>
-                                        <td class="p-2.5 bg-red-50/50">Establece política DROP por defecto, filtra puertos críticos, configura protección anti-DDoS/fuerza bruta y <strong>garantiza persistencia del servicio ante reinicios</strong>.</td>
-                                        <td class="p-2.5">Establece política DROP por defecto y filtra puertos críticos de la infraestructura.</td>
-                                        <td class="p-2.5">Configura reglas pero mantiene política permisiva ACCEPT.</td>
-                                        <td class="p-2.5 bg-red-50/30">Omite configurar reglas de firewall.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-2.5 font-bold">Segmentación DMZ y VPN</td>
-                                        <td class="p-2.5 text-center font-bold text-red-600">30%</td>
-                                        <td class="p-2.5 bg-red-50/50">Aísla servidores en DMZ, implementa túneles VPN cifrados con autenticación robusta y <strong>valida el no acceso de la DMZ hacia la LAN interna</strong>.</td>
-                                        <td class="p-2.5">Aísla servidores en DMZ y configura túnel VPN cifrado funcional.</td>
-                                        <td class="p-2.5">Segmentación incompleta o VPN sin cifrado seguro.</td>
-                                        <td class="p-2.5 bg-red-50/30">No implementa DMZ ni VPNs.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-2.5 font-bold">Verificación y pruebas de penetración</td>
-                                        <td class="p-2.5 text-center font-bold text-red-600">25%</td>
-                                        <td class="p-2.5 bg-red-50/50">Audita la defensa con Nmap, demuestra el bloqueo de paquetes no autorizados y <strong>elabora reporte técnico con capturas de tráfico en Wireshark</strong>.</td>
-                                        <td class="p-2.5">Audita con Nmap y demuestra el bloqueo de puertos en el reporte.</td>
-                                        <td class="p-2.5">Pruebas incompletas o sin evidencias fotográficas/capturas.</td>
-                                        <td class="p-2.5 bg-red-50/30">No realiza pruebas de verificación.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-2.5 font-bold">Actitud técnica</td>
-                                        <td class="p-2.5 text-center font-bold text-red-600">10%</td>
-                                        <td class="p-2.5 bg-red-50/50">Rigor metodológico, seguimiento estricto de manuales de configuración y <strong>capacidad de depurar errores de sintaxis en consola</strong>.</td>
-                                        <td class="p-2.5">Seguimiento adecuado de instrucciones y entrega puntual.</td>
-                                        <td class="p-2.5">Dificultad recurrente en la ejecución de comandos.</td>
-                                        <td class="p-2.5 bg-red-50/30">Falta de interés o abandono de la práctica.</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <p class="text-xs text-slate-300 mb-3">Escribe un mensaje privado y mira cómo se ve cuando viaja por Internet SIN candado (HTTP) vs CON candado (HTTPS / Cifrado):</p>
+                        <div class="mb-3">
+                            <input type="text" id="txtSecreto" class="w-full p-2.5 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white font-mono" value="Mi clave del banco es 4829 y tengo $500 pesos" oninput="simularCifrado()">
+                        </div>
+                        <div id="outCifrado" class="p-3.5 bg-slate-800 rounded-xl text-xs font-mono space-y-2">
+                            <!-- Dinámico por JS -->
                         </div>
                     </div>
 
-                    <!-- Metacognición -->
-                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700">
-                        <h4 class="font-bold text-slate-900 mb-1"><i class="fas fa-brain text-red-600 mr-1.5"></i> Pregunta de Metacognición Disruptiva:</h4>
-                        <p>
-                            "¿Por qué la arquitectura de Zonas Desmilitarizadas (DMZ) se basa en la asunción de que 'cualquier servidor expuesto a Internet tarde o temprano será hackeado', y cómo esta mentalidad protege el núcleo de la empresa?"
+                    <!-- ACTIVIDADES DIVERTIDAS Y PRÁCTICAS (PORTAFOLIO 40%) -->
+                    <div class="space-y-3 text-xs">
+                        <h3 class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+                            <i class="fas fa-gamepad text-sky-600"></i> 4 Prácticas Divertidas para tu Portafolio de Firmas (40%)
+                        </h3>
+                        <div class="p-3.5 bg-white rounded-xl border border-slate-200 hover:border-sky-300 transition">
+                            <span class="font-bold text-sky-700 block mb-0.5">📸 Práctica 1: El Mini-Tutorial Fotográfico</span>
+                            Toma 4 capturas de pantalla en tu computadora mostrando cómo entras a revisar que el <strong>Antivirus (Seguridad de Windows)</strong> y el <strong>Firewall</strong> tengan las palomitas verdes encendidas.
+                        </div>
+                        <div class="p-3.5 bg-white rounded-xl border border-slate-200 hover:border-sky-300 transition">
+                            <span class="font-bold text-teal-700 block mb-0.5">🔐 Práctica 2: El Reto de la "Carpeta con Candado"</span>
+                            Comprime y cifra una carpeta con contraseña en tu computadora. Pásasela por USB a otro equipo de compañeros: ¡si no logran abrirla en 5 minutos, tu equipo gana los puntos del reto!
+                        </div>
+                        <div class="p-3.5 bg-white rounded-xl border border-slate-200 hover:border-sky-300 transition">
+                            <span class="font-bold text-indigo-700 block mb-0.5">👥 Práctica 3: Creando la Cuenta "Anti-Primos Curiosos"</span>
+                            En el laboratorio, creen una cuenta de usuario tipo <em>Estándar / Invitado</em> y comprueben cómo Windows le pide permiso al Administrador cuando intenta instalar un programa.
+                        </div>
+                        <div class="p-3.5 bg-white rounded-xl border border-slate-200 hover:border-sky-300 transition">
+                            <span class="font-bold text-emerald-700 block mb-0.5">⚔️ Práctica 4: "Defensores vs. Intrusos" (Juego entre Equipos)</span>
+                            Como pide el programa oficial: el Equipo A configura los permisos de una carpeta compartida en red y el Equipo B intenta entrar sin permiso o cambiar un archivo. ¡Veamos si sus candados resisten!
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FASE 5: PROYECTO PRÁCTICO OFICIAL (AE 2.1.1 - 30% SAE) Y PLANTILLA WORD -->
+                <section class="slide-card p-6 border-l-4 border-l-emerald-500">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <span class="badge-step bg-emerald-600 text-white">5</span>
+                            <h2 class="text-lg font-bold text-slate-900">Fase 5: Misión Oficial de Evaluación 2.1.1 (30% SAE)</h2>
+                        </div>
+                        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">¡Vale 30% SAE!</span>
+                    </div>
+
+                    <div class="space-y-3 text-xs text-slate-700">
+                        <p class="leading-relaxed">
+                            <strong>¿En qué consiste tu proyecto más grande del semestre (30%)?</strong><br>
+                            Elaborar tu propio <strong>Manual Ilustrado de Seguridad Paso a Paso</strong> (con capturas de pantalla tuyas) explicando cómo configuraste el antivirus, el firewall, las cuentas de usuario y el candado de carpetas en la computadora:
                         </p>
+
+                        <!-- PLANTILLA WORD FÁCIL DE COPIAR -->
+                        <div class="template-box p-4 my-3 space-y-2">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs font-bold text-sky-900 flex items-center gap-1.5">
+                                    <i class="fas fa-file-word text-blue-600 text-sm"></i> Plantilla Lista para Copiar y Pegar en Word / Writer
+                                </span>
+                                <button onclick="copiarPlantilla21()" class="px-3 py-1.5 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-[11px] font-bold transition shadow-sm flex items-center gap-1.5">
+                                    <i class="fas fa-copy"></i> Copiar Plantilla del Manual
+                                </button>
+                            </div>
+                            <pre id="plantillaWord21" class="p-3 bg-white rounded-xl border border-slate-200 text-[10px] font-mono text-slate-700 overflow-x-auto leading-relaxed">
+======================================================================
+CONALEP PLANTEL CHILPANCINGO — MANUAL PRÁCTICO DE SEGURIDAD (AE 2.1.1)
+======================================================================
+Elaborado por (Alumnos): _____________________________________________
+Grupo: _________   Fecha: _____________   Equipo configurado: ________
+
+1. ¿QUÉ NECESITAMOS ANTES DE EMPEZAR? (REQUERIMIENTOS):
+- Sistema Operativo: Windows 10 / 11 o GNU/Linux.
+- Programas utilizados: Seguridad de Windows (Antivirus y Firewall) y 7-Zip.
+
+2. PASO A PASO: BLINDAJE DE LA COMPUTADORA (CONFIGURACIÓN LOCAL):
+[Pega aquí tu Captura de Pantalla 1]
+- Paso 1 (Actualizaciones): Entramos a Configuración > Windows Update y verificamos que las actualizaciones automáticas estén activas.
+
+[Pega aquí tu Captura de Pantalla 2]
+- Paso 2 (Cuentas de Usuario): Creamos una cuenta estándar con contraseña segura para evitar que extraños instalen programas.
+
+[Pega aquí tu Captura de Pantalla 3]
+- Paso 3 (Firewall y Antivirus): Revisamos que el Escudo Firewall esté encendido en redes privadas y públicas, y realizamos un examen rápido con el Antivirus.
+
+[Pega aquí tu Captura de Pantalla 4]
+- Paso 4 (Candado y Cifrado de Carpetas): Le pusimos contraseña secreta a nuestra carpeta de trabajo importante.
+
+3. PASO A PASO: CUIDADO DE LA RED Y CARPETAS COMPARTIDAS:
+- Paso 5: Configuramos los permisos de la carpeta compartida para que otros usuarios solo puedan "Leer" pero no borrar nuestros archivos, y verificamos el uso de páginas seguras con candado HTTPS.
+
+4. DIAGRAMA DE FLUJO SENCILLO DEL PROCESO:
+[Inicio] -> [Revisar Actualizaciones] -> [Activar Firewall y Antivirus] -> [Poner Contraseña a Cuentas y Carpetas] -> [Computadora Protegida]
+======================================================================</pre>
+                        </div>
                     </div>
                 </section>
 
-                <!-- Navegación Inferior -->
+                <!-- Navegación de Pie de Página -->
                 <div class="flex justify-between items-center border-t border-slate-200 pt-6">
                     <a href="tema1_2.html" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
-                        <i class="fas fa-arrow-left mr-1"></i> Anterior: RA 1.2 (Políticas e ISO 27001)
+                        <i class="fas fa-arrow-left mr-1"></i> Anterior: Misión 1.2
                     </a>
-                    <a href="tema2_2.html" class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition shadow-sm">
-                        Siguiente: RA 2.2 (Monitoreo SIEM & Logs) <i class="fas fa-arrow-right ml-1"></i>
+                    <a href="tema2_2.html" class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs transition shadow-sm">
+                        Siguiente: Misión 2.2 (La Caja Negra de tu PC) <i class="fas fa-arrow-right ml-1"></i>
                     </a>
                 </div>
 
             </main>
 
-            <!-- COLUMNA 3: Barra Lateral Derecha -->
-            <aside class="lg:col-span-2">
+            <!-- COLUMNA 3: Checklist para el Alumno -->
+            <aside class="lg:col-span-3">
                 <div class="sticky top-16 space-y-6">
-
-                    <!-- TOC Interactivo -->
-                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm">
-                        <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">En esta Página</h4>
-                        <ul class="space-y-2 text-xs text-slate-600">
-                            <li><a href="#fase1" class="hover:text-red-600 transition block">1. Caso Escaneo y Botnets</a></li>
-                            <li><a href="#fase2" class="hover:text-red-600 transition block">2. Cadenas iptables & DMZ</a></li>
-                            <li><a href="#fase3" class="hover:text-red-600 transition block">3. Script Bash de Hardening</a></li>
-                            <li><a href="#fase4" class="hover:text-red-600 transition block">4. Emulador de Firewall</a></li>
-                            <li><a href="#fase5" class="hover:text-red-600 transition block">5. Rúbrica Oficial AE 2.1.1</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Cuadro de Evidencia SAE -->
-                    <div class="p-4 bg-gradient-to-br from-red-50 to-rose-50 border border-red-200 rounded-2xl text-xs space-y-2">
-                        <div class="flex items-center gap-2 text-red-900 font-bold text-xs">
-                            <i class="fas fa-lock text-red-600"></i> Entregable SAE (AE 2.1.1)
+                    <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm text-xs">
+                        <div class="flex items-center gap-2 text-sky-900 font-bold mb-2">
+                            <i class="fas fa-flag-checkered text-sky-600"></i> Tu Meta en esta Misión
                         </div>
-                        <ul class="text-[11px] text-slate-700 list-disc ml-4 space-y-1">
-                            <li>Script perimetral iptables.</li>
-                            <li>Segmentación de zona DMZ.</li>
-                            <li>Configuración VPN IPsec / OpenVPN.</li>
-                            <li>Evidencia de auditoría con Nmap.</li>
+                        <ul class="text-[11px] text-slate-600 list-disc ml-4 space-y-1.5 mb-3">
+                            <li>Saber activar el Firewall y el Antivirus.</li>
+                            <li>Ponerle contraseña cifrada a una carpeta.</li>
+                            <li>Participar en el reto Defensores vs Intrusos.</li>
+                            <li>Entregar tu Manual con capturas (30% SAE).</li>
                         </ul>
-                        <div class="pt-2 border-t border-red-200 text-center">
-                            <span class="text-red-700 font-extrabold text-sm">Ponderación Oficial: 25% SAE</span>
+                        <div class="p-2.5 bg-sky-50 rounded-xl text-center font-bold text-sky-800">
+                            Misión 2.1 • ¡Vale 30% SAE!
                         </div>
                     </div>
-
                 </div>
             </aside>
 
@@ -509,45 +367,27 @@
 
     <!-- Script del Simulador JS -->
     <script>
-        function testFirewall() {
-            const puerto = document.getElementById('simPuerto').value;
-            const ipSrc = document.getElementById('simIpSrc').value;
-            const politica = document.getElementById('simPolitica').value;
-            const outElem = document.getElementById('simFwOutput');
+        function simularCifrado() {
+            const msg = document.getElementById('txtSecreto').value || "Hola";
+            const out = document.getElementById('outCifrado');
 
-            let accion = "";
-            let motivo = "";
-            let color = "text-emerald-300";
+            // Generar texto revuelto simulado (Base64 + símbolos)
+            const cifrado = btoa(unescape(encodeURIComponent(msg))).split('').reverse().join('') + "#9x!A2$z";
 
-            if (politica === "open") {
-                accion = "ACCEPT (PAQUETE PERMITIDO)";
-                motivo = "La política por defecto es ACCEPT y no hay reglas de filtrado.";
-                color = "text-amber-300";
-            } else {
-                if (puerto === "80" || puerto === "443") {
-                    accion = "ACCEPT (PERMITIDO POR REGLA EXPLÍCITA)";
-                    motivo = "Regla: iptables -A INPUT -p tcp -m multiport --dports 80,443 -j ACCEPT";
-                    color = "text-emerald-300";
-                } else if (puerto === "22") {
-                    accion = "ACCEPT (PERMITIDO CON RATE LIMITING)";
-                    motivo = "Regla: Permitido SSH con límite de 4 intentos por minuto.";
-                    color = "text-sky-300";
-                } else if (puerto === "445" || puerto === "3389") {
-                    accion = "DROP (PAQUETE DESCARTADO SILENCIOSAMENTE)";
-                    motivo = "Regla: Política por defecto DROP activa. Puerto peligroso bloqueado.";
-                    color = "text-red-400";
-                }
-            }
-
-            outElem.innerHTML = `
-                &bull; Paquete entrante: <strong class="text-white">${ipSrc} &rarr; Servidor:Puerto ${puerto}/TCP</strong><br>
-                &bull; Veredicto del Firewall: <span class="${color} font-extrabold text-sm">${accion}</span><br>
-                &bull; Justificación Técnica: <span class="text-slate-300">${motivo}</span><br>
-                ------------------------------------------------------------<br>
-                <span class="text-purple-300 font-bold">&check; ESTADO BLUE TEAM:</span> ${politica === 'hardened' ? "<span class='text-emerald-300'>Servidor blindado contra escaneo y propagación lateral.</span>" : "<span class='text-red-400 font-bold'>¡ALERTA! Superficie de ataque abierta a ransomware.</span>"}
+            out.innerHTML = `
+                <div class="text-red-400">🔓 <strong>Sin Candado (HTTP / Sin Cifrar):</strong> "${msg}" <span class="text-slate-400">(¡Cualquiera en el Wi-Fi lo puede leer!)</span></div>
+                <div class="text-emerald-400">🔒 <strong>Con Candado (HTTPS / Cifrado Activo):</strong> "${cifrado}" <span class="text-slate-300">(Totalmente protegido e ilegible para espías)</span></div>
             `;
         }
-        window.onload = testFirewall;
+
+        function copiarPlantilla21() {
+            const txt = document.getElementById('plantillaWord21').innerText;
+            navigator.clipboard.writeText(txt).then(() => {
+                alert('¡Listo! Ya se copió la plantilla del Manual Práctico. Pégala en Word o LibreOffice Writer y agrégale tus capturas de pantalla.');
+            });
+        }
+
+        window.onload = simularCifrado;
     </script>
 </body>
 </html>
